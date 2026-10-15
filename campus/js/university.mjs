@@ -1,6 +1,6 @@
 import { diagramCard, diagramSvg } from "./diagrams.mjs";
 import { ACTION_CATALOG, validateScript } from "./model.mjs";
-import { chartsBlock, counterRow, iconParade } from "./charts.mjs";
+import { chartsBlock, counterRow } from "./charts.mjs";
 import { burst, decorateFloor } from "./effects.mjs";
 import { bindLightbox } from "./lightbox.mjs";
 import { bindTilt } from "./icons.mjs";
@@ -160,7 +160,6 @@ export async function homeExtra(manifest, done, total) {
     <section class="home-spotlight" id="home-spotlight">
       <h2>Diagrams, flows, and charts</h2>
       <p class="muted">${done} of ${total} lessons studied in this browser · ${manifest.tracks.length} tracks · ${atlas.diagrams.length} diagrams · ${atlas.diagrams.filter((item) => item.family === "flow" && item.animated).length} animated flows · ${(atlas.charts || []).length} charts from this floor’s own files. <a href="#/diagrams">Open the atlas</a> · <a href="#/flows">Flows</a> · <a href="#/charts">Charts</a> · <a href="#/downloads">Cheat Codes</a></p>
-      ${iconParade()}
       <div class="diagram-grid">${cards}</div>
       <h2>Counts from the lesson files</h2>
       ${chartsBlock(atlas.charts || [], (key) => citeHtml(atlas, key))}
@@ -179,7 +178,6 @@ export async function trackFloor(track) {
       { value: atlas.diagrams.length, label: "diagrams" },
     ])}
     <svg class="rough-frame" viewBox="0 0 760 90" aria-hidden="true"></svg>
-    ${iconParade()}
     <h2>Floor charts</h2>
     ${chartsBlock(atlas.charts || [], (key) => citeHtml(atlas, key))}`;
 }
@@ -226,7 +224,6 @@ async function viewDiagrams(reduced, mode) {
 async function viewCharts() {
   const atlas = await loadAtlas();
   return pageShell("Charts", `${(atlas.charts || []).length} charts. Lesson, minute, and quiz bars are counted from this repository. Protocol bars count rows in the firewall table. Release bars are the published start month.`, `
-    ${iconParade()}
     ${chartsBlock(atlas.charts || [], (key) => citeHtml(atlas, key))}
     <svg class="rough-frame" viewBox="0 0 760 90" aria-hidden="true"></svg>`);
 }

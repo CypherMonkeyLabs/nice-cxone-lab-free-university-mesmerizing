@@ -559,10 +559,12 @@ async function viewHome() {
           { value: counts.charts, label: "charts" },
         ])}
         <p class="ticker" id="study-clock" aria-live="polite"></p>
-        <div class="pose-strip" aria-label="Mascot variations">${poses}</div>
-        <p class="lede">${esc(t("lede"))}</p>
-        <p class="muted">${esc(t("note"))}</p>
       </div>
+    </section>
+    <section class="hero-follow">
+      <div class="pose-strip" aria-label="Mascot variations">${poses}</div>
+      <p class="lede">${esc(t("lede"))}</p>
+      <p class="muted">${esc(t("note"))}</p>
     </section>
     <div id="home-extra">${extra}</div>
     <p class="muted">${done} of ${total} lessons marked studied. ${esc(manifest.honesty)}</p>

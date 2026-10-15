@@ -55,13 +55,34 @@ export function unmountHero() {
   }
 }
 
+function labelSprite(THREE, text, color) {
+  const board = document.createElement("canvas");
+  board.width = 256;
+  board.height = 64;
+  const ctx = board.getContext("2d");
+  ctx.clearRect(0, 0, 256, 64);
+  ctx.fillStyle = "rgba(4, 10, 20, 0.62)";
+  ctx.fillRect(8, 8, 240, 48);
+  ctx.strokeStyle = `#${color.toString(16).padStart(6, "0")}`;
+  ctx.lineWidth = 3;
+  ctx.strokeRect(8, 8, 240, 48);
+  ctx.fillStyle = "#f4fbff";
+  ctx.font = "600 28px sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(text, 128, 32);
+  const material = new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(board), transparent: true, depthWrite: false });
+  const sprite = new THREE.Sprite(material);
+  sprite.position.y = 0.62;
+  sprite.scale.set(1.85, 0.46, 1);
+  return sprite;
+}
+
 export async function mountHero(canvas) {
   unmountHero();
   const token = generation;
   if (!canvas) return { ok: false };
   const stage = canvas.closest(".hero-stage");
-  const reduced = document.documentElement.dataset.motion === "reduce"
-    || window.matchMedia("(prefers-reduced-motion: reduce)").matches && document.documentElement.dataset.motion !== "full";
   if (document.documentElement.dataset.motion === "reduce") {
     showFallback(canvas, stage);
     return { ok: false, reason: "reduced" };
@@ -81,6 +102,7 @@ export async function mountHero(canvas) {
     showFallback(canvas, stage);
     return { ok: false, reason: "webgl" };
   }
+  try {
   canvas.hidden = false;
   const fallback = stage && stage.querySelector(".hero-fallback");
   if (fallback) fallback.hidden = true;
@@ -287,5 +309,11 @@ export async function mountHero(canvas) {
     renderer.render(scene, camera);
   };
   raf = requestAnimationFrame(loop);
-  return { ok: true, reduced };
+  canvas.dataset.hero = "ok";
+  return { ok: true };
+  } catch (error) {
+    unmountHero();
+    if (canvas.isConnected) showFallback(canvas, stage);
+    return { ok: false, reason: "scene" };
+  }
 }
