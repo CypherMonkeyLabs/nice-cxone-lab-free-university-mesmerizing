@@ -23,7 +23,7 @@ function motion(reduced) {
 function packet(id, reduced) {
   if (reduced) return "";
   const dur = `${(2.1 + (wireSeq % 5) * 0.35).toFixed(2)}s`;
-  return `<circle class="packet-glow" r="8" fill="var(--cc-accent-2)" opacity="0.55" filter="url(#pktglow)"><animateMotion dur="${dur}" repeatCount="indefinite" rotate="auto" calcMode="linear"><mpath href="#${id}"/></animateMotion></circle><circle class="packet" r="4.2" fill="#ffffff" filter="url(#pktglow)"><animateMotion dur="${dur}" repeatCount="indefinite" rotate="auto" calcMode="linear"><mpath href="#${id}"/></animateMotion></circle>`;
+  return `<circle class="packet-glow" r="12" fill="var(--cc-accent-2)" opacity="0.7" filter="url(#pktglow)"><animateMotion dur="${dur}" repeatCount="indefinite" rotate="auto" calcMode="linear"><mpath href="#${id}"/></animateMotion></circle><circle class="packet" r="6" fill="#ffffff" filter="url(#pktglow)"><animateMotion dur="${dur}" repeatCount="indefinite" rotate="auto" calcMode="linear"><mpath href="#${id}"/></animateMotion></circle>`;
 }
 
 function edge(x1, y1, x2, y2, label, reduced) {

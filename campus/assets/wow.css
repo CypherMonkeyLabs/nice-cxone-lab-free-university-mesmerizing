@@ -93,7 +93,7 @@ html[data-motion="full"] .orbit-fallback i { animation: orbit-spin 14s linear in
   left: 12px;
   z-index: 2;
   width: min(240px, 32vw);
-  max-height: 22%;
+  max-height: 26%;
   margin: 0;
   padding: 8px 12px;
   overflow: hidden;
@@ -168,9 +168,7 @@ html[data-motion="reduce"] .icon-live { display: none; }
   z-index: 40;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 46%, transparent 0%, color-mix(in srgb, var(--cc-accent-1) 55%, transparent) 16%, transparent 46%),
-    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--cc-accent-2) 50%, transparent), transparent 58%);
-  mix-blend-mode: screen;
+    radial-gradient(circle at 50% 46%, transparent 8%, color-mix(in srgb, var(--cc-accent-1) 80%, transparent) 22%, rgba(0, 0, 0, 0.72) 68%);
   opacity: 0;
 }
 .fly-layer.fly-go { animation: fly-through 0.52s ease-in forwards; }
@@ -409,6 +407,7 @@ html[dir="rtl"] body[data-view="home"] .top { right: auto; left: 16px; }
 .study-more > summary {
   display: inline-flex;
   align-items: center;
+  margin: 0;
   list-style: none;
   cursor: pointer;
   border: 1px solid var(--cc-line);
@@ -443,7 +442,7 @@ html[dir="rtl"] body[data-view="home"] .top { right: auto; left: 16px; }
     right: 0;
     bottom: 0;
     z-index: 3;
-    max-height: 30vh;
+    max-height: min(30vh, 28%);
     overflow: auto;
     pointer-events: auto;
     padding: 8px 10px 10px;
@@ -474,6 +473,18 @@ html[dir="rtl"] body[data-view="home"] .top { right: auto; left: 16px; }
   .audio-dock { bottom: calc(var(--bottom-h) + 8px); width: min(210px, calc(100vw - 92px)); padding: 8px; }
   .mascot-dock { bottom: calc(var(--bottom-h) + 8px); }
   main { padding-bottom: calc(var(--bottom-h) + 120px); }
+  body[data-view="home"] .hero-stage { height: calc(100svh - 500px); min-height: 240px; }
+  body[data-view="home"] .top { flex-wrap: nowrap; overflow-x: auto; gap: 6px; padding: 6px 8px 0; }
+  .hero-sheet { max-height: min(30vh, 30%); padding: 6px 8px 8px; }
+  .hero-glass .chip { margin: 0; padding: 0 6px; line-height: 1.2; }
+  .hero-glass h1 { margin: 0; font-size: 0.92rem; line-height: 1.15; }
+  .hero-glass .ticker { display: none; }
+  .hero-counters .live-counters { flex-wrap: nowrap; overflow-x: auto; margin: 2px 0 0; gap: 4px; }
+  .hero-counters .live-counters span { min-width: 0; min-height: 0; padding: 1px 4px; line-height: 1.05; }
+  .hero-counters .live-counters b { font-size: 0.8rem; line-height: 1; }
+  .hero-counters .live-counters small { font-size: 0.62rem; line-height: 1; }
+  body[data-view="home"] .icon-live { width: 72px; height: 56px; }
+  body[data-view="home"] .fold-grid .card { padding: 6px 8px 8px; }
   .iso { width: 104px; height: 98px; }
 }
 html[data-motion="reduce"] .fly-layer,

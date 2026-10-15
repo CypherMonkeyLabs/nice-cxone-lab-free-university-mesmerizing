@@ -17,11 +17,19 @@ function finishFly() {
 }
 
 function attachBloom(THREE, source) {
+  const full = new THREE.WebGLRenderTarget(2, 2);
   const half = new THREE.WebGLRenderTarget(2, 2);
   const brightRT = new THREE.WebGLRenderTarget(2, 2);
   const blurRT = new THREE.WebGLRenderTarget(2, 2);
   const quadGeo = new THREE.PlaneGeometry(2, 2);
   const quadCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const copyMat = new THREE.ShaderMaterial({
+    uniforms: { tDiffuse: { value: null } },
+    vertexShader: BLOOM_VERT,
+    fragmentShader: "uniform sampler2D tDiffuse; varying vec2 vUv; void main(){ gl_FragColor = texture2D(tDiffuse, vUv); }",
+    depthTest: false,
+    depthWrite: false,
+  });
   const brightMat = new THREE.ShaderMaterial({
     uniforms: { tDiffuse: { value: null }, threshold: { value: 0.38 } },
     vertexShader: BLOOM_VERT,
@@ -32,7 +40,7 @@ function attachBloom(THREE, source) {
   const blurMat = new THREE.ShaderMaterial({
     uniforms: { tDiffuse: { value: null }, direction: { value: new THREE.Vector2(1, 0) } },
     vertexShader: BLOOM_VERT,
-    fragmentShader: "uniform sampler2D tDiffuse; uniform vec2 direction; varying vec2 vUv; void main(){ vec4 sum = texture2D(tDiffuse, vUv) * 0.227; float w1 = 0.194; float w2 = 0.121; float w3 = 0.054; float w4 = 0.016; sum += texture2D(tDiffuse, vUv + direction) * w1; sum += texture2D(tDiffuse, vUv - direction) * w1; sum += texture2D(tDiffuse, vUv + direction * 2.0) * w2; sum += texture2D(tDiffuse, vUv - direction * 2.0) * w2; sum += texture2D(tDiffuse, vUv + direction * 3.0) * w3; sum += texture2D(tDiffuse, vUv - direction * 3.0) * w3; sum += texture2D(tDiffuse, vUv + direction * 4.0) * w4; sum += texture2D(tDiffuse, vUv - direction * 4.0) * w4; gl_FragColor = sum; }",
+    fragmentShader: "uniform sampler2D tDiffuse; uniform vec2 direction; varying vec2 vUv; void main(){ vec4 sum = texture2D(tDiffuse, vUv) * 0.36; sum += texture2D(tDiffuse, vUv + direction) * 0.22; sum += texture2D(tDiffuse, vUv - direction) * 0.22; sum += texture2D(tDiffuse, vUv + direction * 2.0) * 0.1; sum += texture2D(tDiffuse, vUv - direction * 2.0) * 0.1; gl_FragColor = sum; }",
     depthTest: false,
     depthWrite: false,
   });
@@ -45,62 +53,77 @@ function attachBloom(THREE, source) {
     depthTest: false,
     depthWrite: false,
   });
-  const quad = new THREE.Mesh(quadGeo, brightMat);
+  const quad = new THREE.Mesh(quadGeo, copyMat);
   const quadScene = new THREE.Scene();
   quadScene.add(quad);
   let cached = "";
+  let passes = 2;
   function resize() {
-    const w = Math.max(2, Math.floor(source.domElement.width / 2));
-    const h = Math.max(2, Math.floor(source.domElement.height / 2));
+    const w = Math.max(2, source.domElement.width);
+    const h = Math.max(2, source.domElement.height);
+    const hw = Math.max(2, Math.floor(w / 2));
+    const hh = Math.max(2, Math.floor(h / 2));
     const key = `${w}x${h}`;
-    if (key === cached) return { w, h };
+    if (key === cached) return { hw, hh };
     cached = key;
-    half.setSize(w, h);
-    brightRT.setSize(w, h);
-    blurRT.setSize(w, h);
-    return { w, h };
+    full.setSize(w, h);
+    half.setSize(hw, hh);
+    brightRT.setSize(hw, hh);
+    blurRT.setSize(hw, hh);
+    return { hw, hh };
   }
   function render(scene, camera) {
-    const { w, h } = resize();
-    source.setRenderTarget(null);
+    const { hw, hh } = resize();
     source.autoClear = true;
+    source.setRenderTarget(full);
     source.render(scene, camera);
+    quad.material = copyMat;
+    copyMat.uniforms.tDiffuse.value = full.texture;
+    source.setRenderTarget(null);
+    source.render(quadScene, quadCam);
     source.setRenderTarget(half);
-    source.clear();
-    source.render(scene, camera);
+    source.render(quadScene, quadCam);
     quad.material = brightMat;
     brightMat.uniforms.tDiffuse.value = half.texture;
     source.setRenderTarget(brightRT);
-    source.clear();
     source.render(quadScene, quadCam);
     quad.material = blurMat;
     blurMat.uniforms.tDiffuse.value = brightRT.texture;
-    blurMat.uniforms.direction.value.set(1.6 / w, 0);
+    blurMat.uniforms.direction.value.set(2.2 / hw, 0);
     source.setRenderTarget(blurRT);
-    source.clear();
     source.render(quadScene, quadCam);
-    blurMat.uniforms.tDiffuse.value = blurRT.texture;
-    blurMat.uniforms.direction.value.set(0, 1.6 / h);
-    source.setRenderTarget(brightRT);
-    source.clear();
-    source.render(quadScene, quadCam);
+    if (passes > 1) {
+      blurMat.uniforms.tDiffuse.value = blurRT.texture;
+      blurMat.uniforms.direction.value.set(0, 2.2 / hh);
+      source.setRenderTarget(brightRT);
+      source.render(quadScene, quadCam);
+      addMat.uniforms.tBloom.value = brightRT.texture;
+    } else {
+      addMat.uniforms.tBloom.value = blurRT.texture;
+    }
     quad.material = addMat;
-    addMat.uniforms.tBloom.value = brightRT.texture;
     source.autoClear = false;
     source.setRenderTarget(null);
     source.render(quadScene, quadCam);
     source.autoClear = true;
   }
   function dispose() {
+    full.dispose();
     half.dispose();
     brightRT.dispose();
     blurRT.dispose();
+    copyMat.dispose();
     brightMat.dispose();
     blurMat.dispose();
     addMat.dispose();
     quadGeo.dispose();
   }
-  return { render, resize, dispose };
+  return {
+    render,
+    resize,
+    dispose,
+    lite() { passes = 1; },
+  };
 }
 
 export function flyOut() {
@@ -360,7 +383,7 @@ export async function mountHero(canvas) {
     const rect = canvas.getBoundingClientRect();
     const width = Math.max(2, rect.width);
     const height = Math.max(2, rect.height);
-    const cap = width < 800 ? 1.15 : 1.5;
+    const cap = width < 800 ? 1 : 1.25;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, cap));
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
@@ -426,6 +449,8 @@ export async function mountHero(canvas) {
   paintFrame();
   running = true;
   const clock = new THREE.Clock();
+  let frameCount = 0;
+  let frameStamp = performance.now();
   const loop = () => {
     if (!running || token !== generation || !canvas.isConnected) return;
     raf = requestAnimationFrame(loop);
@@ -451,6 +476,12 @@ export async function mountHero(canvas) {
     }
     camera.lookAt(0, 0.5, 0);
     paintFrame();
+    frameCount += 1;
+    if (frameCount === 8) frameStamp = performance.now();
+    if (frameCount === 32) {
+      const fps = 24 * 1000 / Math.max(1, performance.now() - frameStamp);
+      if (fps < 45 && bloom) bloom.lite();
+    }
   };
   function paintFrame() {
     if (!bloom) {

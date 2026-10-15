@@ -101,13 +101,7 @@ export async function mountIconScenes(root) {
   const scenes = KINDS.map((kind, index) => {
     const scene = new THREE.Scene();
     const tone = colors[index % colors.length];
-    const mesh = new THREE.Mesh(shapeFor(THREE, kind), new THREE.MeshStandardMaterial({
-      color: tone,
-      emissive: tone,
-      emissiveIntensity: 0.9,
-      roughness: 0.28,
-      metalness: 0.45,
-    }));
+    const mesh = new THREE.Mesh(shapeFor(THREE, kind), new THREE.MeshBasicMaterial({ color: tone }));
     const halo = new THREE.Mesh(new THREE.TorusGeometry(0.78, 0.03, 8, 40), new THREE.MeshBasicMaterial({
       color: tone,
       transparent: true,
@@ -117,10 +111,7 @@ export async function mountIconScenes(root) {
     }));
     halo.rotation.x = Math.PI / 2.4;
     const packet = new THREE.Mesh(new THREE.SphereGeometry(0.1, 10, 10), new THREE.MeshBasicMaterial({ color: 0xffffff }));
-    scene.add(new THREE.AmbientLight(0xffffff, 0.45));
-    const key = new THREE.PointLight(tone, 8, 8);
-    key.position.set(1.4, 1.6, 2);
-    scene.add(key, mesh, halo, packet);
+    scene.add(mesh, halo, packet);
     const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 20);
     camera.position.set(0, 0.4, 3.3);
     camera.lookAt(0, 0, 0);
@@ -137,7 +128,6 @@ export async function mountIconScenes(root) {
     scenes.forEach((item, index) => {
       const tone = next[index % next.length];
       item.mesh.material.color.setHex(tone);
-      item.mesh.material.emissive.setHex(tone);
       item.halo.material.color.setHex(tone);
     });
   }
@@ -157,13 +147,17 @@ export async function mountIconScenes(root) {
   resizeTargets();
   running = true;
   const clock = new THREE.Clock();
+  let batch = 0;
   const loop = () => {
     if (!running || token !== generation) return;
     raf = requestAnimationFrame(loop);
     if (document.visibilityState === "hidden") return;
     const time = clock.getElapsedTime();
     renderer.setClearColor(0x000000, 0);
+    const batchStart = batch * 8;
+    batch = (batch + 1) % 2;
     scenes.forEach((item, index) => {
+      if (index < batchStart || index >= batchStart + 8) return;
       const col = index % cols;
       const row = Math.floor(index / cols);
       const x = col * cell;
