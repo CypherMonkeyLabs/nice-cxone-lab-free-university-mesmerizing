@@ -2,12 +2,13 @@
 <html lang="en" data-theme="dark" data-font="md" data-motion="full">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>NICE CXone Lab</title>
   <meta name="description" content="Free study floor for NiCE CXone: ACD, Studio, skills and routing, IVR, digital channels, WEM, Enlighten, APIs, CRM, telephony, and migration from Cisco UCCE and Avaya.">
   <link rel="stylesheet" href="assets/app.css">
   <link rel="stylesheet" href="assets/university.css">
   <link rel="stylesheet" href="assets/wow.css">
+  <link rel="stylesheet" href="assets/phone.css">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='none' stroke='%233ecbff' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23ffb020' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23b09cff'/%3E%3C/svg%3E">
   <script>
@@ -24,6 +25,16 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <header class="phone-bar">
+    <a class="phone-logo" href="#/">
+      <span class="mark" aria-hidden="true"></span>
+      <span>Signal Floor</span>
+    </a>
+    <button type="button" class="menu-toggle" id="open-menu" aria-haspopup="dialog" aria-controls="phone-menu">
+      <span class="menu-glyph" aria-hidden="true"></span>
+      Menu
+    </button>
+  </header>
   <header class="lab-bar">
     <a href="https://cyphermonkeylabs.com">CypherMonkey Labs</a>
     <a href="https://linktr.ee/cyphermonkey">Linktree</a>
@@ -46,6 +57,7 @@
         <a href="#/downloads" data-i18n="downloads">Downloads</a>
         <a href="#/careers" data-i18n="careers">Careers</a>
         <a href="#/regions" data-i18n="regions">Regions</a>
+        <button type="button" data-open-settings>Settings</button>
         <span class="theme-switch" role="group" aria-label="Theme">
           <button type="button" data-theme-set="dark">Signal</button>
           <button type="button" data-theme-set="futuristic">Futuristic</button>
@@ -79,7 +91,7 @@
           <button class="solid" type="submit">Search</button>
         </form>
         <label class="lang-label">Language
-          <select id="lang" aria-label="Language">
+          <select id="lang" data-lang-select aria-label="Language">
             <option value="en">English</option>
             <option value="es">Español</option>
             <option value="hi">हिन्दी</option>
@@ -91,7 +103,7 @@
           </select>
         </label>
         <span class="chip" id="net-chip">Online</span>
-        <button class="icon-btn" type="button" id="open-settings">Settings</button>
+        <button class="icon-btn" type="button" id="open-settings" data-open-settings>Settings</button>
       </header>
       <main id="main" tabindex="-1">
         <h1>NICE CXone Lab</h1>
@@ -100,7 +112,7 @@
       <footer class="lab-foot">
         <p class="sig">CypherMonkey · CYPHER0X9</p>
         <p>Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content.</p>
-        <p><a href="https://cyphermonkeylabs.com/#contact">Report a concern / takedown</a> · <a href="https://cyphermonkeylabs.com/#contact">Work with us</a></p>
+        <p><a href="https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing">Repo · rate / comment / help</a> · <a href="https://cyphermonkeylabs.com/#contact">Report a concern / takedown</a> · <a href="https://cyphermonkeylabs.com/#contact">Work with us</a></p>
         <nav class="next-labs" aria-label="Other labs">
           <a href="https://cipher0x9.github.io/webex-lab-free-university-mesmerizing/">Webex Lab</a>
           <a href="https://cipher0x9.github.io/uc-lab-free-university-mesmerizing/">UC Lab</a>
@@ -114,13 +126,79 @@
       </footer>
     </div>
   </div>
-  <nav class="bottom" aria-label="Mobile">
-    <a href="#/" data-nav="home">Floor</a>
-    <a href="#/tracks" data-nav="tracks">Tracks</a>
-    <a href="#/studio" data-nav="studio">Studio</a>
-    <a href="#/routing" data-nav="routing">Route</a>
-    <button type="button" id="more-btn">More</button>
+  <nav class="bottom quick-bar" aria-label="Quick">
+    <a href="#/tracks" data-nav="tracks">Learn</a>
+    <a href="#/diagrams" data-nav="diagrams">Diagrams</a>
+    <a href="#/play" data-nav="play">Play</a>
+    <button type="button" id="open-menu-bar" aria-haspopup="dialog" aria-controls="phone-menu">Menu</button>
+    <button type="button" id="listen-btn" aria-pressed="false">Listen</button>
   </nav>
+  <div id="phone-menu" class="phone-menu" role="dialog" aria-modal="true" aria-labelledby="phone-menu-title" hidden>
+    <div class="phone-menu-bar">
+      <h2 id="phone-menu-title">Menu</h2>
+      <button type="button" class="solid" id="close-menu">Close</button>
+    </div>
+    <form class="menu-search" id="menu-search">
+      <label class="sr" for="menu-q">Search lessons</label>
+      <input id="menu-q" type="search" placeholder="Search skills, Studio, Autopilot, UCCE…" autocomplete="off">
+      <button class="solid" type="submit">Search</button>
+    </form>
+    <nav class="phone-links" aria-label="Sections">
+      <a href="#/" data-nav="home">Floor</a>
+      <a href="#/tracks" data-nav="tracks">Learn</a>
+      <a href="#/diagrams" data-nav="diagrams" data-i18n="diagrams">Diagrams</a>
+      <a href="#/flows" data-nav="flows" data-i18n="flows">Flows</a>
+      <a href="#/charts" data-nav="charts" data-i18n="charts">Charts</a>
+      <a href="#/downloads" data-nav="downloads" data-i18n="cheat">Cheat Codes</a>
+      <a href="#/play" data-nav="play" data-i18n="play">Play</a>
+      <a href="#/ecosystem" data-nav="ecosystem" data-i18n="ecosystem">Ecosystem</a>
+      <a href="#/downloads" data-nav="downloads-hub" data-i18n="downloads">Downloads</a>
+      <a href="#/careers" data-nav="careers" data-i18n="careers">Careers</a>
+      <a href="#/regions" data-nav="regions" data-i18n="regions">Regions</a>
+      <a href="#/studio" data-nav="studio">Studio builder</a>
+      <a href="#/routing" data-nav="routing">Routing simulator</a>
+      <a href="#/topology" data-nav="topology">3D topology</a>
+      <a href="#/atlas" data-nav="atlas">Ports atlas</a>
+      <a href="#/explorer" data-nav="explorer">Flow explorer</a>
+      <a href="#/roadmap" data-nav="roadmap">Roadmap</a>
+      <a href="#/incidents" data-nav="incidents">Boss incidents</a>
+      <a href="#/interview" data-nav="interview">Interview</a>
+    </nav>
+    <div class="phone-prefs">
+      <label>Language
+        <select id="menu-lang" data-lang-select aria-label="Language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="hi">हिन्दी</option>
+          <option value="te">తెలుగు</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="ja">日本語</option>
+          <option value="ar">العربية</option>
+        </select>
+      </label>
+      <span class="theme-switch" role="group" aria-label="Theme">
+        <button type="button" data-theme-set="dark">Signal</button>
+        <button type="button" data-theme-set="futuristic">Futuristic</button>
+        <button type="button" data-theme-set="gaming">Gaming</button>
+        <button type="button" data-theme-set="neon">Neon</button>
+        <button type="button" data-theme-set="holographic">Holographic</button>
+        <button type="button" data-theme-set="cyberpunk">Cyberpunk</button>
+        <button type="button" data-theme-set="sunset">Sunset</button>
+        <button type="button" data-theme-set="light">Light</button>
+        <button type="button" data-theme-toggle>Day / Night</button>
+      </span>
+      <button type="button" data-open-settings>Settings</button>
+    </div>
+    <nav class="phone-else" aria-label="Elsewhere">
+      <a href="https://cyphermonkeylabs.com">CypherMonkey Labs</a>
+      <a href="https://linktr.ee/cyphermonkey">Linktree</a>
+      <a href="https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing">Repo · rate / comment / help</a>
+      <a href="https://dev.to/cyphermonkey">DEV</a>
+      <a href="https://huggingface.co/Cypher0x9">Hugging Face</a>
+      <a href="https://x.com/Cypher0x9">X</a>
+    </nav>
+  </div>
   <button class="mascot-dock" id="mascot-dock" type="button" data-pose="still" aria-label="CypherMonkey mascot. Activate to change pose.">
     <svg viewBox="0 0 120 150" aria-hidden="true">
       <ellipse class="tail" cx="92" cy="112" rx="16" ry="8" fill="#c47a3a"/>
@@ -140,6 +218,18 @@
   <dialog id="settings" aria-labelledby="settings-title">
     <h2 id="settings-title">Settings</h2>
     <form id="settings-form" class="form-grid">
+      <label>Language
+        <select name="language" id="settings-lang" data-lang-select aria-label="Language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="hi">हिन्दी</option>
+          <option value="te">తెలుగు</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="ja">日本語</option>
+          <option value="ar">العربية</option>
+        </select>
+      </label>
       <label>Theme
         <select name="theme">
           <option value="dark">Signal (dark)</option>

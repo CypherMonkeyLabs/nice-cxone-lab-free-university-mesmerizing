@@ -5,6 +5,7 @@ const SHELL = [
   "./assets/app.css",
   "./assets/university.css",
   "./assets/wow.css",
+  "./assets/phone.css",
   "./js/app.js",
   "./js/model.mjs",
   "./js/university.mjs",

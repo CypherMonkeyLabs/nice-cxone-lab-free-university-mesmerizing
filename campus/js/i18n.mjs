@@ -33,8 +33,9 @@ export function setLang(code) {
   document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
     node.placeholder = t(node.dataset.i18nPlaceholder);
   });
-  const select = document.getElementById("lang");
-  if (select && select.value !== lang) select.value = lang;
+  document.querySelectorAll("[data-lang-select]").forEach((select) => {
+    if (select.value !== lang) select.value = lang;
+  });
 }
 
 export function bootLang() {

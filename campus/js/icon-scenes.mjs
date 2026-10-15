@@ -134,8 +134,9 @@ export async function mountIconScenes(root) {
   function resizeTargets() {
     targets.forEach((item) => {
       const rect = item.canvas.getBoundingClientRect();
-      const width = Math.max(2, Math.round(rect.width * 2));
-      const height = Math.max(2, Math.round(rect.height * 2));
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const width = Math.max(2, Math.round(rect.width * ratio));
+      const height = Math.max(2, Math.round(rect.height * ratio));
       if (item.canvas.width !== width || item.canvas.height !== height) {
         item.canvas.width = width;
         item.canvas.height = height;
@@ -148,10 +149,17 @@ export async function mountIconScenes(root) {
   running = true;
   const clock = new THREE.Clock();
   let batch = 0;
-  const loop = () => {
-    if (!running || token !== generation) return;
+  let iconsOnScreen = true;
+  function arm() {
+    if (!running || token !== generation || raf) return;
+    if (document.visibilityState === "hidden" || !iconsOnScreen) return;
     raf = requestAnimationFrame(loop);
-    if (document.visibilityState === "hidden") return;
+  }
+  const loop = () => {
+    raf = 0;
+    if (!running || token !== generation) return;
+    if (document.visibilityState === "hidden" || !iconsOnScreen) return;
+    raf = requestAnimationFrame(loop);
     const time = clock.getElapsedTime();
     renderer.setClearColor(0x000000, 0);
     const batchStart = batch * 8;
@@ -186,6 +194,15 @@ export async function mountIconScenes(root) {
       item.ctx.drawImage(atlas, col * cell, row * cell, cell, cell, 0, 0, item.canvas.width, item.canvas.height);
     });
   };
-  raf = requestAnimationFrame(loop);
+  listen(document, "visibilitychange", arm);
+  if (typeof IntersectionObserver === "function") {
+    const seen = new IntersectionObserver((entries) => {
+      iconsOnScreen = entries.some((entry) => entry.isIntersecting);
+      if (iconsOnScreen) arm();
+    });
+    canvases.forEach((canvas) => seen.observe(canvas));
+    stops.push(() => seen.disconnect());
+  }
+  arm();
   return { ok: true, shared: true, byKind: Object.keys(byKind).length };
 }
