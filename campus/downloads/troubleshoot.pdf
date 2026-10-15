@@ -1,0 +1,49 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1359 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Troubleshooting tree) Tj
+T* () Tj
+T* (Spanish agents sit idle while the queue ages   REQAGENT high/low versus the agents  proficiencies. 1 is best. ) Tj
+T* (Personal Connection work climbs past inbound   Acceleration on a PC skill should be 0.) Tj
+T* (New inbound chat never reaches an agent   You cannot create a new routing queue for that path. Use a digital s) Tj
+T* (QA hears silence where hold music should be   Hold audio is not recorded. Confirm it was hold, not a dropped t) Tj
+T* (Integrated Softphone dies after a firewall change   The allowlist, not the carrier, and not the installed Soft) Tj
+T* (Second tenant gets a token and then HTML or 401   Hard-coded api-na1. Discover api_endpoint for that tenantId.) Tj
+T* (911 reaches the national center   Address saved on the individual user record and showing verified. Outbound s) Tj
+T* (Screen monitor fails, voice still works   UDP 443 or 3478 outbound, and port 31322 only if OS Login is not in ) Tj
+T* (Supervisor cannot hear a Multi-ACD agent   WSS 443 and 10081 outbound, and the ephemeral UDP range inbound to ) Tj
+T* (A feature from Coming Soon is missing on your cluster   Customer clusters start two weeks after beta, a few cl) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001652 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1722
+%%EOF

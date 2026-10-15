@@ -1,0 +1,75 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 4066 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Call and data flows) Tj
+T* () Tj
+T* (Inbound entry: A contact hits one point of contact, one script, and one starting skill.) Tj
+T* (Words on the page: Contact is the person. Interaction is the conversation. Digital is a product family.) Tj
+T* (Tenant down to skill: Admin calls the tenant the billing and global container. Skills are created in a campaig) Tj
+T* (Two agent-leg options: Integrated Softphone is the product. WebRTC is the Chrome technology it uses.) Tj
+T* (Two legs: The carrier hop and the agent hop are not one protocol.) Tj
+T* (Overall priority: Overall priority is \(time in minutes   acceleration\) + initial priority.) Tj
+T* (Bullseye window: Proficiency 1 is best and 20 is worst. REQAGENT opens a window. UpdateContact can widen it.) Tj
+T* (Personal Connection exception: Acceleration is forced to 0 so outbound dialing does not age like an inbound qu) Tj
+T* (A Classics-style chain: BEGIN, a menu, a skill request, music, then a wider window.) Tj
+T* (New inbound digital: Since Summer 2023, new inbound digital work uses skills and scripts.) Tj
+T* (Forecast before the schedule: History becomes volume and AHT, then a staffing plan.) Tj
+T* (Recording beside QM: Stereo is the recording default this campus teaches from the recording page. Hold audio i) Tj
+T* (What the recorder keeps: Hold audio, including hold music, is not recorded. A consultation during hold is reco) Tj
+T* (Autopilot voice and text: Voice setup needs NiCE. Text turns go through Digital Experience and the script.) Tj
+T* (AutoSummary types: The help page names Structured, Generative, and Hybrid. Email is not supported.) Tj
+T* (Two grants, two jobs: Back-end integrations on the auth page use the password grant. A person in a browser fol) Tj
+T* (Find the API host: tenantId comes from the ID token. The example host is not every tenant.) Tj
+T* (Salesforce billing gate: Billing follows how many employees have the Agent Integrations attribute.) Tj
+T* (Emergency dialing: An outbound voice skill, a verified address, and a callback. 933 is the no-charge test name) Tj
+T* (IP voice ports the page names: SIP register to 5060 and 5061. Hardphones also need NTP 123. RTP and SRTP use U) Tj
+T* (Screen monitoring ports: UDP 443 or 3478 for WebRTC NAT traversal. Port 31322 is internal to the agent PC.) Tj
+T* (Named third-party telephony ports: These bullets name the system. UCCE CTI ports have no default.) Tj
+T* (Supervisor WebRTC monitor: Engagement Hub voice monitoring uses WSS 443 and 10081, then inbound UDP media.) Tj
+T* (A release reaching you: Coming Soon is 30 days before beta. Your cluster is not beta day.) Tj
+T* (Three cluster kinds: Commercial, FedRAMP, and sovereign are defined on the connectivity requirements page.) Tj
+T* (Badges this campus will name: Credly badge names only. No exam codes or prices are invented.) Tj
+T* (Three different moves: A WFM connector, Multi-ACD recording, and Migrated Calls are not one cutover.) Tj
+T* (CRM ticketing pair: The FAQ names Salesforce and Zendesk. Retention on that page is 90 days.) Tj
+T* (Ecosystem orbit: ACD sits in the middle. Each neighbor is a different product surface.) Tj
+T* (An integration's life: Register, pick a grant, discover the tenant, call, and treat the secret as shown once.) Tj
+T* (Menu to skill: MENU stores the choice. The branch requests a more specific skill.) Tj
+T* (Analytics leaves the tenant: Four prebuilt Interaction Analytics reports, widgets, and a JSON export.) Tj
+T* (Security gates the pages name: TLS 1.2, a one-time secret, a role, and an optional external IdP.) Tj
+T* (Toll-free and RespOrg: If CXone is the RespOrg, more toll-free numbers are ordered through CXone.) Tj
+T* (Engagement Hub intake: Third-party PABX, ACD, CRM, digital, and dialer data can feed Supervisor, Copilot, QM, ) Tj
+T* (Admin multi-region BCP: The ports page names HTTPS 443 for the Multi-Region BCP interface, with optional HTTP ) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000004359 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+4429
+%%EOF

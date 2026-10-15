@@ -1,0 +1,48 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 946 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Carrier, SIP, and PSTN) Tj
+T* () Tj
+T* (Three ways the pages talk about voice entry) Tj
+T* (PSTN, on the connectivity page, is phone traffic routed by DID or toll-free number.) Tj
+T* (A SIP trunk is a virtual connection between a PBX and a carrier, over a phone line, VoIP, or a dedicated path ) Tj
+T* (The agent leg is separate: Integrated Softphone or the installed Softphone.) Tj
+T* (Toll-free ownership) Tj
+T* (If CXone is the RespOrg, you order more toll-free numbers through CXone. The IP address page says you must all) Tj
+T* (Voice PoP, in the glossary this campus uses, is the carrier s physical gateway. The exact PoP for a tenant is ) Tj
+T* (Unverified) Tj
+T* (A matrix of BYOC vendors, codec defaults, and OPTIONS timers is not in the cited passages. Leave those cells b) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001238 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1308
+%%EOF

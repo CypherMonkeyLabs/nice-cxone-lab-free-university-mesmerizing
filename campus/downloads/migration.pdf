@@ -1,0 +1,52 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1433 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Migration checklist) Tj
+T* () Tj
+T* (Pick the move) Tj
+T* (Workforce data from Cisco UCCE or Avaya CMS is a WFM connector. The UCCE connector page and the Multi-ACD vers) Tj
+T* (Live third-party phones recorded into CXone are Multi-ACD. Historical files are Migrated Calls and need the Mi) Tj
+T* (Replacing the ACD itself is not a procedure in these pages. Mark that line  ask the account team  instead of i) Tj
+T* (What you can schedule from the cited pages) Tj
+T* (Confirm the connector version on the connector s own page. Do not copy the Multi-ACD table onto WFM.) Tj
+T* (For Migrated Calls, export, merge, and import. Every user needs an email. Screen recordings and digital intera) Tj
+T* (Vendors named for migrated history include NiCE Engage, CXone, Playback Portal, Uptivity, Verint, Genesys, Cal) Tj
+T* (Engage NMF converts to MP4 on playback. Teams are uploaded, not synchronized.) Tj
+T* (Cutover card) Tj
+T* (Write the current ACD, the thing that must keep working tomorrow, and which of the three moves you are actuall) Tj
+T* (Book the change against the release calendar only after you re-read the current cycle page. Targeted dates mov) Tj
+T* (Leave a blank row called  PBX cutover steps.  If a design review fills it with steps that have no URL, delete ) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001726 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1796
+%%EOF

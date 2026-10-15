@@ -22,9 +22,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Lesson text, quiz items, flashcards, and study notes are licensed under
-Creative Commons Attribution 4.0 International (CC BY 4.0).
-https://creativecommons.org/licenses/by/4.0/
+Lesson text, quiz items, flashcards, diagrams, and study notes in this
+release are licensed under Creative Commons Attribution-NonCommercial-ShareAlike
+4.0 International (CC BY-NC-SA 4.0).
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+The initial v1.0 snapshot remains available under the CC BY 4.0 grant that
+shipped with that commit. This release does not revoke that earlier grant.
 
 three.js (campus/vendor/three.min.js) is a separate MIT-licensed work.
 See campus/vendor/LICENSE-THREE.txt.

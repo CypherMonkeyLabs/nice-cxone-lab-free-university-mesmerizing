@@ -1,0 +1,62 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1488 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Ports and protocols) Tj
+T* () Tj
+T* (443 HTTPS   Baseline for many selected apps) Tj
+T* (80 HTTP   Optional HTTP) Tj
+T* (21 FTP   Optional stored-file access) Tj
+T* (443, 80, 21 HTTPS, optional HTTP, optional FTP   Multi-Region BCP in Admin) Tj
+T* (25 SMTP   SMTP beside the System Email note) Tj
+T* (5060, 5061 SIP   IP voice hardphone and softphone registration) Tj
+T* (123 NTP / UDP   Hardphone clock) Tj
+T* (1024 65535 RTP, SRTP / UDP   IP voice audio) Tj
+T* (443, 80, 21, 22 HTTPS, HTTP, FTP, SFTP   Script calls back to tenant resources) Tj
+T* (5061 TLS   SBC TLS phrase) Tj
+T* (450, 453, 1050 1081 TCP   Avaya AES TSAPI) Tj
+T* (4721 4722 TCP   Avaya AES DMCC) Tj
+T* (Customer-configured CTI ports TCP   Cisco CG \(UCCE\)) Tj
+T* (12028 TCP   Cisco UCCX) Tj
+T* (2748 TCP   Cisco JTAPI \(CUCM\)) Tj
+T* (All ports allowed Not limited to one port   Genesys T-Lib) Tj
+T* (5061, mTLS 5065 TCP   Third-party SIP and mTLS) Tj
+T* (6000 65531 UDP   Third-party SRTP) Tj
+T* (443, and UDP 443 or 3478 HTTPS TCP, and UDP   Screen-monitoring NAT traversal) Tj
+T* (31322 Internal   ScreenAgent to Softphone) Tj
+T* (443 and 10081 TCP / WSS   Engagement Hub voice monitoring signal) Tj
+T* (Typically 6000 65531 UDP SRTP/DTLS   Engagement Hub voice monitoring media) Tj
+T* (5060, plus UDP 1024 65535 UDP/TCP and UDP   UDP/TCP 5060 block) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001781 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1851
+%%EOF

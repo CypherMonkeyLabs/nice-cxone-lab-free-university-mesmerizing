@@ -88,6 +88,28 @@ if (!app.includes("vendor/three.min.js")) fail("three not local");
 
 const sw = readFileSync(join(campus, "sw.js"), "utf8");
 if (!sw.includes("caches")) fail("service worker");
+if (!sw.includes("atlas.json")) fail("atlas not cached");
+if (!html.includes("https://cyphermonkeylabs.com")) fail("labs link");
+if (!html.includes("https://linktr.ee/cyphermonkey")) fail("linktree");
+if (!html.includes("https://x.com/Cypher0x9")) fail("x link");
+if (!html.includes("https://dev.to/cyphermonkey")) fail("dev link");
+if (!html.includes("https://huggingface.co/Cypher0x9")) fail("hf link");
+if (!html.includes("nice-cxone-lab-free-university-mesmerizing")) fail("repo link");
+if (/linkedin/i.test(html)) fail("linkedin");
+if (/mailto:|@[a-z0-9.-]+\.[a-z]{2,}/i.test(html)) fail("email");
+if (!html.includes("CC BY-NC-SA")) fail("content license");
+if (!html.includes("mascot-dock")) fail("mascot");
+if (!html.includes("Webex Canon")) fail("next lab");
+for (const theme of ["futuristic", "gaming", "neon", "light"]) {
+  if (!html.includes(`value="${theme}"`)) fail(`theme ${theme}`);
+}
+const atlas = JSON.parse(readFileSync(join(campus, "data", "atlas.json"), "utf8"));
+if (atlas.diagrams.length < 24) fail(`diagrams ${atlas.diagrams.length}`);
+if (atlas.ports.length < 15) fail(`ports ${atlas.ports.length}`);
+if (!atlas.ports.some((row) => String(row.port).includes("5060"))) fail("sip ports");
+const deck = JSON.parse(readFileSync(join(campus, "downloads", "flashcards.json"), "utf8"));
+if (deck.count < 400) fail(`flashcards ${deck.count}`);
+if (!readFileSync(join(campus, "downloads", "ports.pdf")).includes("%PDF")) fail("ports pdf");
 
 console.log(JSON.stringify({
   tracks: tracks.length,

@@ -1,0 +1,50 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1129 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Security) Tj
+T* () Tj
+T* (TLS) Tj
+T* (Connectivity in NiCE CXone requires at least TLS 1.2.) Tj
+T* (Inbound, from CXone to your servers, must support at least one of: TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 \(0x009) Tj
+T* (Outbound, from your servers to CXone, must support at least one of: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 \(0x) Tj
+T* (Keys and people) Tj
+T* (An access key belongs to an employee and inherits that employee s permissions. The secret is shown once. Disab) Tj
+T* (User-facing apps in this lab follow the authorization-code flow. The authentication pages also show a password) Tj
+T* (External IdP is a documented setup, not the default this page assumes you have.) Tj
+T* (FedRAMP is an environment, not a slogan) Tj
+T* (The connectivity requirements page describes FedRAMP as isolated from commercial operations, with continuous m) Tj
+T* (This campus does not claim HIPAA, PCI, SOC 2, or a particular encryption-at-rest setting. Those sentences are ) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001422 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1492
+%%EOF

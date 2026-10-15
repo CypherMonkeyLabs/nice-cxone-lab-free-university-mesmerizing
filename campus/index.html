@@ -6,6 +6,7 @@
   <title>NICE CXone Lab</title>
   <meta name="description" content="Free study floor for NiCE CXone: ACD, Studio, skills and routing, IVR, digital channels, WEM, Enlighten, APIs, CRM, telephony, and migration from Cisco UCCE and Avaya.">
   <link rel="stylesheet" href="assets/app.css">
+  <link rel="stylesheet" href="assets/university.css">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='none' stroke='%233ecbff' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23ffb020' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23b09cff'/%3E%3C/svg%3E">
   <script>
@@ -22,6 +23,15 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <header class="lab-bar">
+    <a href="https://cyphermonkeylabs.com">CypherMonkey Labs</a>
+    <a href="https://linktr.ee/cyphermonkey">Linktree</a>
+    <a href="https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing">Repo · rate / comment / help</a>
+    <a href="https://dev.to/cyphermonkey">DEV</a>
+    <a href="https://huggingface.co/Cypher0x9">Hugging Face</a>
+    <a href="https://x.com/Cypher0x9">X</a>
+    <button type="button" id="download-pack">Download offline</button>
+  </header>
   <div class="shell">
     <aside class="rail" aria-label="Primary">
       <a class="brand" href="#/">
@@ -31,7 +41,7 @@
       <nav id="rail-nav"></nav>
       <p class="rail-foot" id="rail-count">Independent study lab. Not affiliated with NiCE.</p>
     </aside>
-    <div>
+    <div class="stage">
       <header class="top">
         <form class="search" id="search-form" role="search">
           <label class="sr" for="q">Search lessons</label>
@@ -45,6 +55,16 @@
         <h1>NICE CXone Lab</h1>
         <p>Loading the floor…</p>
       </main>
+      <footer class="lab-foot">
+        <p class="sig">CypherMonkey · CYPHER0X9</p>
+        <p>Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content.</p>
+        <p><a href="https://cyphermonkeylabs.com/#contact">Report a concern / takedown</a> · <a href="https://cyphermonkeylabs.com/#contact">Work with us</a></p>
+        <nav class="next-labs" aria-label="Other labs">
+          <a href="https://cypherwebex-canon-test.vercel.app">Webex Canon</a>
+          <a href="https://github.com/cipher0x9/uc-lab-free-university-mesmerizing">UC Lab</a>
+          <a href="https://github.com/cipher0x9/ai-lab-free-university-mesmerizing">AI Lab</a>
+        </nav>
+      </footer>
     </div>
   </div>
   <nav class="bottom" aria-label="Mobile">
@@ -54,6 +74,21 @@
     <a href="#/routing" data-nav="routing">Route</a>
     <button type="button" id="more-btn">More</button>
   </nav>
+  <button class="mascot-dock" id="mascot-dock" type="button" data-pose="still" aria-label="CypherMonkey mascot. Activate to change pose.">
+    <svg viewBox="0 0 120 150" aria-hidden="true">
+      <ellipse class="tail" cx="92" cy="112" rx="16" ry="8" fill="#c47a3a"/>
+      <ellipse cx="60" cy="108" rx="28" ry="24" fill="#8a4b24"/>
+      <circle cx="60" cy="58" r="30" fill="#c47a3a"/>
+      <circle cx="34" cy="40" r="12" fill="#c47a3a"/>
+      <circle cx="86" cy="40" r="12" fill="#c47a3a"/>
+      <ellipse cx="48" cy="62" rx="6" ry="7" fill="#1b120c"/>
+      <ellipse cx="74" cy="62" rx="6" ry="7" fill="#1b120c"/>
+      <ellipse class="brow" cx="48" cy="52" rx="7" ry="2" fill="#6b3416"/>
+      <path d="M50 74 Q60 82 72 74" fill="none" stroke="#1b120c" stroke-width="2"/>
+      <g class="arm"><path d="M34 84 Q16 70 22 52" fill="none" stroke="#8a4b24" stroke-width="8" stroke-linecap="round"/></g>
+      <g class="phones"><path d="M38 50 h44" stroke="#3ecbff" stroke-width="4"/><circle cx="36" cy="62" r="8" fill="none" stroke="#3ecbff" stroke-width="3"/><circle cx="84" cy="62" r="8" fill="none" stroke="#3ecbff" stroke-width="3"/></g>
+    </svg>
+  </button>
   <div id="sheet" class="sheet" hidden></div>
   <dialog id="settings" aria-labelledby="settings-title">
     <h2 id="settings-title">Settings</h2>
@@ -61,7 +96,10 @@
       <label>Theme
         <select name="theme">
           <option value="dark">Signal (dark)</option>
-          <option value="light">Daylight</option>
+          <option value="futuristic">Futuristic</option>
+          <option value="gaming">Gaming</option>
+          <option value="neon">Neon</option>
+          <option value="light">Light</option>
           <option value="contrast">High contrast</option>
           <option value="dusk">Dusk</option>
         </select>

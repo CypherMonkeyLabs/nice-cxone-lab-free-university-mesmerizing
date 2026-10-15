@@ -1,0 +1,49 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1160 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Licenses and badges) Tj
+T* () Tj
+T* (Named gates) Tj
+T* (CRM Ticketing requires a CRM Ticketing license, and the search permission still matters.) Tj
+T* (Migrated Calls requires the Migrated Interactions Upload license and the upload permission.) Tj
+T* (AutoSummary must be enabled with the account representative. Using it with MAX, rather than an agent applicati) Tj
+T* (Salesforce CRM integration is billed by how many employees have the Agent Integrations attribute enabled. That) Tj
+T* (Interaction Analytics widgets require the Interaction Analytics license. Performance Management \(Native\) cha) Tj
+T* (Release notes say some features need a purchased license or a public preview signup. From 26.3, Controlled Rel) Tj
+T* (Badges, without exam fiction) Tj
+T* (Club One offers the CXone Supervisor Certification. Credly also lists NCIE for ACD/IVR, NCIE for Digital Exper) Tj
+T* (This campus links the badge pages. It does not print exam codes, passing scores, or prices that those pages we) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001453 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1523
+%%EOF

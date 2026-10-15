@@ -1,0 +1,67 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3196 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Glossary \(first sheet\)) Tj
+T* () Tj
+T* (A leg: The portion of a call between the contact and NiCE CXone. On an inbound call it is ingress.) Tj
+T* (B leg: The portion of a call between NiCE CXone and the agent. A transfer adds a second B leg.) Tj
+T* (PSTN: On the connectivity page, phone traffic routed by DID or toll-free number.) Tj
+T* (DID: Direct Inward Dial. The connectivity page uses it as one of the two PSTN number types.) Tj
+T* (TFN: Toll-free number. The preferred path is to make CXone the RespOrg.) Tj
+T* (RespOrg: Responsible Organization for a toll-free number. If CXone is the RespOrg, you order more numbers thro) Tj
+T* (Voice PoP: The carrier's physical gateway to the PSTN.) Tj
+T* (SIP trunk: A virtual PBX-to-carrier connection using a traditional line, VoIP, or a dedicated path such as MPL) Tj
+T* (Integrated Softphone: The built-in agent softphone. Nothing to install. It uses WebRTC. It is not the same nam) Tj
+T* (WebRTC: The communications technology in the Chrome browser that Integrated Softphone uses.) Tj
+T* (Point of contact: The entry, such as a phone number or email address. It is assigned one skill and one script.) Tj
+T* (ACD skill: The thing that automates delivery to an agent who can help. A campaign is required when you create ) Tj
+T* (Overall priority: The static-delivery page's formula: \(Time   Acceleration\) + Initial Priority. Time is in m) Tj
+T* (Proficiency: 1 is best and 20 is worst. Bullseye uses a high-to-low window.) Tj
+T* (Bullseye routing: Delivery that tightens or widens proficiency, or uses routing attributes, with actions such ) Tj
+T* (REQAGENT: The Studio action that requests an agent. A blank skill uses the point of contact's skill.) Tj
+T* (MENU: Stores the contact's choice in a variable. Prompts can be recorded, TTS, or both.) Tj
+T* (DNIS: The number dialed. Phone DNIS is configured by Professional Services before the point of contact.) Tj
+T* (Digital skill: The inbound digital path since the Summer 2023 change. New routing queues cannot be created.) Tj
+T* (Personal Connection: Proactive voice. Acceleration is set to 0 so the contact does not sit in an inbound-style) Tj
+T* (CXone WFM: Forecast, schedule, bids, time off, and adherence. The welcome page states a scale up to 10,000 age) Tj
+T* (IEX: A different workforce product. Its help is inside the IEX application.) Tj
+T* (AHT: On the forecast page, the average time to complete a transaction from start to finish.) Tj
+T* (ScreenAgent: Records and monitors the agent's screen. From version 2.1.40, a voice mask stops active screen re) Tj
+T* (Hold gap: Hold audio, including hold music, is not recorded. A consultation during hold is recorded.) Tj
+T* (Engagement Hub: Brings third-party PABX, ACD, CRM, digital, and dialer data into CXone for Supervisor, Copilot) Tj
+T* (Multi-ACD: Real-time recording of a third-party phone system. Versions live in that table, not in the WFM conn) Tj
+T* (Autopilot \(Omilia\): The virtual agent for voice and digital. Voice setup needs NiCE. Text needs Digital Expe) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000003489 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+3559
+%%EOF

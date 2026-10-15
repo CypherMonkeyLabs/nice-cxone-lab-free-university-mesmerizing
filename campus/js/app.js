@@ -1,4 +1,5 @@
 import { ACTION_CATALOG, overallPriority, proficiencyEligible, validateScript } from "./model.mjs";
+import { award, bootUniversity, buildPack, decorateHome, homeExtra, lessonAside, renderUniversity, syncStudyBadges } from "./university.mjs";
 
 const SETTINGS_KEY = "cxone-lab-settings";
 const PROGRESS_KEY = "cxone-lab-progress";
@@ -11,6 +12,11 @@ const NAV = [
   { href: "#/routing", id: "routing", label: "Routing simulator", dot: "a4" },
   { href: "#/topology", id: "topology", label: "3D topology", dot: "a1" },
   { href: "#/ecosystem", id: "ecosystem", label: "Ecosystem", dot: "a2" },
+  { href: "#/atlas", id: "atlas", label: "Ports atlas", dot: "a1" },
+  { href: "#/explorer", id: "explorer", label: "Flow explorer", dot: "a2" },
+  { href: "#/play", id: "play", label: "Play floor", dot: "a3" },
+  { href: "#/downloads", id: "downloads", label: "Cheat codes", dot: "a4" },
+  { href: "#/roadmap", id: "roadmap", label: "Roadmap", dot: "a2" },
   { href: "#/incidents", id: "incidents", label: "Boss incidents", dot: "a3" },
   { href: "#/interview", id: "interview", label: "Interview", dot: "a4" },
 ];
@@ -179,10 +185,15 @@ function setMain(html) {
   clearTimers();
   const main = document.getElementById("main");
   main.innerHTML = html;
+  if (!reducedMotion()) {
+    main.classList.remove("arrive");
+    void main.offsetWidth;
+    main.classList.add("arrive");
+  }
   const heading = main.querySelector("h1");
   if (heading) {
     heading.tabIndex = -1;
-    heading.focus();
+    heading.focus({ preventScroll: true });
   }
 }
 
@@ -243,7 +254,7 @@ function figureMarkup(figure) {
     const fill = colors[(node.tone || 1) - 1] || colors[0];
     return `<g><rect x="${p.x - 58}" y="${p.y - 28}" width="116" height="56" rx="12" fill="var(--cc-surface)" stroke="${fill}" stroke-width="2"/><text x="${p.x}" y="${p.y - 4}" text-anchor="middle" fill="var(--cc-ink)" font-size="13" font-family="Palatino, Georgia, serif">${esc(node.label)}</text><text x="${p.x}" y="${p.y + 14}" text-anchor="middle" fill="var(--cc-muted)" font-size="11">${esc(node.sub || "")}</text></g>`;
   }).join("");
-  return `<figure class="figure"><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(figure.caption)}"><title>${esc(figure.caption)}</title>${edges}${shapes}</svg><figcaption>${esc(figure.caption)}</figcaption></figure>`;
+  return `<figure class="figure"><svg class="live-fig" viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(figure.caption)}"><title>${esc(figure.caption)}</title>${edges}${shapes}</svg><figcaption>${esc(figure.caption)}</figcaption></figure>`;
 }
 
 function flowMarkup(flow) {
@@ -350,6 +361,7 @@ function bindQuiz(trackId, lesson) {
     const status = document.getElementById("quiz-status");
     status.textContent = `${correct} of ${lesson.quiz.length} correct.`;
     markLesson(`${trackId}/${lesson.id}`, { quiz: correct, done: true });
+    syncStudyBadges();
     tone(correct === lesson.quiz.length ? 660 : 220, 0.15, "sine");
   });
 }
@@ -363,6 +375,9 @@ function bindCards(cards) {
   let index = 0;
   let show = false;
   const face = document.getElementById("card-face");
+  const previous = document.getElementById("card-prev");
+  const next = document.getElementById("card-next");
+  if (!face || !previous || !next) return;
   const paint = () => {
     const card = cards[index];
     document.getElementById("card-count").textContent = `Card ${index + 1} of ${cards.length}`;
@@ -371,12 +386,12 @@ function bindCards(cards) {
       : `<strong>${esc(card.front)}</strong><p>Show the answer</p>`;
   };
   face.addEventListener("click", () => { show = !show; paint(); });
-  document.getElementById("card-prev").addEventListener("click", () => {
+  previous.addEventListener("click", () => {
     index = (index - 1 + cards.length) % cards.length;
     show = false;
     paint();
   });
-  document.getElementById("card-next").addEventListener("click", () => {
+  next.addEventListener("click", () => {
     index = (index + 1) % cards.length;
     show = false;
     paint();
@@ -405,7 +420,8 @@ function lessonView(track, lesson) {
     </article>`).join("");
   const labSteps = lesson.lab.steps.map((step) => `<li>${esc(step)}</li>`).join("");
   return `
-    <p class="muted"><a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(lesson.level)} · ${esc(lesson.minutes)} min</p>
+    <div class="read-layout"><article>
+    <p class="muted" id="lesson-top"><a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(lesson.level)} · ${esc(lesson.minutes)} min</p>
     <h1>${esc(lesson.title)}</h1>
     <p class="lede">${esc(lesson.summary)}</p>
     <div class="chips">${lesson.objectives.map((item) => `<span class="chip">${esc(item)}</span>`).join("")}</div>
@@ -413,20 +429,21 @@ function lessonView(track, lesson) {
     ${uncertain}
     ${sections}
     ${flowMarkup(lesson.flow)}
-    <section>
+    <section id="lab-block">
       <h2>Lab · ${esc(lesson.lab.title)}</h2>
       <p>${esc(lesson.lab.goal)}</p>
       <ol>${labSteps}</ol>
       <p class="muted">${esc(lesson.lab.done)}</p>
     </section>
-    <section><h2>Fault and fix</h2>${faults}<p class="muted">Logs on this floor are synthetic classroom traces.</p></section>
-    ${cardsMarkup(lesson.cards)}
-    ${quizMarkup(lesson)}
+    <section id="fault-block"><h2>Fault and fix</h2>${faults}<p class="muted">Logs on this floor are synthetic classroom traces.</p></section>
+    <div id="card-block">${cardsMarkup(lesson.cards)}</div>
+    <div id="quiz-block">${quizMarkup(lesson)}</div>
     <div class="row">
       ${prev ? `<a class="icon-btn" href="#/lesson/${esc(track.id)}/${esc(prev.id)}">Previous</a>` : ""}
       ${next ? `<a class="icon-btn" href="#/lesson/${esc(track.id)}/${esc(next.id)}">Next lesson</a>` : `<a class="icon-btn" href="#/track/${esc(track.id)}">Back to track</a>`}
       <button type="button" class="ghost" id="narrate">Read this lesson</button>
-    </div>`;
+    </div>
+    </article>${lessonAside(lesson)}</div>`;
 }
 
 function bindNarration(lesson) {
@@ -501,6 +518,9 @@ async function viewHome() {
           <a class="icon-btn" href="#/studio">Build a script</a>
           <a class="icon-btn" href="#/routing">Simulate a queue</a>
           <a class="icon-btn" href="#/topology">Walk the 3D floor</a>
+          <a class="icon-btn" href="#/atlas">Ports atlas</a>
+          <a class="icon-btn" href="#/play">Play floor</a>
+          <a class="icon-btn" href="#/downloads">Cheat codes</a>
         </div>
         <p class="muted">${done} of ${total} lessons marked studied. ${esc(manifest.honesty)}</p>
         <div class="tape" aria-hidden="true"><span>${esc(manifest.tape)} &nbsp; ${esc(manifest.tape)} &nbsp;</span></div>
@@ -510,8 +530,14 @@ async function viewHome() {
       </div>
     </section>
     <h2>Tracks</h2>
-    <div class="grid cards">${cards}</div>`);
+    <div class="grid cards">${cards}</div>
+    <div id="home-extra"></div>`);
   renderRail("home");
+  const extra = document.getElementById("home-extra");
+  if (extra) {
+    extra.innerHTML = await homeExtra(manifest, done, total);
+    decorateHome(reducedMotion());
+  }
 }
 
 async function viewTracks() {
@@ -758,6 +784,7 @@ function bindStudio(script) {
     const out = document.getElementById("studio-out");
     out.hidden = false;
     out.textContent = JSON.stringify(payload, null, 2);
+    award("studio");
   });
   paint();
   inspect();
@@ -895,7 +922,10 @@ function viewRouting() {
     }
     paint();
   }
-  document.getElementById("sim-step").addEventListener("click", tick);
+  document.getElementById("sim-step").addEventListener("click", () => {
+    award("sim");
+    tick();
+  });
   document.getElementById("sim-play").addEventListener("click", () => {
     if (sim.running) return;
     sim.running = true;
@@ -974,7 +1004,7 @@ async function viewEcosystem() {
   const terms = glossary.map((item) => `<article class="card"><header><h2>${esc(item.term)}</h2></header><p>${esc(item.meaning)}</p><p class="sources">${citeLink(item.cite)}</p></article>`).join("");
   setMain(`
     <h1>Ecosystem</h1>
-    <p class="lede">Sister systems around the ACD: WFM, quality and recording, CRM, Enlighten, APIs, and the UCCE and Avaya bridges. The map is a study aid. Each edge is only as strong as its citation.</p>
+    <p class="lede">Sister systems around the ACD: WFM, quality and recording, CRM, Enlighten, APIs, and the UCCE and Avaya bridges. The map is a study aid. Each edge is only as strong as its citation. The <a href="#/explorer">flow explorer</a> adds E911, analytics, and the troubleshooting tree.</p>
     <div class="mind">${mindMap()}</div>
     <h2>Glossary</h2>
     <div class="grid cards">${terms}</div>`);
@@ -1060,6 +1090,13 @@ async function route() {
     if (path === "#/incidents") return viewIncidents();
     if (path === "#/interview") return viewInterview();
     if (path === "#/search") return viewSearch(params);
+    const university = await renderUniversity(path, await ensureManifest(), reducedMotion());
+    if (university) {
+      setMain(university.html);
+      renderRail(university.active);
+      if (university.bind) await university.bind();
+      return;
+    }
     const track = path.match(/^#\/track\/([a-z0-9-]+)$/);
     if (track) return viewTrack(track[1]);
     const lesson = path.match(/^#\/lesson\/([a-z0-9-]+)\/([a-z0-9-]+)$/);
@@ -1148,5 +1185,28 @@ async function openSettings(dialog) {
   if (!dialog.open) dialog.showModal();
 }
 
+async function downloadPack(button) {
+  button.disabled = true;
+  const previous = button.textContent;
+  button.textContent = "Packing…";
+  try {
+    const manifest = await ensureManifest();
+    const pack = await buildPack(manifest, ensureTrack, ensureExtra);
+    const blob = new Blob([JSON.stringify(pack)], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "cxone-offline-pack.json";
+    link.click();
+    button.textContent = "Pack downloaded";
+  } catch (error) {
+    button.textContent = "Pack failed";
+  }
+  setTimeout(() => {
+    button.disabled = false;
+    button.textContent = previous;
+  }, 2400);
+}
+
+bootUniversity({ downloadPack, reducedMotion, tone });
 bindChrome();
 route();

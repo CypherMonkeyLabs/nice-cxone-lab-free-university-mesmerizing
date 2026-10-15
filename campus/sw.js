@@ -1,13 +1,18 @@
-const CACHE = "cxone-lab-v2";
+const CACHE = "cxone-lab-v3";
 const SHELL = [
   "./",
   "./index.html",
   "./assets/app.css",
+  "./assets/university.css",
   "./js/app.js",
   "./js/model.mjs",
+  "./js/university.mjs",
+  "./js/diagrams.mjs",
   "./js/topology.js",
   "./manifest.webmanifest",
   "./data/manifest.json",
+  "./data/atlas.json",
+  "./downloads/index.html",
 ];
 
 self.addEventListener("install", (event) => {

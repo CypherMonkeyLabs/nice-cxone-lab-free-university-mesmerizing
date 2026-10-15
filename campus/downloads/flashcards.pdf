@@ -1,0 +1,51 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1189 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Flashcards) Tj
+T* () Tj
+T* (Point of contact   The entry a contact uses, such as a phone number or email address. One skill and one script) Tj
+T* (ACD skill   The object that automates delivery to agents based on skills, abilities, and knowledge.) Tj
+T* (Media type   The kind of channel a script is created for: phone, chat, email, and so on.) Tj
+T* (Default skill   The skill on the POC. The script starts there and may replace it.) Tj
+T* (Contact   The person talking to an agent, IVR, or bot.) Tj
+T* (Interaction   The full conversation on a channel.) Tj
+T* (Digital skill   An ACD skill whose media type is Digital.) Tj
+T* (Routing queue   The older digital inbound object. Do not create new ones. Still used for outbound digital.) Tj
+T* (Tenant   Top grouping for support, billing, and global settings.) Tj
+T* (Campaign   The container you pick when you create a skill.) Tj
+T* (tenantId   Claim you send to /.well-known/cxone-configuration.) Tj
+T* (api-{area}.{domain}   Pattern for the API base URL. Example area: na1.) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001482 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1552
+%%EOF
