@@ -1,0 +1,11 @@
+{
+  "name": "NICE CXone Lab",
+  "short_name": "CXone Lab",
+  "description": "A free study floor for NiCE CXone ACD, Studio, digital, WEM, Enlighten, APIs, and UCCE/Avaya bridges.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#071018",
+  "theme_color": "#071018",
+  "lang": "en"
+}
