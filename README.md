@@ -61,6 +61,20 @@ Every lesson links to a public NiCE help page, the NiCE developer portal, an RFC
 - The WFM UCCE connector page says version 11.6. The Multi-ACD recording table says UCCE 12.6 and 15. They are different products.
 - No exam codes, prices, SIP header lists, or Webex versions are invented.
 
+## University layer
+
+The floor adds a ports atlas, flow explorer, call-flow sandbox, play floor, cheat-code downloads, and a CypherMonkey mascot. Themes are Signal, Futuristic, Gaming, Neon, Light, High contrast, and Dusk.
+
+Rebuild the atlas and the one-page sheets with:
+
+```bash
+node tools/atlas.mjs
+node tools/sheets.mjs
+node scripts/verify.mjs
+```
+
+Sheets live in `campus/downloads/`. They paraphrase public pages and link to them.
+
 ## License
 
-Code is MIT. Lesson text is CC BY 4.0. three.js remains under its own MIT license. See `LICENSE`.
+Code is MIT. Lesson text in this release is CC BY-NC-SA 4.0. The v1.0 snapshot remains CC BY 4.0. three.js remains under its own MIT license. See `LICENSE`.

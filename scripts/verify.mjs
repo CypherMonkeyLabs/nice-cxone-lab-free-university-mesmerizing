@@ -88,6 +88,67 @@ if (!app.includes("vendor/three.min.js")) fail("three not local");
 
 const sw = readFileSync(join(campus, "sw.js"), "utf8");
 if (!sw.includes("caches")) fail("service worker");
+if (!sw.includes("atlas.json")) fail("atlas not cached");
+if (!html.includes("https://cyphermonkeylabs.com")) fail("labs link");
+if (!html.includes("https://linktr.ee/cyphermonkey")) fail("linktree");
+if (!html.includes("https://x.com/Cypher0x9")) fail("x link");
+if (!html.includes("https://dev.to/cyphermonkey")) fail("dev link");
+if (!html.includes("https://huggingface.co/Cypher0x9")) fail("hf link");
+if (!html.includes("nice-cxone-lab-free-university-mesmerizing")) fail("repo link");
+if (/linkedin/i.test(html)) fail("linkedin");
+if (/mailto:|@[a-z0-9.-]+\.[a-z]{2,}/i.test(html)) fail("email");
+if (!html.includes("CC BY-NC-SA")) fail("content license");
+if (!html.includes("mascot-dock")) fail("mascot");
+if (!html.includes("https://cipher0x9.github.io/webex-lab-free-university-mesmerizing/")) fail("webex pages");
+if (!html.includes("https://cipher0x9.github.io/uc-lab-free-university-mesmerizing/")) fail("uc pages");
+if (!html.includes("https://cipher0x9.github.io/ai-lab-free-university-mesmerizing/")) fail("ai pages");
+if (html.includes("cypherwebex-canon-test.vercel.app")) fail("old canon url");
+if (html.includes(">Webex Canon<")) fail("old canon label");
+const studyLabels = ["Diagrams", "Flows", "Charts", "Cheat Codes", "Play", "Ecosystem", "Downloads", "Careers"];
+if (!html.includes('class="study-menu"')) fail("study menu");
+for (const label of studyLabels) {
+  if (!html.includes(`>${label}<`)) fail(`menu ${label}`);
+}
+if (!html.includes("data-theme-set")) fail("theme switcher");
+for (const theme of ["futuristic", "gaming", "neon", "light"]) {
+  if (!html.includes(`value="${theme}"`)) fail(`theme ${theme}`);
+}
+const atlas = JSON.parse(readFileSync(join(campus, "data", "atlas.json"), "utf8"));
+const flows = atlas.diagrams.filter((item) => item.family === "flow" && item.animated && item.flow);
+if (atlas.diagrams.length < 25) fail(`diagrams ${atlas.diagrams.length} < 25`);
+if (flows.length < 12) fail(`animated flows ${flows.length} < 12`);
+for (const kind of ["ladder", "routing", "architecture", "deployment", "migration", "troubleshoot"]) {
+  if (!flows.some((item) => item.flow === kind)) fail(`missing flow kind ${kind}`);
+}
+if (!atlas.diagrams.some((item) => item.layout === "ladder")) fail("no ladder layout");
+if (!atlas.diagrams.some((item) => item.layout === "tree")) fail("no tree layout");
+if (!atlas.charts || atlas.charts.length < 6) fail(`charts ${(atlas.charts || []).length} < 6`);
+if (atlas.ports.length < 15) fail(`ports ${atlas.ports.length}`);
+if (!atlas.ports.some((row) => String(row.port).includes("5060"))) fail("sip ports");
+const deck = JSON.parse(readFileSync(join(campus, "downloads", "flashcards.json"), "utf8"));
+if (deck.count < 400) fail(`flashcards ${deck.count}`);
+if (!readFileSync(join(campus, "downloads", "ports.pdf")).includes("%PDF")) fail("ports pdf");
+const downloadNames = readdirSync(join(campus, "downloads"));
+const pngs = downloadNames.filter((name) => name.endsWith(".png"));
+if (pngs.length < 10) fail(`png sheets ${pngs.length} < 10`);
+if (!downloadNames.includes("cxone-offline-bundle.zip")) fail("offline zip");
+const sheetHtml = readFileSync(join(campus, "downloads", "ports.html"), "utf8");
+for (const token of ["https://cyphermonkeylabs.com", "https://linktr.ee/cyphermonkey", "nice-cxone-lab-free-university-mesmerizing", "not affiliated"]) {
+  if (!sheetHtml.includes(token)) fail(`sheet footer ${token}`);
+}
+if (/linkedin/i.test(sheetHtml) || /mailto:/i.test(sheetHtml)) fail("sheet contact");
+const license = readFileSync(join(root, "LICENSE"), "utf8");
+if (!license.includes("MIT") || !license.includes("CC BY-NC-SA")) fail("LICENSE mismatch");
+for (const file of ["anime.esm.min.js", "d3.min.js", "rough.esm.js", "confetti.module.mjs", "markmap-view.js", "three.min.js"]) {
+  if (!statSync(join(campus, "vendor", file)).size) fail(`vendor ${file}`);
+}
+const uni = readFileSync(join(campus, "js", "university.mjs"), "utf8");
+const effects = readFileSync(join(campus, "js", "effects.mjs"), "utf8");
+if (!effects.includes("anime.esm.min.js") || !effects.includes("rough.esm.js") || !effects.includes("confetti.module.mjs")) fail("effects vendors");
+if (!effects.includes("d3.min.js") || !effects.includes("markmap-view.js")) fail("d3 markmap");
+if (!uni.includes("#/diagrams") || !uni.includes("#/flows") || !uni.includes("#/charts")) fail("university routes");
+if (!app.includes("trackFloor")) fail("track charts");
+if (!sw.includes("cxone-lab-v4")) fail("sw cache");
 
 console.log(JSON.stringify({
   tracks: tracks.length,
@@ -102,6 +163,10 @@ console.log(JSON.stringify({
   interview: JSON.parse(readFileSync(join(campus, "data", "interview.json"), "utf8")).length,
   shellBytes: shell,
   threeBytes: statSync(join(campus, "vendor", "three.min.js")).size,
+  diagrams: atlas.diagrams.length,
+  animatedFlows: flows.length,
+  charts: atlas.charts.length,
+  pngSheets: pngs.length,
   priorityExample: priority,
   dataFiles: readdirSync(join(campus, "data", "tracks")).length,
 }, null, 2));

@@ -1,4 +1,12 @@
 import { ACTION_CATALOG, overallPriority, proficiencyEligible, validateScript } from "./model.mjs";
+import { award, bootUniversity, buildPack, decorateHome, homeExtra, lessonAside, renderUniversity, signalCounts, syncStudyBadges, trackFloor } from "./university.mjs";
+import { burst, decorateFloor } from "./effects.mjs";
+import { counterRow } from "./charts.mjs";
+import { flyOut, mountHero, unmountHero } from "./hero-scene.mjs";
+import { mountIconScenes, unmountIconScenes } from "./icon-scenes.mjs";
+import { bindTilt, isoIcon, progressRing } from "./icons.mjs";
+import { bindLightbox } from "./lightbox.mjs";
+import { bootLang, currentLang, ensureLessonMt, setLang, t, trLesson } from "./i18n.mjs";
 
 const SETTINGS_KEY = "cxone-lab-settings";
 const PROGRESS_KEY = "cxone-lab-progress";
@@ -6,13 +14,24 @@ const STUDIO_KEY = "cxone-lab-studio";
 
 const NAV = [
   { href: "#/", id: "home", label: "Floor", dot: "a1" },
+  { href: "#/diagrams", id: "diagrams", label: "Diagrams", dot: "a2" },
+  { href: "#/flows", id: "flows", label: "Flows", dot: "a3" },
+  { href: "#/charts", id: "charts", label: "Charts", dot: "a4" },
+  { href: "#/downloads", id: "downloads", label: "Cheat Codes", dot: "a1" },
+  { href: "#/play", id: "play", label: "Play", dot: "a2" },
+  { href: "#/ecosystem", id: "ecosystem", label: "Ecosystem", dot: "a3" },
+  { href: "#/downloads", id: "downloads-hub", label: "Downloads", dot: "a4" },
+  { href: "#/careers", id: "careers", label: "Careers", dot: "a1" },
+  { href: "#/regions", id: "regions", label: "Regions", dot: "a2" },
   { href: "#/tracks", id: "tracks", label: "Tracks", dot: "a2" },
   { href: "#/studio", id: "studio", label: "Studio builder", dot: "a3" },
   { href: "#/routing", id: "routing", label: "Routing simulator", dot: "a4" },
   { href: "#/topology", id: "topology", label: "3D topology", dot: "a1" },
-  { href: "#/ecosystem", id: "ecosystem", label: "Ecosystem", dot: "a2" },
-  { href: "#/incidents", id: "incidents", label: "Boss incidents", dot: "a3" },
-  { href: "#/interview", id: "interview", label: "Interview", dot: "a4" },
+  { href: "#/atlas", id: "atlas", label: "Ports atlas", dot: "a2" },
+  { href: "#/explorer", id: "explorer", label: "Flow explorer", dot: "a3" },
+  { href: "#/roadmap", id: "roadmap", label: "Roadmap", dot: "a4" },
+  { href: "#/incidents", id: "incidents", label: "Boss incidents", dot: "a1" },
+  { href: "#/interview", id: "interview", label: "Interview", dot: "a2" },
 ];
 
 const state = {
@@ -50,6 +69,7 @@ function saveSettings() {
   document.documentElement.dataset.theme = settings.theme;
   document.documentElement.dataset.font = settings.font;
   document.documentElement.dataset.motion = settings.motion;
+  window.dispatchEvent(new Event("cxone-theme"));
 }
 
 function progress() {
@@ -100,6 +120,8 @@ function clearTimers() {
   state.sim = null;
   if (window.speechSynthesis) speechSynthesis.cancel();
   if (state.topology) state.topology.unmountTopology();
+  unmountHero();
+  unmountIconScenes();
 }
 
 function loadThree() {
@@ -179,11 +201,19 @@ function setMain(html) {
   clearTimers();
   const main = document.getElementById("main");
   main.innerHTML = html;
+  if (!reducedMotion()) {
+    main.classList.remove("arrive");
+    void main.offsetWidth;
+    main.classList.add("arrive");
+  }
   const heading = main.querySelector("h1");
   if (heading) {
     heading.tabIndex = -1;
-    heading.focus();
+    heading.focus({ preventScroll: true });
   }
+  bindTilt(main);
+  bindLightbox(main);
+  mountIconScenes(main);
 }
 
 function lessonCount(manifest) {
@@ -204,6 +234,12 @@ function renderRail(active) {
   )).join("");
   document.querySelectorAll(".bottom [data-nav]").forEach((node) => {
     if (node.dataset.nav === active) node.setAttribute("aria-current", "page");
+    else node.removeAttribute("aria-current");
+  });
+  const current = NAV.find((item) => item.id === active);
+  document.body.dataset.view = active || "";
+  document.querySelectorAll(".study-menu a").forEach((node) => {
+    if (current && node.getAttribute("href") === current.href) node.setAttribute("aria-current", "page");
     else node.removeAttribute("aria-current");
   });
 }
@@ -243,7 +279,7 @@ function figureMarkup(figure) {
     const fill = colors[(node.tone || 1) - 1] || colors[0];
     return `<g><rect x="${p.x - 58}" y="${p.y - 28}" width="116" height="56" rx="12" fill="var(--cc-surface)" stroke="${fill}" stroke-width="2"/><text x="${p.x}" y="${p.y - 4}" text-anchor="middle" fill="var(--cc-ink)" font-size="13" font-family="Palatino, Georgia, serif">${esc(node.label)}</text><text x="${p.x}" y="${p.y + 14}" text-anchor="middle" fill="var(--cc-muted)" font-size="11">${esc(node.sub || "")}</text></g>`;
   }).join("");
-  return `<figure class="figure"><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(figure.caption)}"><title>${esc(figure.caption)}</title>${edges}${shapes}</svg><figcaption>${esc(figure.caption)}</figcaption></figure>`;
+  return `<figure class="figure"><svg class="live-fig" viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(figure.caption)}"><title>${esc(figure.caption)}</title>${edges}${shapes}</svg><figcaption>${esc(figure.caption)}</figcaption></figure>`;
 }
 
 function flowMarkup(flow) {
@@ -350,6 +386,8 @@ function bindQuiz(trackId, lesson) {
     const status = document.getElementById("quiz-status");
     status.textContent = `${correct} of ${lesson.quiz.length} correct.`;
     markLesson(`${trackId}/${lesson.id}`, { quiz: correct, done: true });
+    syncStudyBadges();
+    if (correct === lesson.quiz.length) burst();
     tone(correct === lesson.quiz.length ? 660 : 220, 0.15, "sine");
   });
 }
@@ -363,6 +401,9 @@ function bindCards(cards) {
   let index = 0;
   let show = false;
   const face = document.getElementById("card-face");
+  const previous = document.getElementById("card-prev");
+  const next = document.getElementById("card-next");
+  if (!face || !previous || !next) return;
   const paint = () => {
     const card = cards[index];
     document.getElementById("card-count").textContent = `Card ${index + 1} of ${cards.length}`;
@@ -371,26 +412,42 @@ function bindCards(cards) {
       : `<strong>${esc(card.front)}</strong><p>Show the answer</p>`;
   };
   face.addEventListener("click", () => { show = !show; paint(); });
-  document.getElementById("card-prev").addEventListener("click", () => {
+  previous.addEventListener("click", () => {
     index = (index - 1 + cards.length) % cards.length;
     show = false;
     paint();
   });
-  document.getElementById("card-next").addEventListener("click", () => {
+  next.addEventListener("click", () => {
     index = (index + 1) % cards.length;
     show = false;
     paint();
   });
 }
 
+function presentLesson(track, lesson) {
+  const key = `${track.id}/${lesson.id}`;
+  return {
+    title: trLesson(key, "title", lesson.title),
+    summary: trLesson(key, "summary", lesson.summary),
+    headings: lesson.sections.map((section, index) => trLesson(key, "h", section.h, index)),
+    mt: currentLang() !== "en",
+  };
+}
+
+function mtNote(shown) {
+  if (!shown) return "";
+  return `<p class="mt-note">${esc(t("mt"))}</p>`;
+}
+
 function lessonView(track, lesson) {
   const index = track.lessons.findIndex((item) => item.id === lesson.id);
   const prev = track.lessons[index - 1];
   const next = track.lessons[index + 1];
+  const shown = presentLesson(track, lesson);
   const uncertain = (lesson.uncertain || []).map((note) => `<div class="callout danger"><strong>Marked uncertain.</strong> ${esc(note)}</div>`).join("");
-  const sections = lesson.sections.map((section) => `
+  const sections = lesson.sections.map((section, index) => `
     <section class="lesson-block" style="padding:12px 14px;margin:12px 0">
-      <h2>${esc(section.h)}</h2>
+      <h2>${esc(shown.headings[index])}</h2>
       ${section.p.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
       <p class="sources">Source: ${(section.cites || []).map(citeLink).join(" · ")}</p>
     </section>`).join("");
@@ -405,28 +462,32 @@ function lessonView(track, lesson) {
     </article>`).join("");
   const labSteps = lesson.lab.steps.map((step) => `<li>${esc(step)}</li>`).join("");
   return `
-    <p class="muted"><a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(lesson.level)} · ${esc(lesson.minutes)} min</p>
-    <h1>${esc(lesson.title)}</h1>
-    <p class="lede">${esc(lesson.summary)}</p>
+    <div class="read-layout"><article>
+    <nav class="crumbs" aria-label="Breadcrumb" id="lesson-top"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · <a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(shown.title)}</nav>
+    <p class="muted">${esc(lesson.level)} · ${esc(lesson.minutes)} min</p>
+    <h1>${esc(shown.title)}</h1>
+    ${mtNote(shown.mt)}
+    <p class="lede">${esc(shown.summary)}</p>
     <div class="chips">${lesson.objectives.map((item) => `<span class="chip">${esc(item)}</span>`).join("")}</div>
     ${figureMarkup(lesson.figure)}
     ${uncertain}
     ${sections}
     ${flowMarkup(lesson.flow)}
-    <section>
+    <section id="lab-block">
       <h2>Lab · ${esc(lesson.lab.title)}</h2>
       <p>${esc(lesson.lab.goal)}</p>
       <ol>${labSteps}</ol>
       <p class="muted">${esc(lesson.lab.done)}</p>
     </section>
-    <section><h2>Fault and fix</h2>${faults}<p class="muted">Logs on this floor are synthetic classroom traces.</p></section>
-    ${cardsMarkup(lesson.cards)}
-    ${quizMarkup(lesson)}
+    <section id="fault-block"><h2>Fault and fix</h2>${faults}<p class="muted">Logs on this floor are synthetic classroom traces.</p></section>
+    <div id="card-block">${cardsMarkup(lesson.cards)}</div>
+    <div id="quiz-block">${quizMarkup(lesson)}</div>
     <div class="row">
-      ${prev ? `<a class="icon-btn" href="#/lesson/${esc(track.id)}/${esc(prev.id)}">Previous</a>` : ""}
-      ${next ? `<a class="icon-btn" href="#/lesson/${esc(track.id)}/${esc(next.id)}">Next lesson</a>` : `<a class="icon-btn" href="#/track/${esc(track.id)}">Back to track</a>`}
+      ${prev ? `<a class="icon-btn" rel="prev" href="#/lesson/${esc(track.id)}/${esc(prev.id)}">Previous</a>` : ""}
+      ${next ? `<a class="icon-btn" rel="next" href="#/lesson/${esc(track.id)}/${esc(next.id)}">Next lesson</a>` : `<a class="icon-btn" href="#/track/${esc(track.id)}">Back to track</a>`}
       <button type="button" class="ghost" id="narrate">Read this lesson</button>
-    </div>`;
+    </div>
+    </article>${lessonAside(lesson)}</div>`;
 }
 
 function bindNarration(lesson) {
@@ -480,45 +541,75 @@ function loadVoices() {
   });
 }
 
+function trackCard(track, withProgress) {
+  const data = progress();
+  const finished = track.lessonIds.filter((id) => data[`${track.id}/${id}`] && data[`${track.id}/${id}`].done).length;
+  const pct = track.lessonIds.length ? Math.round((finished / track.lessonIds.length) * 100) : 0;
+  const meter = withProgress ? progressRing(pct) : "";
+  const bar = withProgress ? `<div class="bar" aria-hidden="true"><span style="width:${pct}%"></span></div><p class="studied">${finished} studied</p>` : "";
+  return `<a class="card holo accent-${track.accent}" href="#/track/${esc(track.id)}"><canvas class="icon-live" data-icon-kind="${esc(track.id)}" width="160" height="128" aria-hidden="true"></canvas><div class="iso-wrap">${isoIcon(track.id)}</div><header><h2>${esc(track.title)}</h2>${meter}<span class="chip">${track.lessonIds.length}</span></header><p>${esc(track.blurb)}</p>${bar}</a>`;
+}
+
 async function viewHome() {
   const manifest = await ensureManifest();
   const total = lessonCount(manifest);
   const done = doneCount(manifest);
-  const cards = manifest.tracks.map((track) => {
-    const data = progress();
-    const finished = track.lessonIds.filter((id) => data[`${track.id}/${id}`] && data[`${track.id}/${id}`].done).length;
-    const pct = Math.round((finished / track.lessonIds.length) * 100);
-    return `<a class="card accent-${track.accent}" href="#/track/${esc(track.id)}"><header><h2>${esc(track.title)}</h2><span class="chip">${track.lessonIds.length}</span></header><p>${esc(track.blurb)}</p><div class="bar" aria-hidden="true"><span style="width:${pct}%"></span></div><p>${finished} studied</p></a>`;
-  }).join("");
+  const counts = await signalCounts();
+  const extra = await homeExtra(manifest, done, total);
+  const poses = ["still", "wave", "think", "headset", "cheer"].map((pose) => (
+    `<button type="button" data-pose-set="${pose}">${pose}</button>`
+  )).join("");
+  const cards = manifest.tracks.map((track) => trackCard(track, true)).join("");
   setMain(`
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="chip">Classroom floor · cited to NiCE help and DEVone</p>
-        <h1>Run the contact, not the brochure.</h1>
-        <p class="lede">Signal Floor is a free study lab for NiCE CXone: ACD setup, Studio, skills and bullseye routing, IVR, digital channels, WEM, Enlighten, APIs, CRM, telephony, and the bridges out of Cisco UCCE and Avaya.</p>
-        <div class="row">
-          <a class="icon-btn" href="#/tracks">Open the tracks</a>
-          <a class="icon-btn" href="#/studio">Build a script</a>
-          <a class="icon-btn" href="#/routing">Simulate a queue</a>
-          <a class="icon-btn" href="#/topology">Walk the 3D floor</a>
-        </div>
-        <p class="muted">${done} of ${total} lessons marked studied. ${esc(manifest.honesty)}</p>
-        <div class="tape" aria-hidden="true"><span>${esc(manifest.tape)} &nbsp; ${esc(manifest.tape)} &nbsp;</span></div>
+    <section class="hero-stage">
+      <canvas id="hero-webgl" aria-label="Orbit of a contact moving through script, skill, agent, workforce, quality, and API"></canvas>
+      <div class="hero-fallback" hidden>
+        <div class="orbit-fallback" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+        <p>Flat drawing. Motion is reduced, or this browser has no WebGL.</p>
       </div>
-      <div class="panel bullseye" aria-hidden="true">
-        <div class="ring" style="width:230px;height:230px"><div class="ring" style="width:150px;height:150px;position:relative"><div class="ring" style="width:70px;height:70px;position:relative"><strong>1</strong></div></div></div>
+      <div class="hero-sheet">
+        <div class="hero-glass">
+          <p class="chip">${esc(t("greeting"))}</p>
+          <h1>${esc(t("hero"))}</h1>
+          <p class="ticker" id="study-clock" aria-live="polite"></p>
+        </div>
+        <div class="hero-counters">
+          ${counterRow([
+            { value: total, label: "lessons" },
+            { value: manifest.tracks.length, label: "tracks" },
+            { value: done, label: "studied" },
+            { value: counts.diagrams, label: "diagrams" },
+            { value: counts.flows, label: "flows" },
+            { value: counts.charts, label: "charts" },
+          ])}
+        </div>
       </div>
     </section>
-    <h2>Tracks</h2>
-    <div class="grid cards">${cards}</div>`);
+    <h2 class="fold-label">Tracks</h2>
+    <div class="grid cards fold-grid">${cards}</div>
+    <section class="hero-follow">
+      <div class="pose-strip" aria-label="Mascot variations">${poses}</div>
+      <p class="lede">${esc(t("lede"))}</p>
+      <p class="muted">${esc(t("note"))}</p>
+    </section>
+    <div id="home-extra">${extra}</div>
+    <p class="muted">${done} of ${total} lessons marked studied. ${esc(manifest.honesty)}</p>
+    <div class="tape" aria-hidden="true"><span>${esc(manifest.tape)} &nbsp; ${esc(manifest.tape)} &nbsp;</span></div>`);
   renderRail("home");
+  decorateHome(reducedMotion());
+  const clock = document.getElementById("study-clock");
+  const tick = () => {
+    if (!clock || !clock.isConnected) return;
+    clock.textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  };
+  tick();
+  state.timers.add(setInterval(tick, 1000));
+  mountHero(document.getElementById("hero-webgl"));
 }
 
 async function viewTracks() {
   const manifest = await ensureManifest();
-  const cards = manifest.tracks.map((track) => (
-    `<a class="card accent-${track.accent}" href="#/track/${esc(track.id)}"><header><h2>${esc(track.title)}</h2></header><p>${esc(track.blurb)}</p></a>`
-  )).join("");
+  const cards = manifest.tracks.map((track) => trackCard(track, true)).join("");
   setMain(`<h1>Tracks</h1><p class="lede">Sixteen paths from prerequisites through migration. Open one track at a time; lesson bodies load with that track.</p><div class="grid cards">${cards}</div>`);
   renderRail("tracks");
 }
@@ -529,10 +620,13 @@ async function viewTrack(id) {
   const data = progress();
   const items = track.lessons.map((lesson, index) => {
     const done = data[`${track.id}/${lesson.id}`] && data[`${track.id}/${lesson.id}`].done;
-    return `<a class="card" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${index + 1}. ${esc(lesson.title)}</h2><span class="chip">${done ? "Studied" : esc(lesson.level)}</span></header><p>${esc(lesson.summary)}</p></a>`;
+    const shown = presentLesson(track, lesson);
+    return `<a class="card holo" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${index + 1}. ${esc(shown.title)}</h2><span class="chip">${done ? "Studied" : esc(lesson.level)}</span></header><p>${esc(shown.summary)}</p></a>`;
   }).join("");
-  setMain(`<p class="muted"><a href="#/tracks">All tracks</a></p><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p><div class="grid">${items}</div>`);
+  const banner = currentLang() === "en" ? "" : mtNote(true);
+  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><div class="track-hero"><canvas class="icon-live" data-icon-kind="${esc(track.id)}" width="160" height="128" aria-hidden="true"></canvas><div class="iso-wrap">${isoIcon(track.id)}</div><div><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p>${banner}</div></div><div id="track-floor">${await trackFloor(track)}</div><div class="grid cards">${items}</div>`);
   renderRail("tracks");
+  decorateFloor(document.getElementById("main"));
 }
 
 async function viewLesson(trackId, lessonId) {
@@ -758,6 +852,7 @@ function bindStudio(script) {
     const out = document.getElementById("studio-out");
     out.hidden = false;
     out.textContent = JSON.stringify(payload, null, 2);
+    award("studio");
   });
   paint();
   inspect();
@@ -895,7 +990,10 @@ function viewRouting() {
     }
     paint();
   }
-  document.getElementById("sim-step").addEventListener("click", tick);
+  document.getElementById("sim-step").addEventListener("click", () => {
+    award("sim");
+    tick();
+  });
   document.getElementById("sim-play").addEventListener("click", () => {
     if (sim.running) return;
     sim.running = true;
@@ -973,12 +1071,15 @@ async function viewEcosystem() {
   const glossary = await ensureExtra("glossary");
   const terms = glossary.map((item) => `<article class="card"><header><h2>${esc(item.term)}</h2></header><p>${esc(item.meaning)}</p><p class="sources">${citeLink(item.cite)}</p></article>`).join("");
   setMain(`
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · Ecosystem</nav>
     <h1>Ecosystem</h1>
-    <p class="lede">Sister systems around the ACD: WFM, quality and recording, CRM, Enlighten, APIs, and the UCCE and Avaya bridges. The map is a study aid. Each edge is only as strong as its citation.</p>
+    <p class="lede">Sister systems around the ACD: WFM, quality and recording, CRM, Enlighten, APIs, and the UCCE and Avaya bridges. The map is a study aid. Each edge is only as strong as its citation. The <a href="#/explorer">flow explorer</a> adds E911, analytics, and the troubleshooting tree.</p>
+    <svg id="ecosystem-markmap" class="markmap" viewBox="0 0 760 420" role="img" aria-label="Ecosystem mind map"></svg>
     <div class="mind">${mindMap()}</div>
     <h2>Glossary</h2>
     <div class="grid cards">${terms}</div>`);
   renderRail("ecosystem");
+  decorateFloor(document.getElementById("main"));
 }
 
 function mindMap() {
@@ -1037,20 +1138,41 @@ async function viewSearch(params) {
     for (const meta of manifest.tracks) {
       const track = await ensureTrack(meta.id);
       for (const lesson of track.lessons) {
-        const hay = `${lesson.title} ${lesson.summary} ${lesson.sections.map((section) => section.p.join(" ")).join(" ")}`.toLowerCase();
-        if (hay.includes(needle)) hits.push({ track, lesson });
+        const shown = presentLesson(track, lesson);
+        const hay = `${lesson.title} ${lesson.summary} ${shown.title} ${shown.summary} ${lesson.sections.map((section) => section.p.join(" ")).join(" ")}`.toLowerCase();
+        if (hay.includes(needle)) hits.push({ track, lesson, shown });
       }
     }
   }
-  const list = hits.map(({ track, lesson }) => `<a class="card" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${esc(lesson.title)}</h2></header><p>${esc(track.title)} · ${esc(lesson.summary)}</p></a>`).join("");
+  const list = hits.map(({ track, lesson, shown }) => `<a class="card" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${esc(shown.title)}</h2></header><p>${esc(track.title)} · ${esc(shown.summary)}</p></a>`).join("");
   setMain(`<h1>Search</h1><p class="lede">${needle ? `${hits.length} lesson${hits.length === 1 ? "" : "s"} for “${esc(query)}”.` : "Type a term in the search box."}</p><div class="grid">${list || "<p>No lesson text matched.</p>"}</div>`);
   renderRail("home");
   document.getElementById("q").value = query;
 }
 
+function playSectionFly() {
+  const layer = document.getElementById("fly-layer");
+  const motion = reducedMotion();
+  if (layer && !motion) {
+    layer.hidden = false;
+    layer.classList.remove("fly-go");
+    void layer.offsetWidth;
+    layer.classList.add("fly-go");
+  }
+  const wait = motion ? Promise.resolve() : new Promise((resolve) => setTimeout(resolve, 520));
+  return Promise.all([flyOut(), wait]).then(() => {
+    if (layer) layer.hidden = true;
+  });
+}
+
+let routedOnce = false;
+
 async function route() {
   const { path, params } = parseHash();
   try {
+    const fly = routedOnce ? playSectionFly() : Promise.resolve();
+    routedOnce = true;
+    await Promise.all([ensureLessonMt(), fly]);
     if (path === "#/" || path === "" || path === "#") return viewHome();
     if (path === "#/tracks" || path === "#/track" || path === "#/track/") return viewTracks();
     if (path === "#/studio") return viewStudio();
@@ -1060,6 +1182,13 @@ async function route() {
     if (path === "#/incidents") return viewIncidents();
     if (path === "#/interview") return viewInterview();
     if (path === "#/search") return viewSearch(params);
+    const university = await renderUniversity(path, await ensureManifest(), reducedMotion());
+    if (university) {
+      setMain(university.html);
+      renderRail(university.active);
+      if (university.bind) await university.bind();
+      return;
+    }
     const track = path.match(/^#\/track\/([a-z0-9-]+)$/);
     if (track) return viewTrack(track[1]);
     const lesson = path.match(/^#\/lesson\/([a-z0-9-]+)\/([a-z0-9-]+)$/);
@@ -1073,6 +1202,33 @@ async function route() {
 }
 
 function bindChrome() {
+  bootLang();
+  const lang = document.getElementById("lang");
+  if (lang) {
+    lang.addEventListener("change", () => {
+      setLang(lang.value);
+      route();
+    });
+  }
+  const briefing = document.getElementById("briefing");
+  const briefRate = document.getElementById("brief-rate");
+  document.querySelectorAll("[data-clip]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!briefing) return;
+      const next = button.dataset.clip;
+      if (briefing.getAttribute("src") !== next) {
+        briefing.src = next;
+        briefing.load();
+      }
+      briefing.playbackRate = briefRate ? Number(briefRate.value) : 1;
+      briefing.play().catch(() => {});
+    });
+  });
+  if (briefRate && briefing) {
+    briefRate.addEventListener("input", () => {
+      briefing.playbackRate = Number(briefRate.value) || 1;
+    });
+  }
   document.getElementById("search-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const q = document.getElementById("q").value.trim();
@@ -1101,6 +1257,22 @@ function bindChrome() {
     for (const track of manifest.tracks) await ensureTrack(track.id);
     for (const name of Object.keys(manifest.extras)) await ensureExtra(name);
     status.textContent = "Tracks are cached for offline use after the service worker stores them.";
+  });
+  document.querySelectorAll("[data-theme-set]").forEach((button) => {
+    button.addEventListener("click", () => {
+      settings.theme = button.dataset.themeSet;
+      saveSettings();
+      const select = document.querySelector("#settings-form [name=theme]");
+      if (select) select.value = settings.theme;
+    });
+  });
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      settings.theme = settings.theme === "light" ? "dark" : "light";
+      saveSettings();
+      const select = document.querySelector("#settings-form [name=theme]");
+      if (select) select.value = settings.theme;
+    });
   });
   document.getElementById("more-btn").addEventListener("click", () => {
     const sheet = document.getElementById("sheet");
@@ -1148,5 +1320,28 @@ async function openSettings(dialog) {
   if (!dialog.open) dialog.showModal();
 }
 
+async function downloadPack(button) {
+  button.disabled = true;
+  const previous = button.textContent;
+  button.textContent = "Packing…";
+  try {
+    const manifest = await ensureManifest();
+    const pack = await buildPack(manifest, ensureTrack, ensureExtra);
+    const blob = new Blob([JSON.stringify(pack)], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "cxone-offline-pack.json";
+    link.click();
+    button.textContent = "Pack downloaded";
+  } catch (error) {
+    button.textContent = "Pack failed";
+  }
+  setTimeout(() => {
+    button.disabled = false;
+    button.textContent = previous;
+  }, 2400);
+}
+
+bootUniversity({ downloadPack, reducedMotion, tone });
 bindChrome();
 route();

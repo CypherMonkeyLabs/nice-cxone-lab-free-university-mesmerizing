@@ -1,0 +1,50 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1145 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(E911) Tj
+T* () Tj
+T* (What you configure) Tj
+T* (Set an Emergency Call Notification Email and an Emergency Call Default Callback Phone on the business unit, un) Tj
+T* (If Telephone 1 is filled on the agent profile, that number is the callback instead of the business-unit defaul) Tj
+T* (Enter the physical address on the user record and save that individual record. The page says a bulk edit is no) Tj
+T* (The agent still needs an outbound phone skill.) Tj
+T* (What the agent does in MAX) Tj
+T* (US-based agents can type 911. A verified address routes to the local public-safety answering point. Otherwise ) Tj
+T* (933 tests the configuration. The setup page says that test dial is at no additional cost. Real emergency calls) Tj
+T* (What this page will not claim) Tj
+T* (This lab does not list country availability, prices, or a SIP header for emergency calls. Those are account-re) Tj
+T* (Do not treat 933 as a substitute for a real dispatch test plan your own safety team signs.) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001438 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1508
+%%EOF

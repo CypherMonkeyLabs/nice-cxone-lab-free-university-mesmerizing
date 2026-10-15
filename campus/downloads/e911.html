@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>E911 · Signal Floor cheat sheet</title>
+  <style>
+    body { font: 13px/1.35 Georgia, serif; margin: 16px; color: #102028; }
+    h1 { font-size: 20px; margin: 0 0 6px; }
+    h2 { font-size: 14px; margin: 10px 0 4px; }
+    table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    td, th { border-bottom: 1px solid #c5d6de; text-align: left; vertical-align: top; padding: 3px 4px; }
+    a { color: #0b5f78; }
+    footer { margin-top: 12px; font: 10px/1.35 sans-serif; color: #3c5360; }
+    .card { break-inside: avoid; border: 1px solid #c5d6de; padding: 8px; margin: 6px 0; }
+    @media print { body { margin: 10mm; } a { color: inherit; text-decoration: none; } }
+  </style>
+</head>
+<body>
+  <h1>E911</h1>
+  <h2>What you configure</h2><p>Set an Emergency Call Notification Email and an Emergency Call Default Callback Phone on the business unit, under Telecom Connectivity.</p><p>If Telephone 1 is filled on the agent profile, that number is the callback instead of the business-unit default.</p><p>Enter the physical address on the user record and save that individual record. The page says a bulk edit is not enough: each address is verified from the individual save. Look for the green Verified for Emergency Call Dispatching mark.</p><p>The agent still needs an outbound phone skill.</p><p><a href="https://help.nicecxone.com/content/acd/channels/voice/setupemergencydialing.htm">Set Up Emergency Dialing</a> · <a href="https://help.nicecxone.com/content/acd/businessunits/managebusinessunit.htm">Manage Business Unit</a></p><h2>What the agent does in MAX</h2><p>US-based agents can type 911. A verified address routes to the local public-safety answering point. Otherwise the call goes to the national emergency center.</p><p>933 tests the configuration. The setup page says that test dial is at no additional cost. Real emergency calls may incur charges, and the feature is not available in every country.</p><p><a href="https://help.nicecxone.com/content/agent/max/voice/handlecalls.htm">Handle Calls in MAX</a> · <a href="https://help.nicecxone.com/content/acd/channels/voice/setupemergencydialing.htm">Set Up Emergency Dialing</a></p><h2>What this page will not claim</h2><p>This lab does not list country availability, prices, or a SIP header for emergency calls. Those are account-representative and carrier facts.</p><p>Do not treat 933 as a substitute for a real dispatch test plan your own safety team signs.</p><p><a href="https://help.nicecxone.com/content/acd/channels/voice/setupemergencydialing.htm">Set Up Emergency Dialing</a></p>
+  <footer>CypherMonkey Labs https://cyphermonkeylabs.com · https://linktr.ee/cyphermonkey · Repo https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content. No email.</footer>
+</body>
+</html>

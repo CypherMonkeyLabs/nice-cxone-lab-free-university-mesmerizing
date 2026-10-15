@@ -1,13 +1,36 @@
-const CACHE = "cxone-lab-v2";
+const CACHE = "cxone-lab-v4";
 const SHELL = [
   "./",
   "./index.html",
   "./assets/app.css",
+  "./assets/university.css",
+  "./assets/wow.css",
   "./js/app.js",
   "./js/model.mjs",
+  "./js/university.mjs",
+  "./js/diagrams.mjs",
+  "./js/charts.mjs",
+  "./js/effects.mjs",
   "./js/topology.js",
+  "./js/hero-scene.mjs",
+  "./js/icons.mjs",
+  "./js/i18n.mjs",
+  "./js/lightbox.mjs",
+  "./js/icon-scenes.mjs",
+  "./data/lesson-i18n.json",
+  "./audio/use-the-floor.mp3",
+  "./audio/share-the-floor.mp3",
+  "./vendor/three.min.js",
+  "./vendor/anime.esm.min.js",
+  "./vendor/d3.min.js",
+  "./vendor/rough.esm.js",
+  "./vendor/confetti.module.mjs",
+  "./vendor/markmap-view.js",
   "./manifest.webmanifest",
   "./data/manifest.json",
+  "./data/atlas.json",
+  "./downloads/index.html",
+  "./downloads/cxone-offline-bundle.zip",
 ];
 
 self.addEventListener("install", (event) => {

@@ -1,0 +1,49 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1116 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Reporting and analytics) Tj
+T* () Tj
+T* (Prebuilt analytics reports) Tj
+T* (The data and reporting page names four prebuilt reports: Analytics Metric Statistics, Analytics Category Stati) Tj
+T* (A short training video is mentioned for the metric and category statistics reports. This campus does not host ) Tj
+T* (Widgets and the license gate) Tj
+T* (The Frustration widget is an Interaction Analytics widget. It needs the Interaction Analytics license plus Ana) Tj
+T* (Organizations with a Performance Management \(Native\) license can see up to 95 days inside a 25-month lookbac) Tj
+T* (If the organization is not configured for Dashboard, or the apps do not include ACD or QM, the dashboard permi) Tj
+T* (Export) Tj
+T* (Analytics data export writes JSON to a secure external access bucket. Files go out every 400 records or every ) Tj
+T* (The page warns that duplicates can exist and that order is processing order, not contact order. Do not build a) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001409 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1479
+%%EOF

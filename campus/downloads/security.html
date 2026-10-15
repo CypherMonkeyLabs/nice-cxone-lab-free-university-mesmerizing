@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Security · Signal Floor cheat sheet</title>
+  <style>
+    body { font: 13px/1.35 Georgia, serif; margin: 16px; color: #102028; }
+    h1 { font-size: 20px; margin: 0 0 6px; }
+    h2 { font-size: 14px; margin: 10px 0 4px; }
+    table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    td, th { border-bottom: 1px solid #c5d6de; text-align: left; vertical-align: top; padding: 3px 4px; }
+    a { color: #0b5f78; }
+    footer { margin-top: 12px; font: 10px/1.35 sans-serif; color: #3c5360; }
+    .card { break-inside: avoid; border: 1px solid #c5d6de; padding: 8px; margin: 6px 0; }
+    @media print { body { margin: 10mm; } a { color: inherit; text-decoration: none; } }
+  </style>
+</head>
+<body>
+  <h1>Security</h1>
+  <h2>TLS</h2><p>Connectivity in NiCE CXone requires at least TLS 1.2.</p><p>Inbound, from CXone to your servers, must support at least one of: TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (0x009E), TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (0xC013), TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 (0xC02B), TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 (0xC02C).</p><p>Outbound, from your servers to CXone, must support at least one of: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xC02F) and TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (0xC030). The page recommends both.</p><p><a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm">Connectivity in NiCE CXone</a></p><h2>Keys and people</h2><p>An access key belongs to an employee and inherits that employee’s permissions. The secret is shown once. Disabling the key kills tokens.</p><p>User-facing apps in this lab follow the authorization-code flow. The authentication pages also show a password grant for back-end integrations, where the username is the access key id.</p><p>External IdP is a documented setup, not the default this page assumes you have.</p><p><a href="https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm">Manage Access Keys</a> · <a href="https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization">API Authentication and Authorization</a> · <a href="https://help.nicecxone.com/content/globalfeatures/authenticationandauthorization/setupaaexternalidp.htm">External Identity Provider Authentication</a></p><h2>FedRAMP is an environment, not a slogan</h2><p>The connectivity requirements page describes FedRAMP as isolated from commercial operations, with continuous monitoring and restricted access. The API getting-started page names a separate issuer, https://cxone-gov.niceincontact.com.</p><p>This campus does not claim HIPAA, PCI, SOC 2, or a particular encryption-at-rest setting. Those sentences are not in the passages gathered here.</p><p><a href="https://help.nicecxone.com/Content/platformrequirements/ports.htm">Connectivity Requirements</a> · <a href="https://developer.niceincontact.com/Documentation/GettingStarted">Getting Started</a></p>
+  <footer>CypherMonkey Labs https://cyphermonkeylabs.com · https://linktr.ee/cyphermonkey · Repo https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content. No email.</footer>
+</body>
+</html>

@@ -1,0 +1,42 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 451 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Recording and quality) Tj
+T* () Tj
+T* (Hold audio is not recorded. Consultation during hold is recorded.) Tj
+T* (Screen NAT: UDP 443 or 3478 outbound. Internal 31322 unless OS Login.) Tj
+T* (Recording Management \(CXone\) https://help.nicecxone.com/Content/recording/managerecordings.htm) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000743 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+813
+%%EOF

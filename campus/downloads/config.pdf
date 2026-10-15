@@ -1,0 +1,50 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1183 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Configuration checklist) Tj
+T* () Tj
+T* (Three wizard steps) Tj
+T* (The wizard tells you to learn ports for the applications you use, then FQDNs and IP addresses for your cluster) Tj
+T* (The same pages say to monitor the connectivity pages because the lists change. This campus does not freeze an ) Tj
+T* (Cluster kinds) Tj
+T* (The connectivity requirements page defines commercial as the standard environment, FedRAMP as an isolated U.S.) Tj
+T* (If you do not know the cluster, the page says to ask the account representative. Do not guess na1.) Tj
+T* (Checklist you can actually run) Tj
+T* (Select only the applications in the ports checklist that the tenant uses. Copy that result, not this whole tab) Tj
+T* (Allow paired ranges. The IP address page says a missing range is a failover risk.) Tj
+T* (Integrated Softphone has its own allowlist, including a separate FedRAMP list, reached through the wizard.) Tj
+T* (Require TLS 1.2 and at least one listed cipher in each direction before you call the integration done.) Tj
+T* () Tj
+T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001476 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1546
+%%EOF
