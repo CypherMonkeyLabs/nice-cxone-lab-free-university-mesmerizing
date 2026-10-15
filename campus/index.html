@@ -39,22 +39,29 @@
     <a href="#/charts" data-i18n="charts">Charts</a>
     <a href="#/downloads" data-i18n="cheat">Cheat Codes</a>
     <a href="#/play" data-i18n="play">Play</a>
-    <a href="#/ecosystem" data-i18n="ecosystem">Ecosystem</a>
-    <a href="#/downloads" data-i18n="downloads">Downloads</a>
-    <a href="#/careers" data-i18n="careers">Careers</a>
-    <a href="#/regions" data-i18n="regions">Regions</a>
-    <span class="theme-switch" role="group" aria-label="Theme">
-      <button type="button" data-theme-set="dark">Signal</button>
-      <button type="button" data-theme-set="futuristic">Futuristic</button>
-      <button type="button" data-theme-set="gaming">Gaming</button>
-      <button type="button" data-theme-set="neon">Neon</button>
-      <button type="button" data-theme-set="holographic">Holographic</button>
-      <button type="button" data-theme-set="cyberpunk">Cyberpunk</button>
-      <button type="button" data-theme-set="sunset">Sunset</button>
-      <button type="button" data-theme-set="light">Light</button>
-      <button type="button" data-theme-toggle>Day / Night</button>
-    </span>
+    <details class="study-more">
+      <summary data-i18n="more">More</summary>
+      <div class="study-more-panel">
+        <a href="#/ecosystem" data-i18n="ecosystem">Ecosystem</a>
+        <a href="#/downloads" data-i18n="downloads">Downloads</a>
+        <a href="#/careers" data-i18n="careers">Careers</a>
+        <a href="#/regions" data-i18n="regions">Regions</a>
+        <span class="theme-switch" role="group" aria-label="Theme">
+          <button type="button" data-theme-set="dark">Signal</button>
+          <button type="button" data-theme-set="futuristic">Futuristic</button>
+          <button type="button" data-theme-set="gaming">Gaming</button>
+          <button type="button" data-theme-set="neon">Neon</button>
+          <button type="button" data-theme-set="holographic">Holographic</button>
+          <button type="button" data-theme-set="cyberpunk">Cyberpunk</button>
+          <button type="button" data-theme-set="sunset">Sunset</button>
+          <button type="button" data-theme-set="light">Light</button>
+          <button type="button" data-theme-toggle>Day / Night</button>
+        </span>
+      </div>
+    </details>
   </nav>
+  <svg class="pkt-defs" width="0" height="0" aria-hidden="true"><defs><filter id="pktglow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs></svg>
+  <div id="fly-layer" class="fly-layer" hidden aria-hidden="true"></div>
   <div class="shell">
     <aside class="rail" aria-label="Primary">
       <a class="brand" href="#/">
@@ -202,6 +209,7 @@
       <a href="https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing">Rate and comment</a>
       <a href="https://cyphermonkeylabs.com">Share the studio</a>
     </p>
+    <p class="audio-ready">Player ready for replacement mp3s at these same paths.</p>
     <details>
       <summary data-i18n="audio">Architect briefing</summary>
       <audio id="briefing" preload="none" controls></audio>

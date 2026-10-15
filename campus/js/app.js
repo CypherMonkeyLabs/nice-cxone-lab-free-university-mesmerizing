@@ -2,10 +2,11 @@ import { ACTION_CATALOG, overallPriority, proficiencyEligible, validateScript } 
 import { award, bootUniversity, buildPack, decorateHome, homeExtra, lessonAside, renderUniversity, signalCounts, syncStudyBadges, trackFloor } from "./university.mjs";
 import { burst, decorateFloor } from "./effects.mjs";
 import { counterRow } from "./charts.mjs";
-import { mountHero, unmountHero } from "./hero-scene.mjs";
+import { flyOut, mountHero, unmountHero } from "./hero-scene.mjs";
+import { mountIconScenes, unmountIconScenes } from "./icon-scenes.mjs";
 import { bindTilt, isoIcon, progressRing } from "./icons.mjs";
 import { bindLightbox } from "./lightbox.mjs";
-import { bootLang, setLang, t } from "./i18n.mjs";
+import { bootLang, currentLang, ensureLessonMt, setLang, t, trLesson } from "./i18n.mjs";
 
 const SETTINGS_KEY = "cxone-lab-settings";
 const PROGRESS_KEY = "cxone-lab-progress";
@@ -120,6 +121,7 @@ function clearTimers() {
   if (window.speechSynthesis) speechSynthesis.cancel();
   if (state.topology) state.topology.unmountTopology();
   unmountHero();
+  unmountIconScenes();
 }
 
 function loadThree() {
@@ -211,6 +213,7 @@ function setMain(html) {
   }
   bindTilt(main);
   bindLightbox(main);
+  mountIconScenes(main);
 }
 
 function lessonCount(manifest) {
@@ -421,14 +424,30 @@ function bindCards(cards) {
   });
 }
 
+function presentLesson(track, lesson) {
+  const key = `${track.id}/${lesson.id}`;
+  return {
+    title: trLesson(key, "title", lesson.title),
+    summary: trLesson(key, "summary", lesson.summary),
+    headings: lesson.sections.map((section, index) => trLesson(key, "h", section.h, index)),
+    mt: currentLang() !== "en",
+  };
+}
+
+function mtNote(shown) {
+  if (!shown) return "";
+  return `<p class="mt-note">${esc(t("mt"))}</p>`;
+}
+
 function lessonView(track, lesson) {
   const index = track.lessons.findIndex((item) => item.id === lesson.id);
   const prev = track.lessons[index - 1];
   const next = track.lessons[index + 1];
+  const shown = presentLesson(track, lesson);
   const uncertain = (lesson.uncertain || []).map((note) => `<div class="callout danger"><strong>Marked uncertain.</strong> ${esc(note)}</div>`).join("");
-  const sections = lesson.sections.map((section) => `
+  const sections = lesson.sections.map((section, index) => `
     <section class="lesson-block" style="padding:12px 14px;margin:12px 0">
-      <h2>${esc(section.h)}</h2>
+      <h2>${esc(shown.headings[index])}</h2>
       ${section.p.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
       <p class="sources">Source: ${(section.cites || []).map(citeLink).join(" · ")}</p>
     </section>`).join("");
@@ -444,10 +463,11 @@ function lessonView(track, lesson) {
   const labSteps = lesson.lab.steps.map((step) => `<li>${esc(step)}</li>`).join("");
   return `
     <div class="read-layout"><article>
-    <nav class="crumbs" aria-label="Breadcrumb" id="lesson-top"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · <a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(lesson.title)}</nav>
+    <nav class="crumbs" aria-label="Breadcrumb" id="lesson-top"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · <a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(shown.title)}</nav>
     <p class="muted">${esc(lesson.level)} · ${esc(lesson.minutes)} min</p>
-    <h1>${esc(lesson.title)}</h1>
-    <p class="lede">${esc(lesson.summary)}</p>
+    <h1>${esc(shown.title)}</h1>
+    ${mtNote(shown.mt)}
+    <p class="lede">${esc(shown.summary)}</p>
     <div class="chips">${lesson.objectives.map((item) => `<span class="chip">${esc(item)}</span>`).join("")}</div>
     ${figureMarkup(lesson.figure)}
     ${uncertain}
@@ -527,7 +547,7 @@ function trackCard(track, withProgress) {
   const pct = track.lessonIds.length ? Math.round((finished / track.lessonIds.length) * 100) : 0;
   const meter = withProgress ? progressRing(pct) : "";
   const bar = withProgress ? `<div class="bar" aria-hidden="true"><span style="width:${pct}%"></span></div><p class="studied">${finished} studied</p>` : "";
-  return `<a class="card holo accent-${track.accent}" href="#/track/${esc(track.id)}"><div class="iso-wrap">${isoIcon(track.id)}</div><header><h2>${esc(track.title)}</h2>${meter}<span class="chip">${track.lessonIds.length}</span></header><p>${esc(track.blurb)}</p>${bar}</a>`;
+  return `<a class="card holo accent-${track.accent}" href="#/track/${esc(track.id)}"><canvas class="icon-live" data-icon-kind="${esc(track.id)}" width="160" height="128" aria-hidden="true"></canvas><div class="iso-wrap">${isoIcon(track.id)}</div><header><h2>${esc(track.title)}</h2>${meter}<span class="chip">${track.lessonIds.length}</span></header><p>${esc(track.blurb)}</p>${bar}</a>`;
 }
 
 async function viewHome() {
@@ -547,20 +567,26 @@ async function viewHome() {
         <div class="orbit-fallback" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
         <p>Flat drawing. Motion is reduced, or this browser has no WebGL.</p>
       </div>
-      <div class="hero-glass">
-        <p class="chip">${esc(t("greeting"))}</p>
-        <h1>${esc(t("hero"))}</h1>
-        ${counterRow([
-          { value: total, label: "lessons" },
-          { value: manifest.tracks.length, label: "tracks" },
-          { value: done, label: "studied" },
-          { value: counts.diagrams, label: "diagrams" },
-          { value: counts.flows, label: "flows" },
-          { value: counts.charts, label: "charts" },
-        ])}
-        <p class="ticker" id="study-clock" aria-live="polite"></p>
+      <div class="hero-sheet">
+        <div class="hero-glass">
+          <p class="chip">${esc(t("greeting"))}</p>
+          <h1>${esc(t("hero"))}</h1>
+          <p class="ticker" id="study-clock" aria-live="polite"></p>
+        </div>
+        <div class="hero-counters">
+          ${counterRow([
+            { value: total, label: "lessons" },
+            { value: manifest.tracks.length, label: "tracks" },
+            { value: done, label: "studied" },
+            { value: counts.diagrams, label: "diagrams" },
+            { value: counts.flows, label: "flows" },
+            { value: counts.charts, label: "charts" },
+          ])}
+        </div>
       </div>
     </section>
+    <h2 class="fold-label">Tracks</h2>
+    <div class="grid cards fold-grid">${cards}</div>
     <section class="hero-follow">
       <div class="pose-strip" aria-label="Mascot variations">${poses}</div>
       <p class="lede">${esc(t("lede"))}</p>
@@ -568,9 +594,7 @@ async function viewHome() {
     </section>
     <div id="home-extra">${extra}</div>
     <p class="muted">${done} of ${total} lessons marked studied. ${esc(manifest.honesty)}</p>
-    <div class="tape" aria-hidden="true"><span>${esc(manifest.tape)} &nbsp; ${esc(manifest.tape)} &nbsp;</span></div>
-    <h2>Tracks</h2>
-    <div class="grid cards">${cards}</div>`);
+    <div class="tape" aria-hidden="true"><span>${esc(manifest.tape)} &nbsp; ${esc(manifest.tape)} &nbsp;</span></div>`);
   renderRail("home");
   decorateHome(reducedMotion());
   const clock = document.getElementById("study-clock");
@@ -596,9 +620,11 @@ async function viewTrack(id) {
   const data = progress();
   const items = track.lessons.map((lesson, index) => {
     const done = data[`${track.id}/${lesson.id}`] && data[`${track.id}/${lesson.id}`].done;
-    return `<a class="card holo" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${index + 1}. ${esc(lesson.title)}</h2><span class="chip">${done ? "Studied" : esc(lesson.level)}</span></header><p>${esc(lesson.summary)}</p></a>`;
+    const shown = presentLesson(track, lesson);
+    return `<a class="card holo" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${index + 1}. ${esc(shown.title)}</h2><span class="chip">${done ? "Studied" : esc(lesson.level)}</span></header><p>${esc(shown.summary)}</p></a>`;
   }).join("");
-  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><div class="track-hero">${isoIcon(track.id)}<div><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p></div></div><div id="track-floor">${await trackFloor(track)}</div><div class="grid cards">${items}</div>`);
+  const banner = currentLang() === "en" ? "" : mtNote(true);
+  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><div class="track-hero"><canvas class="icon-live" data-icon-kind="${esc(track.id)}" width="160" height="128" aria-hidden="true"></canvas><div class="iso-wrap">${isoIcon(track.id)}</div><div><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p>${banner}</div></div><div id="track-floor">${await trackFloor(track)}</div><div class="grid cards">${items}</div>`);
   renderRail("tracks");
   decorateFloor(document.getElementById("main"));
 }
@@ -1112,20 +1138,41 @@ async function viewSearch(params) {
     for (const meta of manifest.tracks) {
       const track = await ensureTrack(meta.id);
       for (const lesson of track.lessons) {
-        const hay = `${lesson.title} ${lesson.summary} ${lesson.sections.map((section) => section.p.join(" ")).join(" ")}`.toLowerCase();
-        if (hay.includes(needle)) hits.push({ track, lesson });
+        const shown = presentLesson(track, lesson);
+        const hay = `${lesson.title} ${lesson.summary} ${shown.title} ${shown.summary} ${lesson.sections.map((section) => section.p.join(" ")).join(" ")}`.toLowerCase();
+        if (hay.includes(needle)) hits.push({ track, lesson, shown });
       }
     }
   }
-  const list = hits.map(({ track, lesson }) => `<a class="card" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${esc(lesson.title)}</h2></header><p>${esc(track.title)} · ${esc(lesson.summary)}</p></a>`).join("");
+  const list = hits.map(({ track, lesson, shown }) => `<a class="card" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${esc(shown.title)}</h2></header><p>${esc(track.title)} · ${esc(shown.summary)}</p></a>`).join("");
   setMain(`<h1>Search</h1><p class="lede">${needle ? `${hits.length} lesson${hits.length === 1 ? "" : "s"} for “${esc(query)}”.` : "Type a term in the search box."}</p><div class="grid">${list || "<p>No lesson text matched.</p>"}</div>`);
   renderRail("home");
   document.getElementById("q").value = query;
 }
 
+function playSectionFly() {
+  const layer = document.getElementById("fly-layer");
+  const motion = reducedMotion();
+  if (layer && !motion) {
+    layer.hidden = false;
+    layer.classList.remove("fly-go");
+    void layer.offsetWidth;
+    layer.classList.add("fly-go");
+  }
+  const wait = motion ? Promise.resolve() : new Promise((resolve) => setTimeout(resolve, 520));
+  return Promise.all([flyOut(), wait]).then(() => {
+    if (layer) layer.hidden = true;
+  });
+}
+
+let routedOnce = false;
+
 async function route() {
   const { path, params } = parseHash();
   try {
+    const fly = routedOnce ? playSectionFly() : Promise.resolve();
+    routedOnce = true;
+    await Promise.all([ensureLessonMt(), fly]);
     if (path === "#/" || path === "" || path === "#") return viewHome();
     if (path === "#/tracks" || path === "#/track" || path === "#/track/") return viewTracks();
     if (path === "#/studio") return viewStudio();

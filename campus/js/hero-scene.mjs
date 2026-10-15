@@ -2,7 +2,125 @@ let raf = 0;
 let renderer = null;
 let running = false;
 let generation = 0;
+let cameraRef = null;
+let bloom = null;
+let fly = null;
 const stops = [];
+
+const BLOOM_VERT = "varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }";
+
+function finishFly() {
+  if (!fly) return;
+  const resolve = fly.resolve;
+  fly = null;
+  if (resolve) resolve();
+}
+
+function attachBloom(THREE, source) {
+  const half = new THREE.WebGLRenderTarget(2, 2);
+  const brightRT = new THREE.WebGLRenderTarget(2, 2);
+  const blurRT = new THREE.WebGLRenderTarget(2, 2);
+  const quadGeo = new THREE.PlaneGeometry(2, 2);
+  const quadCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const brightMat = new THREE.ShaderMaterial({
+    uniforms: { tDiffuse: { value: null }, threshold: { value: 0.38 } },
+    vertexShader: BLOOM_VERT,
+    fragmentShader: "uniform sampler2D tDiffuse; uniform float threshold; varying vec2 vUv; void main(){ vec4 c = texture2D(tDiffuse, vUv); float l = max(c.r, max(c.g, c.b)); float k = smoothstep(threshold, threshold + 0.4, l); gl_FragColor = vec4(c.rgb * k, 1.0); }",
+    depthTest: false,
+    depthWrite: false,
+  });
+  const blurMat = new THREE.ShaderMaterial({
+    uniforms: { tDiffuse: { value: null }, direction: { value: new THREE.Vector2(1, 0) } },
+    vertexShader: BLOOM_VERT,
+    fragmentShader: "uniform sampler2D tDiffuse; uniform vec2 direction; varying vec2 vUv; void main(){ vec4 sum = texture2D(tDiffuse, vUv) * 0.227; float w1 = 0.194; float w2 = 0.121; float w3 = 0.054; float w4 = 0.016; sum += texture2D(tDiffuse, vUv + direction) * w1; sum += texture2D(tDiffuse, vUv - direction) * w1; sum += texture2D(tDiffuse, vUv + direction * 2.0) * w2; sum += texture2D(tDiffuse, vUv - direction * 2.0) * w2; sum += texture2D(tDiffuse, vUv + direction * 3.0) * w3; sum += texture2D(tDiffuse, vUv - direction * 3.0) * w3; sum += texture2D(tDiffuse, vUv + direction * 4.0) * w4; sum += texture2D(tDiffuse, vUv - direction * 4.0) * w4; gl_FragColor = sum; }",
+    depthTest: false,
+    depthWrite: false,
+  });
+  const addMat = new THREE.ShaderMaterial({
+    uniforms: { tBloom: { value: null }, strength: { value: 1.35 } },
+    vertexShader: BLOOM_VERT,
+    fragmentShader: "uniform sampler2D tBloom; uniform float strength; varying vec2 vUv; void main(){ vec3 glow = texture2D(tBloom, vUv).rgb * strength; gl_FragColor = vec4(glow, 1.0); }",
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const quad = new THREE.Mesh(quadGeo, brightMat);
+  const quadScene = new THREE.Scene();
+  quadScene.add(quad);
+  let cached = "";
+  function resize() {
+    const w = Math.max(2, Math.floor(source.domElement.width / 2));
+    const h = Math.max(2, Math.floor(source.domElement.height / 2));
+    const key = `${w}x${h}`;
+    if (key === cached) return { w, h };
+    cached = key;
+    half.setSize(w, h);
+    brightRT.setSize(w, h);
+    blurRT.setSize(w, h);
+    return { w, h };
+  }
+  function render(scene, camera) {
+    const { w, h } = resize();
+    source.setRenderTarget(null);
+    source.autoClear = true;
+    source.render(scene, camera);
+    source.setRenderTarget(half);
+    source.clear();
+    source.render(scene, camera);
+    quad.material = brightMat;
+    brightMat.uniforms.tDiffuse.value = half.texture;
+    source.setRenderTarget(brightRT);
+    source.clear();
+    source.render(quadScene, quadCam);
+    quad.material = blurMat;
+    blurMat.uniforms.tDiffuse.value = brightRT.texture;
+    blurMat.uniforms.direction.value.set(1.6 / w, 0);
+    source.setRenderTarget(blurRT);
+    source.clear();
+    source.render(quadScene, quadCam);
+    blurMat.uniforms.tDiffuse.value = blurRT.texture;
+    blurMat.uniforms.direction.value.set(0, 1.6 / h);
+    source.setRenderTarget(brightRT);
+    source.clear();
+    source.render(quadScene, quadCam);
+    quad.material = addMat;
+    addMat.uniforms.tBloom.value = brightRT.texture;
+    source.autoClear = false;
+    source.setRenderTarget(null);
+    source.render(quadScene, quadCam);
+    source.autoClear = true;
+  }
+  function dispose() {
+    half.dispose();
+    brightRT.dispose();
+    blurRT.dispose();
+    brightMat.dispose();
+    blurMat.dispose();
+    addMat.dispose();
+    quadGeo.dispose();
+  }
+  return { render, resize, dispose };
+}
+
+export function flyOut() {
+  if (!running || !cameraRef || !window.THREE) return Promise.resolve();
+  finishFly();
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => finishFly(), 720);
+    fly = {
+      mode: "out",
+      from: cameraRef.position.clone(),
+      to: new window.THREE.Vector3(cameraRef.position.x * 0.15, 2.2, 3.4),
+      start: performance.now(),
+      dur: 520,
+      resolve: () => {
+        clearTimeout(timer);
+        resolve();
+      },
+    };
+  });
+}
 
 function loadThree() {
   if (window.THREE) return Promise.resolve(window.THREE);
@@ -45,9 +163,15 @@ function showFallback(canvas, stage) {
 export function unmountHero() {
   generation += 1;
   running = false;
+  finishFly();
   if (raf) cancelAnimationFrame(raf);
   raf = 0;
   while (stops.length) stops.pop()();
+  if (bloom) {
+    bloom.dispose();
+    bloom = null;
+  }
+  cameraRef = null;
   if (renderer) {
     renderer.dispose();
     renderer.forceContextLoss();
@@ -98,6 +222,9 @@ export async function mountHero(canvas) {
   if (token !== generation || !canvas.isConnected) return { ok: false, reason: "stale" };
   try {
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.08;
+    bloom = attachBloom(THREE, renderer);
   } catch (error) {
     showFallback(canvas, stage);
     return { ok: false, reason: "webgl" };
@@ -112,7 +239,16 @@ export async function mountHero(canvas) {
   scene.background = new THREE.Color(colors.bg);
   scene.fog = new THREE.FogExp2(colors.bg, 0.032);
   const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 90);
-  camera.position.set(0, 5.6, 14);
+  camera.position.set(7, 16, 28);
+  cameraRef = camera;
+  fly = {
+    mode: "in",
+    from: camera.position.clone(),
+    to: new THREE.Vector3(0, 5.6, 14),
+    start: performance.now(),
+    dur: 1300,
+    resolve: null,
+  };
 
   scene.add(new THREE.AmbientLight(0xffffff, 0.38));
   const key = new THREE.PointLight(colors.a, 22, 48);
@@ -168,7 +304,7 @@ export async function mountHero(canvas) {
     const mat = new THREE.MeshStandardMaterial({
       color: tone,
       emissive: tone,
-      emissiveIntensity: 0.95,
+      emissiveIntensity: 1.45,
       roughness: 0.22,
       metalness: 0.45,
     });
@@ -285,8 +421,9 @@ export async function mountHero(canvas) {
   }, { passive: true });
   listen(window, "cxone-theme", recolor);
   resize();
+  if (bloom) bloom.resize();
   place(0);
-  renderer.render(scene, camera);
+  paintFrame();
   running = true;
   const clock = new THREE.Clock();
   const loop = () => {
@@ -302,12 +439,32 @@ export async function mountHero(canvas) {
     dots.rotation.y = time * 0.04;
     place(time);
     const drift = Math.sin(time * 0.17) * 1.6;
-    camera.position.x += (pointerX * 5 + drift - camera.position.x) * 0.045;
-    camera.position.y += (5.4 - pointerY * 1.8 + scrollP * 2.4 - camera.position.y) * 0.045;
-    camera.position.z += (14.2 - scrollP * 4.2 - camera.position.z) * 0.045;
+    if (fly) {
+      const u = Math.min(1, (performance.now() - fly.start) / fly.dur);
+      const eased = 1 - (1 - u) ** 3;
+      camera.position.lerpVectors(fly.from, fly.to, eased);
+      if (u >= 1) finishFly();
+    } else {
+      camera.position.x += (pointerX * 5 + drift - camera.position.x) * 0.045;
+      camera.position.y += (5.4 - pointerY * 1.8 + scrollP * 2.4 - camera.position.y) * 0.045;
+      camera.position.z += (14.2 - scrollP * 4.2 - camera.position.z) * 0.045;
+    }
     camera.lookAt(0, 0.5, 0);
-    renderer.render(scene, camera);
+    paintFrame();
   };
+  function paintFrame() {
+    if (!bloom) {
+      renderer.render(scene, camera);
+      return;
+    }
+    try {
+      bloom.render(scene, camera);
+    } catch (error) {
+      bloom.dispose();
+      bloom = null;
+      renderer.render(scene, camera);
+    }
+  }
   raf = requestAnimationFrame(loop);
   canvas.dataset.hero = "ok";
   return { ok: true };

@@ -16,6 +16,8 @@ const SHELL = [
   "./js/icons.mjs",
   "./js/i18n.mjs",
   "./js/lightbox.mjs",
+  "./js/icon-scenes.mjs",
+  "./data/lesson-i18n.json",
   "./audio/use-the-floor.mp3",
   "./audio/share-the-floor.mp3",
   "./vendor/three.min.js",

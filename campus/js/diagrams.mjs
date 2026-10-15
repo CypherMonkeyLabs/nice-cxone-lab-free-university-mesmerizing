@@ -8,15 +8,30 @@ function esc(value) {
   }[ch]));
 }
 
+let wireSeq = 0;
+
+function nextWire() {
+  wireSeq += 1;
+  return `pw${wireSeq}`;
+}
+
 function motion(reduced) {
   if (reduced) return "";
   return `<animate attributeName="stroke-dashoffset" from="0" to="-28" dur="1.8s" repeatCount="indefinite"/>`;
 }
 
+function packet(id, reduced) {
+  if (reduced) return "";
+  const dur = `${(2.1 + (wireSeq % 5) * 0.35).toFixed(2)}s`;
+  return `<circle class="packet-glow" r="8" fill="var(--cc-accent-2)" opacity="0.55" filter="url(#pktglow)"><animateMotion dur="${dur}" repeatCount="indefinite" rotate="auto" calcMode="linear"><mpath href="#${id}"/></animateMotion></circle><circle class="packet" r="4.2" fill="#ffffff" filter="url(#pktglow)"><animateMotion dur="${dur}" repeatCount="indefinite" rotate="auto" calcMode="linear"><mpath href="#${id}"/></animateMotion></circle>`;
+}
+
 function edge(x1, y1, x2, y2, label, reduced) {
   const mx = (x1 + x2) / 2;
   const my = (y1 + y2) / 2;
-  return `<path class="wire" d="M ${x1} ${y1} L ${x2} ${y2}" fill="none" stroke="var(--cc-accent-1)" stroke-width="2" stroke-dasharray="7 5">${motion(reduced)}</path>
+  const id = nextWire();
+  return `<path id="${id}" class="wire" d="M ${x1} ${y1} L ${x2} ${y2}" fill="none" stroke="var(--cc-accent-1)" stroke-width="2" stroke-dasharray="7 5">${motion(reduced)}</path>
+    ${packet(id, reduced)}
     <polygon points="${x2},${y2} ${x2 - 8},${y2 - 4} ${x2 - 8},${y2 + 4}" fill="var(--cc-accent-2)"/>
     ${label ? `<text x="${mx}" y="${my - 8}" text-anchor="middle" fill="var(--cc-muted)" font-size="11">${esc(label)}</text>` : ""}`;
 }
@@ -49,7 +64,9 @@ function ladderSvg(spec, reduced, title) {
     const x1 = left + from * gap;
     const x2 = left + to * gap;
     const back = x2 < x1;
-    return `<path class="wire" d="M ${x1} ${y} L ${x2} ${y}" fill="none" stroke="var(--cc-accent-${(index % 4) + 1})" stroke-width="2.5" stroke-dasharray="7 5">${motion(reduced)}</path>
+    const id = nextWire();
+    return `<path id="${id}" class="wire" d="M ${x1} ${y} L ${x2} ${y}" fill="none" stroke="var(--cc-accent-${(index % 4) + 1})" stroke-width="2.5" stroke-dasharray="7 5">${motion(reduced)}</path>
+      ${packet(id, reduced)}
       <polygon points="${x2},${y} ${x2 + (back ? 9 : -9)},${y - 4} ${x2 + (back ? 9 : -9)},${y + 4}" fill="var(--cc-accent-2)"/>
       <text x="${(x1 + x2) / 2}" y="${y - 8}" text-anchor="middle" fill="var(--cc-ink)" font-size="12">${esc(step.label || "")}</text>`;
   }).join("");
@@ -87,7 +104,10 @@ export function diagramSvg(spec, reduced) {
   if (spec.layout === "rings") {
     const rings = (spec.rings || []).map((label, index) => {
       const size = 150 - index * 28;
-      return `<circle cx="380" cy="100" r="${size / 2}" fill="none" stroke="var(--cc-accent-${(index % 4) + 1})" stroke-width="8" opacity="0.85"/>`;
+      const radius = size / 2;
+      const id = nextWire();
+      const path = `<path id="${id}" class="wire" d="M ${380 - radius} 100 a ${radius} ${radius} 0 1 1 ${radius * 2} 0 a ${radius} ${radius} 0 1 1 ${-radius * 2} 0" fill="none" stroke="var(--cc-accent-${(index % 4) + 1})" stroke-width="8" opacity="0.85"/>`;
+      return `${path}${packet(id, reduced)}`;
     }).join("");
     const labels = (spec.rings || []).map((label, index) => `<text x="${80 + index * 160}" y="168" text-anchor="middle" fill="var(--cc-ink)" font-size="12">${esc(label)}</text>`).join("");
     return `<svg class="live-diagram" viewBox="0 0 760 190" role="img" aria-label="${title}"><title>${title}</title>${rings}<text x="380" y="104" text-anchor="middle" fill="var(--cc-ink)" font-size="13">1 is best</text>${labels}</svg>`;
