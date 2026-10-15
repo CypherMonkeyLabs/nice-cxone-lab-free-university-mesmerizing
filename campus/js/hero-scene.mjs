@@ -383,8 +383,7 @@ export async function mountHero(canvas) {
     const rect = canvas.getBoundingClientRect();
     const width = Math.max(2, rect.width);
     const height = Math.max(2, rect.height);
-    const cap = width < 800 ? 1 : 1.25;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, cap));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
@@ -451,10 +450,17 @@ export async function mountHero(canvas) {
   const clock = new THREE.Clock();
   let frameCount = 0;
   let frameStamp = performance.now();
-  const loop = () => {
-    if (!running || token !== generation || !canvas.isConnected) return;
+  let frameOnScreen = true;
+  function arm() {
+    if (!running || token !== generation || !canvas.isConnected || raf) return;
+    if (document.visibilityState === "hidden" || !frameOnScreen) return;
     raf = requestAnimationFrame(loop);
-    if (document.visibilityState === "hidden") return;
+  }
+  const loop = () => {
+    raf = 0;
+    if (!running || token !== generation || !canvas.isConnected) return;
+    if (document.visibilityState === "hidden" || !frameOnScreen) return;
+    raf = requestAnimationFrame(loop);
     const time = clock.getElapsedTime();
     rings.rotation.y = time * 0.18;
     rings.rotation.z = Math.sin(time * 0.22) * 0.18;
@@ -496,7 +502,16 @@ export async function mountHero(canvas) {
       renderer.render(scene, camera);
     }
   }
-  raf = requestAnimationFrame(loop);
+  listen(document, "visibilitychange", arm);
+  if (typeof IntersectionObserver === "function") {
+    const seen = new IntersectionObserver((entries) => {
+      frameOnScreen = entries.some((entry) => entry.isIntersecting);
+      if (frameOnScreen) arm();
+    });
+    seen.observe(canvas);
+    stops.push(() => seen.disconnect());
+  }
+  arm();
   canvas.dataset.hero = "ok";
   return { ok: true };
   } catch (error) {

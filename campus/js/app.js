@@ -39,6 +39,7 @@ const state = {
   tracks: new Map(),
   extras: new Map(),
   timers: new Set(),
+  reveal: null,
   flow: null,
   sim: null,
   audio: null,
@@ -118,6 +119,8 @@ function clearTimers() {
   state.timers.clear();
   if (state.sim) state.sim.stop();
   state.sim = null;
+  if (state.reveal) state.reveal.disconnect();
+  state.reveal = null;
   if (window.speechSynthesis) speechSynthesis.cancel();
   if (state.topology) state.topology.unmountTopology();
   unmountHero();
@@ -214,6 +217,23 @@ function setMain(html) {
   bindTilt(main);
   bindLightbox(main);
   mountIconScenes(main);
+  state.reveal = revealIn(main);
+}
+
+function revealIn(root) {
+  if (!root || reducedMotion() || typeof IntersectionObserver !== "function") return null;
+  const nodes = [...root.querySelectorAll(".card, .diagram-card, .lesson-block, .callout")];
+  if (!nodes.length) return null;
+  nodes.forEach((node) => node.classList.add("reveal"));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-in");
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+  nodes.forEach((node) => observer.observe(node));
+  return observer;
 }
 
 function lessonCount(manifest) {
@@ -232,13 +252,9 @@ function renderRail(active) {
   nav.innerHTML = NAV.map((item) => (
     `<a href="${item.href}" data-nav="${item.id}" ${active === item.id ? 'aria-current="page"' : ""}><span class="dot ${item.dot}" aria-hidden="true"></span>${esc(item.label)}</a>`
   )).join("");
-  document.querySelectorAll(".bottom [data-nav]").forEach((node) => {
-    if (node.dataset.nav === active) node.setAttribute("aria-current", "page");
-    else node.removeAttribute("aria-current");
-  });
   const current = NAV.find((item) => item.id === active);
   document.body.dataset.view = active || "";
-  document.querySelectorAll(".study-menu a").forEach((node) => {
+  document.querySelectorAll(".bottom [data-nav], .phone-links a, .study-menu a").forEach((node) => {
     if (current && node.getAttribute("href") === current.href) node.setAttribute("aria-current", "page");
     else node.removeAttribute("aria-current");
   });
@@ -1201,15 +1217,84 @@ async function route() {
   }
 }
 
-function bindChrome() {
-  bootLang();
-  const lang = document.getElementById("lang");
-  if (lang) {
-    lang.addEventListener("change", () => {
-      setLang(lang.value);
+function bindPhoneMenu() {
+  const dialog = document.getElementById("phone-menu");
+  if (!dialog) return;
+  let closingFromPop = false;
+  const open = () => {
+    if (dialog.open) return;
+    dialog.showModal();
+    document.body.classList.add("menu-open");
+    if (!history.state || !history.state.phoneMenu) history.pushState({ phoneMenu: true }, "");
+    const close = document.getElementById("close-menu");
+    if (close) close.focus();
+  };
+  const shut = () => {
+    document.body.classList.remove("menu-open");
+    if (dialog.open) dialog.close();
+  };
+  document.getElementById("open-menu").addEventListener("click", open);
+  document.getElementById("open-menu-bar").addEventListener("click", open);
+  document.getElementById("close-menu").addEventListener("click", shut);
+  dialog.addEventListener("close", () => {
+    document.body.classList.remove("menu-open");
+    if (closingFromPop) return;
+    if (history.state && history.state.phoneMenu) history.back();
+  });
+  window.addEventListener("popstate", () => {
+    if (!dialog.open) return;
+    closingFromPop = true;
+    dialog.close();
+    closingFromPop = false;
+  });
+  dialog.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const url = new URL(link.href, location.href);
+      if (url.origin !== location.origin || !url.hash.startsWith("#/")) return;
+      event.preventDefault();
+      closingFromPop = true;
+      dialog.close();
+      closingFromPop = false;
+      history.replaceState(null, "", url.hash);
       route();
     });
+  });
+  document.getElementById("menu-search").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const q = document.getElementById("menu-q").value.trim();
+    document.getElementById("q").value = q;
+    closingFromPop = true;
+    dialog.close();
+    closingFromPop = false;
+    history.replaceState(null, "", `#/search?q=${encodeURIComponent(q)}`);
+    route();
+  });
+  const listen = document.getElementById("listen-btn");
+  const dock = document.querySelector(".audio-dock");
+  if (listen && dock) {
+    listen.addEventListener("click", () => {
+      const openDock = dock.classList.toggle("is-open");
+      listen.setAttribute("aria-pressed", openDock ? "true" : "false");
+      const details = dock.querySelector("details");
+      if (details && openDock) details.open = true;
+      if (openDock) {
+        const play = dock.querySelector("[data-clip]");
+        if (play) play.focus();
+      }
+    });
   }
+}
+
+function bindChrome() {
+  bootLang();
+  document.querySelectorAll("[data-lang-select]").forEach((select) => {
+    select.addEventListener("change", () => {
+      if (select.value === currentLang()) return;
+      setLang(select.value);
+      route();
+    });
+  });
+  bindPhoneMenu();
   const briefing = document.getElementById("briefing");
   const briefRate = document.getElementById("brief-rate");
   document.querySelectorAll("[data-clip]").forEach((button) => {
@@ -1235,7 +1320,13 @@ function bindChrome() {
     location.hash = `#/search?q=${encodeURIComponent(q)}`;
   });
   const dialog = document.getElementById("settings");
-  document.getElementById("open-settings").addEventListener("click", () => openSettings(dialog));
+  document.querySelectorAll("[data-open-settings]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const phone = document.getElementById("phone-menu");
+      if (phone && phone.open && phone.contains(button)) phone.close();
+      openSettings(dialog);
+    });
+  });
   document.getElementById("close-settings").addEventListener("click", () => dialog.close());
   document.getElementById("settings-form").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -1247,7 +1338,9 @@ function bindChrome() {
     settings.voice = data.get("voice");
     settings.rate = data.get("rate");
     settings.motion = data.get("motion");
+    const nextLang = data.get("language");
     saveSettings();
+    if (nextLang && nextLang !== currentLang()) setLang(nextLang);
     document.getElementById("settings-status").textContent = "Saved on this browser.";
     tone(520, 0.08, "sine");
   });
@@ -1274,20 +1367,6 @@ function bindChrome() {
       if (select) select.value = settings.theme;
     });
   });
-  document.getElementById("more-btn").addEventListener("click", () => {
-    const sheet = document.getElementById("sheet");
-    if (!sheet.hidden) {
-      sheet.hidden = true;
-      return;
-    }
-    sheet.hidden = false;
-    sheet.innerHTML = NAV.map((item) => `<a href="${item.href}">${esc(item.label)}</a>`).join("") + `<button type="button" id="sheet-settings">Settings</button>`;
-    document.getElementById("sheet-settings").addEventListener("click", () => {
-      sheet.hidden = true;
-      openSettings(dialog);
-    });
-    sheet.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => { sheet.hidden = true; }));
-  });
   window.addEventListener("hashchange", route);
   window.addEventListener("online", () => { document.getElementById("net-chip").textContent = "Online"; });
   window.addEventListener("offline", () => { document.getElementById("net-chip").textContent = "Offline"; });
@@ -1305,6 +1384,7 @@ async function openSettings(dialog) {
   form.narration.value = settings.narration;
   form.rate.value = settings.rate;
   form.motion.value = settings.motion;
+  if (form.language) form.language.value = currentLang();
   const select = document.getElementById("voice-select");
   const note = document.getElementById("voice-note");
   const voices = await loadVoices();
