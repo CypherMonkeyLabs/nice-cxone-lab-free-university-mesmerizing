@@ -133,7 +133,7 @@
     <button type="button" id="open-menu-bar" aria-haspopup="dialog" aria-controls="phone-menu">Menu</button>
     <button type="button" id="listen-btn" aria-pressed="false">Listen</button>
   </nav>
-  <dialog id="phone-menu" aria-labelledby="phone-menu-title">
+  <div id="phone-menu" class="phone-menu" role="dialog" aria-modal="true" aria-labelledby="phone-menu-title" hidden>
     <div class="phone-menu-bar">
       <h2 id="phone-menu-title">Menu</h2>
       <button type="button" class="solid" id="close-menu">Close</button>
@@ -198,7 +198,7 @@
       <a href="https://huggingface.co/Cypher0x9">Hugging Face</a>
       <a href="https://x.com/Cypher0x9">X</a>
     </nav>
-  </dialog>
+  </div>
   <button class="mascot-dock" id="mascot-dock" type="button" data-pose="still" aria-label="CypherMonkey mascot. Activate to change pose.">
     <svg viewBox="0 0 120 150" aria-hidden="true">
       <ellipse class="tail" cx="92" cy="112" rx="16" ry="8" fill="#c47a3a"/>

@@ -1222,39 +1222,40 @@ function bindPhoneMenu() {
   if (!dialog) return;
   let closingFromPop = false;
   const open = () => {
-    if (dialog.open) return;
-    dialog.showModal();
+    if (!dialog.hidden) return;
+    dialog.hidden = false;
     document.body.classList.add("menu-open");
     if (!history.state || !history.state.phoneMenu) history.pushState({ phoneMenu: true }, "");
     const close = document.getElementById("close-menu");
     if (close) close.focus();
   };
-  const shut = () => {
+  const shut = (fromPop) => {
+    if (dialog.hidden) return;
+    closingFromPop = !!fromPop;
+    dialog.hidden = true;
     document.body.classList.remove("menu-open");
-    if (dialog.open) dialog.close();
+    if (!fromPop && history.state && history.state.phoneMenu) history.back();
+    closingFromPop = false;
   };
   document.getElementById("open-menu").addEventListener("click", open);
   document.getElementById("open-menu-bar").addEventListener("click", open);
-  document.getElementById("close-menu").addEventListener("click", shut);
-  dialog.addEventListener("close", () => {
-    document.body.classList.remove("menu-open");
-    if (closingFromPop) return;
-    if (history.state && history.state.phoneMenu) history.back();
+  document.getElementById("close-menu").addEventListener("click", () => shut(false));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !dialog.hidden) {
+      event.preventDefault();
+      shut(false);
+    }
   });
   window.addEventListener("popstate", () => {
-    if (!dialog.open) return;
-    closingFromPop = true;
-    dialog.close();
-    closingFromPop = false;
+    if (dialog.hidden) return;
+    shut(true);
   });
   dialog.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", (event) => {
       const url = new URL(link.href, location.href);
       if (url.origin !== location.origin || !url.hash.startsWith("#/")) return;
       event.preventDefault();
-      closingFromPop = true;
-      dialog.close();
-      closingFromPop = false;
+      shut(true);
       history.replaceState(null, "", url.hash);
       route();
     });
@@ -1263,9 +1264,7 @@ function bindPhoneMenu() {
     event.preventDefault();
     const q = document.getElementById("menu-q").value.trim();
     document.getElementById("q").value = q;
-    closingFromPop = true;
-    dialog.close();
-    closingFromPop = false;
+    shut(true);
     history.replaceState(null, "", `#/search?q=${encodeURIComponent(q)}`);
     route();
   });
@@ -1323,7 +1322,11 @@ function bindChrome() {
   document.querySelectorAll("[data-open-settings]").forEach((button) => {
     button.addEventListener("click", () => {
       const phone = document.getElementById("phone-menu");
-      if (phone && phone.open && phone.contains(button)) phone.close();
+      if (phone && !phone.hidden && phone.contains(button)) {
+        phone.hidden = true;
+        document.body.classList.remove("menu-open");
+        if (history.state && history.state.phoneMenu) history.back();
+      }
       openSettings(dialog);
     });
   });
