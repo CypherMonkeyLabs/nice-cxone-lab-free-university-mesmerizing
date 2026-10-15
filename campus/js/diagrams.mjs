@@ -28,8 +28,55 @@ function node(x, y, label, tone) {
   return `<g class="dnode"><rect x="${x - 62}" y="${y - 24}" width="124" height="${36 + lines.length * 8}" rx="14" fill="var(--cc-surface)" stroke="${stroke}" stroke-width="2"/>${text}</g>`;
 }
 
+function ladderSvg(spec, reduced, title) {
+  const lanes = spec.lanes || [];
+  const steps = spec.steps || [];
+  const width = 760;
+  const left = 80;
+  const right = 680;
+  const span = Math.max(1, lanes.length - 1);
+  const gap = (right - left) / span;
+  const height = Math.max(160, 78 + steps.length * 48);
+  const heads = lanes.map((label, index) => {
+    const x = left + index * gap;
+    return `<text x="${x}" y="28" text-anchor="middle" fill="var(--cc-ink)" font-size="13">${esc(label)}</text>
+      <line x1="${x}" y1="40" x2="${x}" y2="${height - 12}" stroke="var(--cc-muted)" stroke-dasharray="3 5" opacity="0.55"/>`;
+  }).join("");
+  const msgs = steps.map((step, index) => {
+    const y = 64 + index * 48;
+    const from = Number(step.from) || 0;
+    const to = Number(step.to) || 0;
+    const x1 = left + from * gap;
+    const x2 = left + to * gap;
+    const back = x2 < x1;
+    return `<path class="wire" d="M ${x1} ${y} L ${x2} ${y}" fill="none" stroke="var(--cc-accent-${(index % 4) + 1})" stroke-width="2.5" stroke-dasharray="7 5">${motion(reduced)}</path>
+      <polygon points="${x2},${y} ${x2 + (back ? 9 : -9)},${y - 4} ${x2 + (back ? 9 : -9)},${y + 4}" fill="var(--cc-accent-2)"/>
+      <text x="${(x1 + x2) / 2}" y="${y - 8}" text-anchor="middle" fill="var(--cc-ink)" font-size="12">${esc(step.label || "")}</text>`;
+  }).join("");
+  return `<svg class="live-diagram flow-ladder" viewBox="0 0 ${width} ${height}" role="img" aria-label="${title}"><title>${title}</title>${heads}${msgs}</svg>`;
+}
+
+function treeSvg(spec, reduced, title) {
+  const branches = spec.branches || [];
+  const height = Math.max(220, 100 + branches.length * 96);
+  let body = node(380, 42, spec.root || "Start", 0);
+  branches.forEach((branch, index) => {
+    const y = 130 + index * 96;
+    body += edge(380, 70, 170, y, "", reduced);
+    body += node(170, y, branch.label, index);
+    (branch.children || []).slice(0, 2).forEach((child, childIndex) => {
+      const x = 400 + childIndex * 170;
+      body += edge(232, y, x - 62, y, "", reduced);
+      body += node(x, y, child, childIndex + 1);
+    });
+  });
+  return `<svg class="live-diagram flow-tree" viewBox="0 0 760 ${height}" role="img" aria-label="${title}"><title>${title}</title>${body}</svg>`;
+}
+
 export function diagramSvg(spec, reduced) {
   const title = esc(spec.title);
+  if (spec.layout === "ladder") return ladderSvg(spec, reduced, title);
+  if (spec.layout === "tree") return treeSvg(spec, reduced, title);
   if (spec.layout === "formula") {
     return `<svg class="live-diagram" viewBox="0 0 760 180" role="img" aria-label="${title}"><title>${title}</title>
       <rect x="24" y="28" width="712" height="120" rx="20" fill="var(--cc-surface)" stroke="var(--cc-accent-1)"/>
@@ -87,5 +134,6 @@ export function diagramSvg(spec, reduced) {
 }
 
 export function diagramCard(spec, citeHtml, reduced) {
-  return `<figure class="figure diagram-card"><figcaption><strong>${esc(spec.title)}</strong> — ${esc(spec.caption)}</figcaption>${diagramSvg(spec, reduced)}<p class="sources">${citeHtml}</p></figure>`;
+  const kind = spec.flow ? `<span class="chip">${esc(spec.flow)}</span> ` : "";
+  return `<figure class="figure diagram-card" id="diagram-${esc(spec.id)}" data-flow="${esc(spec.flow || "")}"><figcaption>${kind}<strong>${esc(spec.title)}</strong> — ${esc(spec.caption)}</figcaption>${diagramSvg(spec, reduced)}<p class="sources">${citeHtml}</p></figure>`;
 }

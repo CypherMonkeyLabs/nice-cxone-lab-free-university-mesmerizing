@@ -212,6 +212,6 @@ writeFileSync(join(out, "cxone-offline-pack.json"), JSON.stringify({
 
 const links = [
   "ports", "flows", "config", "troubleshoot", "glossary", "wfm", "recording", "e911", "crm-api", "ai", "licensing", "carrier", "security", "migration", "reporting", "flashcards",
-].map((stem) => `<li><a href="${stem}.html">${stem}</a> · <a href="${stem}.pdf">pdf</a></li>`).join("");
-writeFileSync(join(out, "index.html"), page("Cheat codes", `<ul>${links}</ul><p><a href="flashcards.json">flashcards.json</a> · <a href="cxone-offline-pack.json">cxone-offline-pack.json</a></p>`));
+].map((stem) => `<li><a href="${stem}.html">${stem}</a> · <a href="${stem}.pdf">pdf</a> · <a href="${stem}.png">png</a></li>`).join("");
+writeFileSync(join(out, "index.html"), page("Cheat codes", `<ul>${links}</ul><p><a href="flashcards.json">flashcards.json</a> · <a href="cxone-offline-pack.json">cxone-offline-pack.json</a> · <a href="cxone-offline-bundle.zip">offline zip</a></p>`));
 console.log("sheets", cards.length, "cards");

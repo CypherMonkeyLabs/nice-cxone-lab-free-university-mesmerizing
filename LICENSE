@@ -30,8 +30,14 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
 The initial v1.0 snapshot remains available under the CC BY 4.0 grant that
 shipped with that commit. This release does not revoke that earlier grant.
 
-three.js (campus/vendor/three.min.js) is a separate MIT-licensed work.
-See campus/vendor/LICENSE-THREE.txt.
+Vendored libraries keep their own licenses:
+- three.js (campus/vendor/three.min.js) — MIT. See campus/vendor/LICENSE-THREE.txt.
+- anime.js (campus/vendor/anime.esm.min.js) — MIT. See campus/vendor/LICENSE-ANIME.md.
+- rough.js (campus/vendor/rough.esm.js) — MIT. See campus/vendor/LICENSE-ROUGH.txt.
+- markmap-view (campus/vendor/markmap-view.js) — MIT. See campus/vendor/LICENSE-MARKMAP.txt.
+- d3 (campus/vendor/d3.min.js) — ISC. See campus/vendor/LICENSE-D3.txt.
+- canvas-confetti (campus/vendor/confetti.module.mjs) — ISC. See campus/vendor/LICENSE-CONFETTI.txt.
+GSAP is not included. Mermaid was not executed; diagrams are drawn by this repository.
 
 This project is an independent study aid. It is not affiliated with, endorsed
 by, or maintained by NiCE Ltd. Product names belong to their owners. Facts

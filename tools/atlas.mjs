@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -104,6 +104,141 @@ const diagrams = [
   row("hub", "Engagement Hub intake", "Third-party PABX, ACD, CRM, digital, and dialer data can feed Supervisor, Copilot, QM, and WFM.", ["Third party", "Hub", "Supervisor", "QM / WFM"], "hub"),
   row("bcp", "Admin multi-region BCP", "The ports page names HTTPS 443 for the Multi-Region BCP interface, with optional HTTP 80 and FTP 21.", ["Admin BCP", "TCP 443", "Optional 80", "Optional 21"], "ports"),
 ];
+
+const FLOW_TAGS = {
+  inbound: "routing",
+  legs: "signal",
+  priority: "routing",
+  bullseye: "routing",
+  studio: "routing",
+  digital: "routing",
+  voiceports: "signal",
+  monitor: "signal",
+  screenports: "signal",
+  thirdparty: "signal",
+  moves: "migration",
+  hub: "data",
+  security: "architecture",
+  e911: "signal",
+  release: "deployment",
+  orbit: "architecture",
+  bcp: "deployment",
+  analytics: "data",
+  record: "data",
+  lifecycle: "data",
+  clusters: "deployment",
+};
+
+for (const diagram of diagrams) {
+  const flow = FLOW_TAGS[diagram.id];
+  diagram.family = flow ? "flow" : "map";
+  diagram.animated = true;
+  if (flow) diagram.flow = flow;
+}
+
+function ladder(id, title, caption, flow, lanes, steps, key) {
+  return {
+    id,
+    title,
+    caption,
+    layout: "ladder",
+    family: "flow",
+    animated: true,
+    flow,
+    lanes,
+    steps,
+    cite: cite(key),
+  };
+}
+
+diagrams.push(
+  ladder("sip-ladder", "SIP register ladder", "IP voice registration is a hop to the CXone SBC on 5060 and 5061. RTP is a separate UDP range. This ladder does not invent headers.", "ladder", ["Hardphone", "Customer net", "CXone SBC", "Media"], [
+    { from: 0, to: 1, label: "SIP register" },
+    { from: 1, to: 2, label: "5060 and 5061" },
+    { from: 0, to: 2, label: "NTP 123 hardphone" },
+    { from: 2, to: 3, label: "RTP UDP 1024–65535" },
+  ], "ports"),
+  ladder("route-ladder", "Inbound routing ladder", "One point of contact, one script, one starting skill. The script may retarget before an agent is offered the contact.", "routing", ["Contact", "POC", "Script", "Skill", "Agent"], [
+    { from: 0, to: 1, label: "Arrives" },
+    { from: 1, to: 2, label: "One script" },
+    { from: 2, to: 3, label: "Default skill" },
+    { from: 2, to: 3, label: "Menu may retarget" },
+    { from: 3, to: 4, label: "Offer" },
+  ], "studio"),
+  ladder("arch-ladder", "Architecture ladder", "Tenant holds global settings. A campaign holds the skill. The point of contact is the entry, not the tenant.", "architecture", ["Tenant", "Campaign", "Skill", "POC", "Agent"], [
+    { from: 0, to: 1, label: "Contains" },
+    { from: 1, to: 2, label: "Skill lives here" },
+    { from: 3, to: 2, label: "One skill" },
+    { from: 3, to: 4, label: "Script may change skill" },
+  ], "admin"),
+  ladder("deploy-ladder", "Deployment ladder", "The connectivity wizard order: ports for the apps you use, then cluster FQDNs, then voice. Do not freeze an allowlist from this floor.", "deployment", ["You", "Ports page", "Cluster", "Voice"], [
+    { from: 0, to: 1, label: "Select apps" },
+    { from: 1, to: 2, label: "FQDNs for cluster" },
+    { from: 2, to: 3, label: "Voice FQDNs" },
+    { from: 3, to: 0, label: "Re-check; lists change" },
+  ], "wizard"),
+  ladder("cutover-ladder", "Migration cutover ladder", "Three public moves stay on separate rungs. Replacing the ACD is not a procedure on these pages.", "migration", ["Source", "WFM connector", "Multi-ACD", "Migrated Calls"], [
+    { from: 0, to: 1, label: "UCCE or Avaya CMS" },
+    { from: 0, to: 2, label: "Live third-party phones" },
+    { from: 0, to: 3, label: "Historical files" },
+    { from: 3, to: 1, label: "Keep the moves apart" },
+  ], "ucce"),
+  ladder("api-ladder", "API discovery ladder", "A back-end app uses the password grant. tenantId comes from the ID token. The example host is not every tenant.", "data", ["App", "Issuer", "Token", "API host"], [
+    { from: 0, to: 1, label: "OpenID discovery" },
+    { from: 1, to: 2, label: "Password grant" },
+    { from: 2, to: 0, label: "Read tenantId" },
+    { from: 0, to: 3, label: "api_endpoint" },
+  ], "auth"),
+  ladder("monitor-ladder", "Supervisor monitor ladder", "Engagement Hub voice monitoring: outbound WSS, then inbound SRTP. The page says the UDP range is typical.", "signal", ["Browser", "WSS", "WebRTC SBC", "Media"], [
+    { from: 0, to: 1, label: "TCP 443" },
+    { from: 0, to: 2, label: "WSS 10081" },
+    { from: 2, to: 0, label: "SRTP UDP in" },
+  ], "ports"),
+  ladder("e911-ladder", "Emergency dialing ladder", "Outbound voice skill, a verified address on the user, then 911 or the local number. 933 is the no-charge test named on the page.", "signal", ["Agent", "Outbound skill", "Address", "PSAP"], [
+    { from: 0, to: 1, label: "Dial 911" },
+    { from: 1, to: 2, label: "User record" },
+    { from: 2, to: 3, label: "Verified → local" },
+    { from: 2, to: 3, label: "Else national center" },
+  ], "e911"),
+  ladder("qm-ladder", "Recording ladder", "Talk is recorded. Hold audio, including hold music, is not. A consultation during hold is recorded.", "data", ["Talk", "Recorder", "Hold", "QM"], [
+    { from: 0, to: 1, label: "Record talk" },
+    { from: 2, to: 1, label: "Hold music dropped" },
+    { from: 0, to: 1, label: "Consult on hold kept" },
+    { from: 1, to: 3, label: "Review" },
+  ], "recording"),
+  {
+    id: "audio-tree",
+    title: "No-audio troubleshooting tree",
+    caption: "Split the symptom before you open a port. Each leaf is a check a cited page actually names.",
+    layout: "tree",
+    family: "flow",
+    animated: true,
+    flow: "troubleshoot",
+    root: "No audio",
+    branches: [
+      { label: "Agent leg", children: ["Allowlist", "Softphone type"] },
+      { label: "Screen only", children: ["UDP 3478", "Port 31322"] },
+      { label: "Supervisor", children: ["WSS 10081", "SRTP inbound"] },
+    ],
+    cite: cite("ports"),
+  },
+  {
+    id: "queue-tree",
+    title: "Queue troubleshooting tree",
+    caption: "Idle agents, a climbing outbound skill, and a new chat that never arrives are three different checks.",
+    layout: "tree",
+    family: "flow",
+    animated: true,
+    flow: "troubleshoot",
+    root: "Contact stuck",
+    branches: [
+      { label: "Idle experts", children: ["Proficiency window", "No UpdateContact"] },
+      { label: "PC jumps queue", children: ["Acceleration 0", "Not inbound"] },
+      { label: "New chat", children: ["Digital skill", "No new queue"] },
+    ],
+    cite: cite("bullseye"),
+  },
+);
 
 const ports = [
   { use: "Baseline for many selected apps", proto: "HTTPS", port: "443", direction: "Often outbound. Confirm the app you selected.", note: "The page repeats HTTPS 443 across applications. Open only the apps you use. This row is not a claim that every product uses only 443.", cite: "ports" },
@@ -290,9 +425,102 @@ const daily = [
 ];
 
 const labs = [
-  { name: "Webex Canon", href: "https://cypherwebex-canon-test.vercel.app", note: "Control Hub, Calling, and both contact-center products." },
-  { name: "UC Lab", href: "https://github.com/cipher0x9/uc-lab-free-university-mesmerizing", note: "Offline UC campus. GitHub is the verified public home." },
-  { name: "AI Lab", href: "https://github.com/cipher0x9/ai-lab-free-university-mesmerizing", note: "Offline AI campus. GitHub is the verified public home." },
+  { name: "Webex Lab", href: "https://cipher0x9.github.io/webex-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "UC Lab", href: "https://cipher0x9.github.io/uc-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "AI Lab", href: "https://cipher0x9.github.io/ai-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "Genesys", href: "https://cipher0x9.github.io/genesys-cloud-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "SIP Universe", href: "https://cipher0x9.github.io/sip-universe-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "Five9", href: "https://cipher0x9.github.io/five9-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "Microsoft Voice", href: "https://cipher0x9.github.io/microsoft-voice-cc-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "Amazon Connect", href: "https://cipher0x9.github.io/amazon-connect-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+];
+
+function labStats() {
+  const dir = join(dirname(fileURLToPath(import.meta.url)), "..", "campus", "data", "tracks");
+  const tracks = readdirSync(dir).filter((file) => file.endsWith(".json")).map((file) => {
+    const data = JSON.parse(readFileSync(join(dir, file), "utf8"));
+    const lessons = data.lessons || [];
+    const levels = {};
+    let minutes = 0;
+    let quiz = 0;
+    for (const lesson of lessons) {
+      minutes += Number(lesson.minutes) || 0;
+      quiz += (lesson.quiz || []).length;
+      const level = lesson.level || "unspecified";
+      levels[level] = (levels[level] || 0) + 1;
+    }
+    return { id: data.id, title: data.title, lessons: lessons.length, minutes, quiz, levels };
+  }).sort((a, b) => a.title.localeCompare(b.title));
+  const levelTotals = {};
+  for (const track of tracks) {
+    for (const [level, count] of Object.entries(track.levels)) levelTotals[level] = (levelTotals[level] || 0) + count;
+  }
+  return {
+    tracks,
+    levelTotals,
+    source: "Counted from the lesson files in this repository when the atlas was built. These are study-floor totals, not a NiCE benchmark.",
+  };
+}
+
+const stats = labStats();
+
+function bars(pairs) {
+  return pairs.map(([label, value]) => ({ label, value }));
+}
+
+const protoCounts = {};
+for (const row of ports) {
+  const key = String(row.proto).split(/[,/]/)[0].trim() || "unspecified";
+  protoCounts[key] = (protoCounts[key] || 0) + 1;
+}
+
+const charts = [
+  {
+    id: "lessons",
+    title: "Lessons on each track",
+    note: stats.source,
+    cite: null,
+    series: stats.tracks.map((track) => ({ label: track.title, value: track.lessons })),
+  },
+  {
+    id: "minutes",
+    title: "Study minutes written into the lessons",
+    note: stats.source,
+    cite: null,
+    series: stats.tracks.map((track) => ({ label: track.title, value: track.minutes })),
+  },
+  {
+    id: "quiz",
+    title: "Quiz items on each track",
+    note: stats.source,
+    cite: null,
+    series: stats.tracks.map((track) => ({ label: track.title, value: track.quiz })),
+  },
+  {
+    id: "levels",
+    title: "Lesson level mix",
+    note: stats.source,
+    cite: null,
+    series: bars(Object.entries(stats.levelTotals)),
+  },
+  {
+    id: "protocols",
+    title: "Port-table rows by the first protocol word",
+    note: "Counted from this floor’s firewall table, which paraphrases the ports page. It is not an inventory of every packet on a tenant.",
+    cite: "ports",
+    series: bars(Object.entries(protoCounts).sort((a, b) => b[1] - a[1])),
+  },
+  {
+    id: "releases",
+    title: "Published cycle start month in 2026",
+    note: "The number is the calendar month of the start date printed on that release page. 26.3 uses the revised September start. The 26.3 and 26.4 windows still overlap, and this chart does not resolve that.",
+    cite: "rel",
+    series: [
+      { label: "26.2 April", value: 4 },
+      { label: "26.3 September", value: 9 },
+      { label: "26.4 October", value: 10 },
+    ],
+  },
 ];
 
 const atlas = {
@@ -308,6 +536,9 @@ const atlas = {
     cite: "connect",
   },
   diagrams,
+  charts,
+  stats,
+  mermaid: "Mermaid was not executed in this build. Ladder and tree SVGs are drawn by campus/js/diagrams.mjs from these specs. GSAP is not vendored.",
   pages,
   sisters,
   troubles,
@@ -320,4 +551,5 @@ const atlas = {
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "campus", "data");
 mkdirSync(root, { recursive: true });
 writeFileSync(join(root, "atlas.json"), JSON.stringify(atlas));
-console.log("diagrams", diagrams.length, "ports", ports.length, "pages", pages.length, "game", game.length);
+const flowCount = diagrams.filter((item) => item.family === "flow" && item.animated).length;
+console.log("diagrams", diagrams.length, "flows", flowCount, "charts", charts.length, "ports", ports.length, "pages", pages.length, "game", game.length);

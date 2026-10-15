@@ -1,5 +1,7 @@
 import { diagramCard, diagramSvg } from "./diagrams.mjs";
 import { ACTION_CATALOG, validateScript } from "./model.mjs";
+import { chartsBlock, counterRow, iconParade } from "./charts.mjs";
+import { burst, decorateFloor } from "./effects.mjs";
 
 const ATLAS = "data/atlas.json";
 const BADGES_KEY = "cxone-lab-badges";
@@ -87,26 +89,33 @@ function badgeHtml() {
   )).join("")}</div>`;
 }
 
+function crumbs(parts) {
+  const tail = (parts || []).map((part) => (
+    part.href ? ` · <a href="${esc(part.href)}">${esc(part.label)}</a>` : ` · ${esc(part.label)}`
+  )).join("");
+  return `<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a>${tail}</nav>`;
+}
+
 function pageShell(title, lede, body) {
-  return `<p class="muted"><a href="#/">Floor</a> · University</p><h1>${esc(title)}</h1><p class="lede">${lede}</p>${uniNav()}<div>${body}</div>`;
+  return `${crumbs([{ label: title }])}<h1>${esc(title)}</h1><p class="lede">${lede}</p>${uniNav()}<div>${body}</div>`;
 }
 
 function uniNav() {
   const links = [
+    ["#/diagrams", "Diagrams"],
+    ["#/flows", "Flows"],
+    ["#/charts", "Charts"],
+    ["#/downloads", "Cheat Codes"],
+    ["#/play", "Play"],
+    ["#/ecosystem", "Ecosystem"],
+    ["#/downloads", "Downloads"],
+    ["#/careers", "Careers"],
     ["#/atlas", "Ports atlas"],
     ["#/explorer", "Flow explorer"],
     ["#/sandbox", "Call-flow sandbox"],
-    ["#/play", "Play floor"],
-    ["#/downloads", "Cheat codes"],
     ["#/roadmap", "Roadmap"],
     ["#/deploy", "Deployment"],
     ["#/cutover", "Migration"],
-    ["#/e911", "E911"],
-    ["#/reporting", "Reporting"],
-    ["#/security", "Security"],
-    ["#/licensing", "Licenses"],
-    ["#/byoc", "Carrier options"],
-    ["#/career", "Study paths"],
     ["#/progress", "Progress"],
   ];
   return `<nav class="uni-nav" aria-label="University">${links.map(([href, label]) => `<a href="${href}">${esc(label)}</a>`).join("")}</nav>`;
@@ -121,26 +130,54 @@ function blocksHtml(atlas, page) {
     </section>`).join("");
 }
 
+export async function signalCounts() {
+  const atlas = await loadAtlas();
+  const flows = atlas.diagrams.filter((item) => item.family === "flow" && item.animated).length;
+  return {
+    diagrams: atlas.diagrams.length,
+    flows,
+    charts: (atlas.charts || []).length,
+    ports: atlas.ports.length,
+  };
+}
+
+export async function heroArt(reduced) {
+  const atlas = await loadAtlas();
+  const spec = atlas.diagrams.find((item) => item.id === "sip-ladder") || atlas.diagrams.find((item) => item.layout === "ladder");
+  return spec ? diagramSvg(spec, reduced) : "";
+}
+
 export async function homeExtra(manifest, done, total) {
   const atlas = await loadAtlas();
   const reduced = document.documentElement.dataset.motion === "reduce";
-  const featured = ["inbound", "priority", "bullseye", "legs", "e911", "orbit"].map((id) => atlas.diagrams.find((item) => item.id === id)).filter(Boolean);
+  const featured = ["sip-ladder", "route-ladder", "audio-tree", "bullseye", "cutover-ladder", "orbit"].map((id) => atlas.diagrams.find((item) => item.id === id)).filter(Boolean);
   const cards = featured.map((spec) => diagramCard(spec, citeHtml(atlas, spec.cite), reduced)).join("");
-  const fan = ["ACD", "Studio", "WFM", "QM", "AI", "API"].map((label, index) => (
-    `<div class="fan-card" style="--ry:${(index - 2.5) * 14}deg">${esc(label)}</div>`
-  )).join("");
   return `
-    <section class="hero">
-      <div class="hero-copy">
-        <h2>Signal numbers that are real</h2>
-        <p class="score-pip">${done} / ${total} lessons marked studied · ${manifest.tracks.length} tracks · ${atlas.diagrams.length} diagrams · ${atlas.ports.length} port rows</p>
-        <p>The counters read this browser’s saved progress and the files on this floor. Zero means you have not checked a quiz yet.</p>
-        <canvas class="reel" id="signal-reel" width="640" height="92" aria-label="Animated contact moving from a point of contact to an agent"></canvas>
-      </div>
-      <div class="fan" aria-hidden="true">${fan}</div>
-    </section>
-    <h2>Animated floor plans</h2>
-    <div class="diagram-grid">${cards}</div>`;
+    <section class="home-spotlight" id="home-spotlight">
+      <h2>Diagrams, flows, and charts</h2>
+      <p class="muted">${done} of ${total} lessons studied in this browser · ${manifest.tracks.length} tracks · ${atlas.diagrams.length} diagrams · ${atlas.diagrams.filter((item) => item.family === "flow" && item.animated).length} animated flows · ${(atlas.charts || []).length} charts from this floor’s own files. <a href="#/diagrams">Open the atlas</a> · <a href="#/flows">Flows</a> · <a href="#/charts">Charts</a> · <a href="#/downloads">Cheat Codes</a></p>
+      ${iconParade()}
+      <div class="diagram-grid">${cards}</div>
+      <h2>Counts from the lesson files</h2>
+      ${chartsBlock(atlas.charts || [], (key) => citeHtml(atlas, key))}
+      <canvas class="reel" id="signal-reel" width="640" height="92" aria-label="Animated contact moving from a point of contact to an agent"></canvas>
+    </section>`;
+}
+
+export async function trackFloor(track) {
+  const atlas = await loadAtlas();
+  const stat = (atlas.stats && atlas.stats.tracks || []).find((item) => item.id === track.id) || { minutes: 0, quiz: 0 };
+  return `
+    ${counterRow([
+      { value: track.lessons.length, label: "lessons" },
+      { value: stat.minutes, label: "minutes" },
+      { value: stat.quiz, label: "quiz items" },
+      { value: atlas.diagrams.length, label: "diagrams" },
+    ])}
+    <svg class="rough-frame" viewBox="0 0 760 90" aria-hidden="true"></svg>
+    ${iconParade()}
+    <h2>Floor charts</h2>
+    ${chartsBlock(atlas.charts || [], (key) => citeHtml(atlas, key))}`;
 }
 
 export function lessonAside(lesson) {
@@ -164,6 +201,30 @@ function generic(atlas, id) {
   const page = atlas.pages.find((item) => item.id === id);
   if (!page) return null;
   return pageShell(page.title, esc(page.lede), blocksHtml(atlas, page));
+}
+
+async function viewDiagrams(reduced, mode) {
+  const atlas = await loadAtlas();
+  const flows = atlas.diagrams.filter((item) => item.family === "flow" && item.animated);
+  const list = mode === "flow" ? flows : atlas.diagrams;
+  const kinds = ["ladder", "routing", "architecture", "deployment", "migration", "troubleshoot", "data", "signal"];
+  const filters = kinds.map((kind) => `<button type="button" data-jump="${esc(kind)}">${esc(kind)}</button>`).join("");
+  const cards = list.map((spec) => diagramCard(spec, citeHtml(atlas, spec.cite), reduced)).join("");
+  const title = mode === "flow" ? "Animated flows" : "Diagram atlas";
+  const lede = mode === "flow"
+    ? `${flows.length} animated call, signal, and data flows. Ladders, routing, architecture, deployment, migration cutover, and troubleshooting trees are in this set.`
+    : `${atlas.diagrams.length} custom SVG diagrams. ${flows.length} of them are animated flows. Mermaid was not run; these SVGs are drawn on this floor.`;
+  return pageShell(title, lede, `
+    <nav class="uni-nav" aria-label="Flow kinds">${filters}</nav>
+    <div class="diagram-grid">${cards}</div>`);
+}
+
+async function viewCharts() {
+  const atlas = await loadAtlas();
+  return pageShell("Charts", `${(atlas.charts || []).length} charts. Lesson, minute, and quiz bars are counted from this repository. Protocol bars count rows in the firewall table. Release bars are the published start month.`, `
+    ${iconParade()}
+    ${chartsBlock(atlas.charts || [], (key) => citeHtml(atlas, key))}
+    <svg class="rough-frame" viewBox="0 0 760 90" aria-hidden="true"></svg>`);
 }
 
 async function viewAtlas(reduced) {
@@ -201,7 +262,8 @@ async function viewExplorer(reduced) {
   const spec = atlas.diagrams.find((item) => item.id === "orbit");
   const sisters = atlas.sisters.map((item) => `<article class="card" id="sis-${esc(item.name)}"><header><h2>${esc(item.name)}</h2></header><p>${esc(item.does)}</p><p class="sources">${citeHtml(atlas, item.cite)}</p></article>`).join("");
   const trees = atlas.troubles.map((item) => `<article class="callout"><strong>${esc(item.symptom)}</strong><p>${esc(item.check)}</p><p class="sources">${citeHtml(atlas, item.cite)}</p></article>`).join("");
-  return pageShell("Flow explorer", "Click a sister system. The orbit is a study map. Each sentence has its own page.", `
+  return pageShell("Flow explorer", "Click a sister system. The orbit is a study map. Each sentence has its own page. The mind map below is drawn with markmap after d3 loads from this floor.", `
+    <svg id="ecosystem-markmap" class="markmap" viewBox="0 0 760 420" role="img" aria-label="Ecosystem mind map"></svg>
     <div class="explorer">
       <div>${diagramSvg(spec, reduced)}<p class="sources">${citeHtml(atlas, "studio")}</p></div>
       <div class="grid">${sisters}</div>
@@ -244,7 +306,10 @@ function bindPlay(atlas) {
     }).join("");
     document.getElementById("port-why").innerHTML = why;
     document.getElementById("port-status").textContent = `${correct} of ${atlas.game.length}.`;
-    if (correct === atlas.game.length) award("ports");
+    if (correct === atlas.game.length) {
+      award("ports");
+      burst();
+    }
     sessionStorage.setItem("cxone-last-score", String(correct));
   });
   document.getElementById("share-card").addEventListener("click", () => drawCard(sessionStorage.getItem("cxone-last-score") || "—", atlas.game.length));
@@ -297,30 +362,30 @@ function drawCard(score, total) {
 
 async function viewDownloads() {
   const sheets = [
-    ["ports.html", "ports.pdf", "Ports and protocols"],
-    ["flows.html", "flows.pdf", "Call flows"],
-    ["config.html", "config.pdf", "Configuration checklist"],
-    ["troubleshoot.html", "troubleshoot.pdf", "Troubleshooting tree"],
-    ["glossary.html", "glossary.pdf", "Glossary"],
-    ["wfm.html", "wfm.pdf", "WFM forecast"],
-    ["recording.html", "recording.pdf", "Recording and QM"],
-    ["e911.html", "e911.pdf", "E911"],
-    ["crm-api.html", "crm-api.pdf", "CRM and APIs"],
-    ["ai.html", "ai.pdf", "AI agents"],
-    ["licensing.html", "licensing.pdf", "Licenses and badges"],
-    ["carrier.html", "carrier.pdf", "Carrier and SIP"],
-    ["security.html", "security.pdf", "Security"],
-    ["migration.html", "migration.pdf", "Migration checklist"],
-    ["reporting.html", "reporting.pdf", "Reporting"],
-    ["flashcards.html", "flashcards.pdf", "Printable flashcards"],
+    ["ports", "Ports and protocols"],
+    ["flows", "Call flows"],
+    ["config", "Configuration checklist"],
+    ["troubleshoot", "Troubleshooting tree"],
+    ["glossary", "Glossary"],
+    ["wfm", "WFM forecast"],
+    ["recording", "Recording and QM"],
+    ["e911", "E911"],
+    ["crm-api", "CRM and APIs"],
+    ["ai", "AI agents"],
+    ["licensing", "Licenses and badges"],
+    ["carrier", "Carrier and SIP"],
+    ["security", "Security"],
+    ["migration", "Migration checklist"],
+    ["reporting", "Reporting"],
+    ["flashcards", "Printable flashcards"],
   ];
-  const cards = sheets.map(([html, pdf, title]) => `<article class="card"><header><h2>${esc(title)}</h2></header><p><a href="downloads/${html}">HTML</a> · <a href="downloads/${pdf}">PDF</a></p></article>`).join("");
-  return pageShell("Cheat codes", "One-page sheets generated in this repo. They paraphrase public pages and link back. They are not vendor manuals.", `
+  const cards = sheets.map(([stem, title]) => `<article class="card"><header><h2>${esc(title)}</h2></header><p><a href="downloads/${stem}.html">HTML</a> · <a href="downloads/${stem}.pdf">PDF</a> · <a href="downloads/${stem}.png">PNG</a></p></article>`).join("");
+  return pageShell("Cheat Codes", "One-page sheets generated in this repo. They paraphrase public pages and link back. They are not vendor manuals.", `
     <div class="grid cards">${cards}</div>
-    <h2>Decks and the full pack</h2>
-    <p><a href="downloads/flashcards.json">Flashcard JSON</a> · <a href="downloads/cxone-offline-pack.json">Offline pack JSON</a></p>
-    <p>The top-bar download builds a fresh pack from the tracks loaded in this browser, including anything you have not opened yet.</p>
-    <p class="muted">Each file carries the CypherMonkey footer. No LinkedIn. No email address.</p>`);
+    <h2>Decks and the offline bundle</h2>
+    <p><a href="downloads/flashcards.json">Flashcard JSON</a> · <a href="downloads/cxone-offline-pack.json">Offline pack JSON</a> · <a href="downloads/cxone-offline-bundle.zip">Offline zip</a></p>
+    <p>The top-bar download builds a fresh pack from the tracks loaded in this browser, including anything you have not opened yet. The zip is the printable cheat-code set.</p>
+    <p class="muted">Each sheet carries cyphermonkeylabs.com, linktr.ee/cyphermonkey, the repo link, and the disclaimer. No LinkedIn. No email address.</p>`);
 }
 
 async function viewSandbox() {
@@ -391,20 +456,33 @@ async function viewProgress(manifest) {
 }
 
 export async function renderUniversity(path, manifest, reduced) {
+  const jump = () => {
+    document.querySelectorAll("[data-jump]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const card = document.querySelector(`.diagram-card[data-flow="${button.dataset.jump}"]`);
+        if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  };
+  if (path === "#/diagrams") return { html: await viewDiagrams(reduced, "all"), active: "diagrams", bind: () => { decorateFloor(document.getElementById("main")); jump(); } };
+  if (path === "#/flows") return { html: await viewDiagrams(reduced, "flow"), active: "flows", bind: jump };
+  if (path === "#/charts") return { html: await viewCharts(), active: "charts", bind: () => decorateFloor(document.getElementById("main")) };
   if (path === "#/atlas" || path === "#/ports") return { html: await viewAtlas(reduced), active: "atlas", bind: null };
   if (path === "#/roadmap") return { html: await viewRoadmap(manifest), active: "roadmap", bind: null };
-  if (path === "#/explorer") return { html: await viewExplorer(reduced), active: "explorer", bind: null };
+  if (path === "#/explorer") return { html: await viewExplorer(reduced), active: "explorer", bind: () => decorateFloor(document.getElementById("main")) };
   if (path === "#/play") {
     const html = await viewPlay();
     return { html, active: "play", bind: async () => bindPlay(await loadAtlas()) };
   }
-  if (path === "#/downloads") return { html: await viewDownloads(), active: "downloads", bind: null };
+  if (path === "#/downloads" || path === "#/cheat" || path === "#/cheats") return { html: await viewDownloads(), active: "downloads", bind: null };
   if (path === "#/sandbox") return { html: await viewSandbox(), active: "sandbox", bind: () => bindSandbox(reduced) };
   if (path === "#/progress") return { html: await viewProgress(manifest), active: "progress", bind: null };
   const atlas = await loadAtlas();
-  const html = generic(atlas, path.replace(/^#\//, ""));
+  const raw = path.replace(/^#\//, "");
+  const id = raw === "careers" ? "career" : raw;
+  const html = generic(atlas, id);
   if (!html) return null;
-  return { html, active: "atlas", bind: null };
+  return { html, active: id === "career" ? "careers" : "atlas", bind: null };
 }
 
 export function bootUniversity({ downloadPack, reducedMotion, tone }) {
@@ -432,6 +510,22 @@ export function bootUniversity({ downloadPack, reducedMotion, tone }) {
   const sequence = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
   let cursor = 0;
   window.addEventListener("keydown", (event) => {
+    const tag = document.activeElement && document.activeElement.tagName;
+    const typing = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (document.activeElement && document.activeElement.isContentEditable);
+    if (event.key === "/" && !typing && !event.altKey && !event.metaKey && !event.ctrlKey) {
+      const field = document.getElementById("q");
+      if (field) {
+        event.preventDefault();
+        field.focus();
+      }
+    }
+    if (event.altKey && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
+      const link = document.querySelector(event.key === "ArrowLeft" ? "a[rel='prev']" : "a[rel='next']");
+      if (link) {
+        event.preventDefault();
+        location.hash = link.getAttribute("href");
+      }
+    }
     const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
     cursor = key === sequence[cursor] ? cursor + 1 : (key === sequence[0] ? 1 : 0);
     if (cursor === sequence.length) {
@@ -450,7 +544,15 @@ export function bootUniversity({ downloadPack, reducedMotion, tone }) {
 }
 
 export function decorateHome(reduced) {
+  const main = document.getElementById("main");
+  decorateFloor(main);
   startReel(reduced);
+  document.querySelectorAll("[data-pose-set]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const dock = document.getElementById("mascot-dock");
+      if (dock) dock.dataset.pose = button.dataset.poseSet;
+    });
+  });
   const hero = document.querySelector(".hero");
   if (!hero || reduced) return;
   hero.addEventListener("pointermove", (event) => {

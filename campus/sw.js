@@ -1,4 +1,4 @@
-const CACHE = "cxone-lab-v3";
+const CACHE = "cxone-lab-v4";
 const SHELL = [
   "./",
   "./index.html",
@@ -8,11 +8,20 @@ const SHELL = [
   "./js/model.mjs",
   "./js/university.mjs",
   "./js/diagrams.mjs",
+  "./js/charts.mjs",
+  "./js/effects.mjs",
   "./js/topology.js",
+  "./vendor/three.min.js",
+  "./vendor/anime.esm.min.js",
+  "./vendor/d3.min.js",
+  "./vendor/rough.esm.js",
+  "./vendor/confetti.module.mjs",
+  "./vendor/markmap-view.js",
   "./manifest.webmanifest",
   "./data/manifest.json",
   "./data/atlas.json",
   "./downloads/index.html",
+  "./downloads/cxone-offline-bundle.zip",
 ];
 
 self.addEventListener("install", (event) => {

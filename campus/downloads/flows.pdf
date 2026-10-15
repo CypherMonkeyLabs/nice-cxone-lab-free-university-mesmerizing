@@ -9,7 +9,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 4066 >>
+<< /Length 5296 >>
 stream
 BT
 /F1 9 Tf
@@ -53,8 +53,18 @@ T* (Security gates the pages name: TLS 1.2, a one-time secret, a role, and an op
 T* (Toll-free and RespOrg: If CXone is the RespOrg, more toll-free numbers are ordered through CXone.) Tj
 T* (Engagement Hub intake: Third-party PABX, ACD, CRM, digital, and dialer data can feed Supervisor, Copilot, QM, ) Tj
 T* (Admin multi-region BCP: The ports page names HTTPS 443 for the Multi-Region BCP interface, with optional HTTP ) Tj
-T* () Tj
-T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
+T* (SIP register ladder: IP voice registration is a hop to the CXone SBC on 5060 and 5061. RTP is a separate UDP r) Tj
+T* (Inbound routing ladder: One point of contact, one script, one starting skill. The script may retarget before a) Tj
+T* (Architecture ladder: Tenant holds global settings. A campaign holds the skill. The point of contact is the ent) Tj
+T* (Deployment ladder: The connectivity wizard order: ports for the apps you use, then cluster FQDNs, then voice. ) Tj
+T* (Migration cutover ladder: Three public moves stay on separate rungs. Replacing the ACD is not a procedure on t) Tj
+T* (API discovery ladder: A back-end app uses the password grant. tenantId comes from the ID token. The example ho) Tj
+T* (Supervisor monitor ladder: Engagement Hub voice monitoring: outbound WSS, then inbound SRTP. The page says the) Tj
+T* (Emergency dialing ladder: Outbound voice skill, a verified address on the user, then 911 or the local number. ) Tj
+T* (Recording ladder: Talk is recorded. Hold audio, including hold music, is not. A consultation during hold is re) Tj
+T* (No-audio troubleshooting tree: Split the symptom before you open a port. Each leaf is a check a cited page act) Tj
+T* (Queue troubleshooting tree: Idle agents, a climbing outbound skill, and a new chat that never arrives are thre) Tj
+T* (Full text is in the matching HTML sheet.) Tj
 ET
 endstream
 endobj
@@ -68,8 +78,8 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000241 00000 n 
-0000004359 00000 n 
+0000005589 00000 n 
 trailer << /Size 6 /Root 1 0 R >>
 startxref
-4429
+5659
 %%EOF

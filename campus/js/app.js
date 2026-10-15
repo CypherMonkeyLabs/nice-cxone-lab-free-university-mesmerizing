@@ -1,5 +1,7 @@
 import { ACTION_CATALOG, overallPriority, proficiencyEligible, validateScript } from "./model.mjs";
-import { award, bootUniversity, buildPack, decorateHome, homeExtra, lessonAside, renderUniversity, syncStudyBadges } from "./university.mjs";
+import { award, bootUniversity, buildPack, decorateHome, heroArt, homeExtra, lessonAside, renderUniversity, signalCounts, syncStudyBadges, trackFloor } from "./university.mjs";
+import { burst, decorateFloor } from "./effects.mjs";
+import { counterRow } from "./charts.mjs";
 
 const SETTINGS_KEY = "cxone-lab-settings";
 const PROGRESS_KEY = "cxone-lab-progress";
@@ -7,18 +9,23 @@ const STUDIO_KEY = "cxone-lab-studio";
 
 const NAV = [
   { href: "#/", id: "home", label: "Floor", dot: "a1" },
+  { href: "#/diagrams", id: "diagrams", label: "Diagrams", dot: "a2" },
+  { href: "#/flows", id: "flows", label: "Flows", dot: "a3" },
+  { href: "#/charts", id: "charts", label: "Charts", dot: "a4" },
+  { href: "#/downloads", id: "downloads", label: "Cheat Codes", dot: "a1" },
+  { href: "#/play", id: "play", label: "Play", dot: "a2" },
+  { href: "#/ecosystem", id: "ecosystem", label: "Ecosystem", dot: "a3" },
+  { href: "#/downloads", id: "downloads-hub", label: "Downloads", dot: "a4" },
+  { href: "#/careers", id: "careers", label: "Careers", dot: "a1" },
   { href: "#/tracks", id: "tracks", label: "Tracks", dot: "a2" },
   { href: "#/studio", id: "studio", label: "Studio builder", dot: "a3" },
   { href: "#/routing", id: "routing", label: "Routing simulator", dot: "a4" },
   { href: "#/topology", id: "topology", label: "3D topology", dot: "a1" },
-  { href: "#/ecosystem", id: "ecosystem", label: "Ecosystem", dot: "a2" },
-  { href: "#/atlas", id: "atlas", label: "Ports atlas", dot: "a1" },
-  { href: "#/explorer", id: "explorer", label: "Flow explorer", dot: "a2" },
-  { href: "#/play", id: "play", label: "Play floor", dot: "a3" },
-  { href: "#/downloads", id: "downloads", label: "Cheat codes", dot: "a4" },
-  { href: "#/roadmap", id: "roadmap", label: "Roadmap", dot: "a2" },
-  { href: "#/incidents", id: "incidents", label: "Boss incidents", dot: "a3" },
-  { href: "#/interview", id: "interview", label: "Interview", dot: "a4" },
+  { href: "#/atlas", id: "atlas", label: "Ports atlas", dot: "a2" },
+  { href: "#/explorer", id: "explorer", label: "Flow explorer", dot: "a3" },
+  { href: "#/roadmap", id: "roadmap", label: "Roadmap", dot: "a4" },
+  { href: "#/incidents", id: "incidents", label: "Boss incidents", dot: "a1" },
+  { href: "#/interview", id: "interview", label: "Interview", dot: "a2" },
 ];
 
 const state = {
@@ -217,6 +224,11 @@ function renderRail(active) {
     if (node.dataset.nav === active) node.setAttribute("aria-current", "page");
     else node.removeAttribute("aria-current");
   });
+  const current = NAV.find((item) => item.id === active);
+  document.querySelectorAll(".study-menu a").forEach((node) => {
+    if (current && node.getAttribute("href") === current.href) node.setAttribute("aria-current", "page");
+    else node.removeAttribute("aria-current");
+  });
 }
 
 function figureMarkup(figure) {
@@ -362,6 +374,7 @@ function bindQuiz(trackId, lesson) {
     status.textContent = `${correct} of ${lesson.quiz.length} correct.`;
     markLesson(`${trackId}/${lesson.id}`, { quiz: correct, done: true });
     syncStudyBadges();
+    if (correct === lesson.quiz.length) burst();
     tone(correct === lesson.quiz.length ? 660 : 220, 0.15, "sine");
   });
 }
@@ -421,7 +434,8 @@ function lessonView(track, lesson) {
   const labSteps = lesson.lab.steps.map((step) => `<li>${esc(step)}</li>`).join("");
   return `
     <div class="read-layout"><article>
-    <p class="muted" id="lesson-top"><a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(lesson.level)} · ${esc(lesson.minutes)} min</p>
+    <nav class="crumbs" aria-label="Breadcrumb" id="lesson-top"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · <a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(lesson.title)}</nav>
+    <p class="muted">${esc(lesson.level)} · ${esc(lesson.minutes)} min</p>
     <h1>${esc(lesson.title)}</h1>
     <p class="lede">${esc(lesson.summary)}</p>
     <div class="chips">${lesson.objectives.map((item) => `<span class="chip">${esc(item)}</span>`).join("")}</div>
@@ -439,8 +453,8 @@ function lessonView(track, lesson) {
     <div id="card-block">${cardsMarkup(lesson.cards)}</div>
     <div id="quiz-block">${quizMarkup(lesson)}</div>
     <div class="row">
-      ${prev ? `<a class="icon-btn" href="#/lesson/${esc(track.id)}/${esc(prev.id)}">Previous</a>` : ""}
-      ${next ? `<a class="icon-btn" href="#/lesson/${esc(track.id)}/${esc(next.id)}">Next lesson</a>` : `<a class="icon-btn" href="#/track/${esc(track.id)}">Back to track</a>`}
+      ${prev ? `<a class="icon-btn" rel="prev" href="#/lesson/${esc(track.id)}/${esc(prev.id)}">Previous</a>` : ""}
+      ${next ? `<a class="icon-btn" rel="next" href="#/lesson/${esc(track.id)}/${esc(next.id)}">Next lesson</a>` : `<a class="icon-btn" href="#/track/${esc(track.id)}">Back to track</a>`}
       <button type="button" class="ghost" id="narrate">Read this lesson</button>
     </div>
     </article>${lessonAside(lesson)}</div>`;
@@ -501,6 +515,12 @@ async function viewHome() {
   const manifest = await ensureManifest();
   const total = lessonCount(manifest);
   const done = doneCount(manifest);
+  const counts = await signalCounts();
+  const extra = await homeExtra(manifest, done, total);
+  const art = await heroArt(reducedMotion());
+  const poses = ["still", "wave", "think", "headset", "cheer"].map((pose) => (
+    `<button type="button" data-pose-set="${pose}">${pose}</button>`
+  )).join("");
   const cards = manifest.tracks.map((track) => {
     const data = progress();
     const finished = track.lessonIds.filter((id) => data[`${track.id}/${id}`] && data[`${track.id}/${id}`].done).length;
@@ -512,32 +532,27 @@ async function viewHome() {
       <div class="hero-copy">
         <p class="chip">Classroom floor · cited to NiCE help and DEVone</p>
         <h1>Run the contact, not the brochure.</h1>
-        <p class="lede">Signal Floor is a free study lab for NiCE CXone: ACD setup, Studio, skills and bullseye routing, IVR, digital channels, WEM, Enlighten, APIs, CRM, telephony, and the bridges out of Cisco UCCE and Avaya.</p>
-        <div class="row">
-          <a class="icon-btn" href="#/tracks">Open the tracks</a>
-          <a class="icon-btn" href="#/studio">Build a script</a>
-          <a class="icon-btn" href="#/routing">Simulate a queue</a>
-          <a class="icon-btn" href="#/topology">Walk the 3D floor</a>
-          <a class="icon-btn" href="#/atlas">Ports atlas</a>
-          <a class="icon-btn" href="#/play">Play floor</a>
-          <a class="icon-btn" href="#/downloads">Cheat codes</a>
-        </div>
-        <p class="muted">${done} of ${total} lessons marked studied. ${esc(manifest.honesty)}</p>
-        <div class="tape" aria-hidden="true"><span>${esc(manifest.tape)} &nbsp; ${esc(manifest.tape)} &nbsp;</span></div>
+        ${counterRow([
+          { value: total, label: "lessons" },
+          { value: manifest.tracks.length, label: "tracks" },
+          { value: done, label: "studied" },
+          { value: counts.diagrams, label: "diagrams" },
+          { value: counts.flows, label: "flows" },
+          { value: counts.charts, label: "charts" },
+        ])}
+        <svg class="rough-frame" viewBox="0 0 760 90" aria-hidden="true"></svg>
+        <div class="pose-strip" aria-label="Mascot variations">${poses}</div>
+        <p class="lede">A free study lab for ACD, Studio, bullseye, WEM, Enlighten, APIs, and the bridges out of UCCE and Avaya.</p>
       </div>
-      <div class="panel bullseye" aria-hidden="true">
-        <div class="ring" style="width:230px;height:230px"><div class="ring" style="width:150px;height:150px;position:relative"><div class="ring" style="width:70px;height:70px;position:relative"><strong>1</strong></div></div></div>
-      </div>
+      <div class="panel hero-art">${art}</div>
     </section>
+    <div id="home-extra">${extra}</div>
+    <p class="muted">${done} of ${total} lessons marked studied. ${esc(manifest.honesty)}</p>
+    <div class="tape" aria-hidden="true"><span>${esc(manifest.tape)} &nbsp; ${esc(manifest.tape)} &nbsp;</span></div>
     <h2>Tracks</h2>
-    <div class="grid cards">${cards}</div>
-    <div id="home-extra"></div>`);
+    <div class="grid cards">${cards}</div>`);
   renderRail("home");
-  const extra = document.getElementById("home-extra");
-  if (extra) {
-    extra.innerHTML = await homeExtra(manifest, done, total);
-    decorateHome(reducedMotion());
-  }
+  decorateHome(reducedMotion());
 }
 
 async function viewTracks() {
@@ -557,8 +572,9 @@ async function viewTrack(id) {
     const done = data[`${track.id}/${lesson.id}`] && data[`${track.id}/${lesson.id}`].done;
     return `<a class="card" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${index + 1}. ${esc(lesson.title)}</h2><span class="chip">${done ? "Studied" : esc(lesson.level)}</span></header><p>${esc(lesson.summary)}</p></a>`;
   }).join("");
-  setMain(`<p class="muted"><a href="#/tracks">All tracks</a></p><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p><div class="grid">${items}</div>`);
+  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p><div id="track-floor">${await trackFloor(track)}</div><div class="grid">${items}</div>`);
   renderRail("tracks");
+  decorateFloor(document.getElementById("main"));
 }
 
 async function viewLesson(trackId, lessonId) {
@@ -1003,12 +1019,15 @@ async function viewEcosystem() {
   const glossary = await ensureExtra("glossary");
   const terms = glossary.map((item) => `<article class="card"><header><h2>${esc(item.term)}</h2></header><p>${esc(item.meaning)}</p><p class="sources">${citeLink(item.cite)}</p></article>`).join("");
   setMain(`
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · Ecosystem</nav>
     <h1>Ecosystem</h1>
     <p class="lede">Sister systems around the ACD: WFM, quality and recording, CRM, Enlighten, APIs, and the UCCE and Avaya bridges. The map is a study aid. Each edge is only as strong as its citation. The <a href="#/explorer">flow explorer</a> adds E911, analytics, and the troubleshooting tree.</p>
+    <svg id="ecosystem-markmap" class="markmap" viewBox="0 0 760 420" role="img" aria-label="Ecosystem mind map"></svg>
     <div class="mind">${mindMap()}</div>
     <h2>Glossary</h2>
     <div class="grid cards">${terms}</div>`);
   renderRail("ecosystem");
+  decorateFloor(document.getElementById("main"));
 }
 
 function mindMap() {
@@ -1138,6 +1157,14 @@ function bindChrome() {
     for (const track of manifest.tracks) await ensureTrack(track.id);
     for (const name of Object.keys(manifest.extras)) await ensureExtra(name);
     status.textContent = "Tracks are cached for offline use after the service worker stores them.";
+  });
+  document.querySelectorAll("[data-theme-set]").forEach((button) => {
+    button.addEventListener("click", () => {
+      settings.theme = button.dataset.themeSet;
+      saveSettings();
+      const select = document.querySelector("#settings-form [name=theme]");
+      if (select) select.value = settings.theme;
+    });
   });
   document.getElementById("more-btn").addEventListener("click", () => {
     const sheet = document.getElementById("sheet");
