@@ -1,7 +1,11 @@
 import { ACTION_CATALOG, overallPriority, proficiencyEligible, validateScript } from "./model.mjs";
-import { award, bootUniversity, buildPack, decorateHome, heroArt, homeExtra, lessonAside, renderUniversity, signalCounts, syncStudyBadges, trackFloor } from "./university.mjs";
+import { award, bootUniversity, buildPack, decorateHome, homeExtra, lessonAside, renderUniversity, signalCounts, syncStudyBadges, trackFloor } from "./university.mjs";
 import { burst, decorateFloor } from "./effects.mjs";
 import { counterRow } from "./charts.mjs";
+import { mountHero, unmountHero } from "./hero-scene.mjs";
+import { bindTilt, isoIcon, progressRing } from "./icons.mjs";
+import { bindLightbox } from "./lightbox.mjs";
+import { bootLang, setLang, t } from "./i18n.mjs";
 
 const SETTINGS_KEY = "cxone-lab-settings";
 const PROGRESS_KEY = "cxone-lab-progress";
@@ -17,6 +21,7 @@ const NAV = [
   { href: "#/ecosystem", id: "ecosystem", label: "Ecosystem", dot: "a3" },
   { href: "#/downloads", id: "downloads-hub", label: "Downloads", dot: "a4" },
   { href: "#/careers", id: "careers", label: "Careers", dot: "a1" },
+  { href: "#/regions", id: "regions", label: "Regions", dot: "a2" },
   { href: "#/tracks", id: "tracks", label: "Tracks", dot: "a2" },
   { href: "#/studio", id: "studio", label: "Studio builder", dot: "a3" },
   { href: "#/routing", id: "routing", label: "Routing simulator", dot: "a4" },
@@ -63,6 +68,7 @@ function saveSettings() {
   document.documentElement.dataset.theme = settings.theme;
   document.documentElement.dataset.font = settings.font;
   document.documentElement.dataset.motion = settings.motion;
+  window.dispatchEvent(new Event("cxone-theme"));
 }
 
 function progress() {
@@ -113,6 +119,7 @@ function clearTimers() {
   state.sim = null;
   if (window.speechSynthesis) speechSynthesis.cancel();
   if (state.topology) state.topology.unmountTopology();
+  unmountHero();
 }
 
 function loadThree() {
@@ -202,6 +209,8 @@ function setMain(html) {
     heading.tabIndex = -1;
     heading.focus({ preventScroll: true });
   }
+  bindTilt(main);
+  bindLightbox(main);
 }
 
 function lessonCount(manifest) {
@@ -225,6 +234,7 @@ function renderRail(active) {
     else node.removeAttribute("aria-current");
   });
   const current = NAV.find((item) => item.id === active);
+  document.body.dataset.view = active || "";
   document.querySelectorAll(".study-menu a").forEach((node) => {
     if (current && node.getAttribute("href") === current.href) node.setAttribute("aria-current", "page");
     else node.removeAttribute("aria-current");
@@ -511,27 +521,35 @@ function loadVoices() {
   });
 }
 
+function trackCard(track, withProgress) {
+  const data = progress();
+  const finished = track.lessonIds.filter((id) => data[`${track.id}/${id}`] && data[`${track.id}/${id}`].done).length;
+  const pct = track.lessonIds.length ? Math.round((finished / track.lessonIds.length) * 100) : 0;
+  const meter = withProgress ? progressRing(pct) : "";
+  const bar = withProgress ? `<div class="bar" aria-hidden="true"><span style="width:${pct}%"></span></div><p class="studied">${finished} studied</p>` : "";
+  return `<a class="card holo accent-${track.accent}" href="#/track/${esc(track.id)}"><div class="iso-wrap">${isoIcon(track.id)}</div><header><h2>${esc(track.title)}</h2>${meter}<span class="chip">${track.lessonIds.length}</span></header><p>${esc(track.blurb)}</p>${bar}</a>`;
+}
+
 async function viewHome() {
   const manifest = await ensureManifest();
   const total = lessonCount(manifest);
   const done = doneCount(manifest);
   const counts = await signalCounts();
   const extra = await homeExtra(manifest, done, total);
-  const art = await heroArt(reducedMotion());
   const poses = ["still", "wave", "think", "headset", "cheer"].map((pose) => (
     `<button type="button" data-pose-set="${pose}">${pose}</button>`
   )).join("");
-  const cards = manifest.tracks.map((track) => {
-    const data = progress();
-    const finished = track.lessonIds.filter((id) => data[`${track.id}/${id}`] && data[`${track.id}/${id}`].done).length;
-    const pct = Math.round((finished / track.lessonIds.length) * 100);
-    return `<a class="card accent-${track.accent}" href="#/track/${esc(track.id)}"><header><h2>${esc(track.title)}</h2><span class="chip">${track.lessonIds.length}</span></header><p>${esc(track.blurb)}</p><div class="bar" aria-hidden="true"><span style="width:${pct}%"></span></div><p>${finished} studied</p></a>`;
-  }).join("");
+  const cards = manifest.tracks.map((track) => trackCard(track, true)).join("");
   setMain(`
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="chip">Classroom floor · cited to NiCE help and DEVone</p>
-        <h1>Run the contact, not the brochure.</h1>
+    <section class="hero-stage">
+      <canvas id="hero-webgl" aria-label="Orbit of a contact moving through script, skill, agent, workforce, quality, and API"></canvas>
+      <div class="hero-fallback" hidden>
+        <div class="orbit-fallback" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+        <p>Flat drawing. Motion is reduced, or this browser has no WebGL.</p>
+      </div>
+      <div class="hero-glass">
+        <p class="chip">${esc(t("greeting"))}</p>
+        <h1>${esc(t("hero"))}</h1>
         ${counterRow([
           { value: total, label: "lessons" },
           { value: manifest.tracks.length, label: "tracks" },
@@ -540,11 +558,11 @@ async function viewHome() {
           { value: counts.flows, label: "flows" },
           { value: counts.charts, label: "charts" },
         ])}
-        <svg class="rough-frame" viewBox="0 0 760 90" aria-hidden="true"></svg>
+        <p class="ticker" id="study-clock" aria-live="polite"></p>
         <div class="pose-strip" aria-label="Mascot variations">${poses}</div>
-        <p class="lede">A free study lab for ACD, Studio, bullseye, WEM, Enlighten, APIs, and the bridges out of UCCE and Avaya.</p>
+        <p class="lede">${esc(t("lede"))}</p>
+        <p class="muted">${esc(t("note"))}</p>
       </div>
-      <div class="panel hero-art">${art}</div>
     </section>
     <div id="home-extra">${extra}</div>
     <p class="muted">${done} of ${total} lessons marked studied. ${esc(manifest.honesty)}</p>
@@ -553,13 +571,19 @@ async function viewHome() {
     <div class="grid cards">${cards}</div>`);
   renderRail("home");
   decorateHome(reducedMotion());
+  const clock = document.getElementById("study-clock");
+  const tick = () => {
+    if (!clock || !clock.isConnected) return;
+    clock.textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  };
+  tick();
+  state.timers.add(setInterval(tick, 1000));
+  mountHero(document.getElementById("hero-webgl"));
 }
 
 async function viewTracks() {
   const manifest = await ensureManifest();
-  const cards = manifest.tracks.map((track) => (
-    `<a class="card accent-${track.accent}" href="#/track/${esc(track.id)}"><header><h2>${esc(track.title)}</h2></header><p>${esc(track.blurb)}</p></a>`
-  )).join("");
+  const cards = manifest.tracks.map((track) => trackCard(track, true)).join("");
   setMain(`<h1>Tracks</h1><p class="lede">Sixteen paths from prerequisites through migration. Open one track at a time; lesson bodies load with that track.</p><div class="grid cards">${cards}</div>`);
   renderRail("tracks");
 }
@@ -570,9 +594,9 @@ async function viewTrack(id) {
   const data = progress();
   const items = track.lessons.map((lesson, index) => {
     const done = data[`${track.id}/${lesson.id}`] && data[`${track.id}/${lesson.id}`].done;
-    return `<a class="card" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${index + 1}. ${esc(lesson.title)}</h2><span class="chip">${done ? "Studied" : esc(lesson.level)}</span></header><p>${esc(lesson.summary)}</p></a>`;
+    return `<a class="card holo" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${index + 1}. ${esc(lesson.title)}</h2><span class="chip">${done ? "Studied" : esc(lesson.level)}</span></header><p>${esc(lesson.summary)}</p></a>`;
   }).join("");
-  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p><div id="track-floor">${await trackFloor(track)}</div><div class="grid">${items}</div>`);
+  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><div class="track-hero">${isoIcon(track.id)}<div><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p></div></div><div id="track-floor">${await trackFloor(track)}</div><div class="grid cards">${items}</div>`);
   renderRail("tracks");
   decorateFloor(document.getElementById("main"));
 }
@@ -1129,6 +1153,33 @@ async function route() {
 }
 
 function bindChrome() {
+  bootLang();
+  const lang = document.getElementById("lang");
+  if (lang) {
+    lang.addEventListener("change", () => {
+      setLang(lang.value);
+      route();
+    });
+  }
+  const briefing = document.getElementById("briefing");
+  const briefRate = document.getElementById("brief-rate");
+  document.querySelectorAll("[data-clip]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!briefing) return;
+      const next = button.dataset.clip;
+      if (briefing.getAttribute("src") !== next) {
+        briefing.src = next;
+        briefing.load();
+      }
+      briefing.playbackRate = briefRate ? Number(briefRate.value) : 1;
+      briefing.play().catch(() => {});
+    });
+  });
+  if (briefRate && briefing) {
+    briefRate.addEventListener("input", () => {
+      briefing.playbackRate = Number(briefRate.value) || 1;
+    });
+  }
   document.getElementById("search-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const q = document.getElementById("q").value.trim();
@@ -1161,6 +1212,14 @@ function bindChrome() {
   document.querySelectorAll("[data-theme-set]").forEach((button) => {
     button.addEventListener("click", () => {
       settings.theme = button.dataset.themeSet;
+      saveSettings();
+      const select = document.querySelector("#settings-form [name=theme]");
+      if (select) select.value = settings.theme;
+    });
+  });
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      settings.theme = settings.theme === "light" ? "dark" : "light";
       saveSettings();
       const select = document.querySelector("#settings-form [name=theme]");
       if (select) select.value = settings.theme;

@@ -1,3 +1,4 @@
+import { bindChartTips } from "./charts.mjs";
 import { animate } from "../vendor/anime.esm.min.js";
 import rough from "../vendor/rough.esm.js";
 import confetti from "../vendor/confetti.module.mjs";
@@ -143,4 +144,5 @@ export function decorateFloor(root) {
   drawRoughFrame(scope);
   drawD3Chart(scope);
   mountMarkmap(scope);
+  bindChartTips(scope);
 }

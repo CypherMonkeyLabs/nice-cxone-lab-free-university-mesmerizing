@@ -7,6 +7,7 @@
   <meta name="description" content="Free study floor for NiCE CXone: ACD, Studio, skills and routing, IVR, digital channels, WEM, Enlighten, APIs, CRM, telephony, and migration from Cisco UCCE and Avaya.">
   <link rel="stylesheet" href="assets/app.css">
   <link rel="stylesheet" href="assets/university.css">
+  <link rel="stylesheet" href="assets/wow.css">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='none' stroke='%233ecbff' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23ffb020' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23b09cff'/%3E%3C/svg%3E">
   <script>
@@ -33,20 +34,25 @@
     <button type="button" id="download-pack">Download offline</button>
   </header>
   <nav class="study-menu" aria-label="Study">
-    <a href="#/diagrams">Diagrams</a>
-    <a href="#/flows">Flows</a>
-    <a href="#/charts">Charts</a>
-    <a href="#/downloads">Cheat Codes</a>
-    <a href="#/play">Play</a>
-    <a href="#/ecosystem">Ecosystem</a>
-    <a href="#/downloads">Downloads</a>
-    <a href="#/careers">Careers</a>
+    <a href="#/diagrams" data-i18n="diagrams">Diagrams</a>
+    <a href="#/flows" data-i18n="flows">Flows</a>
+    <a href="#/charts" data-i18n="charts">Charts</a>
+    <a href="#/downloads" data-i18n="cheat">Cheat Codes</a>
+    <a href="#/play" data-i18n="play">Play</a>
+    <a href="#/ecosystem" data-i18n="ecosystem">Ecosystem</a>
+    <a href="#/downloads" data-i18n="downloads">Downloads</a>
+    <a href="#/careers" data-i18n="careers">Careers</a>
+    <a href="#/regions" data-i18n="regions">Regions</a>
     <span class="theme-switch" role="group" aria-label="Theme">
       <button type="button" data-theme-set="dark">Signal</button>
       <button type="button" data-theme-set="futuristic">Futuristic</button>
       <button type="button" data-theme-set="gaming">Gaming</button>
       <button type="button" data-theme-set="neon">Neon</button>
+      <button type="button" data-theme-set="holographic">Holographic</button>
+      <button type="button" data-theme-set="cyberpunk">Cyberpunk</button>
+      <button type="button" data-theme-set="sunset">Sunset</button>
       <button type="button" data-theme-set="light">Light</button>
+      <button type="button" data-theme-toggle>Day / Night</button>
     </span>
   </nav>
   <div class="shell">
@@ -62,9 +68,21 @@
       <header class="top">
         <form class="search" id="search-form" role="search">
           <label class="sr" for="q">Search lessons</label>
-          <input id="q" name="q" type="search" placeholder="Search skills, Studio, Autopilot, UCCE…" autocomplete="off">
+          <input id="q" name="q" type="search" placeholder="Search skills, Studio, Autopilot, UCCE…" data-i18n-placeholder="search" autocomplete="off">
           <button class="solid" type="submit">Search</button>
         </form>
+        <label class="lang-label">Language
+          <select id="lang" aria-label="Language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="hi">हिन्दी</option>
+            <option value="te">తెలుగు</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="ja">日本語</option>
+            <option value="ar">العربية</option>
+          </select>
+        </label>
         <span class="chip" id="net-chip">Online</span>
         <button class="icon-btn" type="button" id="open-settings">Settings</button>
       </header>
@@ -103,8 +121,8 @@
       <circle cx="60" cy="58" r="30" fill="#c47a3a"/>
       <circle cx="34" cy="40" r="12" fill="#c47a3a"/>
       <circle cx="86" cy="40" r="12" fill="#c47a3a"/>
-      <ellipse cx="48" cy="62" rx="6" ry="7" fill="#1b120c"/>
-      <ellipse cx="74" cy="62" rx="6" ry="7" fill="#1b120c"/>
+      <ellipse class="eye" cx="48" cy="62" rx="6" ry="7" fill="#1b120c"/>
+      <ellipse class="eye" cx="74" cy="62" rx="6" ry="7" fill="#1b120c"/>
       <ellipse class="brow" cx="48" cy="52" rx="7" ry="2" fill="#6b3416"/>
       <path d="M50 74 Q60 82 72 74" fill="none" stroke="#1b120c" stroke-width="2"/>
       <g class="arm"><path d="M34 84 Q16 70 22 52" fill="none" stroke="#8a4b24" stroke-width="8" stroke-linecap="round"/></g>
@@ -122,6 +140,9 @@
           <option value="gaming">Gaming</option>
           <option value="neon">Neon</option>
           <option value="light">Light</option>
+          <option value="holographic">Holographic</option>
+          <option value="cyberpunk">Cyberpunk</option>
+          <option value="sunset">Sunset</option>
           <option value="contrast">High contrast</option>
           <option value="dusk">Dusk</option>
         </select>
@@ -171,6 +192,33 @@
       </div>
       <p class="status" id="settings-status" role="status"></p>
     </form>
+  </dialog>
+  <aside class="audio-dock" aria-label="Architect briefing">
+    <p class="audio-title" data-i18n="audio">Architect briefing</p>
+    <div class="audio-actions">
+      <button type="button" class="solid" data-clip="audio/use-the-floor.mp3">Use the floor</button>
+      <button type="button" class="ghost" data-clip="audio/share-the-floor.mp3">Share the floor</button>
+    </div>
+    <audio id="briefing" preload="none" controls></audio>
+    <label class="audio-rate">Speed
+      <input id="brief-rate" type="range" min="0.75" max="1.5" step="0.05" value="1">
+    </label>
+    <p class="audio-links">
+      <a href="https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing">Rate and comment</a>
+      <a href="https://cyphermonkeylabs.com">Share the studio</a>
+    </p>
+  </aside>
+  <dialog id="diagram-light" aria-labelledby="light-title">
+    <header class="light-bar">
+      <h2 id="light-title">Why this matters</h2>
+      <button type="button" class="ghost" id="light-play">Pause</button>
+      <button type="button" class="ghost" id="light-step">Step</button>
+      <button type="button" class="solid" id="light-close">Close</button>
+    </header>
+    <div id="light-body"></div>
+    <p id="light-why"></p>
+    <p class="legend">The hot wire is the step you are on. Pause freezes the packet motion.</p>
+    <p class="sources" id="light-sources"></p>
   </dialog>
   <script type="module" src="js/app.js"></script>
 </body>

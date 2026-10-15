@@ -16,9 +16,10 @@ export function chartSvg(chart) {
   const bars = series.map((item, index) => {
     const y = 28 + index * row;
     const width = Math.max(2, Math.round(((Number(item.value) || 0) / max) * 430));
-    return `<text x="8" y="${y + 12}" fill="var(--cc-ink)" font-size="11">${esc(item.label)}</text>
-      <rect x="250" y="${y}" width="${width}" height="14" rx="4" fill="var(--cc-accent-${(index % 4) + 1})"/>
-      <text x="${258 + width}" y="${y + 12}" fill="var(--cc-ink)" font-size="11">${esc(item.value)}</text>`;
+    const tip = `${item.label}: ${item.value}`;
+    return `<text x="8" y="${y + 12}" fill="var(--cc-ink)" font-size="12">${esc(item.label)}</text>
+      <rect x="250" y="${y}" width="${width}" height="14" rx="4" fill="var(--cc-accent-${(index % 4) + 1})" data-tip="${esc(tip)}"><title>${esc(tip)}</title></rect>
+      <text x="${258 + width}" y="${y + 12}" fill="var(--cc-ink)" font-size="12">${esc(item.value)}</text>`;
   }).join("");
   return `<svg class="chart-svg" viewBox="0 0 760 ${height}" role="img" aria-label="${esc(chart.title)}"><title>${esc(chart.title)}</title>${bars}</svg>`;
 }
@@ -47,6 +48,31 @@ export function iconParade() {
     `<span class="cube ${tone}" style="--i:${index}"><b>${esc(label)}</b></span>`
   )).join("");
   return `<div class="parade" aria-label="Product symbols">${cubes}</div>`;
+}
+
+export function bindChartTips(root) {
+  let tip = document.getElementById("chart-tip");
+  if (!tip) {
+    tip = document.createElement("div");
+    tip.id = "chart-tip";
+    tip.className = "chart-tip";
+    tip.hidden = true;
+    document.body.appendChild(tip);
+  }
+  const scope = root || document;
+  scope.querySelectorAll("[data-tip]").forEach((node) => {
+    if (node.dataset.tipBound === "1") return;
+    node.dataset.tipBound = "1";
+    const move = (event) => {
+      tip.hidden = false;
+      tip.textContent = node.dataset.tip || "";
+      tip.style.left = `${event.clientX + 14}px`;
+      tip.style.top = `${event.clientY + 14}px`;
+    };
+    node.addEventListener("pointerenter", move);
+    node.addEventListener("pointermove", move);
+    node.addEventListener("pointerleave", () => { tip.hidden = true; });
+  });
 }
 
 export function counterRow(items) {

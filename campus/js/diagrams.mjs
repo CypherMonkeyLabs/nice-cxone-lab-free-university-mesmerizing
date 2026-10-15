@@ -135,5 +135,5 @@ export function diagramSvg(spec, reduced) {
 
 export function diagramCard(spec, citeHtml, reduced) {
   const kind = spec.flow ? `<span class="chip">${esc(spec.flow)}</span> ` : "";
-  return `<figure class="figure diagram-card" id="diagram-${esc(spec.id)}" data-flow="${esc(spec.flow || "")}"><figcaption>${kind}<strong>${esc(spec.title)}</strong> — ${esc(spec.caption)}</figcaption>${diagramSvg(spec, reduced)}<p class="sources">${citeHtml}</p></figure>`;
+  return `<figure class="figure diagram-card" id="diagram-${esc(spec.id)}" data-flow="${esc(spec.flow || "")}"><figcaption>${kind}<strong>${esc(spec.title)}</strong> — ${esc(spec.caption)}</figcaption><p class="legend">Dashed wires are the moving path. Enlarge to pause or step one wire at a time.</p><button type="button" class="ghost" data-enlarge>Enlarge</button>${diagramSvg(spec, reduced)}<p class="sources">${citeHtml}</p></figure>`;
 }

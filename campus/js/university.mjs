@@ -2,11 +2,14 @@ import { diagramCard, diagramSvg } from "./diagrams.mjs";
 import { ACTION_CATALOG, validateScript } from "./model.mjs";
 import { chartsBlock, counterRow, iconParade } from "./charts.mjs";
 import { burst, decorateFloor } from "./effects.mjs";
+import { bindLightbox } from "./lightbox.mjs";
+import { bindTilt } from "./icons.mjs";
 
 const ATLAS = "data/atlas.json";
 const BADGES_KEY = "cxone-lab-badges";
 const DAILY_KEY = "cxone-lab-daily";
 const POSES = ["still", "wave", "think", "headset", "cheer"];
+const LOOKS = ["classic", "visor", "neon", "sunset"];
 
 let atlasPromise = null;
 let poseTimer = 0;
@@ -110,6 +113,7 @@ function uniNav() {
     ["#/ecosystem", "Ecosystem"],
     ["#/downloads", "Downloads"],
     ["#/careers", "Careers"],
+    ["#/regions", "Regions"],
     ["#/atlas", "Ports atlas"],
     ["#/explorer", "Flow explorer"],
     ["#/sandbox", "Call-flow sandbox"],
@@ -455,6 +459,44 @@ async function viewProgress(manifest) {
   return pageShell("Progress", `${finished} of ${total} lessons have a checked quiz in this browser.`, `<div class="grid cards">${blocks}</div><h2>Badges</h2>${badgeHtml()}`);
 }
 
+const REGION_LABELS = {
+  AU1: "Australia — study label for the AU1 hostname prefix",
+  CA1: "Canada — study label for the CA1 hostname prefix",
+  EU1: "Europe — example grouping, not a published country",
+  UK1: "United Kingdom — study label for the UK1 hostname prefix",
+  NA1: "North America — example grouping, not a published country",
+  JP1: "Japan — study label for the JP1 hostname prefix",
+  JO1: "Jordan — study label for the JO1 hostname prefix",
+};
+const REGION_FLAGS = { AU1: "🇦🇺", CA1: "🇨🇦", EU1: "🇪🇺", UK1: "🇬🇧", NA1: "🇺🇸", JP1: "🇯🇵", JO1: "🇯🇴" };
+
+async function viewRegions() {
+  const atlas = await loadAtlas();
+  const pins = (atlas.webrtc || []).map((row, index) => `
+    <li class="region-pin" style="--n:${index}">
+      <span class="flag" aria-hidden="true">${REGION_FLAGS[row.region] || "●"}</span>
+      <div>
+        <strong>${esc(row.region)}</strong>
+        <code>${esc(row.fqdn)}</code>
+        <p class="muted">${esc(REGION_LABELS[row.region] || "Published cluster code. Country reading is not claimed.")}</p>
+      </div>
+    </li>`).join("");
+  const kinds = [
+    ["Commercial", "The connectivity requirements page calls commercial the standard environment."],
+    ["FedRAMP", "The same page calls FedRAMP an isolated U.S. federal environment with continuous monitoring and restricted access."],
+    ["Sovereign", "The same page calls a sovereign cloud a region that keeps data residency and operations inside a country’s legal boundary."],
+  ].map(([title, text], index) => `
+    <article class="card holo region-kind"><header><h2>${esc(title)}</h2><span class="chip">${index + 1}</span></header><p>${esc(text)}</p></article>`).join("");
+  return pageShell(
+    "Regions and clusters",
+    "Published WebRTC hostnames and the three cluster kinds named on the connectivity requirements page. Marker flags are a study sketch. This is not a PSTN coverage map, a carrier list, or a regulation guide.",
+    `<ol class="region-list">${pins}</ol>
+     <p class="callout">If you do not know the cluster, the connectivity page says to ask the account representative. Do not guess na1. IP addresses on that page are not copied here.</p>
+     <div class="grid cards region-kinds">${kinds}</div>
+     <p class="sources">Source: ${citeHtml(atlas, "ports")} · ${citeHtml(atlas, "portsHub")}</p>`,
+  );
+}
+
 export async function renderUniversity(path, manifest, reduced) {
   const jump = () => {
     document.querySelectorAll("[data-jump]").forEach((button) => {
@@ -465,7 +507,7 @@ export async function renderUniversity(path, manifest, reduced) {
     });
   };
   if (path === "#/diagrams") return { html: await viewDiagrams(reduced, "all"), active: "diagrams", bind: () => { decorateFloor(document.getElementById("main")); jump(); } };
-  if (path === "#/flows") return { html: await viewDiagrams(reduced, "flow"), active: "flows", bind: jump };
+  if (path === "#/flows") return { html: await viewDiagrams(reduced, "flow"), active: "flows", bind: () => { decorateFloor(document.getElementById("main")); jump(); } };
   if (path === "#/charts") return { html: await viewCharts(), active: "charts", bind: () => decorateFloor(document.getElementById("main")) };
   if (path === "#/atlas" || path === "#/ports") return { html: await viewAtlas(reduced), active: "atlas", bind: null };
   if (path === "#/roadmap") return { html: await viewRoadmap(manifest), active: "roadmap", bind: null };
@@ -477,12 +519,21 @@ export async function renderUniversity(path, manifest, reduced) {
   if (path === "#/downloads" || path === "#/cheat" || path === "#/cheats") return { html: await viewDownloads(), active: "downloads", bind: null };
   if (path === "#/sandbox") return { html: await viewSandbox(), active: "sandbox", bind: () => bindSandbox(reduced) };
   if (path === "#/progress") return { html: await viewProgress(manifest), active: "progress", bind: null };
+  if (path === "#/regions") return { html: await viewRegions(), active: "regions", bind: null };
   const atlas = await loadAtlas();
   const raw = path.replace(/^#\//, "");
   const id = raw === "careers" ? "career" : raw;
   const html = generic(atlas, id);
   if (!html) return null;
   return { html, active: id === "career" ? "careers" : "atlas", bind: null };
+}
+
+function applyLook() {
+  const section = (location.hash || "#/").split("?")[0];
+  let hash = 0;
+  for (let index = 0; index < section.length; index += 1) hash = (hash + section.charCodeAt(index) * (index + 1)) % 997;
+  const turn = Math.floor(Date.now() / 180000);
+  document.documentElement.dataset.look = LOOKS[(hash + turn) % LOOKS.length];
 }
 
 export function bootUniversity({ downloadPack, reducedMotion, tone }) {
@@ -492,6 +543,9 @@ export function bootUniversity({ downloadPack, reducedMotion, tone }) {
     if (!dock) return;
     dock.dataset.pose = POSES[pose % POSES.length];
   };
+  applyLook();
+  window.addEventListener("hashchange", applyLook);
+  setInterval(applyLook, 180000);
   applyPose();
   if (dock) {
     dock.addEventListener("click", () => {
@@ -546,20 +600,14 @@ export function bootUniversity({ downloadPack, reducedMotion, tone }) {
 export function decorateHome(reduced) {
   const main = document.getElementById("main");
   decorateFloor(main);
+  bindTilt(main);
+  bindLightbox(main);
   startReel(reduced);
   document.querySelectorAll("[data-pose-set]").forEach((button) => {
     button.addEventListener("click", () => {
       const dock = document.getElementById("mascot-dock");
       if (dock) dock.dataset.pose = button.dataset.poseSet;
     });
-  });
-  const hero = document.querySelector(".hero");
-  if (!hero || reduced) return;
-  hero.addEventListener("pointermove", (event) => {
-    const rect = hero.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    hero.style.transform = `translate3d(${x * 8}px, ${y * 6}px, 0)`;
   });
 }
 
