@@ -6,7 +6,7 @@ let running = false;
 let generation = 0;
 const stops = [];
 
-const KINDS = ["foundations", "platform", "acd", "people", "routing", "studio", "ivr", "digital", "wfm", "quality", "enlighten", "apis", "crm", "voice", "migration", "ecosystem"];
+const KINDS = ["foundations", "platform", "acd", "people", "routing", "studio", "ivr", "digital", "wfm", "quality", "enlighten", "apis", "crm", "voice", "migration", "ecosystem", "skills-acd", "wfm-day", "qm-ia", "cti-cpaas", "eco-map"];
 
 function loadThree() {
   if (window.THREE) return Promise.resolve(window.THREE);
@@ -50,6 +50,11 @@ function shapeFor(THREE, kind) {
   if (kind === "voice") return new THREE.SphereGeometry(0.42, 18, 18);
   if (kind === "migration") return new THREE.ConeGeometry(0.42, 1.15, 4);
   if (kind === "ecosystem") return new THREE.IcosahedronGeometry(0.62, 1);
+  if (kind === "skills-acd") return new THREE.OctahedronGeometry(0.7);
+  if (kind === "wfm-day") return new THREE.BoxGeometry(0.9, 0.55, 0.7);
+  if (kind === "qm-ia") return new THREE.TorusGeometry(0.46, 0.14, 10, 24);
+  if (kind === "cti-cpaas") return new THREE.BoxGeometry(0.95, 0.62, 0.28);
+  if (kind === "eco-map") return new THREE.DodecahedronGeometry(0.58);
   return new THREE.IcosahedronGeometry(0.72, 0);
 }
 
@@ -101,7 +106,7 @@ export async function mountIconScenes(root) {
   if (token !== generation) return { ok: false, reason: "stale" };
   const cell = 128;
   const cols = 4;
-  const rows = 4;
+  const rows = Math.ceil(KINDS.length / cols);
   const atlas = document.createElement("canvas");
   atlas.width = cell * cols;
   atlas.height = cell * rows;
@@ -191,7 +196,8 @@ export async function mountIconScenes(root) {
     const time = clock.getElapsedTime();
     renderer.setClearColor(0x000000, 0);
     const batchStart = batch * 8;
-    batch = (batch + 1) % 2;
+    const batches = Math.ceil(scenes.length / 8) || 1;
+    batch = (batch + 1) % batches;
     scenes.forEach((item, index) => {
       if (index < batchStart || index >= batchStart + 8) return;
       const col = index % cols;

@@ -103,6 +103,7 @@ for (const file of readdirSync(tracks)) {
   const cites = [];
   for (const lesson of track.lessons) {
     for (const section of lesson.sections || []) cites.push(...(section.cites || []));
+    for (const extra of lesson.also || []) cites.push(extra);
   }
   pack(track.id, cites);
 }

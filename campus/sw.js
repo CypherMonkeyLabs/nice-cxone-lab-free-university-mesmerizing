@@ -1,4 +1,4 @@
-const CACHE = "cxone-lab-v8";
+const CACHE = "cxone-lab-v9";
 const SHELL = [
   "./",
   "./index.html",

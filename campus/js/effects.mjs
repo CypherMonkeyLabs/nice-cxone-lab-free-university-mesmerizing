@@ -101,11 +101,13 @@ export async function mountMarkmap(root) {
     content: "CXone",
     children: [
       { content: "Studio", children: [leaf("MENU"), leaf("REQAGENT")] },
-      { content: "ACD", children: [leaf("Skill"), leaf("Bullseye")] },
-      { content: "WFM", children: [leaf("Forecast"), leaf("IEX is separate")] },
-      { content: "QM", children: [leaf("Recording"), leaf("Hold gap")] },
+      { content: "ACD", children: [leaf("Skill"), leaf("Bullseye"), leaf("Dynamic delivery")] },
+      { content: "WFM", children: [leaf("Forecast"), leaf("RTA and intraday")] },
+      { content: "QM", children: [leaf("Forms"), leaf("Categories")] },
       { content: "Enlighten", children: [leaf("Autopilot"), leaf("AutoSummary")] },
       { content: "APIs", children: [leaf("Discovery"), leaf("Access key")] },
+      { content: "CTI", children: [leaf("Salesforce"), leaf("CPaaS confirm")] },
+      { content: "AEP", children: [leaf("Opened page"), leaf("No click path")] },
     ],
   };
   const map = new Markmap(svg, { duration: reduced() ? 0 : 500 });

@@ -15,6 +15,11 @@ const GLYPHS = {
   voice: `<path d="M62 40 a18 18 0 0 1 36 0 v8 a8 8 0 0 1 -8 8 h-4 v10 h-12 v-10 h-4 a8 8 0 0 1 -8 -8z" fill="url(#face)"/><path d="M58 78 h44" stroke="var(--cc-accent-2)" stroke-width="4"/>`,
   migration: `<path d="M40 70 L70 36 H96 L126 70" fill="none" stroke="url(#face)" stroke-width="8"/><path d="M70 36 V70 M96 36 V70" stroke="var(--cc-accent-2)" stroke-width="3"/>`,
   ecosystem: `<circle cx="80" cy="48" r="8" fill="var(--cc-accent-2)"/><ellipse cx="80" cy="48" rx="36" ry="14" fill="none" stroke="var(--cc-accent-1)" stroke-width="3"/><ellipse cx="80" cy="48" rx="14" ry="32" fill="none" stroke="var(--cc-accent-3)" stroke-width="3"/>`,
+  "skills-acd": `<circle cx="80" cy="46" r="18" fill="none" stroke="var(--cc-accent-3)" stroke-width="4"/><circle cx="80" cy="46" r="6" fill="var(--cc-accent-1)"/><path d="M80 28 v8 M80 56 v8 M62 46 h8 M90 46 h8" stroke="var(--cc-accent-2)" stroke-width="3"/>`,
+  "wfm-day": `<rect x="50" y="26" width="60" height="48" rx="4" fill="url(#face)"/><path d="M50 40 h60" stroke="var(--cc-bg)"/><circle cx="66" cy="54" r="4" fill="var(--cc-accent-4)"/><circle cx="80" cy="54" r="4" fill="var(--cc-accent-2)"/><circle cx="94" cy="54" r="4" fill="var(--cc-bg)"/>`,
+  "qm-ia": `<path d="M44 52 H56 L64 30 L76 72 L88 38 L100 52 H116" fill="none" stroke="var(--cc-accent-2)" stroke-width="4"/><circle cx="108" cy="30" r="6" fill="var(--cc-accent-1)"/>`,
+  "cti-cpaas": `<rect x="46" y="30" width="36" height="28" rx="4" fill="url(#face)"/><path d="M82 44 H98" stroke="var(--cc-accent-2)" stroke-width="4"/><rect x="98" y="34" width="22" height="20" rx="3" fill="url(#side)"/>`,
+  "eco-map": `<circle cx="80" cy="48" r="7" fill="var(--cc-accent-4)"/><circle cx="52" cy="34" r="5" fill="var(--cc-accent-1)"/><circle cx="108" cy="34" r="5" fill="var(--cc-accent-2)"/><circle cx="52" cy="66" r="5" fill="var(--cc-accent-3)"/><circle cx="108" cy="66" r="5" fill="var(--cc-accent-1)"/><path d="M57 36 L73 44 M103 36 L87 44 M57 64 L73 52 M103 64 L87 52" stroke="var(--cc-ink)" stroke-width="2"/>`,
 };
 
 export function isoIcon(kind) {

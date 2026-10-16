@@ -109,7 +109,7 @@ function crumbs(parts) {
 }
 
 function disclaimerBox() {
-  return `<aside class="disclaimer-box">Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction in the website contact section. Nothing here is sold. The author is happy to volunteer.</aside>`;
+  return `<aside class="disclaimer-box">Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction in the website contact section. Nothing here is sold. The author is happy to volunteer. Public pages opened in 2026-10 are linked. A confirm line has no URL.</aside>`;
 }
 
 function pageShell(title, lede, body, sourcesHtml) {
@@ -281,7 +281,7 @@ async function viewRoadmap(manifest) {
   cites.push(citeFrom(atlas, "process"), citeFrom(atlas, "notify"));
   return pageShell("Roadmap and what is new in 2026", "Dates are quoted from the release pages. The 26.3 and 26.4 windows overlap, and this lab does not pick a winner.", `
     <div class="grid cards">${cycles}</div>
-    <h2>Study plan across the sixteen tracks</h2>
+    <h2>Study plan across the ${manifest.tracks.length} tracks</h2>
     <ol>${plan}</ol>
     <p class="sources">${citeHtml(atlas, "process")} · ${citeHtml(atlas, "notify")}</p>`, sourcesBlock(cites));
 }

@@ -34,7 +34,7 @@ Screenshots from the 2026-10-16 review, after the tour was stored as already fin
 
 ## What you can do
 
-- Study 16 tracks. Each lesson has a figure, a Play / Pause / Step / Inspect walkthrough, a lab, a fault-and-fix, flashcards, and a quiz.
+- Study 21 tracks. Each lesson has a figure, a Play / Pause / Step / Inspect walkthrough, a lab, a fault-and-fix, flashcards, and a quiz.
 - Build a Studio-style script, validate it, and export it. The file is marked `notOfficialStudioExport`.
 - Run the routing simulator. Overall priority is `(time × acceleration) + initial priority`. Personal Connection mode forces acceleration to 0.
 - Orbit a 3D topology and force a failure. Reduced motion, or a browser without WebGL, falls back to a list. Three.js is vendored. Nothing is loaded from a CDN at runtime.

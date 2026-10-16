@@ -95,7 +95,7 @@ function startRead() {
 function exportSection() {
   const main = document.getElementById("main");
   const title = (main.querySelector("h1") || {}).textContent || "CXone lab section";
-  const disclaimer = "Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction at https://cyphermonkeylabs.com/#contact. Nothing here is sold. The author is happy to volunteer.";
+  const disclaimer = "Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction at https://cyphermonkeylabs.com/#contact. Nothing here is sold. The author is happy to volunteer. Public pages opened in 2026-10 are linked. A confirm line has no URL.";
   const html = `<!doctype html><html lang="en"><meta charset="utf-8"><title>${title}</title><body><h1>${title}</h1><aside>${disclaimer}</aside>${main.innerHTML}<p>Sources and go deeper: see the matching room in the lab.</p><p><a href="https://cyphermonkeylabs.com">cyphermonkeylabs.com</a> · <a href="https://github.com/CypherMonkeyLabs">GitHub</a> · <a href="https://linktr.ee/cyphermonkey">Linktree</a></p><p>© 2026 CypherMonkeyLabs</p></body></html>`;
   const blob = new Blob([html], { type: "text/html" });
   const link = document.createElement("a");

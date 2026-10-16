@@ -1,0 +1,139 @@
+{
+  "room": "eco-map",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Monitor",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/monitoradherence.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Quality Management (CXone)",
+      "url": "https://help.nicecxone.com/Content/qmanalytics/welcometoqualitymanagement.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Categories",
+      "url": "https://help.nicecxone.com/Content/interactionanalyticspro/configurationandadministration/categories/categories.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Integration Hub",
+      "url": "https://help.nicecxone.com/content/integrationhub/integrationhub.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "UCaaS (Basic) (1CX)",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/1cx/1cx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Install Agent Workspace (Embedded) (Agent Embedded) in Salesforce",
+      "url": "https://help.nicecxone.com/content/agent/agentapplicationadministration/cxoneagentembedded/installcxae/installcxaeinsalesforce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Agentic Engagement Plane",
+      "url": "https://help.nicecxone.com/content/aep/agenticengagementplane.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Integration Hub",
+      "url": "https://help.nicecxone.com/content/integrationhub/integrationhub.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Five9 bridge",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Webex Contact Center bridge",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Agentic Engagement Plane",
+      "url": "https://help.nicecxone.com/content/aep/agenticengagementplane.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Agentic Engagement Plane",
+      "url": "https://help.nicecxone.com/content/aep/agenticengagementplane.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "CPaaS bridge",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Five9 bridge",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Webex Contact Center bridge",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    }
+  ]
+}
