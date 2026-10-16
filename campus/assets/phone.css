@@ -31,6 +31,8 @@ html[data-motion="full"] .reveal.is-in {
 
 @media (max-width: 720px) {
   html, body { overflow-x: clip; }
+  main, .lesson-block, .lede, .sources-block, .source-list { overflow-wrap: anywhere; }
+  .phone-links .menu-hint { white-space: normal; overflow: visible; text-overflow: unset; }
   .top,
   .rail { display: none; }
   .lab-bar {
@@ -144,7 +146,6 @@ html[data-motion="full"] .reveal.is-in {
     background: color-mix(in srgb, var(--cc-accent-1) 12%, transparent);
   }
   .phone-links .menu-item { width: 100%; }
-  .phone-links .menu-hint { white-space: nowrap; }
   body { --bottom-h: calc(56px + env(safe-area-inset-bottom, 0px)); }
   main { padding-bottom: calc(var(--bottom-h) + 28px); }
   .lab-foot { margin-bottom: calc(var(--bottom-h) + 12px); }

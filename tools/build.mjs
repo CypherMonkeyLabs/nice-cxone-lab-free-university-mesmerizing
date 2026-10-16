@@ -16,12 +16,13 @@ import { part12 } from "./part12.mjs";
 import { part13 } from "./part13.mjs";
 import { part14 } from "./part14.mjs";
 import { part15 } from "./part15.mjs";
+import { part16 } from "./part16.mjs";
 import { glossary, boss, interview } from "./extras.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "campus", "data");
 const tracks = [
   ...part1, ...part2, ...part3, ...part4, ...part5, ...part6, ...part7, ...part8,
-  ...part9, ...part10, ...part11, ...part12, ...part13, ...part14, ...part15,
+  ...part9, ...part10, ...part11, ...part12, ...part13, ...part14, ...part15, ...part16,
 ];
 
 const ids = new Set();

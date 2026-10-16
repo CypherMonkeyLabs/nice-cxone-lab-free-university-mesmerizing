@@ -108,6 +108,41 @@
       "cite": { "title": "General Forecast", "url": "https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm" }
     },
     {
+      "id": "dynamic-delivery",
+      "q": ["dynamic delivery", "automatic delivery", "request interaction", "+1 contact"],
+      "a": "Dynamic delivery routes on how long an agent has been Available and on proficiency. Automatic delivery paces about every 15 seconds. Agent-request delivery waits for Request Interaction, or +1 Contact in MAX.",
+      "href": "#/track/skills-acd",
+      "cite": { "title": "Dynamic Delivery", "url": "https://help.nicecxone.com/content/ACD/routing/dynamicdelivery/dynamicdelivery.htm" }
+    },
+    {
+      "id": "rta-clocks",
+      "q": ["real time adherence", "intraday", "few seconds", "15 minutes"],
+      "a": "Real-time adherence updates every few seconds. Intraday updates every 15 minutes and can reforecast the rest of the day.",
+      "href": "#/track/wfm-day",
+      "cite": { "title": "Monitor", "url": "https://help.nicecxone.com/content/workforcemanagement/monitoradherence.htm" }
+    },
+    {
+      "id": "qm-averages",
+      "q": ["quality score", "73.3333", "average of values", "sanity qa"],
+      "a": "On the Quality Management welcome page, Sanity QA's percentages 60 and 80 average to 70. The same points, 11 of 15, print as 73.3333. Widgets default to the average of values. Vijay's two pairs on that page do not match, so this lab does not pick one.",
+      "href": "#/track/qm-ia",
+      "cite": { "title": "Quality Management (CXone)", "url": "https://help.nicecxone.com/Content/qmanalytics/welcometoqualitymanagement.htm" }
+    },
+    {
+      "id": "cti-cpaas",
+      "q": ["cpaas", "salesforce cti", "cti adapter", "embedded url"],
+      "a": "The opened Salesforce pages describe an embedded agent and a fully integrated Lightning agent. Those are two procedures. CPaaS has no opened page in this lab, so that line is confirm and has no URL. 1CX is UCaaS, not CPaaS.",
+      "href": "#/track/cti-cpaas",
+      "cite": { "title": "Install Agent Workspace (Embedded) (Agent Embedded) in Salesforce", "url": "https://help.nicecxone.com/content/agent/agentapplicationadministration/cxoneagentembedded/installcxae/installcxaeinsalesforce.htm" }
+    },
+    {
+      "id": "aep-hook",
+      "q": ["agentic engagement plane", "aep", "any channel", "future hook"],
+      "a": "The Agentic Engagement Plane page opened. It is an orchestration layer above CCaaS. The pillars are Any Channel, Any AI Agent, and Any Human Agent. The page does not list admin clicks.",
+      "href": "#/ecosystem",
+      "cite": { "title": "Agentic Engagement Plane", "url": "https://help.nicecxone.com/content/aep/agenticengagementplane.htm" }
+    },
+    {
       "id": "lucky",
       "q": ["who is lucky", "lucky", "who keeps this floor", "about the author", "cypher"],
       "a": "Lucky is a lifelong student and an AI enthusiast. This lab does not claim NiCE production experience for Lucky. That sentence is this lab’s own note. It is not a NiCE biography.",
@@ -127,7 +162,7 @@
       "id": "floor",
       "title": "Tour Contact Path",
       "steps": [
-        { "say": "Start on Contact Path. Sixteen tracks sit under the hero. Each lesson keeps its citation beside the English body.", "href": "#/" },
+        { "say": "Start on Contact Path. Twenty-one tracks sit under the hero. Each lesson keeps its citation beside the English body.", "href": "#/" },
         { "say": "Diagrams are study maps. The count in Contact Path is the atlas, and each card names its public page.", "href": "#/diagrams" },
         { "say": "Flows are the animated subset: ladders, routing, architecture, deployment, migration, and troubleshooting trees.", "href": "#/flows" },
         { "say": "Charts count lessons, minutes, and quiz items from the files in this repository. They are not a NiCE benchmark.", "href": "#/charts" },

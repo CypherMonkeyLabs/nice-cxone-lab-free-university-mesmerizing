@@ -15,7 +15,12 @@ const PROGRESS_KEY = "cxone-lab-progress";
 const STUDIO_KEY = "cxone-lab-studio";
 
 const NAV = [
-  { href: "#/", id: "home", label: "Contact Path", hint: "Sixteen study tracks on one page", icon: "⌂", dot: "a1" },
+  { href: "#/", id: "home", label: "Contact Path", hint: "Twenty-one study tracks on one page", icon: "⌂", dot: "a1" },
+  { href: "#/track/skills-acd", id: "skills-acd", label: "Skills routing and ACD", hint: "Dynamic delivery, attributes, channel lock, and safe mode", icon: "◉", dot: "a3" },
+  { href: "#/track/wfm-day", id: "wfm-day", label: "Workforce management", hint: "Real-time adherence, schedule dots, and the day", icon: "▦", dot: "a1" },
+  { href: "#/track/qm-ia", id: "qm-ia", label: "Quality and Interaction Analytics", hint: "Forms, categories, sentiment, and the export", icon: "▤", dot: "a2" },
+  { href: "#/track/cti-cpaas", id: "cti-cpaas", label: "CRM, CTI, and CPaaS", hint: "Salesforce CTI from public pages; CPaaS stays confirm", icon: "⇄", dot: "a4" },
+  { href: "#/track/eco-map", id: "eco-map", label: "Ecosystem map", hint: "Glossary, mind map, sisters, bridges, and future hooks", icon: "✶", dot: "a4" },
   { href: "#/diagrams", id: "diagrams", label: "Diagrams", hint: "SVG maps cited from public pages", icon: "◇", dot: "a2" },
   { href: "#/flows", id: "flows", label: "Flows", hint: "Animated ladders and troubleshooting trees", icon: "↝", dot: "a3" },
   { href: "#/charts", id: "charts", label: "Charts", hint: "Counts from the lesson files in Contact Path", icon: "▤", dot: "a4" },
@@ -535,7 +540,7 @@ function lessonView(track, lesson) {
   return `
     <div class="read-layout"><article>
     <nav class="crumbs" aria-label="Breadcrumb" id="lesson-top"><a href="#/">Contact Path</a> · <a href="#/tracks">Tracks</a> · <a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(shown.title)}</nav>
-    <aside class="disclaimer-box">Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction in the website contact section. Nothing here is sold. The author is happy to volunteer.</aside>
+    <aside class="disclaimer-box">Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction in the website contact section. Nothing here is sold. The author is happy to volunteer. Public pages opened in 2026-10 are linked. A confirm line has no URL.</aside>
     <div class="room-tools"><button type="button" class="dl-html" data-export-room="lesson">Download this section</button></div>
     <section class="learn-five"><h2>Learn in 5 minutes</h2><p>${esc(shown.summary)}</p></section>
     <p class="muted">${esc(lesson.level)} · ${esc(lesson.minutes)} min</p>
@@ -720,7 +725,8 @@ async function viewTracks() {
   const cards = manifest.tracks.map((track) => trackCard(track, true)).join("");
   const packs = await Promise.all(manifest.tracks.map((track) => loadJSON(`data/sources/${track.id}.json`).catch(() => ({ sources: [] }))));
   const rows = packs.flatMap((pack) => pack.sources || []);
-  setMain(`<h1>Tracks</h1><p class="lede">Sixteen paths from prerequisites through migration. Open one track at a time; lesson bodies load with that track.</p><div class="grid cards">${cards}</div>${roomSources(rows)}`);
+  const pathWord = manifest.tracks.length === 21 ? "Twenty-one" : String(manifest.tracks.length);
+  setMain(`<h1>Tracks</h1><p class="lede">${pathWord} paths from prerequisites through the ecosystem map. Open one track at a time; lesson bodies load with that track.</p><div class="grid cards">${cards}</div>${roomSources(rows)}`);
   renderRail("tracks");
 }
 
@@ -1205,13 +1211,30 @@ async function viewEcosystem() {
       <p>Lucky is a lifelong student and an AI enthusiast. The path runs through systems, networking, voice, and the contact center, and it grows into AI omni-channel agents. This ecosystem is that wider study: workforce, quality, digital, CRM, and virtual agents sit beside the ACD, each one tied to a public page.</p>
       <p class="copy">© 2026 CypherMonkeyLabs 🐒</p>
     </section>
-    <h2>Neighboring products</h2>
+    <h2 id="sisters">Sister technologies</h2>
+    <p>Each card is a neighboring product already tied to a public page in this lab. The drawings under the mind map are a study aid. They are not a network diagram.</p>
     <div class="grid cards">${sisters}</div>
+    <h2 id="mind-map">Mind map</h2>
+    <p>The ACD sits in the middle so the study topics stay visible. An edge is a reminder to open the cited page.</p>
     <svg id="ecosystem-markmap" class="markmap" viewBox="0 0 760 420" role="img" aria-label="Ecosystem mind map"></svg>
     <div class="mind">${mindMap()}</div>
-    <h2>Glossary</h2>
+    <h2 id="glossary">Glossary</h2>
     <div class="grid cards">${terms}</div>
-    ${roomSources(glossary.map((item) => item.cite).concat((atlas.sisters || []).map((item) => atlas.cites && atlas.cites[item.cite])))}`);
+    <h2 id="integration-maps">Integration maps</h2>
+    <p>Two opened maps stay separate. <a href="https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm">Third-Party ACDs</a> names Engagement Hub, the SDK, and point-to-point, one ACD at a time. <a href="https://help.nicecxone.com/content/integrationhub/integrationhub.htm">Integration Hub</a> is the REST map. <a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm">Connectivity in NiCE CXone</a> names legs and clusters. The lesson track is <a href="#/track/eco-map">Ecosystem map</a>.</p>
+    <h2 id="bridges">Bridges</h2>
+    <p>Named bridges that this lab opened stay on <a href="#/bridges">Bridges</a>. Five9 and Webex Contact Center stay confirm. Those lines have no URL.</p>
+    <h2 id="future-hooks">Future hooks</h2>
+    <p>The <a href="https://help.nicecxone.com/content/aep/agenticengagementplane.htm">Agentic Engagement Plane</a> page opened. It is an orchestration layer above CCaaS, with the pillars Any Channel, Any AI Agent, and Any Human Agent. The page does not list admin clicks, and this lab does not add them. CPaaS has no opened page in this pass, so it stays confirm with no URL.</p>
+    ${roomSources(glossary.map((item) => item.cite).concat((atlas.sisters || []).map((item) => atlas.cites && atlas.cites[item.cite])).concat([
+      { title: "Third-Party ACDs", url: "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm" },
+      { title: "Integration Hub", url: "https://help.nicecxone.com/content/integrationhub/integrationhub.htm" },
+      { title: "Connectivity in NiCE CXone", url: "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm" },
+      { title: "Agentic Engagement Plane", url: "https://help.nicecxone.com/content/aep/agenticengagementplane.htm" },
+      { title: "CPaaS bridge", confirm: true },
+      { title: "Five9 bridge", confirm: true },
+      { title: "Webex Contact Center bridge", confirm: true },
+    ]))}`);
   renderRail("ecosystem");
   decorateFloor(document.getElementById("main"));
 }

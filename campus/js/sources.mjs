@@ -55,5 +55,6 @@ export function lessonCites(lesson) {
   for (const section of lesson.sections || []) rows.push(...(section.cites || []));
   for (const item of lesson.quiz || []) if (item.cite) rows.push(item.cite);
   for (const fault of lesson.faults || []) if (fault.cite) rows.push(fault.cite);
+  for (const extra of lesson.also || []) rows.push(extra);
   return rows;
 }
