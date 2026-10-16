@@ -1,6 +1,6 @@
 {
   "endpoint": "",
-  "honesty": "Every answer is a sentence already on this floor, or this floor’s own note about Lucky. If the question is not in the list, the bot says it does not know.",
+  "honesty": "Every answer is a sentence already in Contact Path, or this lab’s own note about Lucky. If the question is not in the list, the bot says it does not know.",
   "entries": [
     {
       "id": "priority",
@@ -33,7 +33,7 @@
     {
       "id": "digital",
       "q": ["digital queue", "new chat", "digital skill", "routing queue"],
-      "a": "Since Summer 2023, new inbound digital work uses skills and scripts. This floor does not teach a new routing queue for that path.",
+      "a": "Since Summer 2023, new inbound digital work uses skills and scripts. Contact Path does not teach a new routing queue for that path.",
       "href": "#/tracks",
       "cite": { "title": "Digital Routing", "url": "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm" }
     },
@@ -75,7 +75,7 @@
     {
       "id": "api",
       "q": ["api endpoint", "tenantid", "access key", "password grant", "discovery"],
-      "a": "A back-end app on the auth page uses the password grant. tenantId comes from the ID token. The example host is not every tenant, so this floor says to discover api_endpoint.",
+      "a": "A back-end app on the auth page uses the password grant. tenantId comes from the ID token. The example host is not every tenant, so this lab says to discover api_endpoint.",
       "href": "#/explorer",
       "cite": { "title": "API Authentication and Authorization", "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization" }
     },
@@ -89,21 +89,21 @@
     {
       "id": "release",
       "q": ["26.3", "26.4", "coming soon", "release overlap"],
-      "a": "The 26.3 page was revised to 2 September 2026 through 5 November 2026. Coming Soon for 26.4 begins 26 October 2026. The windows overlap, and this floor does not pick a winner.",
+      "a": "The 26.3 page was revised to 2 September 2026 through 5 November 2026. Coming Soon for 26.4 begins 26 October 2026. The windows overlap, and this lab does not pick a winner.",
       "href": "#/roadmap",
       "cite": { "title": "Coming Soon in the 26.4 Release", "url": "https://help.nicecxone.com/content/releasenotes/comingsoon.htm" }
     },
     {
       "id": "ucce",
       "q": ["ucce", "migration", "multi-acd", "avaya", "cutover"],
-      "a": "A WFM connector, Multi-ACD recording, and Migrated Calls are three different moves. This floor does not fold them into one cutover.",
+      "a": "A WFM connector, Multi-ACD recording, and Migrated Calls are three different moves. Contact Path does not fold them into one cutover.",
       "href": "#/flows",
       "cite": { "title": "Cisco UCCE Connector", "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm" }
     },
     {
       "id": "wfm",
       "q": ["forecast", "wfm", "iex", "average handle"],
-      "a": "Forecast volume and average handle time, then staff to a target. CXone WFM and IEX are different products on this floor.",
+      "a": "Forecast volume and average handle time, then staff to a target. CXone WFM and IEX are different products in this lab.",
       "href": "#/downloads",
       "cite": { "title": "General Forecast", "url": "https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm" }
     },
@@ -117,7 +117,7 @@
     {
       "id": "copyright",
       "q": ["copyright", "who made this", "cyphermonkeylabs"],
-      "a": "The floor’s copyright line is © 2026 CypherMonkeyLabs. The lab is an independent study project and is not affiliated with NiCE.",
+      "a": "The copyright line is © 2026 CypherMonkeyLabs. Contact Path is an independent study project and is not affiliated with NiCE.",
       "href": "#/",
       "labNote": true
     }
@@ -125,10 +125,10 @@
   "tours": [
     {
       "id": "floor",
-      "title": "Tour the floor",
+      "title": "Tour Contact Path",
       "steps": [
-        { "say": "Start on the floor. Sixteen tracks sit under the hero. Each lesson keeps its citation beside the English body.", "href": "#/" },
-        { "say": "Diagrams are SVG maps. The count on this floor is the atlas, and each card names its public page.", "href": "#/diagrams" },
+        { "say": "Start on Contact Path. Sixteen tracks sit under the hero. Each lesson keeps its citation beside the English body.", "href": "#/" },
+        { "say": "Diagrams are study maps. The count in Contact Path is the atlas, and each card names its public page.", "href": "#/diagrams" },
         { "say": "Flows are the animated subset: ladders, routing, architecture, deployment, migration, and troubleshooting trees.", "href": "#/flows" },
         { "say": "Charts count lessons, minutes, and quiz items from the files in this repository. They are not a NiCE benchmark.", "href": "#/charts" },
         { "say": "Cheat Codes are the one-page sheets. Each one links the page it paraphrases.", "href": "#/downloads" },
@@ -141,7 +141,7 @@
       "steps": [
         { "say": "The routing simulator uses (time × acceleration) + initial priority. Personal Connection mode forces acceleration to 0.", "href": "#/routing" },
         { "say": "The Studio builder exports classroom JSON with notOfficialStudioExport set. It is not an official Studio script.", "href": "#/studio" },
-        { "say": "The topology can orbit in 3D. Reduced motion, or a browser without WebGL, keeps the text map.", "href": "#/topology" }
+        { "say": "Turn the map and switch a failure on to see that path go red. If motion is reduced, the flat list stays.", "href": "#/topology" }
       ]
     }
   ],
@@ -156,7 +156,7 @@
     },
     {
       "id": "q-prof",
-      "ask": "On the bullseye page this floor uses, which proficiency is best?",
+      "ask": "On the bullseye page this lab uses, which proficiency is best?",
       "choices": ["1", "20", "0", "100"],
       "answer": 0,
       "why": "Proficiency 1 is best and 20 is worst.",

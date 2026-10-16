@@ -82,9 +82,9 @@ export function syncStudyBadges() {
 
 const BADGE_DEFS = [
   ["first", "First contact", "Finish one lesson quiz."],
-  ["ten", "Floor walker", "Finish 10 lesson quizzes."],
-  ["fifty", "Half the floor", "Finish 50 lesson quizzes."],
-  ["all", "Signal captain", "Finish all 112 lesson quizzes."],
+  ["ten", "Path walker", "Finish 10 lesson quizzes."],
+  ["fifty", "Halfway along", "Finish 50 lesson quizzes."],
+  ["all", "Path captain", "Finish all 112 lesson quizzes."],
   ["ports", "Port ace", "Score 12 of 12 on the ports game."],
   ["daily", "Day shift", "Answer a daily challenge."],
   ["streak", "Three-day board", "Answer three different UTC days."],
@@ -104,7 +104,7 @@ function crumbs(parts) {
   const tail = (parts || []).map((part) => (
     part.href ? ` · <a href="${esc(part.href)}">${esc(part.label)}</a>` : ` · ${esc(part.label)}`
   )).join("");
-  return `<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a>${tail}</nav>`;
+  return `<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Contact Path</a>${tail}</nav>`;
 }
 
 function disclaimerBox() {
@@ -172,7 +172,7 @@ export async function homeExtra(manifest, done, total) {
   return `
     <section class="home-spotlight" id="home-spotlight">
       <h2>Diagrams, flows, and charts</h2>
-      <p class="muted">${done} of ${total} lessons studied in this browser · ${manifest.tracks.length} tracks · ${atlas.diagrams.length} diagrams · ${atlas.diagrams.filter((item) => item.family === "flow" && item.animated).length} animated flows · ${(atlas.charts || []).length} charts from this floor’s own files. <a href="#/diagrams">Open the atlas</a> · <a href="#/flows">Flows</a> · <a href="#/charts">Charts</a> · <a href="#/downloads">Cheat Codes</a></p>
+      <p class="muted">${done} of ${total} lessons studied in this browser · ${manifest.tracks.length} tracks · ${atlas.diagrams.length} diagrams · ${atlas.diagrams.filter((item) => item.family === "flow" && item.animated).length} animated flows · ${(atlas.charts || []).length} charts from Contact Path’s own files. <a href="#/diagrams">Open the atlas</a> · <a href="#/flows">Flows</a> · <a href="#/charts">Charts</a> · <a href="#/downloads">Cheat Codes</a></p>
       <div class="diagram-grid">${cards}</div>
       <h2>Counts from the lesson files</h2>
       ${chartsBlock(atlas.charts || [], (key) => citeHtml(atlas, key))}
@@ -191,7 +191,7 @@ export async function trackFloor(track) {
       { value: atlas.diagrams.length, label: "diagrams" },
     ])}
     <svg class="rough-frame" viewBox="0 0 760 90" aria-hidden="true"></svg>
-    <h2>Floor charts</h2>
+    <h2>Charts for this track</h2>
     ${chartsBlock(atlas.charts || [], (key) => citeHtml(atlas, key))}`;
 }
 
@@ -235,7 +235,7 @@ async function viewDiagrams(reduced, mode) {
   const title = mode === "flow" ? "Animated flows" : "Diagram atlas";
   const lede = mode === "flow"
     ? `${flows.length} animated call, signal, and data flows. Ladders, routing, architecture, deployment, migration cutover, and troubleshooting trees are in this set.`
-    : `${atlas.diagrams.length} custom SVG diagrams. ${flows.length} of them are animated flows. Mermaid was not run; these SVGs are drawn on this floor.`;
+    : `${atlas.diagrams.length} study drawings. ${flows.length} of them move. Each one is drawn for this lab.`;
   return pageShell(title, lede, `
     <nav class="uni-nav" aria-label="Flow kinds">${filters}</nav>
     <div class="diagram-grid">${cards}</div>`);
@@ -271,7 +271,7 @@ async function viewRoadmap(manifest) {
   const atlas = await loadAtlas();
   const cycles = atlas.cycles.map((item) => `<article class="card"><header><h2>${esc(item.name)}</h2></header><p>${esc(item.window)}</p><p>${esc(item.note)}</p><p class="sources">${citeHtml(atlas, item.cite)}</p></article>`).join("");
   const plan = manifest.tracks.map((track, index) => `<li><a href="#/track/${esc(track.id)}">Day ${index * 4 + 1}–${index * 4 + 4}</a> — ${esc(track.title)}. ${esc(track.blurb)}</li>`).join("");
-  return pageShell("Roadmap and what is new in 2026", "Dates are quoted from the release pages. The 26.3 and 26.4 windows overlap, and this floor does not pick a winner.", `
+  return pageShell("Roadmap and what is new in 2026", "Dates are quoted from the release pages. The 26.3 and 26.4 windows overlap, and this lab does not pick a winner.", `
     <div class="grid cards">${cycles}</div>
     <h2>Study plan across the sixteen tracks</h2>
     <ol>${plan}</ol>
@@ -283,7 +283,7 @@ async function viewExplorer(reduced) {
   const spec = atlas.diagrams.find((item) => item.id === "orbit");
   const sisters = atlas.sisters.map((item) => `<article class="card" id="sis-${esc(item.name)}"><header><h2>${esc(item.name)}</h2></header><p>${esc(item.does)}</p><p class="sources">${citeHtml(atlas, item.cite)}</p></article>`).join("");
   const trees = atlas.troubles.map((item) => `<article class="callout"><strong>${esc(item.symptom)}</strong><p>${esc(item.check)}</p><p class="sources">${citeHtml(atlas, item.cite)}</p></article>`).join("");
-  return pageShell("Flow explorer", "Click a sister system. The orbit is a study map. Each sentence has its own page. The mind map below is drawn with markmap after d3 loads from this floor.", `
+  return pageShell("Flow explorer", "Click a sister system. The picture is a study map. Each sentence has its own page.", `
     <svg id="ecosystem-markmap" class="markmap" viewBox="0 0 760 420" role="img" aria-label="Ecosystem mind map"></svg>
     <div class="explorer">
       <div>${diagramSvg(spec, reduced)}<p class="sources">${citeHtml(atlas, "studio")}</p></div>
@@ -301,7 +301,7 @@ async function viewPlay() {
   }).join("");
   const day = new Date().toISOString().slice(0, 10);
   const daily = atlas.daily[day.split("-").reduce((sum, part) => sum + Number(part), 0) % atlas.daily.length];
-  return pageShell("Play floor", "The ports game uses the firewall table. The daily question changes with the UTC date. Scores stay in this browser.", `
+  return pageShell("Play", "The ports game uses the firewall table. The daily question changes with the UTC date. Scores stay in this browser.", `
     <h2>Ports mastery</h2>
     <form id="port-game">${questions}<button class="solid" type="submit">Score the board</button><p class="status" id="port-status" role="status"></p><div id="port-why"></div></form>
     <p><button type="button" class="ghost" id="share-card">Download a result card</button></p>

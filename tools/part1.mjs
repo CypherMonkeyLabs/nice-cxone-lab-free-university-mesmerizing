@@ -28,7 +28,7 @@ export const part1 = [
         ]),
         sections: [
           sec("Four words", [
-            "Studio Fundamentals uses four words for the rest of this floor. An ACD skill automates delivery to an agent who is likely to help, using criteria such as department, specialty, language, or location. A channel is the medium a contact uses. A media type is the kind of channel a script is built for, such as phone, chat, or email. A point of contact is the entry, such as a phone number or an email address.",
+            "Studio Fundamentals uses four words for the rest of this lab. An ACD skill automates delivery to an agent who is likely to help, using criteria such as department, specialty, language, or location. A channel is the medium a contact uses. A media type is the kind of channel a script is built for, such as phone, chat, or email. A point of contact is the entry, such as a phone number or an email address.",
             "Each point of contact is assigned one ACD skill and one Studio script. Several points of contact may share a skill or a script. The script begins with the point of contact's default skill and can select a more specific skill, for example after a menu.",
           ], ["studioFund"]),
           sec("Why the default skill is not the whole story", [
@@ -236,7 +236,7 @@ export const part1 = [
           "Add a firewall box labeled allowlist, with an arrow only from the Integrated Softphone laptop.",
         ], "You can correct someone who says 'we use WebRTC' when they mean the product, or the reverse."),
         faults: [
-          fault("Agents silent after a firewall change", "Integrated Softphone rings and then fails. Installed Softphone users on another floor are fine.", "agentLeg=IntegratedSoftphone media=failed\nfirewall change=last night\nallowlist=not updated", "The connectivity page requires IP addresses on the allowlist for Integrated Softphone. A new firewall rule can drop that path without touching the installed Softphone.", "Compare the current allowlist on the connectivity help page with the firewall. Do not treat this as a carrier outage until that list is checked.", "connectivity"),
+          fault("Agents silent after a firewall change", "Integrated Softphone rings and then fails. Installed Softphone users on another workstation are fine.", "agentLeg=IntegratedSoftphone media=failed\nfirewall change=last night\nallowlist=not updated", "The connectivity page requires IP addresses on the allowlist for Integrated Softphone. A new firewall rule can drop that path without touching the installed Softphone.", "Compare the current allowlist on the connectivity help page with the firewall. Do not treat this as a carrier outage until that list is checked.", "connectivity"),
         ],
         uncertain: ["The connectivity page names Chrome when it defines WebRTC. It does not, in the passage used here, publish a full browser support matrix. Do not turn that sentence into 'only Chrome works' without reading the current requirements page."],
       }),

@@ -14,21 +14,21 @@ mkdirSync(join(root, "campus/audio"), { recursive: true });
 const clips = [
   {
     id: "use-the-floor",
-    title: "Use the floor",
+    title: "Use Contact Path",
     lines: [
       ["a", "Welcome to Contact Path. This is a free study lab for NICE CXone, not a vendor brochure."],
       ["b", "The picture in front of you is the contact path. Point of contact, script, skill, agent, workforce, quality, and the API."],
       ["a", "Use the study menu. Diagrams, Flows, and Charts are the big pictures. Cheat Codes and Downloads are the sheets you can keep offline."],
       ["b", "Play is where you practise. Ecosystem is the map of neighbouring labs. Careers is a study path, not a job offer."],
       ["a", "Open a track. The ring on the card is progress saved in this browser. Lesson text stays in English, next to its citation."],
-      ["b", "If motion is reduced, or WebGL is missing, the orbit becomes a flat drawing. The facts do not change."],
+      ["b", "The picture stays a drawing of that path. The facts do not change."],
     ],
   },
   {
     id: "share-the-floor",
-    title: "Share the floor",
+    title: "Share Contact Path",
     lines: [
-      ["a", "If the floor helped, rate the repository from the top bar. Comments belong there too."],
+      ["a", "If Contact Path helped, rate the repository from the top bar. Comments belong there too."],
       ["b", "There is no email on this page. To reach the studio, use the contact form on the CypherMonkey Labs site."],
       ["a", "Share the lab with the GitHub Pages link or the repository link. The other labs are listed in the footer."],
       ["b", "This project is independent. It is not affiliated with NiCE. Trademarks stay with their owners."],

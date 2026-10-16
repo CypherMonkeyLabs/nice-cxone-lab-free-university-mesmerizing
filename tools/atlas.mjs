@@ -171,7 +171,7 @@ diagrams.push(
     { from: 3, to: 2, label: "One skill" },
     { from: 3, to: 4, label: "Script may change skill" },
   ], "admin"),
-  ladder("deploy-ladder", "Deployment ladder", "The connectivity wizard order: ports for the apps you use, then cluster FQDNs, then voice. Do not freeze an allowlist from this floor.", "deployment", ["You", "Ports page", "Cluster", "Voice"], [
+  ladder("deploy-ladder", "Deployment ladder", "The connectivity wizard order: ports for the apps you use, then cluster FQDNs, then voice. Do not freeze an allowlist from this lab.", "deployment", ["You", "Ports page", "Cluster", "Voice"], [
     { from: 0, to: 1, label: "Select apps" },
     { from: 1, to: 2, label: "FQDNs for cluster" },
     { from: 2, to: 3, label: "Voice FQDNs" },
@@ -368,7 +368,7 @@ const troubles = [
   { symptom: "Personal Connection work climbs past inbound", check: "Acceleration on a PC skill should be 0.", cite: "pc" },
   { symptom: "New inbound chat never reaches an agent", check: "You cannot create a new routing queue for that path. Use a digital skill and a digital script.", cite: "digital" },
   { symptom: "QA hears silence where hold music should be", check: "Hold audio is not recorded. Confirm it was hold, not a dropped talk path.", cite: "recording" },
-  { symptom: "Integrated Softphone dies after a firewall change", check: "The allowlist, not the carrier, and not the installed Softphone on another floor.", cite: "connect" },
+  { symptom: "Integrated Softphone dies after a firewall change", check: "The allowlist, not the carrier, and not the installed Softphone on another workstation.", cite: "connect" },
   { symptom: "Second tenant gets a token and then HTML or 401", check: "Hard-coded api-na1. Discover api_endpoint for that tenantId.", cite: "auth" },
   { symptom: "911 reaches the national center", check: "Address saved on the individual user record and showing verified. Outbound skill assigned.", cite: "e911" },
   { symptom: "Screen monitor fails, voice still works", check: "UDP 443 or 3478 outbound, and port 31322 only if OS Login is not in use.", cite: "ports" },
@@ -458,7 +458,7 @@ function labStats() {
   return {
     tracks,
     levelTotals,
-    source: "Counted from the lesson files in this repository when the atlas was built. These are study-floor totals, not a NiCE benchmark.",
+    source: "Counted from the lesson files in this repository when the atlas was built. These are Contact Path totals, not a NiCE benchmark.",
   };
 }
 
@@ -506,7 +506,7 @@ const charts = [
   {
     id: "protocols",
     title: "Port-table rows by the first protocol word",
-    note: "Counted from this floor’s firewall table, which paraphrases the ports page. It is not an inventory of every packet on a tenant.",
+    note: "Counted from this lab’s firewall table, which paraphrases the ports page. It is not an inventory of every packet on a tenant.",
     cite: "ports",
     series: bars(Object.entries(protoCounts).sort((a, b) => b[1] - a[1])),
   },
@@ -538,7 +538,7 @@ const atlas = {
   diagrams,
   charts,
   stats,
-  mermaid: "Mermaid was not executed in this build. Ladder and tree SVGs are drawn by campus/js/diagrams.mjs from these specs. GSAP is not vendored.",
+  mermaid: "Ladder and tree pictures are drawn for this lab.",
   pages,
   sisters,
   troubles,

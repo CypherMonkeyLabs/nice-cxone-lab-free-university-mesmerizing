@@ -193,7 +193,7 @@ async function startTour(id) {
   }
   tour = { steps: found.steps, index: 0, title: found.title };
   quiz = null;
-  await say(`${found.title}. ${found.steps.length} stops. I will only describe this floor and the pages it already cites.`);
+  await say(`${found.title}. ${found.steps.length} stops. I will only describe Contact Path and the pages it already cites.`);
   await showTourStep();
 }
 
@@ -272,7 +272,7 @@ async function runTurn(raw) {
     return;
   }
   addBubble("user", text);
-  if (text === "/tour floor" || /tour the floor/i.test(text)) {
+  if (text === "/tour floor" || /tour the floor/i.test(text) || /tour the path/i.test(text)) {
     await startTour("floor");
     return;
   }
@@ -305,7 +305,7 @@ export async function bootGuide() {
     open.setAttribute("aria-expanded", show ? "true" : "false");
     if (show && !logNode().childElementCount) {
       enqueue(async () => {
-        await say("I am the Guide Bot for this floor. I only repeat sentences this lab already cites, plus the lab’s own note about Lucky. I will say so when I do not have a page.");
+        await say("I am the Guide Bot for Contact Path. I only repeat sentences this lab already cites, plus the lab’s own note about Lucky. I will say so when I do not have a page.");
         starterChips();
       });
     }

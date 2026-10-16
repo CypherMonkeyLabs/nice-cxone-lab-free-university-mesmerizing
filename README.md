@@ -16,7 +16,7 @@ Open [http://127.0.0.1:41773/campus/](http://127.0.0.1:41773/campus/). The root 
 
 GitHub Pages works the same way: publish the repository and start at `campus/`. Routes are hash URLs, so no server rewrites are required.
 
-## Floor
+## Contact Path
 
 Screenshots from the 2026-10-16 review, after the tour was stored as already finished:
 
@@ -63,11 +63,11 @@ Every lesson links to a public NiCE help page, the NiCE developer portal, an RFC
 - The WFM UCCE connector page says version 11.6. The Multi-ACD recording table says UCCE 12.6 and 15. They are different products.
 - No exam codes, prices, or SIP header lists are invented.
 - A direct open of the stored 26.2 release-notes URL, and of two NCAP Credly URLs, returned 404 on 2026-10-16. Those lines say confirm and the URL is left off.
-- Five9 and Webex Contact Center are confirm. Genesys on this floor is the T-Lib / SIPREC recording page, not a named WFM connector.
+- Five9 and Webex Contact Center are confirm. Genesys in this lab is the T-Lib / SIPREC recording page, not a named WFM connector.
 
 ## University layer
 
-The floor adds a ports atlas, flow explorer, call-flow sandbox, play floor, cheat-code downloads, and a CypherMonkey mascot. Themes are Signal, Futuristic, Gaming, Neon, Light, High contrast, and Dusk.
+Contact Path adds a ports atlas, flow explorer, call-flow sandbox, play page, cheat-code downloads, and a CypherMonkey mascot. Themes include Bright, Dark, Futuristic, Gaming, Neon, Light, High contrast, and Dusk.
 
 Rebuild the atlas and the one-page sheets with:
 

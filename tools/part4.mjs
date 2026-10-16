@@ -72,7 +72,7 @@ export const part4 = [
         ], ["bullseye"]],
         ["Digital uses the same 1–20 scale", [
           "UPDATE CONTACT DIGITAL says the highest proficiency an agent must have, and the lowest, are whole numbers from 1 to 20, 1 best and 20 worst. Digital priority on that action does not accelerate. The page says to use workflow automation if you need to change digital priority.",
-          "The simulator on this floor uses the same window. Its longest-idle tie-break is labeled as a classroom rule.",
+          "The simulator in this lab uses the same window. Its longest-idle tie-break is labeled as a classroom rule.",
         ], ["updateDigital"]],
       ],
       flow: flow("Widen the pool", ["Contact", "REQAGENT", "Music", "UpdateContact", "Agent"], [
@@ -697,7 +697,7 @@ export const part4 = [
           "That sentence is about Personal Connection. It is not a description of every inbound ACD delivery mode.",
         ], ["pc"]],
         ["The simulator's label", [
-          "This floor's routing simulator, after priority and the proficiency window, picks the longest current idle agent. That rule is labeled in the tool. It is not a citation.",
+          "This lab's routing simulator, after priority and the proficiency window, picks the longest current idle agent. That rule is labeled in the tool. It is not a citation.",
           "If a production question is 'who among three eligible agents gets the contact,' open the current delivery help for that skill type. Do not answer from the simulator.",
         ], ["priority", "bullseye"]],
       ],

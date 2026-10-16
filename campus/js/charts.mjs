@@ -77,7 +77,7 @@ export function bindChartTips(root) {
 
 export function counterRow(items) {
   const cells = items.map((item) => (
-    `<span data-count="${Number(item.value) || 0}"><b>0</b><small>${esc(item.label)}</small></span>`
+    `<span data-count="${Number(item.value) || 0}"><b>${Number(item.value) || 0}</b><small>${esc(item.label)}</small></span>`
   )).join("");
   return `<div class="live-counters" id="live-counters">${cells}</div>`;
 }

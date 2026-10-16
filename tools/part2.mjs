@@ -65,7 +65,7 @@ export const part2 = [
       id: "licenses",
       title: "Licenses the help pages actually name",
       level: "foundation", minutes: 12,
-      summary: "Some features say they need a license. This floor lists only licenses a cited page names, and it does not invent SKUs or prices.",
+      summary: "Some features say they need a license. This lab lists only licenses a cited page names, and it does not invent SKUs or prices.",
       objectives: ["Treat a license sentence as a gate", "Name three licenses the pages state", "Refuse a price that is not published here"],
       figure: row("A license gate in front of a feature", [
         { id: "l", label: "License", sub: "named on the page", tone: 2 },
@@ -80,7 +80,7 @@ export const part2 = [
         ], ["crmTicket", "migrated", "autosummarySetup", "sfAgent"]],
         ["What this lab will not add", [
           "Release notes say you may need to purchase a license or join a public preview to use some features. They do not publish a catalog of SKUs in the passages used here.",
-          "If a design names a SKU this floor has not cited, mark it unknown and ask the account representative. Do not copy a SKU from memory into a statement of work.",
+          "If a design names a SKU this lab has not cited, mark it unknown and ask the account representative. Do not copy a SKU from memory into a statement of work.",
         ], ["rel263"]],
       ],
       flow: flow("Check the gate before the button", ["Page", "License", "Permission", "Attribute"], [
