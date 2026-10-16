@@ -425,14 +425,14 @@ const daily = [
 ];
 
 const labs = [
-  { name: "Webex Lab", href: "https://cipher0x9.github.io/webex-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
-  { name: "UC Lab", href: "https://cipher0x9.github.io/uc-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
-  { name: "AI Lab", href: "https://cipher0x9.github.io/ai-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
-  { name: "Genesys", href: "https://cipher0x9.github.io/genesys-cloud-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
-  { name: "SIP Universe", href: "https://cipher0x9.github.io/sip-universe-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
-  { name: "Five9", href: "https://cipher0x9.github.io/five9-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
-  { name: "Microsoft Voice", href: "https://cipher0x9.github.io/microsoft-voice-cc-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
-  { name: "Amazon Connect", href: "https://cipher0x9.github.io/amazon-connect-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "Webex Lab", href: "https://cyphermonkeylabs.com/webex-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "UC Lab", href: "https://cyphermonkeylabs.com/uc-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "AI Lab", href: "https://cyphermonkeylabs.com/ai-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "Genesys", href: "https://cyphermonkeylabs.com/genesys-cloud-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "SIP Universe", href: "https://cyphermonkeylabs.com/sip-universe-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "Five9", href: "https://cyphermonkeylabs.com/five9-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "Microsoft Voice", href: "https://cyphermonkeylabs.com/microsoft-voice-cc-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
+  { name: "Amazon Connect", href: "https://cyphermonkeylabs.com/amazon-connect-lab-free-university-mesmerizing/", note: "Public GitHub Pages campus. HTTP 200 checked 2026-10-15." },
 ];
 
 function labStats() {

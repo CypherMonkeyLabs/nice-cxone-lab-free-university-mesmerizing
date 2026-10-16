@@ -9,7 +9,7 @@ const atlas = JSON.parse(readFileSync(join(campus, "data", "atlas.json"), "utf8"
 const manifest = JSON.parse(readFileSync(join(campus, "data", "manifest.json"), "utf8"));
 const glossary = JSON.parse(readFileSync(join(campus, "data", "glossary.json"), "utf8"));
 
-const FOOT = "CypherMonkey Labs https://cyphermonkeylabs.com · https://linktr.ee/cyphermonkey · Repo https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content. No email.";
+const FOOT = "CypherMonkey Labs https://cyphermonkeylabs.com · https://linktr.ee/cyphermonkey · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content. No email.";
 
 function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
