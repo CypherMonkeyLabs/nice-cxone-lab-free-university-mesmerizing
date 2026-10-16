@@ -1,6 +1,6 @@
 import { bindChartTips } from "./charts.mjs";
 import { motionReduced } from "./pixel.mjs";
-import { animate } from "../vendor/anime.esm.min.js";
+import "../vendor/anime.esm.min.js";
 import rough from "../vendor/rough.esm.js";
 import confetti from "../vendor/confetti.module.mjs";
 
@@ -35,22 +35,7 @@ export function countUp(root) {
     const target = Number(node.dataset.count);
     const out = node.querySelector("b") || node;
     if (!Number.isFinite(target)) return;
-    if (reduced()) {
-      out.textContent = String(target);
-      return;
-    }
-    const state = { n: 0 };
-    try {
-      animate(state, {
-        n: target,
-        duration: 900,
-        onUpdate: () => {
-          out.textContent = String(Math.round(state.n));
-        },
-      });
-    } catch (error) {
-      out.textContent = String(target);
-    }
+    out.textContent = String(target);
   });
 }
 

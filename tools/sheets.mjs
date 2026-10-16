@@ -185,7 +185,7 @@ const gloss = glossary.slice(0, 28);
 writePair(
   "glossary",
   "Glossary (first sheet)",
-  `<p>The campus glossary is longer. This sheet is the first 28 terms. Each one links to its source from the full floor.</p>${gloss.map((item) => `<p><strong>${esc(item.term)}.</strong> ${esc(item.meaning)}</p>`).join("")}`,
+  `<p>The campus glossary is longer. This sheet is the first 28 terms. Each one links to its source from Contact Path.</p>${gloss.map((item) => `<p><strong>${esc(item.term)}.</strong> ${esc(item.meaning)}</p>`).join("")}`,
   gloss.map((item) => `${item.term}: ${item.meaning}`)
 );
 

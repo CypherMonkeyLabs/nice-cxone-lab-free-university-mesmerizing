@@ -340,10 +340,11 @@ html[data-motion="reduce"] .phone-menu { animation: none; }
   z-index: 82;
   pointer-events: auto;
   box-sizing: border-box;
-  width: min(420px, calc(100vw - 20px));
-  max-height: calc(100vh - 16px);
-  overflow: auto;
-  padding: 14px;
+  width: min(420px, calc(100vw - 32px));
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  padding: 16px;
   border-radius: 22px;
   color: #1b1340;
   background:
@@ -513,14 +514,28 @@ html[data-motion="full"] .contact-path li {
   0%, 100% { transform: translateY(0); }
   40% { transform: translateY(-5px); box-shadow: 0 0 18px rgba(253, 230, 138, 0.85); }
 }
-html[data-theme="vivid"] .card.holo { color: #faf5ff; }
-html[data-theme="vivid"] .card.accent-1 { background: #5b21b6; }
+html[data-theme="vivid"] .card.holo { color: #ffffff; }
+html[data-theme="vivid"] .card.accent-1 { background: #4c1d95; }
 html[data-theme="vivid"] .card.accent-2 { background: #9f1239; }
-html[data-theme="vivid"] .card.accent-3 { background: #0f766e; }
-html[data-theme="vivid"] .card.accent-4 { background: #1e40af; }
+html[data-theme="vivid"] .card.accent-3 { background: #115e59; }
+html[data-theme="vivid"] .card.accent-4 { background: #1e3a8a; }
 html[data-theme="vivid"] .card h2,
+html[data-theme="vivid"] .card h3,
 html[data-theme="vivid"] .card p,
-html[data-theme="vivid"] .card .chip { color: #faf5ff; }
+html[data-theme="vivid"] .card .chip,
+html[data-theme="vivid"] .card .studied { color: #ffffff; }
+html[data-theme="vivid"] .card h2,
+html[data-theme="vivid"] .card h3 {
+  font-weight: 800;
+  line-height: 1.25;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+.holo::before { z-index: 0; }
+.card.holo > * { position: relative; z-index: 1; }
+html[data-theme="vivid"] .card .chip {
+  background: rgba(0, 0, 0, 0.35);
+  border-color: transparent;
+}
 html[data-theme="vivid"] .disclaimer-box,
 html[data-theme="vivid"] .lesson-block,
 html[data-theme="vivid"] .callout {
@@ -556,15 +571,17 @@ html[data-theme="vivid"] .callout {
 @media (max-width: 899px) {
   .tour-card {
     left: 16px !important;
-    width: calc(100vw - 168px) !important;
-    max-width: calc(100vw - 168px);
-    max-height: 210px;
-    padding: 10px;
-    right: auto !important;
+    right: 16px !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 16px 16px 14px;
     top: auto !important;
     bottom: calc(var(--bottom-h, 64px) + 16px) !important;
   }
   body.onboard-open .hero-controls,
   body.onboard-open .hero-counters { display: none; }
-  body.onboard-open .fold-label { margin-top: 280px; }
+  body.onboard-open .fold-label { margin-top: 220px; }
 }

@@ -14,10 +14,10 @@ const PROGRESS_KEY = "cxone-lab-progress";
 const STUDIO_KEY = "cxone-lab-studio";
 
 const NAV = [
-  { href: "#/", id: "home", label: "Floor", hint: "Sixteen study tracks on one page", icon: "⌂", dot: "a1" },
+  { href: "#/", id: "home", label: "Contact Path", hint: "Sixteen study tracks on one page", icon: "⌂", dot: "a1" },
   { href: "#/diagrams", id: "diagrams", label: "Diagrams", hint: "SVG maps cited from public pages", icon: "◇", dot: "a2" },
   { href: "#/flows", id: "flows", label: "Flows", hint: "Animated ladders and troubleshooting trees", icon: "↝", dot: "a3" },
-  { href: "#/charts", id: "charts", label: "Charts", hint: "Counts from the lesson files on this floor", icon: "▤", dot: "a4" },
+  { href: "#/charts", id: "charts", label: "Charts", hint: "Counts from the lesson files in Contact Path", icon: "▤", dot: "a4" },
   { href: "#/downloads", id: "downloads", label: "Cheat Codes", hint: "One-page sheets, PDF and PNG", icon: "✎", dot: "a1" },
   { href: "#/play", id: "play", label: "Play", hint: "Ports quiz and daily challenge", icon: "▶", dot: "a2" },
   { href: "#/ecosystem", id: "ecosystem", label: "Ecosystem", hint: "Neighbor products, each with a citation", icon: "◎", dot: "a3" },
@@ -529,7 +529,7 @@ function lessonView(track, lesson) {
   const labSteps = lesson.lab.steps.map((step) => `<li>${esc(step)}</li>`).join("");
   return `
     <div class="read-layout"><article>
-    <nav class="crumbs" aria-label="Breadcrumb" id="lesson-top"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · <a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(shown.title)}</nav>
+    <nav class="crumbs" aria-label="Breadcrumb" id="lesson-top"><a href="#/">Contact Path</a> · <a href="#/tracks">Tracks</a> · <a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(shown.title)}</nav>
     <aside class="disclaimer-box">Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction in the website contact section. Nothing here is sold. The author is happy to volunteer.</aside>
     <div class="room-tools"><button type="button" class="dl-html" data-export-room="lesson">Download this section</button></div>
     <section class="learn-five"><h2>Learn in 5 minutes</h2><p>${esc(shown.summary)}</p></section>
@@ -548,7 +548,7 @@ function lessonView(track, lesson) {
       <ol>${labSteps}</ol>
       <p class="muted">${esc(lesson.lab.done)}</p>
     </section>
-    <section id="fault-block"><h2>Fault and fix</h2>${faults}<p class="muted">Logs on this floor are synthetic classroom traces.</p></section>
+    <section id="fault-block"><h2>Fault and fix</h2>${faults}<p class="muted">Logs in these lessons are synthetic classroom traces.</p></section>
     <div id="card-block">${cardsMarkup(lesson.cards)}</div>
     <div id="quiz-block">${quizMarkup(lesson)}</div>
     <section class="eco-panel"><h2>Ecosystem</h2><p>This lesson sits on the ${esc(track.title)} track. The <a href="#/explorer">explorer</a> holds the glossary, mind map, sister technologies, and troubleshooting leaves. <a href="#/bridges">Bridges</a> keeps UCCE, Genesys, Amazon Connect, and the confirms for Five9 and Webex Contact Center apart.</p></section>
@@ -577,7 +577,7 @@ function bindNarration(lesson) {
     const chosen = voices.find((voice) => voice.voiceURI === settings.voice);
     if (chosen) utter.voice = chosen;
     else if (edgeOnly(voices)) {
-      document.getElementById("quiz-status") || button.insertAdjacentHTML("afterend", `<p class="callout">Narration is waiting for a voice choice. Open Settings and pick a voice. This floor will not silently start on a robotic Edge voice.</p>`);
+      document.getElementById("quiz-status") || button.insertAdjacentHTML("afterend", `<p class="callout">Narration is waiting for a voice choice. Open Settings and pick a voice. Contact Path will not silently start on a robotic Edge voice.</p>`);
       return;
     }
     speechSynthesis.speak(utter);
@@ -637,7 +637,7 @@ async function viewHome() {
         <div class="hero-glass">
           <p class="chip">${esc(t("greeting"))}</p>
           <h1>${esc(t("hero"))}</h1>
-          <p class="hero-lead">Channel to QM, drawn in place. The labels stay on the page if WebGL is missing.</p>
+          <p class="hero-lead">A contact comes in on a channel, follows a Studio script, reaches an agent by skill, and is reviewed in quality.</p>
           <ol class="contact-path" aria-label="Contact path">
             <li style="--step:0"><b>Channel</b><small>voice or digital</small></li>
             <li style="--step:1"><b>ACD</b><small>the queue</small></li>
@@ -720,7 +720,7 @@ async function viewTrack(id) {
     return `<a class="card holo" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${index + 1}. ${esc(shown.title)}</h2><span class="chip">${done ? "Studied" : esc(lesson.level)}</span></header><p>${esc(shown.summary)}</p></a>`;
   }).join("");
   const banner = currentLang() === "en" ? "" : mtNote(true);
-  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><div class="track-hero"><canvas class="icon-live" data-icon-kind="${esc(track.id)}" width="160" height="128" aria-hidden="true"></canvas><div class="iso-wrap">${isoIcon(track.id)}</div><div><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p>${banner}</div></div><div id="track-floor">${await trackFloor(track)}</div><div class="grid cards">${items}</div>`);
+  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Contact Path</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><div class="track-hero"><canvas class="icon-live" data-icon-kind="${esc(track.id)}" width="160" height="128" aria-hidden="true"></canvas><div class="iso-wrap">${isoIcon(track.id)}</div><div><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p>${banner}</div></div><div id="track-floor">${await trackFloor(track)}</div><div class="grid cards">${items}</div>`);
   renderRail("tracks");
   decorateFloor(document.getElementById("main"));
 }
@@ -739,7 +739,7 @@ async function viewLesson(trackId, lessonId) {
 }
 
 function viewMissing() {
-  setMain(`<h1>That path is not on the floor</h1><p>The link does not match a track, lesson, or tool. Head back to the floor or the track list.</p><p><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a></p>`);
+  setMain(`<h1>That page is not in Contact Path</h1><p>The link does not match a track, lesson, or tool. Head back to the start or the track list.</p><p><a href="#/">Contact Path</a> · <a href="#/tracks">Tracks</a></p>`);
   renderRail("home");
 }
 
@@ -974,7 +974,7 @@ function freshSim() {
       { name: "Eli", prof: 9, idle: 55, busy: 0 },
     ],
     queue: [],
-    log: ["Synthetic floor. Names are not real agents."],
+    log: ["Synthetic classroom trace. Names are not real agents."],
   };
 }
 
@@ -1117,7 +1117,7 @@ async function viewTopology() {
   const list = nodeList().map((label) => `<li>${esc(label)}</li>`).join("");
   setMain(`
     <h1>3D topology</h1>
-    <p class="lede">Orbit the floor. Toggle a failure to turn that path red. Drag to orbit, scroll to dolly. Reduced motion keeps the text map.</p>
+    <p class="lede">Turn the map and switch a failure on to see that path go red. If motion is reduced, the flat list stays.</p>
     <div class="topo-wrap">
       <div>
         <canvas id="topo" aria-label="Three-dimensional map of a NiCE CXone contact path"></canvas>
@@ -1169,11 +1169,11 @@ async function viewEcosystem() {
   const terms = glossary.map((item) => `<article class="card"><header><h2>${esc(item.term)}</h2></header><p>${esc(item.meaning)}</p><p class="sources">${citeLink(item.cite)}</p></article>`).join("");
   const sisters = (atlas.sisters || []).map((item) => `<article class="card"><header><h2>${esc(item.name)}</h2></header><p>${esc(item.does)}</p><p class="sources">${citeLink(atlas.cites && atlas.cites[item.cite])}</p></article>`).join("");
   setMain(`
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · Ecosystem</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Contact Path</a> · Ecosystem</nav>
     <h1>Ecosystem</h1>
     <p class="lede">Sister systems around the ACD: WFM, quality and recording, CRM, Enlighten, APIs, and the UCCE and Avaya bridges. The map is a study aid. Each edge is only as strong as its citation. The <a href="#/explorer">flow explorer</a> adds E911, analytics, and the troubleshooting tree.</p>
     <section class="identity">
-      <h2>Who keeps this floor</h2>
+      <h2>Who keeps Contact Path</h2>
       <p>Lucky is a lifelong student and an AI enthusiast. The path runs through systems, networking, voice, and the contact center, and it grows into AI omni-channel agents. This ecosystem is that wider study: workforce, quality, digital, CRM, and virtual agents sit beside the ACD, each one tied to a public page.</p>
       <p class="copy">© 2026 CypherMonkeyLabs 🐒</p>
     </section>
@@ -1230,7 +1230,7 @@ async function viewIncidents() {
 async function viewInterview() {
   const items = await ensureExtra("interview");
   const blocks = items.map((item, index) => `<article class="card"><header><h2>${index + 1}. ${esc(item.q)}</h2></header><p>${esc(item.a)}</p><p class="sources">${citeLink(item.cite)}</p></article>`).join("");
-  setMain(`<h1>Interview floor</h1><p class="lede">Answers stay inside what the cited page actually says. If a page is ambiguous, the answer says so.</p><div class="grid">${blocks}</div>`);
+  setMain(`<h1>Interview practice</h1><p class="lede">Answers stay inside what the cited page actually says. If a page is ambiguous, the answer says so.</p><div class="grid">${blocks}</div>`);
   renderRail("interview");
 }
 
@@ -1301,7 +1301,7 @@ async function route() {
     if (path === "#/lesson" || path === "#/lesson/") return viewTracks();
     return viewMissing();
   } catch (error) {
-    setMain(`<h1>The floor could not load</h1><p>${esc(error.message)}</p><p><button class="solid" type="button" id="retry">Try again</button></p>`);
+    setMain(`<h1>Contact Path could not load</h1><p>${esc(error.message)}</p><p><button class="solid" type="button" id="retry">Try again</button></p>`);
     document.getElementById("retry").addEventListener("click", () => route());
   }
 }

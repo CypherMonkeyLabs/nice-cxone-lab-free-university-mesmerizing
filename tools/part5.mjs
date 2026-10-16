@@ -177,7 +177,7 @@ export const part5 = [
       id: "promote",
       title: "Promote without surprising production",
       level: "intermediate", minutes: 9,
-      summary: "Production is the script name on the POC. A lab export from this floor is not a Studio import. Say both things in the change ticket.",
+      summary: "Production is the script name on the POC. A lab export from Contact Path is not a Studio import. Say both things in the change ticket.",
       objectives: ["Name the POC as the promote step", "Keep the lab file out of production instructions", "Retest the window after a paste"],
       figure: row("Two files", [
         { id: "l", label: "Lab JSON", sub: "not official", tone: 2 },
@@ -205,7 +205,7 @@ export const part5 = [
       ],
       cards: [["Lab file", "Review only."], ["POC select", "The promote."], ["One test per branch", "The proof."], ["Tell WFM", "When eligibility changes."]],
       lab: ["Write the ticket", "Four lines.", ["Script name that will be selected.", "Branches and skills.", "Bullseye windows, if any.", "Explicit sentence: lab JSON was not imported."], "The ticket can be audited."],
-      faults: [["Imported the lab file", "Someone asks operations to upload cxone-lab.studio JSON into production Studio.", "file=labSchema cxone-lab.studio/1", "That schema is this floor's. It is not a cited import format.", "Rebuild the actions in Studio and select the script on the POC.", "basicScript"]],
+      faults: [["Imported the lab file", "Someone asks operations to upload cxone-lab.studio JSON into production Studio.", "file=labSchema cxone-lab.studio/1", "That schema is this lab's. It is not a cited import format.", "Rebuild the actions in Studio and select the script on the POC.", "basicScript"]],
     }),
     quick({
       id: "virtual-hold",
