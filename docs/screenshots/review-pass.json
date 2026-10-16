@@ -1,0 +1,231 @@
+[
+  {
+    "view": "desk",
+    "label": "home",
+    "title": "NICE CXone Lab",
+    "h1": "Run the contact, not the brochure.",
+    "h1Top": 217,
+    "h1Bottom": 295,
+    "h1Clipped": false,
+    "tour": false,
+    "tourRight": null,
+    "tourBottom": null,
+    "inner": [
+      1440,
+      900
+    ],
+    "monkeys": 2,
+    "quick": "none",
+    "scrollW": 1425,
+    "clientW": 1425,
+    "file": "/workspace/docs/screenshots/review-desk-home.png"
+  },
+  {
+    "view": "desk",
+    "label": "room",
+    "title": "NICE CXone Lab",
+    "h1": "What the platform actually routes",
+    "h1Top": 587,
+    "h1Bottom": 635,
+    "h1Clipped": false,
+    "tour": false,
+    "tourRight": null,
+    "tourBottom": null,
+    "inner": [
+      1440,
+      900
+    ],
+    "monkeys": 2,
+    "quick": "none",
+    "scrollW": 1425,
+    "clientW": 1425,
+    "file": "/workspace/docs/screenshots/review-desk-room.png"
+  },
+  {
+    "view": "desk",
+    "label": "downloads",
+    "title": "NICE CXone Lab",
+    "h1": "Cheat Codes",
+    "h1Top": 491,
+    "h1Bottom": 539,
+    "h1Clipped": false,
+    "tour": false,
+    "tourRight": null,
+    "tourBottom": null,
+    "inner": [
+      1440,
+      900
+    ],
+    "monkeys": 2,
+    "quick": "none",
+    "scrollW": 1425,
+    "clientW": 1425,
+    "file": "/workspace/docs/screenshots/review-desk-downloads.png"
+  },
+  {
+    "view": "ipad",
+    "label": "home",
+    "title": "NICE CXone Lab",
+    "h1": "Run the contact, not the brochure.",
+    "h1Top": 133,
+    "h1Bottom": 163,
+    "h1Clipped": false,
+    "tour": false,
+    "tourRight": null,
+    "tourBottom": null,
+    "inner": [
+      768,
+      1024
+    ],
+    "monkeys": 2,
+    "quick": "flex",
+    "scrollW": 768,
+    "clientW": 768,
+    "file": "/workspace/docs/screenshots/review-ipad-home.png"
+  },
+  {
+    "view": "ipad",
+    "label": "room",
+    "title": "NICE CXone Lab",
+    "h1": "What the platform actually routes",
+    "h1Top": 513,
+    "h1Bottom": 546,
+    "h1Clipped": false,
+    "tour": false,
+    "tourRight": null,
+    "tourBottom": null,
+    "inner": [
+      768,
+      1024
+    ],
+    "monkeys": 2,
+    "quick": "flex",
+    "scrollW": 768,
+    "clientW": 768,
+    "file": "/workspace/docs/screenshots/review-ipad-room.png"
+  },
+  {
+    "view": "ipad",
+    "label": "downloads",
+    "title": "NICE CXone Lab",
+    "h1": "Cheat Codes",
+    "h1Top": 469,
+    "h1Bottom": 503,
+    "h1Clipped": false,
+    "tour": false,
+    "tourRight": null,
+    "tourBottom": null,
+    "inner": [
+      768,
+      1024
+    ],
+    "monkeys": 2,
+    "quick": "flex",
+    "scrollW": 768,
+    "clientW": 768,
+    "file": "/workspace/docs/screenshots/review-ipad-downloads.png"
+  },
+  {
+    "view": "phone",
+    "label": "home",
+    "title": "NICE CXone Lab",
+    "h1": "Run the contact, not the brochure.",
+    "h1Top": 103,
+    "h1Bottom": 132,
+    "h1Clipped": false,
+    "tour": false,
+    "tourRight": null,
+    "tourBottom": null,
+    "inner": [
+      390,
+      844
+    ],
+    "monkeys": 2,
+    "quick": "flex",
+    "scrollW": 390,
+    "clientW": 390,
+    "file": "/workspace/docs/screenshots/review-phone-home.png"
+  },
+  {
+    "view": "phone",
+    "label": "room",
+    "title": "NICE CXone Lab",
+    "h1": "What the platform actually routes",
+    "h1Top": 689,
+    "h1Bottom": 756,
+    "h1Clipped": false,
+    "tour": false,
+    "tourRight": null,
+    "tourBottom": null,
+    "inner": [
+      390,
+      844
+    ],
+    "monkeys": 2,
+    "quick": "flex",
+    "scrollW": 390,
+    "clientW": 390,
+    "file": "/workspace/docs/screenshots/review-phone-room.png"
+  },
+  {
+    "view": "phone",
+    "label": "downloads",
+    "title": "NICE CXone Lab",
+    "h1": "Cheat Codes",
+    "h1Top": 641,
+    "h1Bottom": 675,
+    "h1Clipped": false,
+    "tour": false,
+    "tourRight": null,
+    "tourBottom": null,
+    "inner": [
+      390,
+      844
+    ],
+    "monkeys": 2,
+    "quick": "flex",
+    "scrollW": 390,
+    "clientW": 390,
+    "file": "/workspace/docs/screenshots/review-phone-downloads.png"
+  },
+  {
+    "view": "desk",
+    "label": "tour",
+    "title": "NICE CXone Lab",
+    "h1": "Run the contact, not the brochure.",
+    "h1Top": 217,
+    "h1Bottom": 295,
+    "h1Clipped": false,
+    "tour": true,
+    "tourRight": 430,
+    "tourBottom": 828,
+    "inner": [
+      1440,
+      900
+    ],
+    "monkeys": 2,
+    "quick": "none",
+    "scrollW": 1425,
+    "clientW": 1425
+  },
+  {
+    "view": "phone",
+    "label": "tour",
+    "title": "NICE CXone Lab",
+    "h1": "Run the contact, not the brochure.",
+    "h1Top": 103,
+    "h1Bottom": 132,
+    "h1Clipped": false,
+    "tour": true,
+    "tourRight": 380,
+    "tourBottom": 772,
+    "inner": [
+      390,
+      844
+    ],
+    "monkeys": 2,
+    "quick": "flex",
+    "scrollW": 390,
+    "clientW": 390
+  }
+]

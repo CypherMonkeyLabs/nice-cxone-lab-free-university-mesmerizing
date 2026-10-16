@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
-import { gzipSync, readFileSync, existsSync, statSync } from "node:fs";
+import { readFileSync, existsSync, statSync } from "node:fs";
+import { gzipSync } from "node:zlib";
 import { join, dirname, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -37,6 +38,7 @@ createServer((req, res) => {
     res.writeHead(200, {
       "content-type": types[extname(file)] || "application/octet-stream",
       "content-encoding": "gzip",
+      "cache-control": "public, max-age=3600",
       vary: "accept-encoding",
     });
     res.end(body);

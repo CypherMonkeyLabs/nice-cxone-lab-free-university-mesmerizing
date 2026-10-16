@@ -247,7 +247,7 @@ function setMain(html) {
   }
   bindTilt(main);
   bindLightbox(main);
-  mountIconScenes(main);
+  if (liveCanvas()) mountIconScenes(main);
   state.reveal = revealIn(main);
 }
 
@@ -680,7 +680,11 @@ async function viewHome() {
   };
   tick();
   state.timers.add(setInterval(tick, 1000));
-  mountHero(document.getElementById("hero-webgl"));
+  if (liveCanvas()) mountHero(document.getElementById("hero-webgl"));
+}
+
+function liveCanvas() {
+  return !reducedMotion() && window.matchMedia("(min-width: 801px)").matches;
 }
 
 async function viewTracks() {

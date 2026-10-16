@@ -18,17 +18,19 @@ GitHub Pages works the same way: publish the repository and start at `campus/`. 
 
 ## Floor
 
-![Home, with the sixteen study tracks](docs/screenshots/home.png)
+Screenshots from the 2026-10-16 review, after the tour was stored as already finished:
 
-![A lesson walkthrough](docs/screenshots/lesson.png)
+![Home at 1440](docs/screenshots/review-desk-home.png)
 
-![Studio-style builder](docs/screenshots/studio.png)
+![A lesson](docs/screenshots/review-desk-room.png)
 
-![Routing simulator](docs/screenshots/routing.png)
+![Cheat Codes](docs/screenshots/review-desk-downloads.png)
 
-![3D topology](docs/screenshots/topology.png)
+![Home at 390](docs/screenshots/review-phone-home.png)
 
-![Mobile navigation](docs/screenshots/mobile.png)
+![Menu open on a phone](docs/screenshots/review-phone-menu.png)
+
+![Guide open on a phone](docs/screenshots/review-phone-bot.png)
 
 ## What you can do
 

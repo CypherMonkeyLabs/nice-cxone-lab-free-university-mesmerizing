@@ -1,4 +1,5 @@
-import { gzipSync, readFileSync, writeFileSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, statSync } from "node:fs";
+import { gzipSync } from "node:zlib";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 

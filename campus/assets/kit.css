@@ -110,6 +110,7 @@ html[data-theme="dusk"][data-ink="ink"] { --cc-ink: #f7f1ff; }
 .glow-ico { filter: drop-shadow(0 0 6px color-mix(in srgb, var(--cc-accent-1) 80%, transparent)); }
 
 h1, .hero-glass h1 { scroll-margin-top: 72px; }
+main { min-height: 100svh; }
 .hero-glass {
   max-height: none;
   overflow: visible;
@@ -331,6 +332,10 @@ html[data-motion="reduce"] .phone-menu { animation: none; }
 
 .quick-bar { display: none; }
 @media (max-width: 800px) {
+  html, body { overflow-x: clip; }
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .stage, main, article, .lesson-block { min-width: 0; max-width: 100%; }
+  .live-diagram, svg, img, table, pre { max-width: 100%; height: auto; }
   .rail, .top { display: none; }
   .quick-bar {
     display: flex;
@@ -372,7 +377,7 @@ html[data-motion="reduce"] .phone-menu { animation: none; }
     background: color-mix(in srgb, var(--cc-surface) 88%, transparent);
   }
   .hero-glass h1 { font-size: 1.45rem; line-height: 1.2; margin: 4px 0; }
-  main { padding-bottom: calc(var(--bottom-h, 64px) + 88px); }
+  main, .lab-foot { padding-bottom: calc(var(--bottom-h, 64px) + 140px); }
   .mascot-dock { width: 76px; height: 96px; top: auto; bottom: calc(var(--bottom-h, 64px) + 12px); }
   .mascot-dock svg { width: 76px; height: 96px; }
   .mascot-dock.is-greet { top: 46%; bottom: auto; width: 120px; height: 150px; }
