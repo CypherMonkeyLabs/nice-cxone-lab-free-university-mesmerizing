@@ -1,0 +1,155 @@
+{
+  "room": "platform",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Users, Data Access, and Security",
+      "url": "https://help.nicecxone.com/content/admin/welcometoadmin.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Users, Data Access, and Security",
+      "url": "https://help.nicecxone.com/content/admin/welcometoadmin.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "CRM Ticketing",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/crm%20ticketing/crm%20ticketing.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Migrated Calls",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/migratedinteractions/migratedinteractions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Automated Summary (AutoSummary) Setup",
+      "url": "https://help.nicecxone.com/content/aiassistantsandbots/agentassisthub/autosummary/autosummary.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Integrate Salesforce with Agent Workspace (Agent)",
+      "url": "https://help.nicecxone.com/content/Agent/agentapplicationadministration/cxoneagent/crmintegration/integratesalesforcewithcxa.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Users, Data Access, and Security",
+      "url": "https://help.nicecxone.com/content/admin/welcometoadmin.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Avaya CMS",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/avayacms.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Avaya CMS Legacy",
+      "url": "https://help.nicecxone.com/Content/workforcemanagement/avayacmslegacy.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Access Keys",
+      "url": "https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "External Identity Provider Authentication",
+      "url": "https://help.nicecxone.com/content/globalfeatures/authenticationandauthorization/setupaaexternalidp.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Notes de version 25.4",
+      "url": "https://help.nicecxone.com/fr/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "External Identity Provider Authentication",
+      "url": "https://help.nicecxone.com/content/globalfeatures/authenticationandauthorization/setupaaexternalidp.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.2 Release Notes",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Automated Summary (AutoSummary)",
+      "url": "https://help.nicecxone.com/Content/enlightenautosummary/enlightenautosummary.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "OpenID Connect Core 1.0",
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Channels",
+      "url": "https://help.nicecxone.com/content/ACD/digital/channels/digitalchannels.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Integrate Salesforce with Agent Workspace (Agent)",
+      "url": "https://help.nicecxone.com/content/Agent/agentapplicationadministration/cxoneagent/crmintegration/integratesalesforcewithcxa.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

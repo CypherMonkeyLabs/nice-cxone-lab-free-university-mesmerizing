@@ -1,0 +1,150 @@
+{
+  "room": "migration",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Migrated Calls",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/migratedinteractions/migratedinteractions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Engagement Hub",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/engagementhub.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Access Keys",
+      "url": "https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Recording Management (CXone)",
+      "url": "https://help.nicecxone.com/Content/recording/managerecordings.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Avaya CMS",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/avayacms.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Avaya CMS Legacy",
+      "url": "https://help.nicecxone.com/Content/workforcemanagement/avayacmslegacy.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Access Keys",
+      "url": "https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Migrated Calls",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/migratedinteractions/migratedinteractions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Migrated Calls",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/migratedinteractions/migratedinteractions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Engagement Hub",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/engagementhub.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Workforce Management (CXone)",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/welcometoworkforcemanagement.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

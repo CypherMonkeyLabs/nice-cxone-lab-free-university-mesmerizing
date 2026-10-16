@@ -1,0 +1,76 @@
+{
+  "room": "licensing",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "CRM Ticketing",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/crm%20ticketing/crm%20ticketing.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Migrated Calls",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/migratedinteractions/migratedinteractions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Automated Summary (AutoSummary) Setup",
+      "url": "https://help.nicecxone.com/content/aiassistantsandbots/agentassisthub/autosummary/autosummary.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Integrate Salesforce with Agent Workspace (Agent)",
+      "url": "https://help.nicecxone.com/content/Agent/agentapplicationadministration/cxoneagent/crmintegration/integratesalesforcewithcxa.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Interaction Analytics (CXone) Widget",
+      "url": "https://help.nicecxone.com/content/dashboardwem/iawidgets.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Club One",
+      "url": "https://www.nice.com/clubs/club-one",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "CXone Supervisor Certification",
+      "url": "https://www.credly.com/org/nice-ltd/badge/cxone-supervisor-certification",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NCIE CXone ACD/IVR",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncie-nice-certified-implementation-engineer-cxone-m.2",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NCIE CXone Mpower Digital Experience",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncie-nice-certified-implementation-engineer-cxone-m.3",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NCAP CXone Mpower Workforce Management",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "NCAP CXone Mpower Personal Connection",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    }
+  ]
+}

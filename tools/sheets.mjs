@@ -9,7 +9,13 @@ const atlas = JSON.parse(readFileSync(join(campus, "data", "atlas.json"), "utf8"
 const manifest = JSON.parse(readFileSync(join(campus, "data", "manifest.json"), "utf8"));
 const glossary = JSON.parse(readFileSync(join(campus, "data", "glossary.json"), "utf8"));
 
-const FOOT = "© 2026 CypherMonkeyLabs 🐒 · Visit my GitHub https://github.com/cipher0x9 · Visit the Labs org https://github.com/CypherMonkeyLabs · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Visit Cypher Monkey Labs https://cyphermonkeylabs.com · X https://x.com/Cypher0x9 · Hugging Face https://huggingface.co/Cypher0x9 · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content.";
+const FOOT = "© 2026 CypherMonkeyLabs 🐒 · https://cyphermonkeylabs.com · https://github.com/CypherMonkeyLabs · https://linktr.ee/cyphermonkey · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Independent, free, learning-only. Not affiliated. Trademarks belong to their owners. Nothing is sold. MIT code, CC BY-NC-SA content.";
+
+const CONFIRM_URLS = new Set([
+  "https://help.nicecxone.com/content/releasenotes/20262release.htm",
+  "https://www.credly.com/org/nice-ltd/badge/ncap-nice-certified-application-professional-cxone-.3",
+  "https://www.credly.com/org/nice-ltd/badge/ncap-nice-certified-application-professional-cxone-.5",
+]);
 
 function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
@@ -19,6 +25,20 @@ function esc(value) {
     '"': "&quot;",
     "'": "&#39;",
   }[ch]));
+}
+
+function hiddenCite(cite) {
+  return !cite || cite.confirm || !cite.url || CONFIRM_URLS.has(cite.url);
+}
+
+function citeAnchor(cite) {
+  if (hiddenCite(cite)) return `${esc(cite?.title || "Source")} — confirm`;
+  return `<a href="${esc(cite.url)}">${esc(cite.title)}</a> <span>last checked 2026-10</span>`;
+}
+
+function citePlain(cite) {
+  if (hiddenCite(cite)) return `${cite?.title || "Source"} — confirm`;
+  return `${cite.title} ${cite.url} last checked 2026-10`;
 }
 
 function page(title, body) {
@@ -45,7 +65,10 @@ function page(title, body) {
 </head>
 <body>
   <h1>${esc(title)}</h1>
+  <aside>Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. This lab is not affiliated and there is no endorsement. Removal or correction: https://cyphermonkeylabs.com/#contact. Nothing here is sold. The author is happy to volunteer.</aside>
   ${body}
+  <h2>Sources and go deeper</h2>
+  <p>Links below were opened, or the row says confirm and has no URL. Last checked 2026-10.</p>
   <footer>${esc(FOOT)}</footer>
 </body>
 </html>`;
@@ -99,8 +122,7 @@ function pdf(lines) {
 }
 
 function citeLine(key) {
-  const cite = atlas.cites[key];
-  return cite ? `${cite.title} ${cite.url}` : "";
+  return citePlain(atlas.cites[key]);
 }
 
 function writePair(stem, title, htmlBody, lines) {
@@ -108,12 +130,12 @@ function writePair(stem, title, htmlBody, lines) {
   const pdfLines = [
     title,
     "© 2026 CypherMonkeyLabs",
-    "Visit my GitHub https://github.com/cipher0x9",
-    "Visit the Labs org https://github.com/CypherMonkeyLabs",
+    "https://cyphermonkeylabs.com",
+    "https://github.com/CypherMonkeyLabs",
+    "https://linktr.ee/cyphermonkey",
     "Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing",
-    "Visit Cypher Monkey Labs https://cyphermonkeylabs.com",
-    "X https://x.com/Cypher0x9",
-    "Hugging Face https://huggingface.co/Cypher0x9",
+    "Independent, free, learning-only. Not affiliated.",
+    "Removal: https://cyphermonkeylabs.com/#contact",
     "",
   ].concat(lines);
   writeFileSync(join(out, `${stem}.pdf`), pdf(pdfLines));
@@ -129,7 +151,7 @@ writePair(
   atlas.ports.map((row) => `${row.port} ${row.proto} — ${row.use}`)
 );
 
-const flowBody = atlas.diagrams.map((item) => `<p><strong>${esc(item.title)}.</strong> ${esc(item.caption)} <a href="${esc(item.cite.url)}">${esc(item.cite.title)}</a></p>`).join("");
+const flowBody = atlas.diagrams.map((item) => `<p><strong>${esc(item.title)}.</strong> ${esc(item.caption)} ${citeAnchor(item.cite)}</p>`).join("");
 writePair(
   "flows",
   "Call and data flows",
@@ -139,7 +161,7 @@ writePair(
 
 function pageSheet(stem, title, id) {
   const source = atlas.pages.find((item) => item.id === id);
-  const html = source.blocks.map((block) => `<h2>${esc(block.h)}</h2>${block.p.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}<p>${block.cites.map((key) => `<a href="${esc(atlas.cites[key].url)}">${esc(atlas.cites[key].title)}</a>`).join(" · ")}</p>`).join("");
+  const html = source.blocks.map((block) => `<h2>${esc(block.h)}</h2>${block.p.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}<p>${block.cites.map((key) => citeAnchor(atlas.cites[key])).join(" · ")}</p>`).join("");
   const lines = source.blocks.flatMap((block) => [block.h].concat(block.p));
   writePair(stem, title, html, lines);
 }
@@ -189,6 +211,25 @@ writePair(
 );
 
 writePair(
+  "studio-snippet",
+  "Studio snippet classroom notes",
+  `<p>The SNIPPET page says custom code is written in Snippet. REST calls from SNIPPET are strongly discouraged. Use the REST API action or Integration Hub. Do not name a dynamic attribute __type. This file is classroom notes. It is not an official Studio export.</p><pre>{
+  "labSchema": "cxone-lab.studio/1",
+  "notOfficialStudioExport": true,
+  "actions": ["BEGIN", "SNIPPET", "REQAGENT"]
+}</pre><p>${citeAnchor(atlas.cites.snippet)}</p>`,
+  [
+    "Custom code is written in Snippet.",
+    "REST from SNIPPET is strongly discouraged.",
+    "Use the REST API action or Integration Hub.",
+    "This file is not an official Studio export.",
+    citeLine("snippet"),
+  ]
+);
+
+pageSheet("bridges", "Bridges from other contact centers", "bridges");
+
+writePair(
   "ai",
   "AI agents and summaries",
   `<p>Autopilot voice needs NiCE. Text needs Digital Experience. AutoSummary types are Structured, Generative, and Hybrid. Email is not supported.</p><p><a href="${esc(atlas.cites.autopilot.url)}">${esc(atlas.cites.autopilot.title)}</a> · <a href="${esc(atlas.cites.summary.url)}">${esc(atlas.cites.summary.title)}</a></p>`,
@@ -217,17 +258,29 @@ const tracks = {};
 for (const meta of manifest.tracks) {
   tracks[meta.id] = JSON.parse(readFileSync(join(campus, meta.file), "utf8"));
 }
+function scrub(value) {
+  if (Array.isArray(value)) return value.map(scrub);
+  if (!value || typeof value !== "object") return value;
+  const next = {};
+  for (const [key, item] of Object.entries(value)) next[key] = scrub(item);
+  if (typeof next.url === "string" && CONFIRM_URLS.has(next.url)) {
+    delete next.url;
+    next.confirm = true;
+  }
+  return next;
+}
+
 writeFileSync(join(out, "cxone-offline-pack.json"), JSON.stringify({
   product: "NICE CXone Lab offline pack",
   footer: FOOT,
   manifest,
-  glossary,
-  atlas,
-  tracks,
+  glossary: scrub(glossary),
+  atlas: scrub(atlas),
+  tracks: scrub(tracks),
 }));
 
 const links = [
-  "ports", "flows", "config", "troubleshoot", "glossary", "wfm", "recording", "e911", "crm-api", "ai", "licensing", "carrier", "security", "migration", "reporting", "flashcards",
+  "ports", "flows", "config", "troubleshoot", "glossary", "wfm", "recording", "e911", "crm-api", "ai", "licensing", "carrier", "security", "migration", "reporting", "flashcards", "studio-snippet", "bridges",
 ].map((stem) => `<li><a href="${stem}.html">${stem}</a> · <a href="${stem}.pdf">pdf</a> · <a href="${stem}.png">png</a></li>`).join("");
 writeFileSync(join(out, "index.html"), page("Cheat codes", `<ul>${links}</ul><p><a href="flashcards.json">flashcards.json</a> · <a href="cxone-offline-pack.json">cxone-offline-pack.json</a> · <a href="cxone-offline-bundle.zip">offline zip</a></p>`));
 console.log("sheets", cards.length, "cards");

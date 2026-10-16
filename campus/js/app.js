@@ -51,8 +51,11 @@ const settings = loadSettings();
 
 function loadSettings() {
   const base = {
-    theme: document.documentElement.dataset.theme || "dark",
+    theme: document.documentElement.dataset.theme || "vivid",
     font: document.documentElement.dataset.font || "md",
+    ink: document.documentElement.dataset.ink || "ink",
+    pitch: "1",
+    ambient: "off",
     sound: "on",
     narration: "off",
     voice: "",
@@ -71,6 +74,7 @@ function saveSettings() {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
   document.documentElement.dataset.theme = settings.theme;
   document.documentElement.dataset.font = settings.font;
+  document.documentElement.dataset.ink = settings.ink || "ink";
   document.documentElement.dataset.motion = settings.motion === "reduce" ? "reduce" : "full";
   document.documentElement.dataset.motionLock = settings.motionLock ? "1" : "0";
   window.dispatchEvent(new Event("cxone-theme"));
@@ -127,11 +131,18 @@ function safeUrl(value) {
   return "";
 }
 
+const CONFIRM_URLS = new Set([
+  "https://help.nicecxone.com/content/releasenotes/20262release.htm",
+  "https://www.credly.com/org/nice-ltd/badge/ncap-nice-certified-application-professional-cxone-.3",
+  "https://www.credly.com/org/nice-ltd/badge/ncap-nice-certified-application-professional-cxone-.5",
+]);
+
 function citeLink(cite) {
   if (!cite) return "";
+  if (cite.confirm || CONFIRM_URLS.has(cite.url)) return `${esc(cite.title || "Source")} — confirm`;
   const href = safeUrl(cite.url);
-  if (!href) return esc(cite.title || "");
-  return `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(cite.title || href)}</a>`;
+  if (!href) return `${esc(cite.title || "Source")} — confirm`;
+  return `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(cite.title || href)}</a> <span class="muted">last checked 2026-10</span>`;
 }
 
 function clearTimers() {
@@ -519,6 +530,9 @@ function lessonView(track, lesson) {
   return `
     <div class="read-layout"><article>
     <nav class="crumbs" aria-label="Breadcrumb" id="lesson-top"><a href="#/">Floor</a> · <a href="#/tracks">Tracks</a> · <a href="#/track/${esc(track.id)}">${esc(track.title)}</a> · ${esc(shown.title)}</nav>
+    <aside class="disclaimer-box">Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction in the website contact section. Nothing here is sold. The author is happy to volunteer.</aside>
+    <div class="room-tools"><button type="button" class="dl-html" data-export-room="lesson">Download this section</button></div>
+    <section class="learn-five"><h2>Learn in 5 minutes</h2><p>${esc(shown.summary)}</p></section>
     <p class="muted">${esc(lesson.level)} · ${esc(lesson.minutes)} min</p>
     <h1>${esc(shown.title)}</h1>
     ${mtNote(shown.mt)}
@@ -537,6 +551,8 @@ function lessonView(track, lesson) {
     <section id="fault-block"><h2>Fault and fix</h2>${faults}<p class="muted">Logs on this floor are synthetic classroom traces.</p></section>
     <div id="card-block">${cardsMarkup(lesson.cards)}</div>
     <div id="quiz-block">${quizMarkup(lesson)}</div>
+    <section class="eco-panel"><h2>Ecosystem</h2><p>This lesson sits on the ${esc(track.title)} track. The <a href="#/explorer">explorer</a> holds the glossary, mind map, sister technologies, and troubleshooting leaves. <a href="#/bridges">Bridges</a> keeps UCCE, Genesys, Amazon Connect, and the confirms for Five9 and Webex Contact Center apart.</p></section>
+    <section class="sources-block"><h2>Sources and go deeper</h2><p>Each block above names the page it paraphrases. A line marked confirm has no URL. Last checked 2026-10. <a href="data/sources/${esc(track.id)}.json">sources.json</a></p></section>
     <div class="row">
       ${prev ? `<a class="icon-btn" rel="prev" href="#/lesson/${esc(track.id)}/${esc(prev.id)}">Previous</a>` : ""}
       ${next ? `<a class="icon-btn" rel="next" href="#/lesson/${esc(track.id)}/${esc(next.id)}">Next lesson</a>` : `<a class="icon-btn" href="#/track/${esc(track.id)}">Back to track</a>`}
@@ -626,6 +642,11 @@ async function viewHome() {
         <div class="hero-glass">
           <p class="chip">${esc(t("greeting"))}</p>
           <h1>${esc(t("hero"))}</h1>
+          <div class="hero-controls" aria-label="Display and mascot">
+            <button type="button" data-theme-set="vivid">Bright</button>
+            <button type="button" data-theme-set="dark">Dark</button>
+            ${poses}
+          </div>
           <p class="ticker" id="study-clock" aria-live="polite"></p>
         </div>
         <div class="hero-counters">
@@ -1405,6 +1426,9 @@ function bindChrome() {
     settings.narration = data.get("narration");
     settings.voice = data.get("voice");
     settings.rate = data.get("rate");
+    settings.ink = data.get("ink") || "ink";
+    settings.pitch = data.get("pitch") || "1";
+    settings.ambient = data.get("ambient") || "off";
     settings.motion = data.get("motion");
     settings.motionLock = true;
     const nextLang = data.get("language");
@@ -1452,6 +1476,9 @@ async function openSettings(dialog) {
   form.sound.value = settings.sound;
   form.narration.value = settings.narration;
   form.rate.value = settings.rate;
+  if (form.ink) form.ink.value = settings.ink || "ink";
+  if (form.pitch) form.pitch.value = settings.pitch || "1";
+  if (form.ambient) form.ambient.value = settings.ambient || "off";
   form.motion.value = settings.motion;
   if (form.language) form.language.value = currentLang();
   const select = document.getElementById("voice-select");

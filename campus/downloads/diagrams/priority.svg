@@ -1,0 +1,5 @@
+<svg class="live-diagram" viewBox="0 0 760 180" role="img" aria-label="Overall priority"><style>:root,svg{--cc-accent-1:#22d3ee;--cc-accent-2:#f472b6;--cc-accent-3:#a3e635;--cc-accent-4:#fbbf24;--cc-surface:#fff7ed;--cc-ink:#102028;--cc-muted:#3c5360}</style><title>Overall priority</title>
+      <rect x="24" y="28" width="712" height="120" rx="20" fill="var(--cc-surface)" stroke="var(--cc-accent-1)"/>
+      <text x="380" y="78" text-anchor="middle" fill="var(--cc-accent-2)" font-size="22" font-family="ui-monospace, monospace">(time × acceleration) + initial</text>
+      <text x="380" y="114" text-anchor="middle" fill="var(--cc-ink)" font-size="14">initial 4, acceleration 1, 3 minutes → 7</text>
+    </svg>

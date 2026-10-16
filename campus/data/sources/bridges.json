@@ -1,0 +1,82 @@
+{
+  "room": "bridges",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Ports and Protocols by Application",
+      "url": "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Prepare Genesys T-Lib with SIPREC",
+      "url": "https://help.nicecxone.com/content/cxoneopenthirdparty/genesyssipserverandsiprec.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Amazon Connect",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/amazonconnect/amazon%20connect.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Customer Integration Guide - Amazon Connect",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/customerintegrationguideamazonconnect.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Prepare Amazon Connect Environment for Multi-ACD",
+      "url": "https://help.nicecxone.com/content/cxoneopenthirdparty/prepareamcenvironmentforcxoneacd.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Five9 bridge",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Webex Contact Center bridge",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Third-Party ACD SDK Developer Guide",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/thirdpartysdkdeveloperguide.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

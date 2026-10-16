@@ -3,7 +3,9 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const downloads = join(dirname(fileURLToPath(import.meta.url)), "..", "campus", "downloads");
-const sheets = readdirSync(downloads).filter((name) => name.endsWith(".html") && name !== "index.html");
+const sheets = readdirSync(downloads).filter((name) => name.endsWith(".html") && name !== "index.html" && name !== "test-table.html");
+const diagramDir = join(downloads, "diagrams");
+const diagrams = readdirSync(diagramDir).filter((name) => name.endsWith(".html")).map((name) => join("diagrams", name));
 const endpoint = "http://127.0.0.1:9222";
 
 function waitOpen(ws) {
@@ -51,7 +53,7 @@ if (!probe || !probe.ok) {
   process.exit(1);
 }
 
-for (const sheet of sheets) {
+for (const sheet of sheets.concat(diagrams)) {
   const png = join(downloads, sheet.replace(/\.html$/, ".png"));
   await shoot(`file://${join(downloads, sheet)}`, png);
   console.log("png", sheet);

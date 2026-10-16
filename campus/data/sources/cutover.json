@@ -1,0 +1,48 @@
+{
+  "room": "cutover",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Migrated Calls",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/migratedinteractions/migratedinteractions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Migrated Calls",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/migratedinteractions/migratedinteractions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Avaya CMS",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/avayacms.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Coming Soon in the 26.4 Release",
+      "url": "https://help.nicecxone.com/content/releasenotes/comingsoon.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

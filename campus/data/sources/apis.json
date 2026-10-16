@@ -1,0 +1,156 @@
+{
+  "room": "apis",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NICE CXone REST APIs",
+      "url": "https://developer.niceincontact.com/API",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Your App's Lifecycle",
+      "url": "https://developer.niceincontact.com/Documentation/YourAppLifeCycle",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "RFC 6749",
+      "url": "https://www.rfc-editor.org/rfc/rfc6749",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Access Keys",
+      "url": "https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Access Keys",
+      "url": "https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "OpenID Connect Core 1.0",
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Access Keys",
+      "url": "https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Access Keys",
+      "url": "https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Avaya CMS",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/avayacms.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Actions",
+      "url": "https://help.nicecxone.com/Content/studio/advanced/frameworkactions/apiactions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Action Basics",
+      "url": "https://help.nice-incontact.com/content/studio/fundamentals/actionbasicscx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NICE CXone REST APIs",
+      "url": "https://developer.niceincontact.com/API",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "GET NEXT EVENT",
+      "url": "https://help.nicecxone.com/content/studio/actionscx/getagentevents/getagentevents.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NICE CXone REST APIs",
+      "url": "https://developer.niceincontact.com/API",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

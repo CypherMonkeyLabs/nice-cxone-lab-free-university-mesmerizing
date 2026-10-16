@@ -1,0 +1,170 @@
+{
+  "room": "ecosystem",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "NCIE CXone ACD/IVR",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncie-nice-certified-implementation-engineer-cxone-m.2",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NCIE CXone Mpower Digital Experience",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncie-nice-certified-implementation-engineer-cxone-m.3",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NCAP CXone Mpower Workforce Management",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "NCAP CXone Mpower Personal Connection",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "CXone Supervisor Certification",
+      "url": "https://www.credly.com/org/nice-ltd/badge/cxone-supervisor-certification",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "CXone Supervisor Certification",
+      "url": "https://www.credly.com/org/nice-ltd/badge/cxone-supervisor-certification",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Club One",
+      "url": "https://www.nice.com/clubs/club-one",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Recording Management (CXone)",
+      "url": "https://help.nicecxone.com/Content/recording/managerecordings.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Release Process",
+      "url": "https://help.nicecxone.com/content/releasenotes/releaseprocess.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Service Notification Timeline",
+      "url": "https://help.nicecxone.com/content/releasenotes/releasenotificationtimeline.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.2 Release Notes",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Salesforce Agent Release History",
+      "url": "https://help.nicecxone.com/content/releasenotes/salesforceversionlog.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.2 Release Notes",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Automated Summary (AutoSummary)",
+      "url": "https://help.nicecxone.com/Content/enlightenautosummary/enlightenautosummary.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Coming Soon in the 26.4 Release",
+      "url": "https://help.nicecxone.com/content/releasenotes/comingsoon.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Notes de version 25.4",
+      "url": "https://help.nicecxone.com/fr/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Avaya CMS",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/avayacms.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Engagement Hub",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/engagementhub.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "CXone Studio",
+      "url": "https://www.nice.com/resources/cxone-studio",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Service Notification Timeline",
+      "url": "https://help.nicecxone.com/content/releasenotes/releasenotificationtimeline.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "CXone Studio",
+      "url": "https://www.nice.com/resources/cxone-studio",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Configure Priority for a Skill for Static Delivery",
+      "url": "https://help.nicecxone.com/content/ACD/routing/staticdelivery/configureskillpriority.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

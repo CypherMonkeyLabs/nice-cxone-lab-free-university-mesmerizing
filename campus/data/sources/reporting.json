@@ -1,0 +1,30 @@
+{
+  "room": "reporting",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Data and Reporting",
+      "url": "https://help.nicecxone.com/content/interactionanalyticspro/configurationandadministration/reportinganddata/reportinganddata.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Interaction Analytics (CXone) Widget",
+      "url": "https://help.nicecxone.com/content/dashboardwem/iawidgets.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Dashboard Permissions",
+      "url": "https://help.nicecxone.com/content/admin/security/permissions/cxonedashboardpermissions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Data and Reporting",
+      "url": "https://help.nicecxone.com/content/interactionanalyticspro/configurationandadministration/reportinganddata/reportinganddata.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # NICE CXone Lab
 
-Signal Floor is a free, static study campus for NiCE CXone. It covers ACD setup, Studio scripting, skills and routing, IVR, digital channels, workforce management, quality and recording, Enlighten Autopilot and AutoSummary, CXone APIs, CRM integrations, telephony, and bridges from Cisco UCCE and Avaya.
+Signal Floor is a free, static study campus for NiCE CXone. It covers ACD setup, Studio scripting, skills and routing, IVR, digital channels, workforce management, quality and recording, Enlighten Autopilot and AutoSummary, CXone APIs, CRM integrations, telephony, and the bridges a public NiCE page actually names. Five9 and Webex Contact Center connectors are marked confirm: no opened page named them. This lab does not claim NiCE production experience for Lucky.
 
 It is independent study material. It is not affiliated with NiCE. The Studio builder exports a classroom JSON file, not an official Studio script. The routing simulator uses the documented priority formula and labels its tie-break as a classroom rule.
 
@@ -37,7 +37,7 @@ GitHub Pages works the same way: publish the repository and start at `campus/`. 
 - Run the routing simulator. Overall priority is `(time × acceleration) + initial priority`. Personal Connection mode forces acceleration to 0.
 - Orbit a 3D topology and force a failure. Reduced motion, or a browser without WebGL, falls back to a list. Three.js is vendored. Nothing is loaded from a CDN at runtime.
 - Read the ecosystem glossary, work synthetic boss incidents, and practice interview answers that stay inside the cited page.
-- Switch among Signal (dark), Daylight, High contrast, and Dusk. Sound, narration, speech rate, reduced motion, and font size persist in `localStorage`. Narration waits for `voiceschanged` and will not silently start on a robotic Edge voice.
+- The default theme is bright (vivid). Dark, Signal, Futuristic, Gaming, Neon, Light, High contrast, and Dusk stay available. Font size and font colour persist in `localStorage`. Voice stays off until Listen or Voice input.
 
 ## Rebuild the lessons
 
@@ -59,7 +59,9 @@ Every lesson links to a public NiCE help page, the NiCE developer portal, an RFC
 - The 26.3 cycle and the 26.4 Coming Soon window overlap. Both dates are quoted.
 - English 25.4 release notes were not available when this campus was written. The French 25.4 page is cited instead.
 - The WFM UCCE connector page says version 11.6. The Multi-ACD recording table says UCCE 12.6 and 15. They are different products.
-- No exam codes, prices, SIP header lists, or Webex versions are invented.
+- No exam codes, prices, or SIP header lists are invented.
+- A direct open of the stored 26.2 release-notes URL, and of two NCAP Credly URLs, returned 404 on 2026-10-16. Those lines say confirm and the URL is left off.
+- Five9 and Webex Contact Center are confirm. Genesys on this floor is the T-Lib / SIPREC recording page, not a named WFM connector.
 
 ## University layer
 

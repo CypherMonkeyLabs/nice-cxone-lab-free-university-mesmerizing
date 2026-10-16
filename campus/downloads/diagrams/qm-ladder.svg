@@ -1,0 +1,17 @@
+<svg class="live-diagram flow-ladder" viewBox="0 0 760 270" role="img" aria-label="Recording ladder"><style>:root,svg{--cc-accent-1:#22d3ee;--cc-accent-2:#f472b6;--cc-accent-3:#a3e635;--cc-accent-4:#fbbf24;--cc-surface:#fff7ed;--cc-ink:#102028;--cc-muted:#3c5360}</style><title>Recording ladder</title><text x="80" y="28" text-anchor="middle" fill="var(--cc-ink)" font-size="13">Talk</text>
+      <line x1="80" y1="40" x2="80" y2="258" stroke="var(--cc-muted)" stroke-dasharray="3 5" opacity="0.55"/><text x="280" y="28" text-anchor="middle" fill="var(--cc-ink)" font-size="13">Recorder</text>
+      <line x1="280" y1="40" x2="280" y2="258" stroke="var(--cc-muted)" stroke-dasharray="3 5" opacity="0.55"/><text x="480" y="28" text-anchor="middle" fill="var(--cc-ink)" font-size="13">Hold</text>
+      <line x1="480" y1="40" x2="480" y2="258" stroke="var(--cc-muted)" stroke-dasharray="3 5" opacity="0.55"/><text x="680" y="28" text-anchor="middle" fill="var(--cc-ink)" font-size="13">QM</text>
+      <line x1="680" y1="40" x2="680" y2="258" stroke="var(--cc-muted)" stroke-dasharray="3 5" opacity="0.55"/><path id="pw139" class="wire" d="M 80 64 L 280 64" fill="none" stroke="var(--cc-accent-1)" stroke-width="2.5" stroke-dasharray="7 5"></path>
+      
+      <polygon points="280,64 271,60 271,68" fill="var(--cc-accent-2)"/>
+      <text x="180" y="56" text-anchor="middle" fill="var(--cc-ink)" font-size="12">Record talk</text><path id="pw140" class="wire" d="M 480 112 L 280 112" fill="none" stroke="var(--cc-accent-2)" stroke-width="2.5" stroke-dasharray="7 5"></path>
+      
+      <polygon points="280,112 289,108 289,116" fill="var(--cc-accent-2)"/>
+      <text x="380" y="104" text-anchor="middle" fill="var(--cc-ink)" font-size="12">Hold music dropped</text><path id="pw141" class="wire" d="M 80 160 L 280 160" fill="none" stroke="var(--cc-accent-3)" stroke-width="2.5" stroke-dasharray="7 5"></path>
+      
+      <polygon points="280,160 271,156 271,164" fill="var(--cc-accent-2)"/>
+      <text x="180" y="152" text-anchor="middle" fill="var(--cc-ink)" font-size="12">Consult on hold kept</text><path id="pw142" class="wire" d="M 280 208 L 680 208" fill="none" stroke="var(--cc-accent-4)" stroke-width="2.5" stroke-dasharray="7 5"></path>
+      
+      <polygon points="680,208 671,204 671,212" fill="var(--cc-accent-2)"/>
+      <text x="480" y="200" text-anchor="middle" fill="var(--cc-ink)" font-size="12">Review</text></svg>
