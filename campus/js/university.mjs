@@ -364,12 +364,12 @@ function drawCard(score, total) {
   ctx.strokeRect(24, 24, 852, 432);
   ctx.fillStyle = "#ffb020";
   ctx.font = "28px Georgia, serif";
-  ctx.fillText("Signal Floor · NICE CXone Lab", 48, 90);
+  ctx.fillText("Contact Path · NICE CXone Lab", 48, 90);
   ctx.fillStyle = "#e8f4f6";
   ctx.font = "64px Georgia, serif";
   ctx.fillText(`${score} / ${total}`, 48, 190);
   ctx.font = "22px sans-serif";
-  ctx.fillText("Ports mastery on an independent study floor.", 48, 250);
+  ctx.fillText("Ports mastery on the Contact Path lab.", 48, 250);
   ctx.fillStyle = "#8adfff";
   ctx.fillText("https://cyphermonkeylabs.com", 48, 330);
   ctx.fillStyle = "#a9c0c9";

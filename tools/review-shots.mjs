@@ -70,13 +70,33 @@ async function metrics(send) {
       const overlap = disc && foot ? disc.getBoundingClientRect().bottom > foot.getBoundingClientRect().bottom + 2 : false;
       return JSON.stringify({
         title: document.title,
+        brand: (document.querySelector(".topbar .brand-name") || {}).innerText || null,
         h1: h1 ? h1.textContent.slice(0, 80) : null,
         h1Top: r && Math.round(r.top),
         h1Bottom: r && Math.round(r.bottom),
         h1Clipped: r ? r.top < (br ? br.bottom : 0) - 1 : true,
         tour: !!tour,
+        tourLeft: tr && Math.round(tr.left),
         tourRight: tr && Math.round(tr.right),
+        tourTop: tr && Math.round(tr.top),
         tourBottom: tr && Math.round(tr.bottom),
+        tourOverH1: tr && r ? !(tr.right < r.left || tr.left > r.right || tr.bottom < r.top || tr.top > r.bottom) : false,
+        pathSize: (() => { const el = document.querySelector(".contact-path b"); return el ? Math.round(parseFloat(getComputedStyle(el).fontSize)) : null; })(),
+        canvasShown: [...document.querySelectorAll(".hero-stage canvas")].some((c) => getComputedStyle(c).display !== "none"),
+        mascot: (() => { const m = document.getElementById("mascot-dock"); const mr = m && m.getBoundingClientRect(); return mr ? [Math.round(mr.width), Math.round(mr.height), Math.round(mr.left), Math.round(mr.top)] : null; })(),
+        lastChip: (() => {
+          const scroller = document.querySelector(".banner-scroll");
+          const chip = scroller && scroller.querySelector("a:last-of-type");
+          if (!scroller || !chip) return null;
+          const sr = scroller.getBoundingClientRect();
+          const cr = chip.getBoundingClientRect();
+          scroller.scrollLeft = scroller.scrollWidth;
+          const end = chip.getBoundingClientRect();
+          const endRight = Math.round(end.right);
+          const scrollerRight = Math.round(scroller.getBoundingClientRect().right);
+          scroller.scrollLeft = 0;
+          return { clippedAtRest: cr.right > sr.right + 1, endGap: scrollerRight - endRight, label: chip.textContent.trim() };
+        })(),
         inner: [innerWidth, innerHeight],
         monkeys,
         quick: qr,

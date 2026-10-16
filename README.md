@@ -1,6 +1,6 @@
 # NICE CXone Lab
 
-Signal Floor is a free, static study campus for NiCE CXone. It covers ACD setup, Studio scripting, skills and routing, IVR, digital channels, workforce management, quality and recording, Enlighten Autopilot and AutoSummary, CXone APIs, CRM integrations, telephony, and the bridges a public NiCE page actually names. Five9 and Webex Contact Center connectors are marked confirm: no opened page named them. This lab does not claim NiCE production experience for Lucky.
+Contact Path is a free, static study campus for NiCE CXone. It covers ACD setup, Studio scripting, skills and routing, IVR, digital channels, workforce management, quality and recording, Enlighten Autopilot and AutoSummary, CXone APIs, CRM integrations, telephony, and the bridges a public NiCE page actually names. Five9 and Webex Contact Center connectors are marked confirm: no opened page named them. This lab does not claim NiCE production experience for Lucky.
 
 It is independent study material. It is not affiliated with NiCE. The Studio builder exports a classroom JSON file, not an official Studio script. The routing simulator uses the documented priority formula and labels its tie-break as a classroom rule.
 

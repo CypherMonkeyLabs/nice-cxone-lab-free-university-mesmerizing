@@ -2,14 +2,31 @@
   {
     "view": "desk",
     "label": "home",
-    "title": "NICE CXone Lab",
-    "h1": "Run the contact, not the brochure.",
-    "h1Top": 217,
-    "h1Bottom": 295,
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path\nNICE CXone",
+    "h1": "Contact Path",
+    "h1Top": 185,
+    "h1Bottom": 243,
     "h1Clipped": false,
     "tour": false,
+    "tourLeft": null,
     "tourRight": null,
+    "tourTop": null,
     "tourBottom": null,
+    "tourOverH1": false,
+    "pathSize": 15,
+    "canvasShown": false,
+    "mascot": [
+      168,
+      200,
+      1241,
+      680
+    ],
+    "lastChip": {
+      "clippedAtRest": true,
+      "endGap": 36,
+      "label": "▣ Careers"
+    },
     "inner": [
       1440,
       900
@@ -23,14 +40,31 @@
   {
     "view": "desk",
     "label": "room",
-    "title": "NICE CXone Lab",
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path\nNICE CXone",
     "h1": "What the platform actually routes",
-    "h1Top": 587,
-    "h1Bottom": 635,
+    "h1Top": 528,
+    "h1Bottom": 575,
     "h1Clipped": false,
     "tour": false,
+    "tourLeft": null,
     "tourRight": null,
+    "tourTop": null,
     "tourBottom": null,
+    "tourOverH1": false,
+    "pathSize": null,
+    "canvasShown": false,
+    "mascot": [
+      168,
+      200,
+      1241,
+      680
+    ],
+    "lastChip": {
+      "clippedAtRest": true,
+      "endGap": 36,
+      "label": "▣ Careers"
+    },
     "inner": [
       1440,
       900
@@ -44,14 +78,31 @@
   {
     "view": "desk",
     "label": "downloads",
-    "title": "NICE CXone Lab",
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path\nNICE CXone",
     "h1": "Cheat Codes",
-    "h1Top": 491,
-    "h1Bottom": 539,
+    "h1Top": 432,
+    "h1Bottom": 479,
     "h1Clipped": false,
     "tour": false,
+    "tourLeft": null,
     "tourRight": null,
+    "tourTop": null,
     "tourBottom": null,
+    "tourOverH1": false,
+    "pathSize": null,
+    "canvasShown": false,
+    "mascot": [
+      168,
+      200,
+      1241,
+      680
+    ],
+    "lastChip": {
+      "clippedAtRest": true,
+      "endGap": 36,
+      "label": "▣ Careers"
+    },
     "inner": [
       1440,
       900
@@ -65,14 +116,31 @@
   {
     "view": "ipad",
     "label": "home",
-    "title": "NICE CXone Lab",
-    "h1": "Run the contact, not the brochure.",
-    "h1Top": 133,
-    "h1Bottom": 163,
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path",
+    "h1": "Contact Path",
+    "h1Top": 189,
+    "h1Bottom": 221,
     "h1Clipped": false,
     "tour": false,
+    "tourLeft": null,
     "tourRight": null,
+    "tourTop": null,
     "tourBottom": null,
+    "tourOverH1": false,
+    "pathSize": 15,
+    "canvasShown": false,
+    "mascot": [
+      112,
+      136,
+      640,
+      876
+    ],
+    "lastChip": {
+      "clippedAtRest": false,
+      "endGap": 0,
+      "label": "▣ Careers"
+    },
     "inner": [
       768,
       1024
@@ -86,14 +154,31 @@
   {
     "view": "ipad",
     "label": "room",
-    "title": "NICE CXone Lab",
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path",
     "h1": "What the platform actually routes",
-    "h1Top": 513,
-    "h1Bottom": 546,
+    "h1Top": 532,
+    "h1Bottom": 565,
     "h1Clipped": false,
     "tour": false,
+    "tourLeft": null,
     "tourRight": null,
+    "tourTop": null,
     "tourBottom": null,
+    "tourOverH1": false,
+    "pathSize": null,
+    "canvasShown": false,
+    "mascot": [
+      112,
+      136,
+      640,
+      876
+    ],
+    "lastChip": {
+      "clippedAtRest": false,
+      "endGap": 0,
+      "label": "▣ Careers"
+    },
     "inner": [
       768,
       1024
@@ -107,14 +192,31 @@
   {
     "view": "ipad",
     "label": "downloads",
-    "title": "NICE CXone Lab",
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path",
     "h1": "Cheat Codes",
-    "h1Top": 469,
-    "h1Bottom": 503,
+    "h1Top": 488,
+    "h1Bottom": 522,
     "h1Clipped": false,
     "tour": false,
+    "tourLeft": null,
     "tourRight": null,
+    "tourTop": null,
     "tourBottom": null,
+    "tourOverH1": false,
+    "pathSize": null,
+    "canvasShown": false,
+    "mascot": [
+      112,
+      136,
+      640,
+      876
+    ],
+    "lastChip": {
+      "clippedAtRest": false,
+      "endGap": 0,
+      "label": "▣ Careers"
+    },
     "inner": [
       768,
       1024
@@ -128,14 +230,31 @@
   {
     "view": "phone",
     "label": "home",
-    "title": "NICE CXone Lab",
-    "h1": "Run the contact, not the brochure.",
-    "h1Top": 103,
-    "h1Bottom": 132,
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path",
+    "h1": "Contact Path",
+    "h1Top": 159,
+    "h1Bottom": 190,
     "h1Clipped": false,
     "tour": false,
+    "tourLeft": null,
     "tourRight": null,
+    "tourTop": null,
     "tourBottom": null,
+    "tourOverH1": false,
+    "pathSize": 15,
+    "canvasShown": false,
+    "mascot": [
+      112,
+      136,
+      262,
+      640
+    ],
+    "lastChip": {
+      "clippedAtRest": false,
+      "endGap": 0,
+      "label": "▣ Careers"
+    },
     "inner": [
       390,
       844
@@ -149,14 +268,31 @@
   {
     "view": "phone",
     "label": "room",
-    "title": "NICE CXone Lab",
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path",
     "h1": "What the platform actually routes",
-    "h1Top": 689,
-    "h1Bottom": 756,
+    "h1Top": 708,
+    "h1Bottom": 775,
     "h1Clipped": false,
     "tour": false,
+    "tourLeft": null,
     "tourRight": null,
+    "tourTop": null,
     "tourBottom": null,
+    "tourOverH1": false,
+    "pathSize": null,
+    "canvasShown": false,
+    "mascot": [
+      112,
+      136,
+      262,
+      640
+    ],
+    "lastChip": {
+      "clippedAtRest": false,
+      "endGap": 0,
+      "label": "▣ Careers"
+    },
     "inner": [
       390,
       844
@@ -170,14 +306,31 @@
   {
     "view": "phone",
     "label": "downloads",
-    "title": "NICE CXone Lab",
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path",
     "h1": "Cheat Codes",
-    "h1Top": 641,
-    "h1Bottom": 675,
+    "h1Top": 660,
+    "h1Bottom": 694,
     "h1Clipped": false,
     "tour": false,
+    "tourLeft": null,
     "tourRight": null,
+    "tourTop": null,
     "tourBottom": null,
+    "tourOverH1": false,
+    "pathSize": null,
+    "canvasShown": false,
+    "mascot": [
+      112,
+      136,
+      262,
+      640
+    ],
+    "lastChip": {
+      "clippedAtRest": false,
+      "endGap": 0,
+      "label": "▣ Careers"
+    },
     "inner": [
       390,
       844
@@ -191,14 +344,31 @@
   {
     "view": "desk",
     "label": "tour",
-    "title": "NICE CXone Lab",
-    "h1": "Run the contact, not the brochure.",
-    "h1Top": 217,
-    "h1Bottom": 295,
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path\nNICE CXone",
+    "h1": "Contact Path",
+    "h1Top": 185,
+    "h1Bottom": 243,
     "h1Clipped": false,
     "tour": true,
-    "tourRight": 430,
-    "tourBottom": 828,
+    "tourLeft": 1064,
+    "tourRight": 1424,
+    "tourTop": 106,
+    "tourBottom": 358,
+    "tourOverH1": false,
+    "pathSize": 15,
+    "canvasShown": false,
+    "mascot": [
+      168,
+      200,
+      1241,
+      680
+    ],
+    "lastChip": {
+      "clippedAtRest": true,
+      "endGap": 36,
+      "label": "▣ Careers"
+    },
     "inner": [
       1440,
       900
@@ -211,14 +381,31 @@
   {
     "view": "phone",
     "label": "tour",
-    "title": "NICE CXone Lab",
-    "h1": "Run the contact, not the brochure.",
-    "h1Top": 103,
-    "h1Bottom": 132,
+    "title": "Contact Path · NICE CXone Lab",
+    "brand": "Contact Path",
+    "h1": "Contact Path",
+    "h1Top": 159,
+    "h1Bottom": 190,
     "h1Clipped": false,
     "tour": true,
-    "tourRight": 380,
+    "tourLeft": 16,
+    "tourRight": 238,
+    "tourTop": 562,
     "tourBottom": 772,
+    "tourOverH1": false,
+    "pathSize": 15,
+    "canvasShown": false,
+    "mascot": [
+      112,
+      136,
+      262,
+      640
+    ],
+    "lastChip": {
+      "clippedAtRest": false,
+      "endGap": 0,
+      "label": "▣ Careers"
+    },
     "inner": [
       390,
       844

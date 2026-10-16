@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>NICE CXone Lab</title>
-  <meta name="description" content="Free study floor for NiCE CXone: ACD, Studio, skills and routing, IVR, digital channels, WEM, Enlighten, APIs, CRM, telephony, and migration from Cisco UCCE and Avaya.">
+  <title>Contact Path · NICE CXone Lab</title>
+  <meta name="description" content="Contact Path is a free study lab for NiCE CXone: ACD, Studio, skills and routing, IVR, digital channels, WEM, Enlighten, APIs, CRM, telephony, and bridges from other contact centers.">
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/app.css">
@@ -34,7 +34,7 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="topbar">
     <button type="button" class="header-menu" id="open-menu" aria-haspopup="dialog" aria-controls="phone-menu">Menu</button>
-    <a class="brand" href="#/"><span class="mark" aria-hidden="true"></span><span>Signal Floor</span></a>
+    <a class="brand" href="#/" aria-label="Contact Path, NICE CXone lab"><span class="mark" aria-hidden="true"><svg class="lab-logo" viewBox="0 0 64 64"><defs><linearGradient id="cp-logo-bar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset=".55" stop-color="#7c3aed"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#cp-logo-bar)"/><path d="M8 46h14l6-18h8l6 18h14" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="46" r="3" fill="#fff"/><circle cx="56" cy="46" r="3" fill="#fff"/><circle cx="32" cy="22" r="9" fill="#fde68a" stroke="#9a3412" stroke-width="1.5"/><circle cx="23" cy="18" r="3.4" fill="#f59e0b" stroke="#9a3412" stroke-width="1"/><circle cx="41" cy="18" r="3.4" fill="#f59e0b" stroke="#9a3412" stroke-width="1"/><circle cx="28.5" cy="22" r="2.6" fill="#fff" stroke="#1e1b4b" stroke-width="1.1"/><circle cx="35.5" cy="22" r="2.6" fill="#fff" stroke="#1e1b4b" stroke-width="1.1"/><path d="M31 22h2" stroke="#1e1b4b" stroke-width="1.2" stroke-linecap="round"/></svg></span><span class="brand-name"><b>Contact Path</b><small>NICE CXone</small></span></a>
     <nav class="study-menu banner-scroll" aria-label="Study">
       <a class="section-chip" href="#/tracks" data-nav="tracks"><span class="glow-ico" aria-hidden="true">≡</span> <span>Learn</span></a>
       <a class="section-chip" href="#/diagrams" data-nav="diagrams"><span class="glow-ico" aria-hidden="true">◇</span> <span>Diagrams</span></a>
@@ -46,24 +46,21 @@
       <a class="section-chip" href="#/ecosystem" data-nav="ecosystem"><span class="glow-ico" aria-hidden="true">◎</span> <span>Ecosystem</span></a>
       <a class="section-chip" href="#/downloads" data-nav="downloads-hub"><span class="glow-ico" aria-hidden="true">↓</span> <span>Downloads</span></a>
       <a class="section-chip" href="#/careers" data-nav="careers"><span class="glow-ico" aria-hidden="true">▣</span> <span>Careers</span></a>
-      <span class="theme-switch" role="group" aria-label="Theme">
-        <button type="button" data-theme-set="vivid">Bright</button>
-        <button type="button" data-theme-set="dark">Dark</button>
-        <button type="button" data-theme-set="futuristic">Futuristic</button>
-        <button type="button" data-theme-set="gaming">Gaming</button>
-        <button type="button" data-theme-set="neon">Neon</button>
-        <button type="button" data-theme-set="light">Light</button>
-      </span>
-      <button type="button" id="download-pack">Offline pack</button>
     </nav>
+    <form class="search bar-search" id="search-form" role="search">
+      <label class="sr" for="q">Search lessons</label>
+      <input id="q" name="q" type="search" placeholder="Search lessons" data-i18n-placeholder="search" autocomplete="off">
+      <button class="solid" type="submit">Search</button>
+    </form>
+    <button class="icon-btn" type="button" id="open-settings" data-open-settings>Settings</button>
   </header>
   <svg class="pkt-defs" width="0" height="0" aria-hidden="true"><defs><filter id="pktglow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs></svg>
   <div id="fly-layer" class="fly-layer" hidden aria-hidden="true"></div>
   <div class="shell">
     <aside class="rail" aria-label="Primary">
       <a class="brand" href="#/">
-        <span class="mark" aria-hidden="true"></span>
-        <span><b>Signal Floor</b><span>NICE CXone Lab</span></span>
+        <span class="mark" aria-hidden="true"><svg class="lab-logo" viewBox="0 0 64 64"><defs><linearGradient id="cp-logo-rail" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset=".55" stop-color="#7c3aed"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#cp-logo-rail)"/><path d="M8 46h14l6-18h8l6 18h14" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="46" r="3" fill="#fff"/><circle cx="56" cy="46" r="3" fill="#fff"/><circle cx="32" cy="22" r="9" fill="#fde68a" stroke="#9a3412" stroke-width="1.5"/><circle cx="23" cy="18" r="3.4" fill="#f59e0b" stroke="#9a3412" stroke-width="1"/><circle cx="41" cy="18" r="3.4" fill="#f59e0b" stroke="#9a3412" stroke-width="1"/><circle cx="28.5" cy="22" r="2.6" fill="#fff" stroke="#1e1b4b" stroke-width="1.1"/><circle cx="35.5" cy="22" r="2.6" fill="#fff" stroke="#1e1b4b" stroke-width="1.1"/><path d="M31 22h2" stroke="#1e1b4b" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+        <span class="brand-name"><b>Contact Path</b><small>NICE CXone Lab</small></span>
       </a>
       <form class="menu-search rail-search" id="rail-search">
         <label class="sr" for="rail-q">Filter the menu</label>
@@ -75,11 +72,6 @@
     </aside>
     <div class="stage">
       <header class="top">
-        <form class="search" id="search-form" role="search">
-          <label class="sr" for="q">Search lessons</label>
-          <input id="q" name="q" type="search" placeholder="Search skills, Studio, Autopilot, UCCE…" data-i18n-placeholder="search" autocomplete="off">
-          <button class="solid" type="submit">Search</button>
-        </form>
         <label class="lang-label">Language
           <select id="lang" data-lang-select aria-label="Language">
             <option value="en">English</option>
@@ -93,14 +85,14 @@
           </select>
         </label>
         <span class="chip" id="net-chip">Online</span>
-        <button class="icon-btn" type="button" id="open-settings" data-open-settings>Settings</button>
       </header>
       <main id="main" tabindex="-1">
-        <h1>NICE CXone Lab</h1>
-        <p>Loading the floor…</p>
+        <h1>Contact Path</h1>
+        <p>Loading the NICE CXone lab…</p>
       </main>
       <footer class="lab-foot" data-canon-footer>
         <aside class="disclaimer-box">Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction in the <a href="https://cyphermonkeylabs.com/#contact">website contact section</a>. Nothing here is sold. The author is happy to volunteer.</aside>
+        <p class="labs-line">Contact Path · NICE CXone Lab</p>
         <p class="labs-line">CypherMonkey Labs</p>
         <nav class="brand-row" aria-label="CypherMonkey Labs">
           <a href="https://cyphermonkeylabs.com"><svg class="glasses-monkey" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="36" r="16" fill="#c47a3a"/><circle cx="16" cy="22" r="7" fill="#c47a3a"/><circle cx="48" cy="22" r="7" fill="#c47a3a"/><rect x="18" y="32" width="28" height="10" rx="4" fill="none" stroke="#22d3ee" stroke-width="3"/><circle cx="24" cy="37" r="3" fill="#24143a"/><circle cx="40" cy="37" r="3" fill="#24143a"/></svg><span>Website</span></a>
@@ -182,7 +174,7 @@
         </select>
       </label>
       <span class="theme-switch" role="group" aria-label="Theme">
-        <button type="button" data-theme-set="dark">Signal</button>
+        <button type="button" data-theme-set="dark">Dark</button>
         <button type="button" data-theme-set="futuristic">Futuristic</button>
         <button type="button" data-theme-set="gaming">Gaming</button>
         <button type="button" data-theme-set="neon">Neon</button>
@@ -201,23 +193,38 @@
           <option value="violet">Violet</option>
         </select>
       </label>
-      <button type="button" data-listen aria-pressed="false">Listen</button>
+        <button type="button" data-listen aria-pressed="false">Listen</button>
+        <button type="button" id="download-pack">Offline pack</button>
     </div>
     <p class="muted">Brand links are in the footer: website, GitHub organization, and Linktree.</p>
   </div>
   <button class="mascot-dock" id="mascot-dock" type="button" data-pose="still" aria-label="CypherMonkey mascot. Activate to change pose.">
-    <svg viewBox="0 0 120 150" aria-hidden="true">
-      <ellipse class="tail" cx="92" cy="112" rx="16" ry="8" fill="#c47a3a"/>
-      <ellipse cx="60" cy="108" rx="28" ry="24" fill="#8a4b24"/>
-      <circle cx="60" cy="58" r="30" fill="#c47a3a"/>
-      <circle cx="34" cy="40" r="12" fill="#c47a3a"/>
-      <circle cx="86" cy="40" r="12" fill="#c47a3a"/>
-      <ellipse class="eye" cx="48" cy="62" rx="6" ry="7" fill="#1b120c"/>
-      <ellipse class="eye" cx="74" cy="62" rx="6" ry="7" fill="#1b120c"/>
-      <ellipse class="brow" cx="48" cy="52" rx="7" ry="2" fill="#6b3416"/>
-      <path d="M50 74 Q60 82 72 74" fill="none" stroke="#1b120c" stroke-width="2"/>
-      <g class="arm"><path d="M34 84 Q16 70 22 52" fill="none" stroke="#8a4b24" stroke-width="8" stroke-linecap="round"/></g>
-      <g class="phones"><path d="M38 50 h44" stroke="#3ecbff" stroke-width="4"/><circle cx="36" cy="62" r="8" fill="none" stroke="#3ecbff" stroke-width="3"/><circle cx="84" cy="62" r="8" fill="none" stroke="#3ecbff" stroke-width="3"/></g>
+    <svg viewBox="0 0 220 250" aria-hidden="true">
+      <ellipse cx="110" cy="232" rx="58" ry="10" fill="rgba(0,0,0,.28)"/>
+      <path class="tail" d="M156 168 C198 168 204 108 164 92" fill="none" stroke="#c47a3a" stroke-width="12" stroke-linecap="round"/>
+      <path class="cape" d="M68 140 C36 190 48 224 110 214 C172 224 184 190 152 140" fill="#6d28d9" stroke="#c4b5fd" stroke-width="3"/>
+      <ellipse cx="110" cy="168" rx="50" ry="42" fill="#e8a15a"/>
+      <ellipse cx="110" cy="176" rx="28" ry="18" fill="#f6d7b0"/>
+      <circle cx="110" cy="96" r="50" fill="#f0b56a"/>
+      <circle class="ear" cx="70" cy="78" r="18" fill="#e8a15a"/>
+      <circle class="ear" cx="150" cy="78" r="18" fill="#e8a15a"/>
+      <circle cx="70" cy="78" r="9" fill="#f6d7b0"/>
+      <circle cx="150" cy="78" r="9" fill="#f6d7b0"/>
+      <path class="arm" d="M66 158 Q34 186 46 214" fill="none" stroke="#e8a15a" stroke-width="14" stroke-linecap="round"/>
+      <path class="arm" d="M154 158 Q190 176 178 124" fill="none" stroke="#e8a15a" stroke-width="14" stroke-linecap="round"/>
+      <circle cx="178" cy="118" r="9" fill="#f0b56a"/>
+      <g class="glasses">
+        <circle cx="92" cy="98" r="16" fill="#e0f2fe" stroke="#1e1b4b" stroke-width="4"/>
+        <circle cx="132" cy="98" r="16" fill="#e0f2fe" stroke="#1e1b4b" stroke-width="4"/>
+        <path d="M108 98h8" stroke="#1e1b4b" stroke-width="4" stroke-linecap="round"/>
+        <path d="M76 96c-8 2-12 10-8 16" fill="none" stroke="#1e1b4b" stroke-width="3" stroke-linecap="round"/>
+        <path d="M148 96c8 2 12 10 8 16" fill="none" stroke="#1e1b4b" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <circle class="eye" cx="92" cy="98" r="5" fill="#1a120c"/>
+      <circle class="eye" cx="132" cy="98" r="5" fill="#1a120c"/>
+      <path class="brow" d="M80 82h20" stroke="#6b3416" stroke-width="3" stroke-linecap="round"/>
+      <path class="mouth" d="M96 122 Q110 134 124 122" fill="none" stroke="#1a120c" stroke-width="3" stroke-linecap="round"/>
+      <g class="phones"><path d="M78 108c-10 8-8 28 6 32" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round"/><path d="M146 108c10 8 8 28-6 32" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round"/><path d="M84 112h56" stroke="#22d3ee" stroke-width="4" stroke-linecap="round"/></g>
     </svg>
   </button>
   <div id="sheet" class="sheet" hidden></div>
@@ -239,7 +246,7 @@
       <label>Theme
         <select name="theme">
           <option value="vivid">Bright multicolour</option>
-          <option value="dark">Signal (dark)</option>
+          <option value="dark">Dark</option>
           <option value="futuristic">Futuristic</option>
           <option value="gaming">Gaming</option>
           <option value="neon">Neon</option>

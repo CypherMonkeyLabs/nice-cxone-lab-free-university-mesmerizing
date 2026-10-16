@@ -250,7 +250,29 @@ function syncAmbient() {
   osc.start();
 }
 
+function fitBanner() {
+  const scroller = document.querySelector(".banner-scroll");
+  if (!scroller) return;
+  scroller.style.maxWidth = "";
+  if (window.innerWidth < 900) return;
+  const chips = [...scroller.querySelectorAll(":scope > a, :scope > button")];
+  const box = scroller.getBoundingClientRect();
+  const limit = box.right - 4;
+  let fitRight = box.left;
+  chips.forEach((chip) => {
+    const rect = chip.getBoundingClientRect();
+    if (rect.right <= limit && rect.width > 8) fitRight = rect.right;
+  });
+  const width = Math.ceil(fitRight - box.left + 2);
+  if (width > 120 && width < box.width - 8) scroller.style.maxWidth = `${width}px`;
+}
+
 export function bootKit() {
+  const refit = () => fitBanner();
+  window.addEventListener("resize", refit);
+  window.addEventListener("load", refit);
+  window.requestAnimationFrame(() => window.requestAnimationFrame(refit));
+  window.setTimeout(refit, 250);
   bindDock();
   bindListen();
   bindMic();

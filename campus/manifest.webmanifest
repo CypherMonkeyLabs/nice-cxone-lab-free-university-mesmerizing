@@ -1,12 +1,12 @@
 {
-  "name": "NICE CXone Lab",
-  "short_name": "CXone Lab",
-  "description": "A free study floor for NiCE CXone ACD, Studio, digital, WEM, Enlighten, APIs, and UCCE/Avaya bridges.",
+  "name": "Contact Path",
+  "short_name": "Contact Path",
+  "description": "Contact Path is a free NICE CXone lab for ACD, Studio, skill routing, the agent desktop, WFM, QM, analytics, and Enlighten.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#071018",
-  "theme_color": "#071018",
+  "background_color": "#2e1065",
+  "theme_color": "#5b21b6",
   "lang": "en",
   "icons": [
     { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },

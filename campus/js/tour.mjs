@@ -49,21 +49,40 @@ function targets() {
   return found.slice(0, 2);
 }
 
+function overlaps(a, b) {
+  if (!a || !b || a.width < 2 || b.width < 2) return false;
+  return !(a.right < b.left + 8 || a.left > b.right - 8 || a.bottom < b.top + 8 || a.top > b.bottom - 8);
+}
+
 function placeCard(card) {
-  const h1 = document.querySelector("h1");
-  const h1rect = h1 ? h1.getBoundingClientRect() : null;
-  const height = card.offsetHeight || 220;
-  const bar = 72;
-  let top = window.innerHeight - height - bar;
-  if (h1rect && top < h1rect.bottom + 8 && top + height > h1rect.top) {
-    const below = h1rect.bottom + 10;
-    if (below + height < window.innerHeight - 8) top = below;
-    else top = Math.max(8, h1rect.top - height - 8);
+  const margin = 16;
+  const bar = document.querySelector(".topbar");
+  const barBottom = bar ? bar.getBoundingClientRect().bottom : 72;
+  if (window.innerWidth < 900) {
+    const quick = document.querySelector(".quick-bar");
+    const quickShown = quick && getComputedStyle(quick).display !== "none";
+    const inset = quickShown ? quick.getBoundingClientRect().height : 0;
+    card.style.left = `${margin}px`;
+    card.style.right = "auto";
+    card.style.width = `${window.innerWidth - margin * 2}px`;
+    card.style.top = "auto";
+    card.style.bottom = `${Math.round(inset + margin)}px`;
+    return;
   }
-  const maxTop = Math.max(8, window.innerHeight - height - 8);
-  card.style.top = `${Math.max(8, Math.min(top, maxTop))}px`;
-  card.style.left = "10px";
-  card.style.width = "min(420px, calc(100vw - 20px))";
+  const width = Math.min(360, window.innerWidth - margin * 2);
+  card.style.width = `${width}px`;
+  card.style.right = "auto";
+  card.style.bottom = "auto";
+  const height = card.offsetHeight || 220;
+  const left = window.innerWidth - width - margin;
+  let top = Math.max(margin, barBottom + margin);
+  const mascot = document.getElementById("mascot-dock");
+  const mascotR = mascot ? mascot.getBoundingClientRect() : null;
+  const proposed = { left, top, right: left + width, bottom: top + height, width, height };
+  if (mascotR && overlaps(proposed, mascotR)) top = Math.max(margin, mascotR.top - height - margin);
+  const maxTop = window.innerHeight - margin - height;
+  card.style.left = `${Math.round(left)}px`;
+  card.style.top = `${Math.round(Math.max(margin, Math.min(top, maxTop)))}px`;
 }
 
 function paintSpots(nodes) {

@@ -16,7 +16,7 @@ const clips = [
     id: "use-the-floor",
     title: "Use the floor",
     lines: [
-      ["a", "Welcome to the Signal Floor. This is a free study lab for NICE CXone, not a vendor brochure."],
+      ["a", "Welcome to Contact Path. This is a free study lab for NICE CXone, not a vendor brochure."],
       ["b", "The picture in front of you is the contact path. Point of contact, script, skill, agent, workforce, quality, and the API."],
       ["a", "Use the study menu. Diagrams, Flows, and Charts are the big pictures. Cheat Codes and Downloads are the sheets you can keep offline."],
       ["b", "Play is where you practise. Ecosystem is the map of neighbouring labs. Careers is a study path, not a job offer."],

@@ -632,16 +632,20 @@ async function viewHome() {
   )).join("");
   const cards = manifest.tracks.map((track) => trackCard(track, true)).join("");
   setMain(`
-    <section class="hero-stage">
-      <canvas id="hero-webgl" aria-label="Orbit of a contact moving through script, skill, agent, workforce, quality, and API"></canvas>
-      <div class="hero-fallback" hidden>
-        <div class="orbit-fallback" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
-        <p>Flat drawing. Motion is reduced, or this browser has no WebGL.</p>
-      </div>
+    <section class="hero-stage contact-hero">
       <div class="hero-sheet">
         <div class="hero-glass">
           <p class="chip">${esc(t("greeting"))}</p>
           <h1>${esc(t("hero"))}</h1>
+          <p class="hero-lead">Channel to QM, drawn in place. The labels stay on the page if WebGL is missing.</p>
+          <ol class="contact-path" aria-label="Contact path">
+            <li style="--step:0"><b>Channel</b><small>voice or digital</small></li>
+            <li style="--step:1"><b>ACD</b><small>the queue</small></li>
+            <li style="--step:2"><b>Studio script</b><small>the flow</small></li>
+            <li style="--step:3"><b>Skill routing</b><small>who is eligible</small></li>
+            <li style="--step:4"><b>Agent</b><small>the desktop</small></li>
+            <li style="--step:5"><b>QM / analytics</b><small>after the contact</small></li>
+          </ol>
           <div class="hero-controls" aria-label="Display and mascot">
             <button type="button" data-theme-set="vivid">Bright</button>
             <button type="button" data-theme-set="dark">Dark</button>
@@ -680,11 +684,23 @@ async function viewHome() {
   };
   tick();
   state.timers.add(setInterval(tick, 1000));
-  if (liveCanvas()) mountHero(document.getElementById("hero-webgl"));
+}
+
+function webglAvailable() {
+  try {
+    const canvas = document.createElement("canvas");
+    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    if (!gl) return false;
+    const lose = gl.getExtension("WEBGL_lose_context");
+    if (lose) lose.loseContext();
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 function liveCanvas() {
-  return !reducedMotion() && window.matchMedia("(min-width: 801px)").matches;
+  return !reducedMotion() && window.matchMedia("(min-width: 801px)").matches && webglAvailable();
 }
 
 async function viewTracks() {
