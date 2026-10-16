@@ -1,0 +1,150 @@
+{
+  "room": "studio",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Studio Fundamentals",
+      "url": "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Channels",
+      "url": "https://help.nicecxone.com/content/ACD/digital/channels/digitalchannels.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Develop a Basic Script",
+      "url": "https://help.nicecxone.com/Content/Studio/gettingstarted/developbasicscriptcx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "MENU (Desktop Studio)",
+      "url": "https://help.nicecxone.com/content/Studio/actions/menu/menu.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Develop a Basic Script",
+      "url": "https://help.nicecxone.com/Content/Studio/gettingstarted/developbasicscriptcx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Bullseye Routing",
+      "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Develop a Basic Script",
+      "url": "https://help.nicecxone.com/Content/Studio/gettingstarted/developbasicscriptcx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Action Basics",
+      "url": "https://help.nice-incontact.com/content/studio/fundamentals/actionbasicscx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Actions",
+      "url": "https://help.nicecxone.com/Content/studio/advanced/frameworkactions/apiactions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "GET NEXT EVENT",
+      "url": "https://help.nicecxone.com/content/studio/actionscx/getagentevents/getagentevents.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Bullseye Routing",
+      "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Routing",
+      "url": "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Digital Skills",
+      "url": "https://help.nicecxone.com/content/acd/digital/managedigitalskills.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "UPDATE CONTACT DIGITAL",
+      "url": "https://help.nicecxone.com/content/studio/actions/update_contact_digital/update_contact_digital.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Autopilot (Omilia)",
+      "url": "https://help.nicecxone.com/content/autopilot/autopilot.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Develop a Basic Script",
+      "url": "https://help.nicecxone.com/Content/Studio/gettingstarted/developbasicscriptcx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Bullseye Routing",
+      "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Studio",
+      "url": "https://help.nicecxone.com/content/integrations/studio.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Develop a Basic Script",
+      "url": "https://help.nicecxone.com/Content/Studio/gettingstarted/developbasicscriptcx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Studio",
+      "url": "https://help.nicecxone.com/content/integrations/studio.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

@@ -158,13 +158,16 @@ function setChips(items) {
 }
 
 function starterChips() {
-  setChips([
+  const here = (location.hash || "#/").split("?")[0];
+  const chips = [
+    { label: "Finish in 10 minutes", ask: "/go #/tracks" },
+    { label: "Full course", ask: "/go #/roadmap" },
+    { label: "Just download", ask: "/go #/downloads" },
     { label: "Priority formula", ask: "What is overall priority?" },
-    { label: "Hold recording", ask: "Is hold music recorded?" },
-    { label: "Tour the floor", ask: "/tour floor" },
-    { label: "Quiz me", ask: "/quiz" },
     { label: "Who is Lucky", ask: "Who is Lucky?" },
-  ]);
+  ];
+  if (here.startsWith("#/lesson") || here.startsWith("#/track")) chips.unshift({ label: "Download this section", ask: "/go #/downloads" });
+  setChips(chips);
 }
 
 function citeLine(result) {

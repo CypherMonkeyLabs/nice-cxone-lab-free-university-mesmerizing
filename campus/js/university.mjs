@@ -34,10 +34,18 @@ function loadAtlas() {
   return atlasPromise;
 }
 
+const CONFIRM_URLS = new Set([
+  "https://help.nicecxone.com/content/releasenotes/20262release.htm",
+  "https://www.credly.com/org/nice-ltd/badge/ncap-nice-certified-application-professional-cxone-.3",
+  "https://www.credly.com/org/nice-ltd/badge/ncap-nice-certified-application-professional-cxone-.5",
+]);
+
 function citeHtml(atlas, key) {
   const cite = typeof key === "string" ? atlas.cites[key] : key;
-  if (!cite || !cite.url) return "";
-  return `<a href="${esc(cite.url)}" target="_blank" rel="noopener noreferrer">${esc(cite.title)}</a>`;
+  if (!cite) return "";
+  if (cite.confirm || CONFIRM_URLS.has(cite.url)) return `${esc(cite.title || "Source")} — confirm`;
+  if (!cite.url) return `${esc(cite.title || "Source")} — confirm`;
+  return `<a href="${esc(cite.url)}" target="_blank" rel="noopener noreferrer">${esc(cite.title)}</a> <span class="muted">last checked 2026-10</span>`;
 }
 
 function badges() {
@@ -99,8 +107,13 @@ function crumbs(parts) {
   return `<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a>${tail}</nav>`;
 }
 
-function pageShell(title, lede, body) {
-  return `${crumbs([{ label: title }])}<h1>${esc(title)}</h1><p class="lede">${lede}</p>${uniNav()}<div>${body}</div>`;
+function disclaimerBox() {
+  return `<aside class="disclaimer-box">Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. There is no affiliation and no endorsement. Ask for a removal or a correction in the website contact section. Nothing here is sold. The author is happy to volunteer.</aside>`;
+}
+
+function pageShell(title, lede, body, sourcesHtml) {
+  const sources = sourcesHtml || `<p>Sources and go deeper: open the citation under each block. A row marked confirm has no URL because that address did not open.</p>`;
+  return `${crumbs([{ label: title }])}${disclaimerBox()}<div class="room-tools"><button type="button" class="dl-html" data-export-room="${esc(title)}">Download this section</button><a class="dl-html" href="#/downloads">Cheat Codes</a><a class="dl-svg" href="#/diagrams">Diagrams</a></div><section class="learn-five"><h2>Learn in 5 minutes</h2><p>${lede}</p></section><h1>${esc(title)}</h1><p class="lede">${lede}</p>${uniNav()}<div>${body}</div><section class="eco-panel"><h2>Ecosystem</h2><p>Glossary and mind map live on the <a href="#/explorer">flow explorer</a>. Sister products, config checks, and troubleshooting leaves are on that page. Integration maps are on <a href="#/bridges">bridges</a>. A future hook that has no opened page is marked confirm and is not given a URL.</p></section><section class="sources-block"><h2>Sources and go deeper</h2>${sources}</section>`;
 }
 
 function uniNav() {
@@ -202,7 +215,14 @@ function portsTable(atlas) {
 function generic(atlas, id) {
   const page = atlas.pages.find((item) => item.id === id);
   if (!page) return null;
-  return pageShell(page.title, esc(page.lede), blocksHtml(atlas, page));
+  const keys = [];
+  for (const block of page.blocks || []) {
+    for (const key of block.cites || []) {
+      if (!keys.includes(key)) keys.push(key);
+    }
+  }
+  const sources = `<ul>${keys.map((key) => `<li>${citeHtml(atlas, key)}</li>`).join("")}</ul><p><a href="data/sources/${esc(page.id)}.json">sources.json</a></p>`;
+  return pageShell(page.title, esc(page.lede), blocksHtml(atlas, page), sources);
 }
 
 async function viewDiagrams(reduced, mode) {
@@ -344,12 +364,12 @@ function drawCard(score, total) {
   ctx.strokeRect(24, 24, 852, 432);
   ctx.fillStyle = "#ffb020";
   ctx.font = "28px Georgia, serif";
-  ctx.fillText("Signal Floor · NICE CXone Lab", 48, 90);
+  ctx.fillText("Contact Path · NICE CXone Lab", 48, 90);
   ctx.fillStyle = "#e8f4f6";
   ctx.font = "64px Georgia, serif";
   ctx.fillText(`${score} / ${total}`, 48, 190);
   ctx.font = "22px sans-serif";
-  ctx.fillText("Ports mastery on an independent study floor.", 48, 250);
+  ctx.fillText("Ports mastery on the Contact Path lab.", 48, 250);
   ctx.fillStyle = "#8adfff";
   ctx.fillText("https://cyphermonkeylabs.com", 48, 330);
   ctx.fillStyle = "#a9c0c9";
@@ -359,6 +379,30 @@ function drawCard(score, total) {
   link.href = canvas.toDataURL("image/png");
   link.download = "cxone-result-card.png";
   link.click();
+}
+
+function helpPage() {
+  return pageShell("Help", "The menu, the course, the bot, and the downloads are the four controls that matter.", `
+    <section class="lesson-block"><h2>Menu</h2><p>Menu is the top-left button. On a phone it is also the left side of the bottom bar. The drawer lists each room with an icon, a label, and one line. Escape, Close, or a tap outside closes it.</p></section>
+    <section class="lesson-block"><h2>Course</h2><p>Home, then Learn, then a track, then a room. A room has a five-minute takeaway, a picture or a flow, a worked example, and a quiz.</p></section>
+    <section class="lesson-block"><h2>Bot</h2><p>The monkey on the right is the guide. After the first tour it greets once in the middle, then docks on the right. Drag it along that edge. It answers only from pages loaded in this lab. Voice stays off until you press Listen or Voice input. If this browser has no speech recognition, type in the box.</p><p><button type="button" data-replay-onboard>Replay the tour</button></p></section>
+    <section class="lesson-block"><h2>Downloads</h2><p>Every room has a download button. Cheat Codes holds HTML, PDF, and PNG sheets, a flashcard deck, a DOCX template, a PPTX deck, and one zip. <a href="#/downloads">Open downloads</a>.</p></section>
+    <section class="lesson-block"><h2>Worked example</h2><p>Overall priority with initial 4, acceleration 1, and 3 minutes is 7. That is the formula on the static-delivery priority page.</p></section>
+    <section class="lesson-block"><h2>Quiz</h2><p><a href="#/play">Play</a> asks the port questions that name a cited page.</p></section>`,
+  `<ul><li><a href="https://help.nicecxone.com/content/ACD/routing/staticdelivery/configureskillpriority.htm">Configure Priority for a Skill for Static Delivery</a> <span class="muted">last checked 2026-10</span></li></ul>`);
+}
+
+function legalPage() {
+  return pageShell("Legal and credits", "Code is MIT. Lesson text is CC BY-NC-SA 4.0. This lab does not track you.", `
+    <section class="lesson-block"><h2>Copyright</h2><p>The code in this repository is MIT. Lesson text, quiz items, flashcards, diagrams, and study notes are CC BY-NC-SA 4.0. The v1.0 snapshot remains under the CC BY 4.0 grant that shipped with that commit.</p></section>
+    <section class="lesson-block"><h2>Trademarks</h2><p>NiCE, CXone, CXone Mpower, Studio, and the other product names belong to their owners. This lab is not affiliated with and is not endorsed by NiCE.</p></section>
+    <section class="lesson-block"><h2>Third-party licences</h2><p>three.js, anime.js, rough.js, and markmap-view are MIT. d3 and canvas-confetti are ISC. Copies of those notices sit in campus/vendor. GSAP is not included.</p></section>
+    <section class="lesson-block"><h2>Privacy</h2><p>Preferences, tour progress, and quiz scores stay in this browser’s localStorage. The service worker caches files from this origin. There is no tracker and no account.</p></section>
+    <section class="lesson-block"><h2>Accessibility</h2><p>A skip link, a visible focus ring, font size, font colour, reduced motion, and a high-contrast theme are in the page. Listen uses the browser’s speech synthesis and can be turned off.</p></section>
+    <section class="lesson-block"><h2>Removal request</h2><p>Ask for a removal or a correction in the <a href="https://cyphermonkeylabs.com/#contact">website contact section</a>. Do not send email from this page. There is no mailto link.</p></section>
+    <section class="lesson-block"><h2>Worked example</h2><p>A sentence that names a port is paraphrased and linked. A sentence that did not survive a direct open is marked confirm and the URL is left off.</p></section>
+    <section class="lesson-block"><h2>Quiz</h2><p>If a badge URL returned 404 on 2026-10-16, the line says confirm and does not invent a replacement address.</p></section>`,
+  `<ul><li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> <span class="muted">last checked 2026-10</span></li><li><a href="https://opensource.org/license/mit">MIT License</a> <span class="muted">last checked 2026-10</span></li></ul>`);
 }
 
 async function viewDownloads() {
@@ -379,6 +423,8 @@ async function viewDownloads() {
     ["migration", "Migration checklist"],
     ["reporting", "Reporting"],
     ["flashcards", "Printable flashcards"],
+    ["studio-snippet", "Studio snippet notes"],
+    ["bridges", "Bridges"],
   ];
   const cards = sheets.map(([stem, title]) => `<article class="card"><header><h2>${esc(title)}</h2></header><p><a href="downloads/${stem}.html">HTML</a> · <a href="downloads/${stem}.pdf">PDF</a> · <a href="downloads/${stem}.png">PNG</a></p></article>`).join("");
   return pageShell("Cheat Codes", "One-page sheets generated in this repo. They paraphrase public pages and link back. They are not vendor manuals.", `
@@ -386,7 +432,13 @@ async function viewDownloads() {
     <h2>Decks and the offline bundle</h2>
     <p><a href="downloads/flashcards.json">Flashcard JSON</a> · <a href="downloads/cxone-offline-pack.json">Offline pack JSON</a> · <a href="downloads/cxone-offline-bundle.zip">Offline zip</a></p>
     <p>The top-bar download builds a fresh pack from the tracks loaded in this browser, including anything you have not opened yet. The zip is the printable cheat-code set.</p>
-    <p class="muted">Each sheet links GitHub, the Labs org, Cypher Monkey Labs, X, and Hugging Face, and it carries © 2026 CypherMonkeyLabs 🐒. No LinkedIn. No email address. No Linktree.</p>`);
+    <h2>Open the app and the repo</h2>
+    <p><a href="./">Open app</a> · <a href="https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing">View repo</a></p>
+    <h2>Templates</h2>
+    <p><a href="downloads/studio-snippet.html">Snippet HTML</a> · <a href="downloads/studio-snippet.pdf">PDF</a> · <a href="downloads/studio-snippet.docx">DOCX</a> · <a href="downloads/bridge-notes.pptx">PPTX deck</a></p>
+    <h2>Test table</h2>
+    <p><a href="downloads/test-table.html">Download test table</a></p>
+    <p class="muted">Each sheet carries cyphermonkeylabs.com, linktr.ee/cyphermonkey, and the GitHub organization, plus the disclaimer. No LinkedIn. No email address.</p>`);
 }
 
 async function viewSandbox() {
@@ -514,6 +566,8 @@ export async function renderUniversity(path, manifest, reduced) {
     return { html, active: "play", bind: async () => bindPlay(await loadAtlas()) };
   }
   if (path === "#/downloads" || path === "#/cheat" || path === "#/cheats") return { html: await viewDownloads(), active: "downloads", bind: null };
+  if (path === "#/help") return { html: helpPage(), active: "help", bind: null };
+  if (path === "#/legal") return { html: legalPage(), active: "legal", bind: null };
   if (path === "#/sandbox") return { html: await viewSandbox(), active: "sandbox", bind: () => bindSandbox(reduced) };
   if (path === "#/progress") return { html: await viewProgress(manifest), active: "progress", bind: null };
   if (path === "#/regions") return { html: await viewRegions(), active: "regions", bind: null };
@@ -545,7 +599,7 @@ export function bootUniversity({ downloadPack, reducedMotion, tone }) {
   setInterval(applyLook, 180000);
   applyPose();
   if (dock) {
-    dock.addEventListener("click", () => {
+    dock.addEventListener("dblclick", () => {
       pose = (pose + 1) % POSES.length;
       applyPose();
       tone(480 + pose * 40, 0.08, "triangle");
@@ -663,6 +717,6 @@ export async function buildPack(manifest, ensureTrack, ensureExtra) {
     tracks,
     extras,
     atlas,
-    footer: "© 2026 CypherMonkeyLabs 🐒 · https://github.com/cipher0x9 · https://github.com/CypherMonkeyLabs · https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · https://cyphermonkeylabs.com · https://x.com/Cypher0x9 · https://huggingface.co/Cypher0x9 · Independent educational project. MIT code, CC BY-NC-SA content.",
+    footer: "© 2026 CypherMonkeyLabs 🐒 · https://cyphermonkeylabs.com · https://github.com/CypherMonkeyLabs · https://linktr.ee/cyphermonkey · https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Independent, free, learning-only. No affiliation. MIT code, CC BY-NC-SA content.",
   };
 }

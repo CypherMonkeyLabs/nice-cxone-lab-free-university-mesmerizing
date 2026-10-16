@@ -1,0 +1,126 @@
+{
+  "room": "acd",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Points of Contact Overview",
+      "url": "https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofcontact/pointsofcontact.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Configure Priority for a Skill for Static Delivery",
+      "url": "https://help.nicecxone.com/content/ACD/routing/staticdelivery/configureskillpriority.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Bullseye Routing",
+      "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Points of Contact Overview",
+      "url": "https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofcontact/pointsofcontact.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Develop a Basic Script",
+      "url": "https://help.nicecxone.com/Content/Studio/gettingstarted/developbasicscriptcx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "MENU (Desktop Studio)",
+      "url": "https://help.nicecxone.com/content/Studio/actions/menu/menu.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Studio",
+      "url": "https://help.nicecxone.com/content/integrations/studio.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Studio Fundamentals",
+      "url": "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Develop a Basic Script",
+      "url": "https://help.nicecxone.com/Content/Studio/gettingstarted/developbasicscriptcx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "General Forecast",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Users, Data Access, and Security",
+      "url": "https://help.nicecxone.com/content/admin/welcometoadmin.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

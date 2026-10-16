@@ -1,0 +1,42 @@
+{
+  "room": "deploy",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Connectivity Requirements Wizard",
+      "url": "https://help.nicecxone.com/Content/platformrequirements/wizard/discoverconnectivityrequirements.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity Requirements",
+      "url": "https://help.nicecxone.com/Content/platformrequirements/ports.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity Requirements",
+      "url": "https://help.nicecxone.com/Content/platformrequirements/ports.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "IP Addresses and Blocks",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/ipaddresses.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

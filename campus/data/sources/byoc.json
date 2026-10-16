@@ -1,0 +1,36 @@
+{
+  "room": "byoc",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "RFC 3261",
+      "url": "https://www.rfc-editor.org/rfc/rfc3261",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "IP Addresses and Blocks",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/ipaddresses.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "room": "atlas",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Ports and Protocols by Application",
+      "url": "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity Requirements",
+      "url": "https://help.nicecxone.com/Content/platformrequirements/ports.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity Requirements Wizard",
+      "url": "https://help.nicecxone.com/Content/platformrequirements/wizard/discoverconnectivityrequirements.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "IP Addresses and Blocks",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/ipaddresses.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Emergency Dialing",
+      "url": "https://help.nicecxone.com/content/acd/channels/voice/setupemergencydialing.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Business Unit",
+      "url": "https://help.nicecxone.com/content/acd/businessunits/managebusinessunit.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Handle Calls in MAX",
+      "url": "https://help.nicecxone.com/content/agent/max/voice/handlecalls.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Studio Fundamentals",
+      "url": "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Points of Contact Overview",
+      "url": "https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofcontact/pointsofcontact.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Configure Priority for a Skill for Static Delivery",
+      "url": "https://help.nicecxone.com/content/ACD/routing/staticdelivery/configureskillpriority.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Bullseye Routing",
+      "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Customize Proactive Voice Dialing",
+      "url": "https://help.nicecxone.com/Content/acd/channels/personalconnection/proactivevoice/customizeproactivevoicedialing.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Routing",
+      "url": "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Workforce Management (CXone)",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/welcometoworkforcemanagement.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "General Forecast",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Recording Management (CXone)",
+      "url": "https://help.nicecxone.com/Content/recording/managerecordings.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Autopilot (Omilia)",
+      "url": "https://help.nicecxone.com/content/autopilot/autopilot.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Automated Summary (AutoSummary)",
+      "url": "https://help.nicecxone.com/Content/enlightenautosummary/enlightenautosummary.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Automated Summary (AutoSummary) Setup",
+      "url": "https://help.nicecxone.com/content/aiassistantsandbots/agentassisthub/autosummary/autosummary.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Access Keys",
+      "url": "https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Integrate Salesforce with Agent Workspace (Agent)",
+      "url": "https://help.nicecxone.com/content/Agent/agentapplicationadministration/cxoneagent/crmintegration/integratesalesforcewithcxa.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "CRM Ticketing",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/crm%20ticketing/crm%20ticketing.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Avaya CMS",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/avayacms.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Migrated Calls",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/migratedinteractions/migratedinteractions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Integration Hub",
+      "url": "https://help.nicecxone.com/content/integrationhub/integrationhub.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.2 Release Notes",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Coming Soon in the 26.4 Release",
+      "url": "https://help.nicecxone.com/content/releasenotes/comingsoon.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Release Process",
+      "url": "https://help.nicecxone.com/content/releasenotes/releaseprocess.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Service Notification Timeline",
+      "url": "https://help.nicecxone.com/content/releasenotes/releasenotificationtimeline.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Data and Reporting",
+      "url": "https://help.nicecxone.com/content/interactionanalyticspro/configurationandadministration/reportinganddata/reportinganddata.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Interaction Analytics (CXone) Widget",
+      "url": "https://help.nicecxone.com/content/dashboardwem/iawidgets.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Dashboard Permissions",
+      "url": "https://help.nicecxone.com/content/admin/security/permissions/cxonedashboardpermissions.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Users, Data Access, and Security",
+      "url": "https://help.nicecxone.com/content/admin/welcometoadmin.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "External Identity Provider Authentication",
+      "url": "https://help.nicecxone.com/content/globalfeatures/authenticationandauthorization/setupaaexternalidp.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "RFC 3261",
+      "url": "https://www.rfc-editor.org/rfc/rfc3261",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NCIE CXone ACD/IVR",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncie-nice-certified-implementation-engineer-cxone-m.2",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NCIE CXone Mpower Digital Experience",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncie-nice-certified-implementation-engineer-cxone-m.3",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NCAP CXone Mpower Workforce Management",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "NCAP CXone Mpower Personal Connection",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "CXone Supervisor Certification",
+      "url": "https://www.credly.com/org/nice-ltd/badge/cxone-supervisor-certification",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Club One",
+      "url": "https://www.nice.com/clubs/club-one",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Develop a Basic Script",
+      "url": "https://help.nicecxone.com/Content/Studio/gettingstarted/developbasicscriptcx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "MENU (Desktop Studio)",
+      "url": "https://help.nicecxone.com/content/Studio/actions/menu/menu.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "SNIPPET (Desktop Studio)",
+      "url": "https://help.nicecxone.com/content/Studio/actions/snippet/snippet.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Amazon Connect",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/amazonconnect/amazon%20connect.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Customer Integration Guide - Amazon Connect",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/customerintegrationguideamazonconnect.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Prepare Amazon Connect Environment for Multi-ACD",
+      "url": "https://help.nicecxone.com/content/cxoneopenthirdparty/prepareamcenvironmentforcxoneacd.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Prepare Genesys T-Lib with SIPREC",
+      "url": "https://help.nicecxone.com/content/cxoneopenthirdparty/genesyssipserverandsiprec.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Third-Party ACD SDK Developer Guide",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/thirdpartysdkdeveloperguide.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "CC BY-NC-SA 4.0",
+      "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Five9 bridge",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "Webex Contact Center bridge",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "room": "foundations",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Studio Fundamentals",
+      "url": "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Studio Fundamentals",
+      "url": "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Points of Contact Overview",
+      "url": "https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofcontact/pointsofcontact.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Routing",
+      "url": "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Autopilot (Omilia)",
+      "url": "https://help.nicecxone.com/content/autopilot/autopilot.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Channels",
+      "url": "https://help.nicecxone.com/content/ACD/digital/channels/digitalchannels.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Routing",
+      "url": "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Digital Skills",
+      "url": "https://help.nicecxone.com/content/acd/digital/managedigitalskills.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Users, Data Access, and Security",
+      "url": "https://help.nicecxone.com/content/admin/welcometoadmin.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "RFC 3261",
+      "url": "https://www.rfc-editor.org/rfc/rfc3261",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "General Forecast",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Bullseye Routing",
+      "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Workforce Management (CXone)",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/welcometoworkforcemanagement.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "NiCE CXone Release Process",
+      "url": "https://help.nicecxone.com/content/releasenotes/releaseprocess.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Service Notification Timeline",
+      "url": "https://help.nicecxone.com/content/releasenotes/releasenotificationtimeline.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "26.2 Release Notes",
+      "status": "confirm",
+      "note": "Direct open failed or no page was found. No URL."
+    },
+    {
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Coming Soon in the 26.4 Release",
+      "url": "https://help.nicecxone.com/content/releasenotes/comingsoon.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

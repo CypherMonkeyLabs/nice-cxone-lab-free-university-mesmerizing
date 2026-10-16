@@ -1,0 +1,13 @@
+<svg class="live-diagram" viewBox="0 0 760 180" role="img" aria-label="Inbound entry"><style>:root,svg{--cc-accent-1:#22d3ee;--cc-accent-2:#f472b6;--cc-accent-3:#a3e635;--cc-accent-4:#fbbf24;--cc-surface:#fff7ed;--cc-ink:#102028;--cc-muted:#3c5360}</style><title>Inbound entry</title><path id="pw1" class="wire" d="M 152 90 L 183 90" fill="none" stroke="var(--cc-accent-1)" stroke-width="2" stroke-dasharray="7 5"></path>
+    
+    <polygon points="183,90 175,86 175,94" fill="var(--cc-accent-2)"/>
+    <path id="pw2" class="wire" d="M 307 90 L 338 90" fill="none" stroke="var(--cc-accent-1)" stroke-width="2" stroke-dasharray="7 5"></path>
+    
+    <polygon points="338,90 330,86 330,94" fill="var(--cc-accent-2)"/>
+    <path id="pw3" class="wire" d="M 462 90 L 493 90" fill="none" stroke="var(--cc-accent-1)" stroke-width="2" stroke-dasharray="7 5"></path>
+    
+    <polygon points="493,90 485,86 485,94" fill="var(--cc-accent-2)"/>
+    <path id="pw4" class="wire" d="M 617 90 L 648 90" fill="none" stroke="var(--cc-accent-1)" stroke-width="2" stroke-dasharray="7 5"></path>
+    
+    <polygon points="648,90 640,86 640,94" fill="var(--cc-accent-2)"/>
+    <g class="dnode"><rect x="28" y="66" width="124" height="44" rx="14" fill="var(--cc-surface)" stroke="var(--cc-accent-1)" stroke-width="2"/><text x="90" y="90" text-anchor="middle" fill="var(--cc-ink)" font-size="12" font-family="Palatino, Georgia, serif">Contact</text></g><g class="dnode"><rect x="183" y="66" width="124" height="44" rx="14" fill="var(--cc-surface)" stroke="var(--cc-accent-2)" stroke-width="2"/><text x="245" y="90" text-anchor="middle" fill="var(--cc-ink)" font-size="12" font-family="Palatino, Georgia, serif">POC</text></g><g class="dnode"><rect x="338" y="66" width="124" height="44" rx="14" fill="var(--cc-surface)" stroke="var(--cc-accent-3)" stroke-width="2"/><text x="400" y="90" text-anchor="middle" fill="var(--cc-ink)" font-size="12" font-family="Palatino, Georgia, serif">Script</text></g><g class="dnode"><rect x="493" y="66" width="124" height="44" rx="14" fill="var(--cc-surface)" stroke="var(--cc-accent-4)" stroke-width="2"/><text x="555" y="90" text-anchor="middle" fill="var(--cc-ink)" font-size="12" font-family="Palatino, Georgia, serif">Skill</text></g><g class="dnode"><rect x="648" y="66" width="124" height="44" rx="14" fill="var(--cc-surface)" stroke="var(--cc-accent-1)" stroke-width="2"/><text x="710" y="90" text-anchor="middle" fill="var(--cc-ink)" font-size="12" font-family="Palatino, Georgia, serif">Agent</text></g></svg>

@@ -71,13 +71,27 @@ export function unmountIconScenes() {
   }
 }
 
+function webglReady() {
+  try {
+    const probe = document.createElement("canvas");
+    const gl = probe.getContext("webgl") || probe.getContext("experimental-webgl");
+    if (!gl) return false;
+    const lose = gl.getExtension("WEBGL_lose_context");
+    if (lose) lose.loseContext();
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 export async function mountIconScenes(root) {
   unmountIconScenes();
   const token = generation;
   const scope = root || document;
   const canvases = [...scope.querySelectorAll("canvas.icon-live")];
+  canvases.forEach((canvas) => { delete canvas.dataset.live; });
   if (!canvases.length) return { ok: false };
-  if (motionReduced()) return { ok: false, reason: "reduced" };
+  if (motionReduced() || !webglReady()) return { ok: false, reason: "webgl" };
   let THREE;
   try {
     THREE = await loadThree();
@@ -122,9 +136,17 @@ export async function mountIconScenes(root) {
   const byKind = Object.fromEntries(scenes.map((item) => [item.kind, item]));
   const targets = canvases.map((canvas) => {
     const ctx = canvas.getContext("2d");
-    canvas.dataset.live = "1";
+    if (ctx) canvas.dataset.live = "1";
     return { canvas, ctx, kind: canvas.dataset.iconKind };
   }).filter((item) => item.ctx);
+  const dropLive = () => {
+    running = false;
+    targets.forEach((item) => { delete item.canvas.dataset.live; });
+  };
+  atlas.addEventListener("webglcontextlost", (event) => {
+    event.preventDefault();
+    dropLive();
+  });
   function recolor() {
     const next = palette();
     scenes.forEach((item, index) => {

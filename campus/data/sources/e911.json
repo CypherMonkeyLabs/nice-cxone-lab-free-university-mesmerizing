@@ -1,0 +1,36 @@
+{
+  "room": "e911",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Set Up Emergency Dialing",
+      "url": "https://help.nicecxone.com/content/acd/channels/voice/setupemergencydialing.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Business Unit",
+      "url": "https://help.nicecxone.com/content/acd/businessunits/managebusinessunit.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Handle Calls in MAX",
+      "url": "https://help.nicecxone.com/content/agent/max/voice/handlecalls.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Emergency Dialing",
+      "url": "https://help.nicecxone.com/content/acd/channels/voice/setupemergencydialing.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Set Up Emergency Dialing",
+      "url": "https://help.nicecxone.com/content/acd/channels/voice/setupemergencydialing.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "room": "people",
+  "checked": "2026-10",
+  "sources": [
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Avaya CMS",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/avayacms.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Bullseye Routing",
+      "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "UPDATE CONTACT DIGITAL",
+      "url": "https://help.nicecxone.com/content/studio/actions/update_contact_digital/update_contact_digital.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Channels",
+      "url": "https://help.nicecxone.com/content/ACD/digital/channels/digitalchannels.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Automated Summary (AutoSummary)",
+      "url": "https://help.nicecxone.com/Content/enlightenautosummary/enlightenautosummary.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Automated Summary (AutoSummary) Setup",
+      "url": "https://help.nicecxone.com/content/aiassistantsandbots/agentassisthub/autosummary/autosummary.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Users, Data Access, and Security",
+      "url": "https://help.nicecxone.com/content/admin/welcometoadmin.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Recording Management (CXone)",
+      "url": "https://help.nicecxone.com/Content/recording/managerecordings.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Users, Data Access, and Security",
+      "url": "https://help.nicecxone.com/content/admin/welcometoadmin.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Bullseye Routing",
+      "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Workforce Management (CXone)",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/welcometoworkforcemanagement.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Channels",
+      "url": "https://help.nicecxone.com/content/ACD/digital/channels/digitalchannels.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Manage Digital Skills",
+      "url": "https://help.nicecxone.com/content/acd/digital/managedigitalskills.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Digital Routing",
+      "url": "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Recording Management (CXone)",
+      "url": "https://help.nicecxone.com/Content/recording/managerecordings.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Recording Management (CXone)",
+      "url": "https://help.nicecxone.com/Content/recording/managerecordings.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    },
+    {
+      "title": "Engagement Hub",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/engagementhub.htm",
+      "status": "opened",
+      "checked": "2026-10"
+    }
+  ]
+}

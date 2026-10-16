@@ -110,7 +110,7 @@
     {
       "id": "lucky",
       "q": ["who is lucky", "lucky", "who keeps this floor", "about the author", "cypher"],
-      "a": "Lucky is a lifelong student and an AI enthusiast. The path runs through systems, networking, voice, and the contact center, and it grows into AI omni-channel agents. That sentence is this lab’s own note. It is not a NiCE biography.",
+      "a": "Lucky is a lifelong student and an AI enthusiast. This lab does not claim NiCE production experience for Lucky. That sentence is this lab’s own note. It is not a NiCE biography.",
       "href": "#/ecosystem",
       "labNote": true
     },

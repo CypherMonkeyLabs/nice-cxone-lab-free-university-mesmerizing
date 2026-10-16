@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bridges from other contact centers · Contact Path cheat sheet</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <style>
+    @font-face { font-family: "Sheet Serif"; src: local("Georgia"), local("Palatino"); font-display: swap; size-adjust: 100%; }
+    body { font: 13px/1.35 "Sheet Serif", Georgia, serif; margin: 16px; color: #102028; }
+    h1 { font-size: 20px; margin: 0 0 6px; }
+    h2 { font-size: 14px; margin: 10px 0 4px; }
+    table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    td, th { border-bottom: 1px solid #c5d6de; text-align: left; vertical-align: top; padding: 3px 4px; }
+    a { color: #0b5f78; }
+    footer { margin-top: 12px; min-height: 2.6em; font: 10px/1.35 sans-serif; color: #3c5360; }
+    img, svg { width: 100%; height: auto; }
+    .card { break-inside: avoid; border: 1px solid #c5d6de; padding: 8px; margin: 6px 0; }
+    @media print { body { margin: 10mm; } a { color: inherit; text-decoration: none; } }
+  </style>
+</head>
+<body>
+  <h1>Bridges from other contact centers</h1>
+  <aside>Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. This lab is not affiliated and there is no endorsement. Removal or correction: https://cyphermonkeylabs.com/#contact. Nothing here is sold. The author is happy to volunteer.</aside>
+  <h2>Cisco UCCE and UCCX</h2><p>The third-party ACD page lists Cisco UCCE and Cisco UCCX as point-to-point WFM integrations and says those require Advanced Services.</p><p>The UCCE WFM connector page and the Multi-ACD recording table are different products. Do not copy a version from one onto the other.</p><p><a href="https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm">Third-Party ACDs</a> <span>last checked 2026-10</span> · <a href="https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm">Cisco UCCE Connector</a> <span>last checked 2026-10</span> · <a href="https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm">Supported Real-Time Third Party Telephony Recording (Multi-ACD)</a> <span>last checked 2026-10</span></p><h2>Genesys</h2><p>Genesys is not in the WFM third-party ACD list this lab opened.</p><p>The ports page says Genesys T-Lib is not limited to one port.</p><p>A separate page prepares Genesys T-Lib with SIPREC for Multi-ACD recording. That is recording, not a WFM cutover.</p><p><a href="https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm">Ports and Protocols by Application</a> <span>last checked 2026-10</span> · <a href="https://help.nicecxone.com/content/cxoneopenthirdparty/genesyssipserverandsiprec.htm">Prepare Genesys T-Lib with SIPREC</a> <span>last checked 2026-10</span></p><h2>Amazon Connect</h2><p>One page imports new voice and screen recordings into CXone for quality, analytics, and reporting. Users need an email address. Historical calls from before deployment are not the import the page describes.</p><p>A WFM guide describes an Engagement Hub connector that reads Kinesis and S3 and does not write back into the tenant.</p><p>A Multi-ACD page says you prepare AWS and a NiCE account representative finishes the CXone side.</p><p><a href="https://help.nicecxone.com/content/integratedsolutions/amazonconnect/amazon%20connect.htm">Amazon Connect</a> <span>last checked 2026-10</span> · <a href="https://help.nicecxone.com/content/workforcemanagement/customerintegrationguideamazonconnect.htm">Customer Integration Guide - Amazon Connect</a> <span>last checked 2026-10</span> · <a href="https://help.nicecxone.com/content/cxoneopenthirdparty/prepareamcenvironmentforcxoneacd.htm">Prepare Amazon Connect Environment for Multi-ACD</a> <span>last checked 2026-10</span></p><h2>Five9 and Webex Contact Center</h2><p>No page this lab opened names a Five9 connector or a Webex Contact Center connector. Both are confirm. No URL is attached.</p><p>The SDK guide is a general Java toolkit for an ACD that does not already have a named connector. It does not say that toolkit is a Five9 or Webex Contact Center product.</p><p>Five9 bridge — confirm · Webex Contact Center bridge — confirm · <a href="https://help.nicecxone.com/content/workforcemanagement/thirdpartysdkdeveloperguide.htm">Third-Party ACD SDK Developer Guide</a> <span>last checked 2026-10</span></p><h2>Worked example</h2><p>If the question is workforce data from UCCE, stay on the WFM connector page. If the question is live third-party audio, stay on Multi-ACD. If the question is Five9, stop and mark confirm.</p><p><a href="https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm">Third-Party ACDs</a> <span>last checked 2026-10</span></p><h2>Quiz</h2><p>CXone WFM integrates with one ACD at a time, on the third-party ACD page. A third-party ACD and the CXone ACD are not both connected.</p><p><a href="https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm">Third-Party ACDs</a> <span>last checked 2026-10</span></p>
+  <h2>Sources and go deeper</h2>
+  <p>Links below were opened, or the row says confirm and has no URL. Last checked 2026-10.</p>
+  <footer>© 2026 CypherMonkeyLabs 🐒 · https://cyphermonkeylabs.com · https://github.com/CypherMonkeyLabs · https://linktr.ee/cyphermonkey · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Independent, free, learning-only. Not affiliated. Trademarks belong to their owners. Nothing is sold. MIT code, CC BY-NC-SA content.</footer>
+</body>
+</html>

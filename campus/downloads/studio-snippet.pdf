@@ -1,0 +1,49 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 752 >>
+stream
+BT
+/F1 9 Tf
+36 770 Td
+14 TL
+(Studio snippet classroom notes) Tj
+T* (\251 2026 CypherMonkeyLabs) Tj
+T* (https://cyphermonkeylabs.com) Tj
+T* (https://github.com/CypherMonkeyLabs) Tj
+T* (https://linktr.ee/cyphermonkey) Tj
+T* (Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing) Tj
+T* (Independent, free, learning-only. Not affiliated.) Tj
+T* (Removal: https://cyphermonkeylabs.com/#contact) Tj
+T* () Tj
+T* (Custom code is written in Snippet.) Tj
+T* (REST from SNIPPET is strongly discouraged.) Tj
+T* (Use the REST API action or Integration Hub.) Tj
+T* (This file is not an official Studio export.) Tj
+T* (SNIPPET \(Desktop Studio\) https://help.nicecxone.com/content/Studio/actions/snippet/snippet.htm last checked ) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001044 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1114
+%%EOF

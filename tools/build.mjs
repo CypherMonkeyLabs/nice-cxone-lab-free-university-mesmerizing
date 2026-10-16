@@ -39,7 +39,7 @@ mkdirSync(join(root, "tracks"), { recursive: true });
 
 const manifest = {
   product: "NICE CXone Lab",
-  title: "Signal Floor",
+  title: "Contact Path",
   honesty: "Independent study notes. Not NiCE, not a tenant, and not a support channel. Versions and click paths can move. Where two official sentences disagree, the lesson says so.",
   tape: "Overall priority is (time × acceleration) + initial priority  ·  Proficiency 1 is best  ·  Hold is not recorded  ·  New digital work uses skills, not new routing queues  ·  Access-key secrets are shown once  ·  26.3 and 26.4 dates overlap on the pages we read",
   tracks: tracks.map((track) => ({

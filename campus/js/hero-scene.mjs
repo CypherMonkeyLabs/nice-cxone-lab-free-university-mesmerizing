@@ -229,6 +229,16 @@ function labelSprite(THREE, text, color) {
 
 export async function mountHero(canvas) {
   unmountHero();
+  if (canvas) {
+    canvas.hidden = true;
+    const drawn = canvas.parentElement && canvas.parentElement.querySelector(".contact-path");
+    if (drawn) drawn.hidden = false;
+  }
+  return { ok: false, reason: "drawn-contact-path" };
+}
+
+async function mountHeroOrbit(canvas) {
+  unmountHero();
   const token = generation;
   if (!canvas) return { ok: false };
   const stage = canvas.closest(".hero-stage");
