@@ -269,7 +269,16 @@ html[data-motion="reduce"] .phone-menu { animation: none; }
   background: var(--cc-surface-2);
   border: 1px solid var(--cc-line);
 }
-.sources-block { margin-top: 16px; }
+.sources-block {
+  margin-top: 28px;
+  padding: 16px 18px;
+  border: 2px solid var(--cc-accent-1);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--cc-surface) 88%, #000 12%);
+}
+.sources-block h2 { margin: 0 0 8px; }
+.sources-block .source-list { margin: 0; padding-left: 1.2rem; }
+.sources-block li { margin: 6px 0; }
 .read-now {
   background: color-mix(in srgb, var(--cc-accent-2) 35%, transparent);
   border-radius: 4px;

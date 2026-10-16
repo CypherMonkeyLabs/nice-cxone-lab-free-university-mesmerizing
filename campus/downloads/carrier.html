@@ -16,6 +16,8 @@
     footer { margin-top: 12px; min-height: 2.6em; font: 10px/1.35 sans-serif; color: #3c5360; }
     img, svg { width: 100%; height: auto; }
     .card { break-inside: avoid; border: 1px solid #c5d6de; padding: 8px; margin: 6px 0; }
+    .source-list { padding-left: 1.2rem; }
+    .source-list li { margin: 4px 0; }
     @media print { body { margin: 10mm; } a { color: inherit; text-decoration: none; } }
   </style>
 </head>
@@ -24,7 +26,8 @@
   <aside>Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. This lab is not affiliated and there is no endorsement. Removal or correction: https://cyphermonkeylabs.com/#contact. Nothing here is sold. The author is happy to volunteer.</aside>
   <h2>Three ways the pages talk about voice entry</h2><p>PSTN, on the connectivity page, is phone traffic routed by DID or toll-free number.</p><p>A SIP trunk is a virtual connection between a PBX and a carrier, over a phone line, VoIP, or a dedicated path such as MPLS. SIP itself is RFC 3261. This lab does not invent CXone SIP headers.</p><p>The agent leg is separate: Integrated Softphone or the installed Softphone.</p><p><a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm">Connectivity in NiCE CXone</a> <span>last checked 2026-10</span> · <a href="https://www.rfc-editor.org/rfc/rfc3261">RFC 3261</a> <span>last checked 2026-10</span></p><h2>Toll-free ownership</h2><p>If CXone is the RespOrg, you order more toll-free numbers through CXone. The IP address page says you must allow the blocks associated with those numbers and points you at the wizard.</p><p>Voice PoP, in the glossary this campus uses, is the carrier’s physical gateway. The exact PoP for a tenant is a wizard output, not a memorized city.</p><p><a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm">Connectivity in NiCE CXone</a> <span>last checked 2026-10</span> · <a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/ipaddresses.htm">IP Addresses and Blocks</a> <span>last checked 2026-10</span></p><h2>Unverified</h2><p>A matrix of BYOC vendors, codec defaults, and OPTIONS timers is not in the cited passages. Leave those cells blank until the current telephony requirements page and the carrier build sheet are open.</p><p><a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm">Connectivity in NiCE CXone</a> <span>last checked 2026-10</span></p>
   <h2>Sources and go deeper</h2>
-  <p>Links below were opened, or the row says confirm and has no URL. Last checked 2026-10.</p>
+  <ul class="source-list"><li><a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm">Connectivity in NiCE CXone</a> <span>last checked 2026-10</span></li><li><a href="https://www.rfc-editor.org/rfc/rfc3261">RFC 3261</a> <span>last checked 2026-10</span></li><li><a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/ipaddresses.htm">IP Addresses and Blocks</a> <span>last checked 2026-10</span></li></ul>
+  <p>Last checked 2026-10. A row that says confirm has no URL.</p>
   <footer>© 2026 CypherMonkeyLabs 🐒 · https://cyphermonkeylabs.com · https://github.com/CypherMonkeyLabs · https://linktr.ee/cyphermonkey · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Independent, free, learning-only. Not affiliated. Trademarks belong to their owners. Nothing is sold. MIT code, CC BY-NC-SA content.</footer>
 </body>
 </html>

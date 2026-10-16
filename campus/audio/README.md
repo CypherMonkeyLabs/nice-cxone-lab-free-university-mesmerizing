@@ -1,1 +1,1 @@
-Architect clips: two-voice study dialogue (Architect and Apprentice), TTS by Kokoro (kokoro-onnx 0.6.1) voices am_michael and af_heart over a soft ambient pad. Not a recording of a person.
+Architect clips: two-voice study dialogue (Architect A and Architect B). Generated with espeak-ng voices en-us+m3 and en-us+f3 over a quiet sine pad. The spoken words match the Contact Path scripts in this folder. Not a recording of a person. Lesson bodies are not narrated.

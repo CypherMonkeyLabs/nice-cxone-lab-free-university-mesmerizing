@@ -6,7 +6,7 @@ The site is static. From the repository root:
 python3 -m http.server 41773
 ```
 
-Open `http://127.0.0.1:41773/campus/`. The root `index.html` redirects to `campus/` with a relative path. GitHub Pages can publish the repository root. Routes are hash URLs, so no rewrite rules are required.
+Open `http://127.0.0.1:41773/campus/`. The root `index.html` is a Contact Path page. Its canonical link is the absolute campus URL `https://cyphermonkeylabs.com/nice-cxone-lab-free-university-mesmerizing/campus/`. A script calls `location.replace` with an absolute `campus/` URL on the current host, so a local server stays local and the published host stays on cyphermonkeylabs.com. GitHub Pages can publish the repository root. Routes are hash URLs, so no rewrite rules are required.
 
 `node scripts/gzip-static.mjs` writes `.gz` copies of the shell files. `node scripts/serve-gzip.mjs` serves those copies with `Content-Encoding: gzip` for a Lighthouse pass. The plain Python server does not gzip.
 

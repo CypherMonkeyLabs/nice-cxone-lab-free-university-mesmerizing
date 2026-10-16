@@ -33,6 +33,7 @@ View repo is a separate button to this repository. The sibling strip uses `https
 | `campus/js/tour.mjs` | Six-step tour |
 | `campus/js/kit.mjs` | Dock, greet, idle offer, read-along, section export, mic fallback |
 | `campus/js/guide.mjs` | Answers only from the loaded pages, plus the cloud hook |
+| `campus/js/sources.mjs` | Opened links, or confirm with no URL |
 | `campus/sw.js` | Same-origin cache. Bump the cache name when the shell changes |
 
 ## Storage keys
@@ -46,7 +47,7 @@ View repo is a separate button to this repository. The sibling strip uses `https
 
 ## Sources and go deeper
 
-`tools/extend-round.mjs` writes `campus/data/sources/<id>.json`. A row is either `status: opened` with a URL and `checked: 2026-10`, or `status: confirm` with no URL. The room, the lesson, and the cheat sheet render that list. `scripts/verify.mjs` fails if a confirm row still has a URL, or if a failed open (the 26.2 notes URL and the two NCAP badge URLs that returned 404 on 2026-10-16) is stored.
+`campus/js/sources.mjs` renders the visible list. `tools/extend-round.mjs` writes `campus/data/sources/<id>.json`. A row is either `status: opened` with a URL and `checked: 2026-10`, or `status: confirm` with no URL. The room, the lesson, the track, and the cheat sheet render that list. `scripts/verify.mjs` fails if a confirm row still has a URL, or if a failed open (the 26.2 notes URL and the two NCAP badge URLs that returned 404 on 2026-10-16) is stored.
 
 ## Honest limits
 

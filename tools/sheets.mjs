@@ -41,7 +41,27 @@ function citePlain(cite) {
   return `${cite.title} ${cite.url} last checked 2026-10`;
 }
 
-function page(title, body) {
+function uniqueCites(cites) {
+  const seen = new Set();
+  const rows = [];
+  for (const cite of cites || []) {
+    if (!cite) continue;
+    const hidden = hiddenCite(cite);
+    const key = hidden ? `confirm:${cite.title || "Source"}` : cite.url;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    rows.push(cite);
+  }
+  return rows;
+}
+
+function sourceList(cites) {
+  const rows = uniqueCites(cites);
+  if (!rows.length) return "<ul><li>Sheet notes — confirm</li></ul>";
+  return `<ul class="source-list">${rows.map((cite) => `<li>${citeAnchor(cite)}</li>`).join("")}</ul>`;
+}
+
+function page(title, body, cites) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -60,6 +80,8 @@ function page(title, body) {
     footer { margin-top: 12px; min-height: 2.6em; font: 10px/1.35 sans-serif; color: #3c5360; }
     img, svg { width: 100%; height: auto; }
     .card { break-inside: avoid; border: 1px solid #c5d6de; padding: 8px; margin: 6px 0; }
+    .source-list { padding-left: 1.2rem; }
+    .source-list li { margin: 4px 0; }
     @media print { body { margin: 10mm; } a { color: inherit; text-decoration: none; } }
   </style>
 </head>
@@ -68,7 +90,8 @@ function page(title, body) {
   <aside>Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. This lab is not affiliated and there is no endorsement. Removal or correction: https://cyphermonkeylabs.com/#contact. Nothing here is sold. The author is happy to volunteer.</aside>
   ${body}
   <h2>Sources and go deeper</h2>
-  <p>Links below were opened, or the row says confirm and has no URL. Last checked 2026-10.</p>
+  ${sourceList(cites)}
+  <p>Last checked 2026-10. A row that says confirm has no URL.</p>
   <footer>${esc(FOOT)}</footer>
 </body>
 </html>`;
@@ -125,8 +148,12 @@ function citeLine(key) {
   return citePlain(atlas.cites[key]);
 }
 
-function writePair(stem, title, htmlBody, lines) {
-  writeFileSync(join(out, `${stem}.html`), page(title, htmlBody));
+const indexCites = [];
+
+function writePair(stem, title, htmlBody, lines, cites) {
+  const list = uniqueCites(cites);
+  writeFileSync(join(out, `${stem}.html`), page(title, htmlBody, list));
+  indexCites.push(...list);
   const pdfLines = [
     title,
     "© 2026 CypherMonkeyLabs",
@@ -137,7 +164,8 @@ function writePair(stem, title, htmlBody, lines) {
     "Independent, free, learning-only. Not affiliated.",
     "Removal: https://cyphermonkeylabs.com/#contact",
     "",
-  ].concat(lines);
+    "Sources and go deeper",
+  ].concat(list.map(citePlain), ["Last checked 2026-10. A confirm row has no URL.", ""], lines);
   writeFileSync(join(out, `${stem}.pdf`), pdf(pdfLines));
 }
 
@@ -148,7 +176,8 @@ writePair(
   "ports",
   "Ports and protocols",
   `<p>Open only the apps you use. IP allowlists stay on the wizard. <a href="${esc(atlas.cites.ports.url)}">${esc(atlas.cites.ports.title)}</a></p><table><tr><th>Use</th><th>Protocol</th><th>Port</th><th>Note</th></tr>${portRows}</table>`,
-  atlas.ports.map((row) => `${row.port} ${row.proto} — ${row.use}`)
+  atlas.ports.map((row) => `${row.port} ${row.proto} — ${row.use}`),
+  [atlas.cites.ports, atlas.cites.portsHub]
 );
 
 const flowBody = atlas.diagrams.map((item) => `<p><strong>${esc(item.title)}.</strong> ${esc(item.caption)} ${citeAnchor(item.cite)}</p>`).join("");
@@ -156,14 +185,19 @@ writePair(
   "flows",
   "Call and data flows",
   flowBody,
-  atlas.diagrams.map((item) => `${item.title}: ${item.caption}`)
+  atlas.diagrams.map((item) => `${item.title}: ${item.caption}`),
+  atlas.diagrams.map((item) => item.cite)
 );
 
 function pageSheet(stem, title, id) {
   const source = atlas.pages.find((item) => item.id === id);
   const html = source.blocks.map((block) => `<h2>${esc(block.h)}</h2>${block.p.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}<p>${block.cites.map((key) => citeAnchor(atlas.cites[key])).join(" · ")}</p>`).join("");
   const lines = source.blocks.flatMap((block) => [block.h].concat(block.p));
-  writePair(stem, title, html, lines);
+  const cites = [];
+  for (const block of source.blocks) {
+    for (const key of block.cites || []) cites.push(atlas.cites[key] || { title: key, confirm: true });
+  }
+  writePair(stem, title, html, lines, cites);
 }
 
 pageSheet("config", "Configuration checklist", "deploy");
@@ -177,8 +211,9 @@ pageSheet("reporting", "Reporting and analytics", "reporting");
 writePair(
   "troubleshoot",
   "Troubleshooting tree",
-  atlas.troubles.map((item) => `<p><strong>${esc(item.symptom)}.</strong> ${esc(item.check)} <a href="${esc(atlas.cites[item.cite].url)}">${esc(atlas.cites[item.cite].title)}</a></p>`).join(""),
-  atlas.troubles.map((item) => `${item.symptom} — ${item.check}`)
+  atlas.troubles.map((item) => `<p><strong>${esc(item.symptom)}.</strong> ${esc(item.check)} ${citeAnchor(atlas.cites[item.cite])}</p>`).join(""),
+  atlas.troubles.map((item) => `${item.symptom} — ${item.check}`),
+  atlas.troubles.map((item) => atlas.cites[item.cite])
 );
 
 const gloss = glossary.slice(0, 28);
@@ -186,28 +221,32 @@ writePair(
   "glossary",
   "Glossary (first sheet)",
   `<p>The campus glossary is longer. This sheet is the first 28 terms. Each one links to its source from Contact Path.</p>${gloss.map((item) => `<p><strong>${esc(item.term)}.</strong> ${esc(item.meaning)}</p>`).join("")}`,
-  gloss.map((item) => `${item.term}: ${item.meaning}`)
+  gloss.map((item) => `${item.term}: ${item.meaning}`),
+  gloss.map((item) => item.cite)
 );
 
 writePair(
   "wfm",
   "WFM forecast",
   `<p>Forecast volume and average handle time, then staff to a target. A tighter speed of answer needs more agents. Bullseye can change the pool the forecast assumed.</p><p><a href="${esc(atlas.cites.forecast.url)}">${esc(atlas.cites.forecast.title)}</a> · <a href="${esc(atlas.cites.wfm.url)}">${esc(atlas.cites.wfm.title)}</a></p>`,
-  ["Forecast volume and AHT from at least three months, and the page also recommends 13 weeks.", "Example targets: under 10 seconds versus 30 seconds. Lower average speed of answer needs more agents.", "CXone WFM and IEX are different products.", citeLine("forecast")]
+  ["Forecast volume and AHT from at least three months, and the page also recommends 13 weeks.", "Example targets: under 10 seconds versus 30 seconds. Lower average speed of answer needs more agents.", "CXone WFM and IEX are different products.", citeLine("forecast")],
+  [atlas.cites.forecast, atlas.cites.wfm, atlas.cites.bullseye]
 );
 
 writePair(
   "recording",
   "Recording and quality",
   `<p>Hold audio, including hold music, is not recorded. A consultation during hold is recorded. Screen monitoring uses the ports on the firewall sheet.</p><p><a href="${esc(atlas.cites.recording.url)}">${esc(atlas.cites.recording.title)}</a></p>`,
-  ["Hold audio is not recorded. Consultation during hold is recorded.", "Screen NAT: UDP 443 or 3478 outbound. Internal 31322 unless OS Login.", citeLine("recording")]
+  ["Hold audio is not recorded. Consultation during hold is recorded.", "Screen NAT: UDP 443 or 3478 outbound. Internal 31322 unless OS Login.", citeLine("recording")],
+  [atlas.cites.recording, atlas.cites.ports]
 );
 
 writePair(
   "crm-api",
   "CRM and APIs",
   `<p>Discover api_endpoint per tenant. Salesforce billing follows the Agent Integrations attribute. CRM ticketing names Salesforce and Zendesk.</p><p><a href="${esc(atlas.cites.auth.url)}">${esc(atlas.cites.auth.title)}</a> · <a href="${esc(atlas.cites.sf.url)}">${esc(atlas.cites.sf.title)}</a> · <a href="${esc(atlas.cites.ticket.url)}">${esc(atlas.cites.ticket.title)}</a></p>`,
-  ["Do not hard-code api-na1.", "Access-key secret is shown once and inherits the employee.", "CRM Ticketing needs its license. Retention on that page is 90 days.", citeLine("auth")]
+  ["Do not hard-code api-na1.", "Access-key secret is shown once and inherits the employee.", "CRM Ticketing needs its license. Retention on that page is 90 days.", citeLine("auth")],
+  [atlas.cites.auth, atlas.cites.sf, atlas.cites.ticket]
 );
 
 writePair(
@@ -224,7 +263,8 @@ writePair(
     "Use the REST API action or Integration Hub.",
     "This file is not an official Studio export.",
     citeLine("snippet"),
-  ]
+  ],
+  [atlas.cites.snippet, atlas.cites.hub]
 );
 
 pageSheet("bridges", "Bridges from other contact centers", "bridges");
@@ -233,15 +273,23 @@ writePair(
   "ai",
   "AI agents and summaries",
   `<p>Autopilot voice needs NiCE. Text needs Digital Experience. AutoSummary types are Structured, Generative, and Hybrid. Email is not supported.</p><p><a href="${esc(atlas.cites.autopilot.url)}">${esc(atlas.cites.autopilot.title)}</a> · <a href="${esc(atlas.cites.summary.url)}">${esc(atlas.cites.summary.title)}</a></p>`,
-  ["Voice setup needs NiCE. Text uses Digital Experience and the script.", "AutoSummary: Structured, Generative, Hybrid. Not email.", "MAX also needs a Copilot for Agents license.", citeLine("autopilot")]
+  ["Voice setup needs NiCE. Text uses Digital Experience and the script.", "AutoSummary: Structured, Generative, Hybrid. Not email.", "MAX also needs a Copilot for Agents license.", citeLine("autopilot")],
+  [atlas.cites.autopilot, atlas.cites.summary, atlas.cites.summarySetup]
 );
 
 const cards = [];
+const flashCites = [];
+let counted = 0;
 for (const meta of manifest.tracks) {
   const track = JSON.parse(readFileSync(join(campus, meta.file), "utf8"));
   for (const lesson of track.lessons) {
+    const before = counted;
     for (const card of lesson.cards || []) {
       cards.push({ track: track.title, lesson: lesson.title, front: card.front, back: card.back });
+      counted += 1;
+    }
+    if (before < 12) {
+      for (const section of lesson.sections || []) flashCites.push(...(section.cites || []));
     }
   }
 }
@@ -251,7 +299,8 @@ writePair(
   "flashcards",
   "Flashcards",
   `<p>${cards.length} cards live in flashcards.json. This printable sample is the first 12. Print the HTML from a browser for the sample; the JSON is the full deck.</p>${sample.map((card) => `<article class="card"><strong>${esc(card.front)}</strong><p>${esc(card.back)}</p><p>${esc(card.track)} · ${esc(card.lesson)}</p></article>`).join("")}`,
-  sample.map((card) => `${card.front} — ${card.back}`)
+  sample.map((card) => `${card.front} — ${card.back}`),
+  flashCites
 );
 
 const tracks = {};
@@ -282,5 +331,5 @@ writeFileSync(join(out, "cxone-offline-pack.json"), JSON.stringify({
 const links = [
   "ports", "flows", "config", "troubleshoot", "glossary", "wfm", "recording", "e911", "crm-api", "ai", "licensing", "carrier", "security", "migration", "reporting", "flashcards", "studio-snippet", "bridges",
 ].map((stem) => `<li><a href="${stem}.html">${stem}</a> · <a href="${stem}.pdf">pdf</a> · <a href="${stem}.png">png</a></li>`).join("");
-writeFileSync(join(out, "index.html"), page("Cheat codes", `<ul>${links}</ul><p><a href="flashcards.json">flashcards.json</a> · <a href="cxone-offline-pack.json">cxone-offline-pack.json</a> · <a href="cxone-offline-bundle.zip">offline zip</a></p>`));
+writeFileSync(join(out, "index.html"), page("Cheat codes", `<ul>${links}</ul><p><a href="flashcards.json">flashcards.json</a> · <a href="cxone-offline-pack.json">cxone-offline-pack.json</a> · <a href="cxone-offline-bundle.zip">offline zip</a></p>`, indexCites));
 console.log("sheets", cards.length, "cards");

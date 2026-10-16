@@ -12,7 +12,7 @@ From the repository root:
 python3 -m http.server 41773
 ```
 
-Open [http://127.0.0.1:41773/campus/](http://127.0.0.1:41773/campus/). The root `index.html` redirects to `campus/`.
+Open [http://127.0.0.1:41773/campus/](http://127.0.0.1:41773/campus/). The root `index.html` is a Contact Path page with an absolute canonical URL for the campus app. A script replaces the page with that campus address, built from the host you opened.
 
 GitHub Pages works the same way: publish the repository and start at `campus/`. Routes are hash URLs, so no server rewrites are required.
 
