@@ -101,15 +101,16 @@ if (!html.includes("favicon.svg") || !html.includes("favicon.ico")) fail("favico
 if (!html.includes("© 2026 CypherMonkeyLabs")) fail("copyright");
 if (!html.includes("lifelong student")) fail("identity");
 if (html.includes("linktr.ee")) fail("linktree");
-if (html.includes("nice-cxone-lab-free-university-mesmerizing")) fail("old repo link");
+if (html.includes("github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing")) fail("old repo link");
+if (!html.includes("https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing")) fail("labs repo");
 if (html.includes("dev.to/cyphermonkey")) fail("dev link");
 if (/linkedin/i.test(html)) fail("linkedin");
 if (/mailto:|@[a-z0-9.-]+\.[a-z]{2,}/i.test(html)) fail("email");
 if (!html.includes("CC BY-NC-SA")) fail("content license");
 if (!html.includes("mascot-dock")) fail("mascot");
-if (!html.includes("https://cipher0x9.github.io/webex-lab-free-university-mesmerizing/")) fail("webex pages");
-if (!html.includes("https://cipher0x9.github.io/uc-lab-free-university-mesmerizing/")) fail("uc pages");
-if (!html.includes("https://cipher0x9.github.io/ai-lab-free-university-mesmerizing/")) fail("ai pages");
+if (!html.includes("https://cyphermonkeylabs.com/webex-lab-free-university-mesmerizing/")) fail("webex pages");
+if (!html.includes("https://cyphermonkeylabs.com/uc-lab-free-university-mesmerizing/")) fail("uc pages");
+if (!html.includes("https://cyphermonkeylabs.com/ai-lab-free-university-mesmerizing/")) fail("ai pages");
 if (html.includes("cypherwebex-canon-test.vercel.app")) fail("old canon url");
 if (html.includes(">Webex Canon<")) fail("old canon label");
 const studyLabels = ["Diagrams", "Flows", "Charts", "Cheat Codes", "Play", "Ecosystem", "Downloads", "Careers"];
@@ -144,10 +145,12 @@ const sheetHtml = readFileSync(join(campus, "downloads", "ports.html"), "utf8");
 for (const token of ["https://cyphermonkeylabs.com", "https://github.com/cipher0x9", "https://github.com/CypherMonkeyLabs", "https://x.com/Cypher0x9", "https://huggingface.co/Cypher0x9", "not affiliated", "favicon.svg", "© 2026 CypherMonkeyLabs"]) {
   if (!sheetHtml.includes(token)) fail(`sheet footer ${token}`);
 }
-if (sheetHtml.includes("linktr.ee") || sheetHtml.includes("nice-cxone-lab-free-university-mesmerizing")) fail("old sheet link");
+if (sheetHtml.includes("linktr.ee") || sheetHtml.includes("github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing")) fail("old sheet link");
+if (!sheetHtml.includes("https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing")) fail("sheet repo");
 const portsPdf = readFileSync(join(campus, "downloads", "ports.pdf"));
 const pdfText = portsPdf.toString("latin1");
-if (pdfText.includes("nice-cxone-lab-free-university-mesmerizing") || pdfText.includes("linktr.ee")) fail("old pdf link");
+if (pdfText.includes("github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing") || pdfText.includes("linktr.ee")) fail("old pdf link");
+if (!pdfText.includes("github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing")) fail("pdf repo");
 if (!pdfText.includes("github.com/cipher0x9")) fail("pdf github");
 if (/linkedin/i.test(sheetHtml) || /mailto:/i.test(sheetHtml)) fail("sheet contact");
 const license = readFileSync(join(root, "LICENSE"), "utf8");

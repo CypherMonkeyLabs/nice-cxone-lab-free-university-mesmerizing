@@ -9,7 +9,7 @@ const atlas = JSON.parse(readFileSync(join(campus, "data", "atlas.json"), "utf8"
 const manifest = JSON.parse(readFileSync(join(campus, "data", "manifest.json"), "utf8"));
 const glossary = JSON.parse(readFileSync(join(campus, "data", "glossary.json"), "utf8"));
 
-const FOOT = "© 2026 CypherMonkeyLabs 🐒 · Visit my GitHub https://github.com/cipher0x9 · Visit the Labs org https://github.com/CypherMonkeyLabs · Visit Cypher Monkey Labs https://cyphermonkeylabs.com · X https://x.com/Cypher0x9 · Hugging Face https://huggingface.co/Cypher0x9 · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content.";
+const FOOT = "© 2026 CypherMonkeyLabs 🐒 · Visit my GitHub https://github.com/cipher0x9 · Visit the Labs org https://github.com/CypherMonkeyLabs · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Visit Cypher Monkey Labs https://cyphermonkeylabs.com · X https://x.com/Cypher0x9 · Hugging Face https://huggingface.co/Cypher0x9 · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content.";
 
 function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
@@ -110,6 +110,7 @@ function writePair(stem, title, htmlBody, lines) {
     "© 2026 CypherMonkeyLabs",
     "Visit my GitHub https://github.com/cipher0x9",
     "Visit the Labs org https://github.com/CypherMonkeyLabs",
+    "Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing",
     "Visit Cypher Monkey Labs https://cyphermonkeylabs.com",
     "X https://x.com/Cypher0x9",
     "Hugging Face https://huggingface.co/Cypher0x9",

@@ -663,6 +663,6 @@ export async function buildPack(manifest, ensureTrack, ensureExtra) {
     tracks,
     extras,
     atlas,
-    footer: "© 2026 CypherMonkeyLabs 🐒 · https://github.com/cipher0x9 · https://github.com/CypherMonkeyLabs · https://cyphermonkeylabs.com · https://x.com/Cypher0x9 · https://huggingface.co/Cypher0x9 · Independent educational project. MIT code, CC BY-NC-SA content.",
+    footer: "© 2026 CypherMonkeyLabs 🐒 · https://github.com/cipher0x9 · https://github.com/CypherMonkeyLabs · https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · https://cyphermonkeylabs.com · https://x.com/Cypher0x9 · https://huggingface.co/Cypher0x9 · Independent educational project. MIT code, CC BY-NC-SA content.",
   };
 }
