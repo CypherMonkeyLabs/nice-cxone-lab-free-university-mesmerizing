@@ -192,8 +192,50 @@ if (!effects.includes("anime.esm.min.js") || !effects.includes("rough.esm.js") |
 if (!effects.includes("d3.min.js") || !effects.includes("markmap-view.js")) fail("d3 markmap");
 if (!uni.includes("#/diagrams") || !uni.includes("#/flows") || !uni.includes("#/charts")) fail("university routes");
 if (!app.includes("trackFloor")) fail("track charts");
-if (!sw.includes("cxone-lab-v7")) fail("sw cache");
+if (!sw.includes("cxone-lab-v8")) fail("sw cache");
+if (!sw.includes("js/sources.mjs")) fail("sw sources");
 if (!sw.includes("js/guide.mjs") || !sw.includes("data/guide-kb.json")) fail("sw guide");
+const rootIndex = readFileSync(join(root, "index.html"), "utf8");
+if (statSync(join(root, "index.html")).size <= 463) fail("root still a stub");
+if (!rootIndex.includes('rel="canonical" href="https://cyphermonkeylabs.com/nice-cxone-lab-free-university-mesmerizing/campus/"')) fail("absolute canonical");
+if (!rootIndex.includes("location.replace")) fail("root redirect");
+if (!rootIndex.includes("new URL(\"campus/\"")) fail("absolute redirect target");
+if (!rootIndex.includes("Sources and go deeper") || !rootIndex.includes("last checked 2026-10")) fail("root sources");
+if (!rootIndex.includes("Five9 bridge — confirm") || rootIndex.includes("20262release")) fail("root confirm");
+if (/linkedin|huggingface|https:\/\/x\.com/i.test(rootIndex)) fail("root social");
+if (rootIndex.includes('http-equiv="refresh"') && rootIndex.includes("url=campus/")) fail("relative refresh stub");
+const { sourcesBlock } = await import("../campus/js/sources.mjs");
+const sourceSample = sourcesBlock([
+  { title: "Ports and Protocols by Application", url: "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm", status: "opened", checked: "2026-10" },
+  { title: "26.2 Release Notes", url: hiddenUrls[0], status: "opened" },
+  { title: "Five9 bridge", confirm: true, url: "https://example.invalid/five9" },
+]);
+if (!sourceSample.includes("last checked 2026-10")) fail("sources checked label");
+if (!sourceSample.includes("26.2 Release Notes — confirm") || sourceSample.includes("20262release")) fail("sources confirm strips url");
+if (!sourceSample.includes("Five9 bridge — confirm") || sourceSample.includes("example.invalid")) fail("sources confirm flag");
+function walkHtml(dir, acc = []) {
+  for (const name of readdirSync(dir)) {
+    const path = join(dir, name);
+    if (statSync(path).isDirectory()) walkHtml(path, acc);
+    else if (name.endsWith(".html")) acc.push(path);
+  }
+  return acc;
+}
+for (const file of walkHtml(join(campus, "downloads"))) {
+  const text = readFileSync(file, "utf8");
+  const start = text.indexOf("<h2>Sources and go deeper</h2>");
+  if (start < 0) fail(`download sources ${file}`);
+  else {
+    const block = text.slice(start, start + 8000);
+    if (!/<a href="https:\/\/[^"]+"/.test(block) && !/— confirm/.test(block)) fail(`download sources empty ${file}`);
+  }
+  for (const url of hiddenUrls) {
+    if (text.includes(url)) fail(`download leaked ${url} in ${file}`);
+  }
+  if (/linkedin|huggingface|https:\/\/x\.com/i.test(text)) fail(`download social ${file}`);
+}
+if (!app.includes("roomSources") || !app.includes("lessonCites")) fail("lesson sources");
+if (!uni.includes("sourcesBlock")) fail("room sources");
 if (!html.includes('id="guide"') || !html.includes("Guide Bot") || !html.includes("js/guide.mjs")) fail("guide widget");
 if (!html.includes("quick-bar") || !html.includes('class="menu-search"') || !html.includes("menu-hint")) fail("menu chrome");
 if (!css.includes(".menu-item[hidden]")) fail("menu filter hidden");

@@ -9,7 +9,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 3428 >>
+<< /Length 4654 >>
 stream
 BT
 /F1 9 Tf
@@ -23,6 +23,24 @@ T* (https://linktr.ee/cyphermonkey) Tj
 T* (Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing) Tj
 T* (Independent, free, learning-only. Not affiliated.) Tj
 T* (Removal: https://cyphermonkeylabs.com/#contact) Tj
+T* () Tj
+T* (Sources and go deeper) Tj
+T* (Connectivity in NiCE CXone https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.) Tj
+T* (Points of Contact Overview https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofc) Tj
+T* (Studio Fundamentals https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm last checked 202) Tj
+T* (Configure Priority for a Skill for Static Delivery https://help.nicecxone.com/content/ACD/routing/staticdelive) Tj
+T* (Bullseye Routing https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm last checked 2026-10) Tj
+T* (Set Up Inbound Voice https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm last checked 2026-) Tj
+T* (MENU \(Desktop Studio\) https://help.nicecxone.com/content/Studio/actions/menu/menu.htm last checked 2026-10) Tj
+T* (Digital Routing https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm last checked 2026-10) Tj
+T* (Customize Proactive Voice Dialing https://help.nicecxone.com/Content/acd/channels/personalconnection/proactive) Tj
+T* (Workforce Management \(CXone\) https://help.nicecxone.com/content/workforcemanagement/welcometoworkforcemanage) Tj
+T* (General Forecast https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm last checked 2026-) Tj
+T* (Recording Management \(CXone\) https://help.nicecxone.com/Content/recording/managerecordings.htm last checked ) Tj
+T* (Engagement Hub https://help.nicecxone.com/content/integratedsolutions/engagementhub.htm last checked 2026-10) Tj
+T* (Supported Real-Time Third Party Telephony Recording \(Multi-ACD\) https://help.nicecxone.com/Content/cxoneopen) Tj
+T* (NiCE CXone Autopilot \(Omilia\) https://help.nicecxone.com/content/autopilot/autopilot.htm last checked 2026-1) Tj
+T* (Last checked 2026-10. A confirm row has no URL.) Tj
 T* () Tj
 T* (A leg: The portion of a call between the contact and NiCE CXone. On an inbound call it is ingress.) Tj
 T* (B leg: The portion of a call between NiCE CXone and the agent. A transfer adds a second B leg.) Tj
@@ -46,12 +64,7 @@ T* (Digital skill: The inbound digital path since the Summer 2023 change. New ro
 T* (Personal Connection: Proactive voice. Acceleration is set to 0 so the contact does not sit in an inbound-style) Tj
 T* (CXone WFM: Forecast, schedule, bids, time off, and adherence. The welcome page states a scale up to 10,000 age) Tj
 T* (IEX: A different workforce product. Its help is inside the IEX application.) Tj
-T* (AHT: On the forecast page, the average time to complete a transaction from start to finish.) Tj
-T* (ScreenAgent: Records and monitors the agent's screen. From version 2.1.40, a voice mask stops active screen re) Tj
-T* (Hold gap: Hold audio, including hold music, is not recorded. A consultation during hold is recorded.) Tj
-T* (Engagement Hub: Brings third-party PABX, ACD, CRM, digital, and dialer data into CXone for Supervisor, Copilot) Tj
-T* (Multi-ACD: Real-time recording of a third-party phone system. Versions live in that table, not in the WFM conn) Tj
-T* (Autopilot \(Omilia\): The virtual agent for voice and digital. Voice setup needs NiCE. Text needs Digital Expe) Tj
+T* (Full text is in the matching HTML sheet.) Tj
 ET
 endstream
 endobj
@@ -65,8 +78,8 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000241 00000 n 
-0000003721 00000 n 
+0000004947 00000 n 
 trailer << /Size 6 /Root 1 0 R >>
 startxref
-3791
+5017
 %%EOF

@@ -1,0 +1,304 @@
+[
+  {
+    "view": "1440",
+    "label": "home",
+    "file": "/workspace/docs/screenshots/audit-1440-home.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "Contact Path",
+    "sources": true,
+    "linkCount": 6,
+    "opened": [
+      "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm",
+      "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "Last checked 2026-10. A line marked confirm has no URL."
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 1425,
+    "clientW": 1425,
+    "errors": []
+  },
+  {
+    "view": "1440",
+    "label": "room",
+    "file": "/workspace/docs/screenshots/audit-1440-room.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "What the platform actually routes",
+    "sources": true,
+    "linkCount": 2,
+    "opened": [
+      "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofcontact/pointsofcontact.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "Last checked 2026-10. A line marked confirm has no URL."
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 1425,
+    "clientW": 1425,
+    "errors": []
+  },
+  {
+    "view": "1440",
+    "label": "chapter",
+    "file": "/workspace/docs/screenshots/audit-1440-chapter.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "Foundations and prerequisites",
+    "sources": true,
+    "linkCount": 18,
+    "opened": [
+      "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofcontact/pointsofcontact.htm",
+      "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm",
+      "https://help.nicecxone.com/content/autopilot/autopilot.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "26.2 Release Notes — confirm",
+      "Last checked 2026-10. A line marked confirm has no URL."
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 1425,
+    "clientW": 1425,
+    "errors": []
+  },
+  {
+    "view": "1440",
+    "label": "downloads",
+    "file": "/workspace/docs/screenshots/audit-1440-downloads.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "Cheat Codes",
+    "sources": true,
+    "linkCount": 49,
+    "opened": [
+      "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm",
+      "https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm",
+      "https://help.nicecxone.com/content/workforcemanagement/welcometoworkforcemanagement.htm",
+      "https://help.nicecxone.com/Content/recording/managerecordings.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "Five9 bridge — confirm",
+      "Webex Contact Center bridge — confirm",
+      "NCAP CXone Mpower Workforce Management — confirm"
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 1425,
+    "clientW": 1425,
+    "errors": []
+  },
+  {
+    "view": "1440",
+    "label": "bridges",
+    "file": "/workspace/docs/screenshots/audit-1440-bridges.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "Bridges from other contact centers",
+    "sources": true,
+    "linkCount": 9,
+    "opened": [
+      "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "Five9 bridge — confirm",
+      "Webex Contact Center bridge — confirm",
+      "Last checked 2026-10. A line marked confirm has no URL."
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 1425,
+    "clientW": 1425,
+    "errors": []
+  },
+  {
+    "view": "390",
+    "label": "home",
+    "file": "/workspace/docs/screenshots/audit-390-home.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "Contact Path",
+    "sources": true,
+    "linkCount": 6,
+    "opened": [
+      "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm",
+      "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm",
+      "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "Last checked 2026-10. A line marked confirm has no URL."
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 390,
+    "clientW": 390,
+    "errors": []
+  },
+  {
+    "view": "390",
+    "label": "room",
+    "file": "/workspace/docs/screenshots/audit-390-room.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "What the platform actually routes",
+    "sources": true,
+    "linkCount": 2,
+    "opened": [
+      "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofcontact/pointsofcontact.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "Last checked 2026-10. A line marked confirm has no URL."
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 390,
+    "clientW": 390,
+    "errors": []
+  },
+  {
+    "view": "390",
+    "label": "chapter",
+    "file": "/workspace/docs/screenshots/audit-390-chapter.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "Foundations and prerequisites",
+    "sources": true,
+    "linkCount": 18,
+    "opened": [
+      "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm",
+      "https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofcontact/pointsofcontact.htm",
+      "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm",
+      "https://help.nicecxone.com/content/autopilot/autopilot.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "26.2 Release Notes — confirm",
+      "Last checked 2026-10. A line marked confirm has no URL."
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 390,
+    "clientW": 390,
+    "errors": []
+  },
+  {
+    "view": "390",
+    "label": "downloads",
+    "file": "/workspace/docs/screenshots/audit-390-downloads.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "Cheat Codes",
+    "sources": true,
+    "linkCount": 49,
+    "opened": [
+      "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm",
+      "https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm",
+      "https://help.nicecxone.com/content/workforcemanagement/welcometoworkforcemanagement.htm",
+      "https://help.nicecxone.com/Content/recording/managerecordings.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "Five9 bridge — confirm",
+      "Webex Contact Center bridge — confirm",
+      "NCAP CXone Mpower Workforce Management — confirm"
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 390,
+    "clientW": 390,
+    "errors": []
+  },
+  {
+    "view": "390",
+    "label": "bridges",
+    "file": "/workspace/docs/screenshots/audit-390-bridges.png",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "Bridges from other contact centers",
+    "sources": true,
+    "linkCount": 9,
+    "opened": [
+      "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm",
+      "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm",
+      "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm",
+      "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm"
+    ],
+    "hasChecked": true,
+    "confirmHasUrl": false,
+    "confirmSample": [
+      "Five9 bridge — confirm",
+      "Webex Contact Center bridge — confirm",
+      "Last checked 2026-10. A line marked confirm has no URL."
+    ],
+    "brands": [
+      "https://cyphermonkeylabs.com/",
+      "https://github.com/CypherMonkeyLabs",
+      "https://linktr.ee/cyphermonkey"
+    ],
+    "social": [],
+    "scrollW": 390,
+    "clientW": 390,
+    "errors": []
+  },
+  {
+    "label": "root-redirect",
+    "href": "http://127.0.0.1:41773/campus/",
+    "title": "Contact Path · NICE CXone Lab",
+    "h1": "Contact Path"
+  }
+]

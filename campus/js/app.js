@@ -8,6 +8,7 @@ import { bindTilt, isoIcon, progressRing } from "./icons.mjs";
 import { bindLightbox } from "./lightbox.mjs";
 import { bootLang, currentLang, ensureLessonMt, setLang, t, trLesson } from "./i18n.mjs";
 import { motionReduced } from "./pixel.mjs";
+import { lessonCites, sourcesBlock } from "./sources.mjs";
 
 const SETTINGS_KEY = "cxone-lab-settings";
 const PROGRESS_KEY = "cxone-lab-progress";
@@ -143,6 +144,10 @@ function citeLink(cite) {
   const href = safeUrl(cite.url);
   if (!href) return `${esc(cite.title || "Source")} — confirm`;
   return `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(cite.title || href)}</a> <span class="muted">last checked 2026-10</span>`;
+}
+
+function roomSources(rows) {
+  return `<section class="sources-block" id="sources"><h2>Sources and go deeper</h2>${sourcesBlock(rows)}</section>`;
 }
 
 function clearTimers() {
@@ -552,7 +557,7 @@ function lessonView(track, lesson) {
     <div id="card-block">${cardsMarkup(lesson.cards)}</div>
     <div id="quiz-block">${quizMarkup(lesson)}</div>
     <section class="eco-panel"><h2>Ecosystem</h2><p>This lesson sits on the ${esc(track.title)} track. The <a href="#/explorer">explorer</a> holds the glossary, mind map, sister technologies, and troubleshooting leaves. <a href="#/bridges">Bridges</a> keeps UCCE, Genesys, Amazon Connect, and the confirms for Five9 and Webex Contact Center apart.</p></section>
-    <section class="sources-block"><h2>Sources and go deeper</h2><p>Each block above names the page it paraphrases. A line marked confirm has no URL. Last checked 2026-10. <a href="data/sources/${esc(track.id)}.json">sources.json</a></p></section>
+    ${roomSources(lessonCites(lesson))}
     <div class="row">
       ${prev ? `<a class="icon-btn" rel="prev" href="#/lesson/${esc(track.id)}/${esc(prev.id)}">Previous</a>` : ""}
       ${next ? `<a class="icon-btn" rel="next" href="#/lesson/${esc(track.id)}/${esc(next.id)}">Next lesson</a>` : `<a class="icon-btn" href="#/track/${esc(track.id)}">Back to track</a>`}
@@ -631,6 +636,12 @@ async function viewHome() {
     `<button type="button" data-pose-set="${pose}">${pose}</button>`
   )).join("");
   const cards = manifest.tracks.map((track) => trackCard(track, true)).join("");
+  const atlas = await loadJSON("data/atlas.json");
+  const featured = ["sip-ladder", "route-ladder", "audio-tree", "bullseye", "cutover-ladder", "orbit"]
+    .map((id) => atlas.diagrams.find((item) => item.id === id))
+    .filter(Boolean)
+    .map((spec) => spec.cite);
+  const rows = featured.concat(["priority", "studio", "poc", "ports"].map((key) => atlas.cites[key]));
   setMain(`
     <section class="hero-stage contact-hero">
       <div class="hero-sheet">
@@ -674,6 +685,7 @@ async function viewHome() {
     </section>
     <div id="home-extra">${extra}</div>
     <p class="muted">${done} of ${total} lessons marked studied. ${esc(manifest.honesty)}</p>
+    ${roomSources(rows)}
     <div class="tape" aria-hidden="true"><span>${esc(manifest.tape)} &nbsp; ${esc(manifest.tape)} &nbsp;</span></div>`);
   renderRail("home");
   decorateHome(reducedMotion());
@@ -706,7 +718,9 @@ function liveCanvas() {
 async function viewTracks() {
   const manifest = await ensureManifest();
   const cards = manifest.tracks.map((track) => trackCard(track, true)).join("");
-  setMain(`<h1>Tracks</h1><p class="lede">Sixteen paths from prerequisites through migration. Open one track at a time; lesson bodies load with that track.</p><div class="grid cards">${cards}</div>`);
+  const packs = await Promise.all(manifest.tracks.map((track) => loadJSON(`data/sources/${track.id}.json`).catch(() => ({ sources: [] }))));
+  const rows = packs.flatMap((pack) => pack.sources || []);
+  setMain(`<h1>Tracks</h1><p class="lede">Sixteen paths from prerequisites through migration. Open one track at a time; lesson bodies load with that track.</p><div class="grid cards">${cards}</div>${roomSources(rows)}`);
   renderRail("tracks");
 }
 
@@ -720,7 +734,8 @@ async function viewTrack(id) {
     return `<a class="card holo" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${index + 1}. ${esc(shown.title)}</h2><span class="chip">${done ? "Studied" : esc(lesson.level)}</span></header><p>${esc(shown.summary)}</p></a>`;
   }).join("");
   const banner = currentLang() === "en" ? "" : mtNote(true);
-  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Contact Path</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><div class="track-hero"><canvas class="icon-live" data-icon-kind="${esc(track.id)}" width="160" height="128" aria-hidden="true"></canvas><div class="iso-wrap">${isoIcon(track.id)}</div><div><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p>${banner}</div></div><div id="track-floor">${await trackFloor(track)}</div><div class="grid cards">${items}</div>`);
+  const rows = track.lessons.flatMap((lesson) => lessonCites(lesson));
+  setMain(`<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Contact Path</a> · <a href="#/tracks">Tracks</a> · ${esc(track.title)}</nav><div class="track-hero"><canvas class="icon-live" data-icon-kind="${esc(track.id)}" width="160" height="128" aria-hidden="true"></canvas><div class="iso-wrap">${isoIcon(track.id)}</div><div><h1>${esc(track.title)}</h1><p class="lede">${esc(track.blurb)}</p>${banner}</div></div><div id="track-floor">${await trackFloor(track)}</div><div class="grid cards">${items}</div>${roomSources(rows)}`);
   renderRail("tracks");
   decorateFloor(document.getElementById("main"));
 }
@@ -739,7 +754,7 @@ async function viewLesson(trackId, lessonId) {
 }
 
 function viewMissing() {
-  setMain(`<h1>That page is not in Contact Path</h1><p>The link does not match a track, lesson, or tool. Head back to the start or the track list.</p><p><a href="#/">Contact Path</a> · <a href="#/tracks">Tracks</a></p>`);
+  setMain(`<h1>That page is not in Contact Path</h1><p>The link does not match a track, lesson, or tool. Head back to the start or the track list.</p><p><a href="#/">Contact Path</a> · <a href="#/tracks">Tracks</a></p>${roomSources([{ title: "That address is not a page in Contact Path", confirm: true }])}`);
   renderRail("home");
 }
 
@@ -799,7 +814,11 @@ function viewStudio() {
         <pre class="log" id="studio-out" hidden></pre>
       </div>
       <div class="inspector" id="studio-inspector"><p class="muted">Select an action.</p></div>
-    </div>`);
+    </div>
+    ${roomSources([
+      { title: "SNIPPET (Desktop Studio)", url: "https://help.nicecxone.com/content/Studio/actions/snippet/snippet.htm" },
+      { title: "Studio Fundamentals", url: "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm" },
+    ])}`);
   renderRail("studio");
   bindStudio(script);
 }
@@ -1010,7 +1029,12 @@ function viewRouting() {
         <h2>Decision trace</h2>
         <pre class="log" id="sim-log"></pre>
       </div>
-    </div>`);
+    </div>
+    ${roomSources([
+      { title: "Configure Priority for a Skill for Static Delivery", url: "https://help.nicecxone.com/content/ACD/routing/staticdelivery/configureskillpriority.htm" },
+      { title: "Bullseye Routing", url: "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm" },
+      { title: "Customize Proactive Voice Dialing", url: "https://help.nicecxone.com/Content/acd/channels/personalconnection/proactivevoice/customizeproactivevoicedialing.htm" },
+    ])}`);
   renderRail("routing");
   const sim = freshSim();
   state.sim = {
@@ -1131,9 +1155,13 @@ async function viewTopology() {
         <h2>Failure toggles</h2>
         ${toggles}
         <p id="topo-copy" class="muted">No failure forced.</p>
-        <p class="sources"><a href="https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm">Bullseye</a> · <a href="https://help.nicecxone.com/Content/recording/managerecordings.htm">Recording</a> · <a href="https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm">UCCE connector</a></p>
       </form>
-    </div>`);
+    </div>
+    ${roomSources([
+      { title: "Bullseye Routing", url: "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm" },
+      { title: "Recording Management (CXone)", url: "https://help.nicecxone.com/Content/recording/managerecordings.htm" },
+      { title: "Cisco UCCE Connector", url: "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm" },
+    ])}`);
   renderRail("topology");
   const canvas = document.getElementById("topo");
   const reduced = reducedMotion();
@@ -1182,7 +1210,8 @@ async function viewEcosystem() {
     <svg id="ecosystem-markmap" class="markmap" viewBox="0 0 760 420" role="img" aria-label="Ecosystem mind map"></svg>
     <div class="mind">${mindMap()}</div>
     <h2>Glossary</h2>
-    <div class="grid cards">${terms}</div>`);
+    <div class="grid cards">${terms}</div>
+    ${roomSources(glossary.map((item) => item.cite).concat((atlas.sisters || []).map((item) => atlas.cites && atlas.cites[item.cite])))}`);
   renderRail("ecosystem");
   decorateFloor(document.getElementById("main"));
 }
@@ -1210,7 +1239,7 @@ function mindMap() {
 async function viewIncidents() {
   const incidents = await ensureExtra("boss");
   const cards = incidents.map((incident) => `<article class="card" id="${esc(incident.id)}"><header><h2>${esc(incident.title)}</h2><span class="chip">${esc(incident.severity)}</span></header><p>${esc(incident.summary)}</p><pre class="log">${esc(incident.log)}</pre><form data-boss="${esc(incident.id)}">${incident.steps.map((step, index) => `<fieldset><legend>${esc(step.ask)}</legend>${step.choices.map((choice, choiceIndex) => `<label class="choice"><input type="radio" name="${esc(incident.id)}-${index}" value="${choiceIndex}"> ${esc(choice)}</label>`).join("")}</fieldset>`).join("")}<button class="solid" type="submit">Check the bridge</button><p class="status" role="status"></p></form><p class="sources">${citeLink(incident.cite)}</p></article>`).join("");
-  setMain(`<h1>Boss incidents</h1><p class="lede">Synthetic sev-2 nights. The logs were written for this lab. The underlying failure modes are the ones the help pages describe.</p><div class="grid">${cards}</div>`);
+  setMain(`<h1>Boss incidents</h1><p class="lede">Synthetic sev-2 nights. The logs were written for this lab. The underlying failure modes are the ones the help pages describe.</p><div class="grid">${cards}</div>${roomSources(incidents.map((incident) => incident.cite))}`);
   renderRail("incidents");
   document.querySelectorAll("form[data-boss]").forEach((form) => {
     form.addEventListener("submit", (event) => {
@@ -1230,7 +1259,7 @@ async function viewIncidents() {
 async function viewInterview() {
   const items = await ensureExtra("interview");
   const blocks = items.map((item, index) => `<article class="card"><header><h2>${index + 1}. ${esc(item.q)}</h2></header><p>${esc(item.a)}</p><p class="sources">${citeLink(item.cite)}</p></article>`).join("");
-  setMain(`<h1>Interview practice</h1><p class="lede">Answers stay inside what the cited page actually says. If a page is ambiguous, the answer says so.</p><div class="grid">${blocks}</div>`);
+  setMain(`<h1>Interview practice</h1><p class="lede">Answers stay inside what the cited page actually says. If a page is ambiguous, the answer says so.</p><div class="grid">${blocks}</div>${roomSources(items.map((item) => item.cite))}`);
   renderRail("interview");
 }
 
@@ -1250,7 +1279,7 @@ async function viewSearch(params) {
     }
   }
   const list = hits.map(({ track, lesson, shown }) => `<a class="card" href="#/lesson/${esc(track.id)}/${esc(lesson.id)}"><header><h2>${esc(shown.title)}</h2></header><p>${esc(track.title)} · ${esc(shown.summary)}</p></a>`).join("");
-  setMain(`<h1>Search</h1><p class="lede">${needle ? `${hits.length} lesson${hits.length === 1 ? "" : "s"} for “${esc(query)}”.` : "Type a term in the search box."}</p><div class="grid">${list || "<p>No lesson text matched.</p>"}</div>`);
+  setMain(`<h1>Search</h1><p class="lede">${needle ? `${hits.length} lesson${hits.length === 1 ? "" : "s"} for “${esc(query)}”.` : "Type a term in the search box."}</p><div class="grid">${list || "<p>No lesson text matched.</p>"}</div>${roomSources([{ title: "Search reads lesson text stored in this lab", confirm: true }])}`);
   renderRail("home");
   document.getElementById("q").value = query;
 }

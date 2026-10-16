@@ -224,10 +224,14 @@ def main() -> None:
                 "Both are confirm. No URL is attached.",
             ]),
             ("Sources and go deeper", [
-                "Opened NiCE help pages are linked from the HTML sheets.",
-                "A direct open that failed is marked confirm and has no URL.",
+                "Third-Party ACDs https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm last checked 2026-10",
+                "Prepare Genesys T-Lib with SIPREC https://help.nicecxone.com/content/cxoneopenthirdparty/genesyssipserverandsiprec.htm last checked 2026-10",
+                "Amazon Connect https://help.nicecxone.com/content/integratedsolutions/amazonconnect/amazon%20connect.htm last checked 2026-10",
+                "Customer Integration Guide - Amazon Connect https://help.nicecxone.com/content/workforcemanagement/customerintegrationguideamazonconnect.htm last checked 2026-10",
+                "Five9 bridge — confirm",
+                "Webex Contact Center bridge — confirm",
+                "Last checked 2026-10. A confirm row has no URL.",
                 LINKS,
-                "Last checked 2026-10.",
             ]),
         ],
     )

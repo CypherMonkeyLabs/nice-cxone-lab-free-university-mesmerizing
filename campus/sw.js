@@ -1,4 +1,4 @@
-const CACHE = "cxone-lab-v7";
+const CACHE = "cxone-lab-v8";
 const SHELL = [
   "./",
   "./index.html",
@@ -12,6 +12,7 @@ const SHELL = [
   "./js/app.js",
   "./js/model.mjs",
   "./js/university.mjs",
+  "./js/sources.mjs",
   "./js/diagrams.mjs",
   "./js/charts.mjs",
   "./js/effects.mjs",

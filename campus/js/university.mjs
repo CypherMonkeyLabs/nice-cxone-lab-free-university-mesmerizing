@@ -4,6 +4,7 @@ import { chartsBlock, counterRow } from "./charts.mjs";
 import { burst, decorateFloor } from "./effects.mjs";
 import { bindLightbox } from "./lightbox.mjs";
 import { bindTilt } from "./icons.mjs";
+import { citeFrom, sourcesBlock } from "./sources.mjs";
 
 const ATLAS = "data/atlas.json";
 const BADGES_KEY = "cxone-lab-badges";
@@ -112,8 +113,8 @@ function disclaimerBox() {
 }
 
 function pageShell(title, lede, body, sourcesHtml) {
-  const sources = sourcesHtml || `<p>Sources and go deeper: open the citation under each block. A row marked confirm has no URL because that address did not open.</p>`;
-  return `${crumbs([{ label: title }])}${disclaimerBox()}<div class="room-tools"><button type="button" class="dl-html" data-export-room="${esc(title)}">Download this section</button><a class="dl-html" href="#/downloads">Cheat Codes</a><a class="dl-svg" href="#/diagrams">Diagrams</a></div><section class="learn-five"><h2>Learn in 5 minutes</h2><p>${lede}</p></section><h1>${esc(title)}</h1><p class="lede">${lede}</p>${uniNav()}<div>${body}</div><section class="eco-panel"><h2>Ecosystem</h2><p>Glossary and mind map live on the <a href="#/explorer">flow explorer</a>. Sister products, config checks, and troubleshooting leaves are on that page. Integration maps are on <a href="#/bridges">bridges</a>. A future hook that has no opened page is marked confirm and is not given a URL.</p></section><section class="sources-block"><h2>Sources and go deeper</h2>${sources}</section>`;
+  const sources = sourcesHtml || sourcesBlock([]);
+  return `${crumbs([{ label: title }])}${disclaimerBox()}<div class="room-tools"><button type="button" class="dl-html" data-export-room="${esc(title)}">Download this section</button><a class="dl-html" href="#/downloads">Cheat Codes</a><a class="dl-svg" href="#/diagrams">Diagrams</a></div><section class="learn-five"><h2>Learn in 5 minutes</h2><p>${lede}</p></section><h1>${esc(title)}</h1><p class="lede">${lede}</p>${uniNav()}<div>${body}</div><section class="eco-panel"><h2>Ecosystem</h2><p>Glossary and mind map live on the <a href="#/explorer">flow explorer</a>. Sister products, config checks, and troubleshooting leaves are on that page. Integration maps are on <a href="#/bridges">bridges</a>. A future hook that has no opened page is marked confirm and is not given a URL.</p></section><section class="sources-block" id="sources"><h2>Sources and go deeper</h2>${sources}</section>`;
 }
 
 function uniNav() {
@@ -221,8 +222,8 @@ function generic(atlas, id) {
       if (!keys.includes(key)) keys.push(key);
     }
   }
-  const sources = `<ul>${keys.map((key) => `<li>${citeHtml(atlas, key)}</li>`).join("")}</ul><p><a href="data/sources/${esc(page.id)}.json">sources.json</a></p>`;
-  return pageShell(page.title, esc(page.lede), blocksHtml(atlas, page), sources);
+  const cites = keys.map((key) => citeFrom(atlas, key));
+  return pageShell(page.title, esc(page.lede), blocksHtml(atlas, page), sourcesBlock(cites));
 }
 
 async function viewDiagrams(reduced, mode) {
@@ -236,16 +237,19 @@ async function viewDiagrams(reduced, mode) {
   const lede = mode === "flow"
     ? `${flows.length} animated call, signal, and data flows. Ladders, routing, architecture, deployment, migration cutover, and troubleshooting trees are in this set.`
     : `${atlas.diagrams.length} study drawings. ${flows.length} of them move. Each one is drawn for this lab.`;
+  const cites = list.map((spec) => citeFrom(atlas, spec.cite));
   return pageShell(title, lede, `
     <nav class="uni-nav" aria-label="Flow kinds">${filters}</nav>
-    <div class="diagram-grid">${cards}</div>`);
+    <div class="diagram-grid">${cards}</div>`, sourcesBlock(cites));
 }
 
 async function viewCharts() {
   const atlas = await loadAtlas();
+  const cites = (atlas.charts || []).map((chart) => citeFrom(atlas, chart.cite));
+  cites.push({ title: "Lesson, minute, and quiz counts from Contact Path files", confirm: true });
   return pageShell("Charts", `${(atlas.charts || []).length} charts. Lesson, minute, and quiz bars are counted from this repository. Protocol bars count rows in the firewall table. Release bars are the published start month.`, `
     ${chartsBlock(atlas.charts || [], (key) => citeHtml(atlas, key))}
-    <svg class="rough-frame" viewBox="0 0 760 90" aria-hidden="true"></svg>`);
+    <svg class="rough-frame" viewBox="0 0 760 90" aria-hidden="true"></svg>`, sourcesBlock(cites));
 }
 
 async function viewAtlas(reduced) {
@@ -254,6 +258,8 @@ async function viewAtlas(reduced) {
   const regions = atlas.webrtc.map((item) => `<li><strong>${esc(item.region)}</strong> ${esc(item.fqdn)} — ${esc(item.note)}</li>`).join("");
   const inbound = atlas.ciphers.inbound.map((item) => `<li>${esc(item)}</li>`).join("");
   const outbound = atlas.ciphers.outbound.map((item) => `<li>${esc(item)}</li>`).join("");
+  const cites = ["ports", "portsHub", atlas.ciphers && atlas.ciphers.cite].map((key) => citeFrom(atlas, key));
+  for (const spec of atlas.diagrams) cites.push(citeFrom(atlas, spec.cite));
   return pageShell("Ports, protocols, and the firewall matrix", esc(atlas.honesty), `
     <p>Select the applications you actually use on the ports page. This table keeps only rows whose wording names a port. It is not a copy of the allowlist.</p>
     ${portsTable(atlas)}
@@ -264,18 +270,20 @@ async function viewAtlas(reduced) {
     <p>Minimum ${esc(atlas.ciphers.minimum)}. Support at least one cipher in each direction. Source: ${citeHtml(atlas, atlas.ciphers.cite)}</p>
     <div class="grid cards"><article class="card"><h2>Inbound, CXone to your servers</h2><ul>${inbound}</ul></article><article class="card"><h2>Outbound, your servers to CXone</h2><ul>${outbound}</ul></article></div>
     <h2>${atlas.diagrams.length} signal diagrams</h2>
-    <div class="diagram-grid">${diagrams}</div>`);
+    <div class="diagram-grid">${diagrams}</div>`, sourcesBlock(cites));
 }
 
 async function viewRoadmap(manifest) {
   const atlas = await loadAtlas();
   const cycles = atlas.cycles.map((item) => `<article class="card"><header><h2>${esc(item.name)}</h2></header><p>${esc(item.window)}</p><p>${esc(item.note)}</p><p class="sources">${citeHtml(atlas, item.cite)}</p></article>`).join("");
   const plan = manifest.tracks.map((track, index) => `<li><a href="#/track/${esc(track.id)}">Day ${index * 4 + 1}–${index * 4 + 4}</a> — ${esc(track.title)}. ${esc(track.blurb)}</li>`).join("");
+  const cites = atlas.cycles.map((item) => citeFrom(atlas, item.cite));
+  cites.push(citeFrom(atlas, "process"), citeFrom(atlas, "notify"));
   return pageShell("Roadmap and what is new in 2026", "Dates are quoted from the release pages. The 26.3 and 26.4 windows overlap, and this lab does not pick a winner.", `
     <div class="grid cards">${cycles}</div>
     <h2>Study plan across the sixteen tracks</h2>
     <ol>${plan}</ol>
-    <p class="sources">${citeHtml(atlas, "process")} · ${citeHtml(atlas, "notify")}</p>`);
+    <p class="sources">${citeHtml(atlas, "process")} · ${citeHtml(atlas, "notify")}</p>`, sourcesBlock(cites));
 }
 
 async function viewExplorer(reduced) {
@@ -283,6 +291,9 @@ async function viewExplorer(reduced) {
   const spec = atlas.diagrams.find((item) => item.id === "orbit");
   const sisters = atlas.sisters.map((item) => `<article class="card" id="sis-${esc(item.name)}"><header><h2>${esc(item.name)}</h2></header><p>${esc(item.does)}</p><p class="sources">${citeHtml(atlas, item.cite)}</p></article>`).join("");
   const trees = atlas.troubles.map((item) => `<article class="callout"><strong>${esc(item.symptom)}</strong><p>${esc(item.check)}</p><p class="sources">${citeHtml(atlas, item.cite)}</p></article>`).join("");
+  const cites = [citeFrom(atlas, "studio")];
+  for (const item of atlas.sisters) cites.push(citeFrom(atlas, item.cite));
+  for (const item of atlas.troubles) cites.push(citeFrom(atlas, item.cite));
   return pageShell("Flow explorer", "Click a sister system. The picture is a study map. Each sentence has its own page.", `
     <svg id="ecosystem-markmap" class="markmap" viewBox="0 0 760 420" role="img" aria-label="Ecosystem mind map"></svg>
     <div class="explorer">
@@ -290,7 +301,7 @@ async function viewExplorer(reduced) {
       <div class="grid">${sisters}</div>
     </div>
     <h2>Troubleshooting tree</h2>
-    ${trees}`);
+    ${trees}`, sourcesBlock(cites));
 }
 
 async function viewPlay() {
@@ -301,6 +312,9 @@ async function viewPlay() {
   }).join("");
   const day = new Date().toISOString().slice(0, 10);
   const daily = atlas.daily[day.split("-").reduce((sum, part) => sum + Number(part), 0) % atlas.daily.length];
+  const cites = [];
+  for (const item of atlas.game) cites.push(citeFrom(atlas, item.cite));
+  for (const item of atlas.daily) cites.push(citeFrom(atlas, item.cite));
   return pageShell("Play", "The ports game uses the firewall table. The daily question changes with the UTC date. Scores stay in this browser.", `
     <h2>Ports mastery</h2>
     <form id="port-game">${questions}<button class="solid" type="submit">Score the board</button><p class="status" id="port-status" role="status"></p><div id="port-why"></div></form>
@@ -310,7 +324,7 @@ async function viewPlay() {
     <form id="daily-form"><fieldset><legend>${esc(daily.q)}</legend>${daily.choices.map((choice, index) => `<label class="choice"><input type="radio" name="daily" value="${index}"> ${esc(choice)}</label>`).join("")}</fieldset><button class="solid" type="submit">Lock today’s answer</button><p class="status" id="daily-status" role="status"></p></form>
     <h2>Badges</h2>
     ${badgeHtml()}
-    <p class="muted">The mascot also listens for the classic up-up-down-down-left-right-left-right-b-a code.</p>`);
+    <p class="muted">The mascot also listens for the classic up-up-down-down-left-right-left-right-b-a code.</p>`, sourcesBlock(cites));
 }
 
 function bindPlay(atlas) {
@@ -406,6 +420,7 @@ function legalPage() {
 }
 
 async function viewDownloads() {
+  const atlas = await loadAtlas();
   const sheets = [
     ["ports", "Ports and protocols"],
     ["flows", "Call flows"],
@@ -427,6 +442,13 @@ async function viewDownloads() {
     ["bridges", "Bridges"],
   ];
   const cards = sheets.map(([stem, title]) => `<article class="card"><header><h2>${esc(title)}</h2></header><p><a href="downloads/${stem}.html">HTML</a> · <a href="downloads/${stem}.pdf">PDF</a> · <a href="downloads/${stem}.png">PNG</a></p></article>`).join("");
+  const cites = ["ports", "forecast", "wfm", "recording", "autopilot", "summary", "auth", "sf", "ticket", "snippet", "five9", "webexcc"].map((key) => citeFrom(atlas, key));
+  for (const page of atlas.pages || []) {
+    for (const block of page.blocks || []) {
+      for (const key of block.cites || []) cites.push(citeFrom(atlas, key));
+    }
+  }
+  for (const item of atlas.troubles || []) cites.push(citeFrom(atlas, item.cite));
   return pageShell("Cheat Codes", "One-page sheets generated in this repo. They paraphrase public pages and link back. They are not vendor manuals.", `
     <div class="grid cards">${cards}</div>
     <h2>Decks and the offline bundle</h2>
@@ -438,15 +460,16 @@ async function viewDownloads() {
     <p><a href="downloads/studio-snippet.html">Snippet HTML</a> · <a href="downloads/studio-snippet.pdf">PDF</a> · <a href="downloads/studio-snippet.docx">DOCX</a> · <a href="downloads/bridge-notes.pptx">PPTX deck</a></p>
     <h2>Test table</h2>
     <p><a href="downloads/test-table.html">Download test table</a></p>
-    <p class="muted">Each sheet carries cyphermonkeylabs.com, linktr.ee/cyphermonkey, and the GitHub organization, plus the disclaimer. No LinkedIn. No email address.</p>`);
+    <p class="muted">Each sheet carries cyphermonkeylabs.com, linktr.ee/cyphermonkey, and the GitHub organization, plus the disclaimer. No LinkedIn. No email address.</p>`, sourcesBlock(cites));
 }
 
 async function viewSandbox() {
+  const atlas = await loadAtlas();
   const buttons = ACTION_CATALOG.map((action) => `<button type="button" class="ghost" data-add="${esc(action.type)}">${esc(action.type)}</button>`).join("");
   return pageShell("Call-flow sandbox", "Chain the actions named in Studio help. Validate uses the same classroom rules as the builder. Export is still not a Studio import file.", `
     <div class="row" id="sand-palette">${buttons}<button type="button" class="ghost" id="sand-clear">Clear</button><button type="button" class="solid" id="sand-check">Validate</button><button type="button" class="ghost" id="sand-export">Export lab JSON</button></div>
     <div id="sand-svg"></div>
-    <pre class="log" id="sand-out">Add BEGIN first.</pre>`);
+    <pre class="log" id="sand-out">Add BEGIN first.</pre>`, sourcesBlock([citeFrom(atlas, "snippet"), citeFrom(atlas, "studio")]));
 }
 
 function bindSandbox(reduced) {
@@ -505,7 +528,7 @@ async function viewProgress(manifest) {
   }).join("");
   const total = manifest.tracks.reduce((sum, track) => sum + track.lessonIds.length, 0);
   const finished = manifest.tracks.reduce((sum, track) => sum + track.lessonIds.filter((id) => data[`${track.id}/${id}`] && data[`${track.id}/${id}`].done).length, 0);
-  return pageShell("Progress", `${finished} of ${total} lessons have a checked quiz in this browser.`, `<div class="grid cards">${blocks}</div><h2>Badges</h2>${badgeHtml()}`);
+  return pageShell("Progress", `${finished} of ${total} lessons have a checked quiz in this browser.`, `<div class="grid cards">${blocks}</div><h2>Badges</h2>${badgeHtml()}`, sourcesBlock([{ title: "Quiz progress stored in this browser", confirm: true }]));
 }
 
 const REGION_LABELS = {
@@ -543,6 +566,7 @@ async function viewRegions() {
      <p class="callout">If you do not know the cluster, the connectivity page says to ask the account representative. Do not guess na1. IP addresses on that page are not copied here.</p>
      <div class="grid cards region-kinds">${kinds}</div>
      <p class="sources">Source: ${citeHtml(atlas, "ports")} · ${citeHtml(atlas, "portsHub")}</p>`,
+    sourcesBlock([citeFrom(atlas, "ports"), citeFrom(atlas, "portsHub")]),
   );
 }
 
