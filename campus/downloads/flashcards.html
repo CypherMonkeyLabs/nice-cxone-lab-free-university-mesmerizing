@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>Flashcards · Signal Floor cheat sheet</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <style>
-    body { font: 13px/1.35 Georgia, serif; margin: 16px; color: #102028; }
+    @font-face { font-family: "Sheet Serif"; src: local("Georgia"), local("Palatino"); font-display: swap; size-adjust: 100%; }
+    body { font: 13px/1.35 "Sheet Serif", Georgia, serif; margin: 16px; color: #102028; }
     h1 { font-size: 20px; margin: 0 0 6px; }
     h2 { font-size: 14px; margin: 10px 0 4px; }
     table { width: 100%; border-collapse: collapse; font-size: 11px; }
     td, th { border-bottom: 1px solid #c5d6de; text-align: left; vertical-align: top; padding: 3px 4px; }
     a { color: #0b5f78; }
-    footer { margin-top: 12px; font: 10px/1.35 sans-serif; color: #3c5360; }
+    footer { margin-top: 12px; min-height: 2.6em; font: 10px/1.35 sans-serif; color: #3c5360; }
+    img, svg { width: 100%; height: auto; }
     .card { break-inside: avoid; border: 1px solid #c5d6de; padding: 8px; margin: 6px 0; }
     @media print { body { margin: 10mm; } a { color: inherit; text-decoration: none; } }
   </style>
@@ -18,6 +22,6 @@
 <body>
   <h1>Flashcards</h1>
   <p>448 cards live in flashcards.json. This printable sample is the first 12. Print the HTML from a browser for the sample; the JSON is the full deck.</p><article class="card"><strong>Point of contact</strong><p>The entry a contact uses, such as a phone number or email address. One skill and one script.</p><p>Foundations and prerequisites · What the platform actually routes</p></article><article class="card"><strong>ACD skill</strong><p>The object that automates delivery to agents based on skills, abilities, and knowledge.</p><p>Foundations and prerequisites · What the platform actually routes</p></article><article class="card"><strong>Media type</strong><p>The kind of channel a script is created for: phone, chat, email, and so on.</p><p>Foundations and prerequisites · What the platform actually routes</p></article><article class="card"><strong>Default skill</strong><p>The skill on the POC. The script starts there and may replace it.</p><p>Foundations and prerequisites · What the platform actually routes</p></article><article class="card"><strong>Contact</strong><p>The person talking to an agent, IVR, or bot.</p><p>Foundations and prerequisites · Contact, interaction, and channel</p></article><article class="card"><strong>Interaction</strong><p>The full conversation on a channel.</p><p>Foundations and prerequisites · Contact, interaction, and channel</p></article><article class="card"><strong>Digital skill</strong><p>An ACD skill whose media type is Digital.</p><p>Foundations and prerequisites · Contact, interaction, and channel</p></article><article class="card"><strong>Routing queue</strong><p>The older digital inbound object. Do not create new ones. Still used for outbound digital.</p><p>Foundations and prerequisites · Contact, interaction, and channel</p></article><article class="card"><strong>Tenant</strong><p>Top grouping for support, billing, and global settings.</p><p>Foundations and prerequisites · Tenant, business unit, and campaign</p></article><article class="card"><strong>Campaign</strong><p>The container you pick when you create a skill.</p><p>Foundations and prerequisites · Tenant, business unit, and campaign</p></article><article class="card"><strong>tenantId</strong><p>Claim you send to /.well-known/cxone-configuration.</p><p>Foundations and prerequisites · Tenant, business unit, and campaign</p></article><article class="card"><strong>api-{area}.{domain}</strong><p>Pattern for the API base URL. Example area: na1.</p><p>Foundations and prerequisites · Tenant, business unit, and campaign</p></article>
-  <footer>CypherMonkey Labs https://cyphermonkeylabs.com · https://linktr.ee/cyphermonkey · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content. No email.</footer>
+  <footer>© 2026 CypherMonkeyLabs 🐒 · Visit my GitHub https://github.com/cipher0x9 · Visit the Labs org https://github.com/CypherMonkeyLabs · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Visit Cypher Monkey Labs https://cyphermonkeylabs.com · X https://x.com/Cypher0x9 · Hugging Face https://huggingface.co/Cypher0x9 · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content.</footer>
 </body>
 </html>

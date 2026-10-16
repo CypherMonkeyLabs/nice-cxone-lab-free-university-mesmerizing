@@ -9,7 +9,7 @@ const atlas = JSON.parse(readFileSync(join(campus, "data", "atlas.json"), "utf8"
 const manifest = JSON.parse(readFileSync(join(campus, "data", "manifest.json"), "utf8"));
 const glossary = JSON.parse(readFileSync(join(campus, "data", "glossary.json"), "utf8"));
 
-const FOOT = "CypherMonkey Labs https://cyphermonkeylabs.com · https://linktr.ee/cyphermonkey · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content. No email.";
+const FOOT = "© 2026 CypherMonkeyLabs 🐒 · Visit my GitHub https://github.com/cipher0x9 · Visit the Labs org https://github.com/CypherMonkeyLabs · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Visit Cypher Monkey Labs https://cyphermonkeylabs.com · X https://x.com/Cypher0x9 · Hugging Face https://huggingface.co/Cypher0x9 · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content.";
 
 function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
@@ -27,14 +27,18 @@ function page(title, body) {
 <head>
   <meta charset="utf-8">
   <title>${esc(title)} · Signal Floor cheat sheet</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <style>
-    body { font: 13px/1.35 Georgia, serif; margin: 16px; color: #102028; }
+    @font-face { font-family: "Sheet Serif"; src: local("Georgia"), local("Palatino"); font-display: swap; size-adjust: 100%; }
+    body { font: 13px/1.35 "Sheet Serif", Georgia, serif; margin: 16px; color: #102028; }
     h1 { font-size: 20px; margin: 0 0 6px; }
     h2 { font-size: 14px; margin: 10px 0 4px; }
     table { width: 100%; border-collapse: collapse; font-size: 11px; }
     td, th { border-bottom: 1px solid #c5d6de; text-align: left; vertical-align: top; padding: 3px 4px; }
     a { color: #0b5f78; }
-    footer { margin-top: 12px; font: 10px/1.35 sans-serif; color: #3c5360; }
+    footer { margin-top: 12px; min-height: 2.6em; font: 10px/1.35 sans-serif; color: #3c5360; }
+    img, svg { width: 100%; height: auto; }
     .card { break-inside: avoid; border: 1px solid #c5d6de; padding: 8px; margin: 6px 0; }
     @media print { body { margin: 10mm; } a { color: inherit; text-decoration: none; } }
   </style>
@@ -52,6 +56,8 @@ function pdfEscape(text) {
     .replace(/\\/g, "\\\\")
     .replace(/\(/g, "\\(")
     .replace(/\)/g, "\\)")
+    .replace(/©/g, "\\251")
+    .replace(/🐒/g, "(monkey)")
     .replace(/[^\x20-\x7E]/g, " ");
 }
 
@@ -99,7 +105,17 @@ function citeLine(key) {
 
 function writePair(stem, title, htmlBody, lines) {
   writeFileSync(join(out, `${stem}.html`), page(title, htmlBody));
-  const pdfLines = [title, ""].concat(lines).concat(["", FOOT]);
+  const pdfLines = [
+    title,
+    "© 2026 CypherMonkeyLabs",
+    "Visit my GitHub https://github.com/cipher0x9",
+    "Visit the Labs org https://github.com/CypherMonkeyLabs",
+    "Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing",
+    "Visit Cypher Monkey Labs https://cyphermonkeylabs.com",
+    "X https://x.com/Cypher0x9",
+    "Hugging Face https://huggingface.co/Cypher0x9",
+    "",
+  ].concat(lines);
   writeFileSync(join(out, `${stem}.pdf`), pdf(pdfLines));
 }
 

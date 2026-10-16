@@ -1,4 +1,4 @@
-const CACHE = "cxone-lab-v4";
+const CACHE = "cxone-lab-v6";
 const SHELL = [
   "./",
   "./index.html",
@@ -28,6 +28,11 @@ const SHELL = [
   "./vendor/confetti.module.mjs",
   "./vendor/markmap-view.js",
   "./manifest.webmanifest",
+  "./favicon.svg",
+  "./favicon.ico",
+  "./js/pixel.mjs",
+  "./js/guide.mjs",
+  "./data/guide-kb.json",
   "./data/manifest.json",
   "./data/atlas.json",
   "./downloads/index.html",

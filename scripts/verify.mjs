@@ -90,11 +90,20 @@ const sw = readFileSync(join(campus, "sw.js"), "utf8");
 if (!sw.includes("caches")) fail("service worker");
 if (!sw.includes("atlas.json")) fail("atlas not cached");
 if (!html.includes("https://cyphermonkeylabs.com")) fail("labs link");
-if (!html.includes("https://linktr.ee/cyphermonkey")) fail("linktree");
+if (!html.includes("https://github.com/cipher0x9")) fail("github profile");
+if (!html.includes("https://github.com/CypherMonkeyLabs")) fail("labs org");
+if (!html.includes("Visit my GitHub")) fail("github label");
+if (!html.includes("Visit the Labs org")) fail("labs org label");
+if (!html.includes("Visit Cypher Monkey Labs")) fail("labs site label");
 if (!html.includes("https://x.com/Cypher0x9")) fail("x link");
-if (!html.includes("https://dev.to/cyphermonkey")) fail("dev link");
 if (!html.includes("https://huggingface.co/Cypher0x9")) fail("hf link");
-if (!html.includes("nice-cxone-lab-free-university-mesmerizing")) fail("repo link");
+if (!html.includes("favicon.svg") || !html.includes("favicon.ico")) fail("favicon links");
+if (!html.includes("© 2026 CypherMonkeyLabs")) fail("copyright");
+if (!html.includes("lifelong student")) fail("identity");
+if (html.includes("linktr.ee")) fail("linktree");
+if (html.includes("github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing")) fail("old repo link");
+if (!html.includes("https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing")) fail("labs repo");
+if (html.includes("dev.to/cyphermonkey")) fail("dev link");
 if (/linkedin/i.test(html)) fail("linkedin");
 if (/mailto:|@[a-z0-9.-]+\.[a-z]{2,}/i.test(html)) fail("email");
 if (!html.includes("CC BY-NC-SA")) fail("content license");
@@ -133,9 +142,16 @@ const pngs = downloadNames.filter((name) => name.endsWith(".png"));
 if (pngs.length < 10) fail(`png sheets ${pngs.length} < 10`);
 if (!downloadNames.includes("cxone-offline-bundle.zip")) fail("offline zip");
 const sheetHtml = readFileSync(join(campus, "downloads", "ports.html"), "utf8");
-for (const token of ["https://cyphermonkeylabs.com", "https://linktr.ee/cyphermonkey", "nice-cxone-lab-free-university-mesmerizing", "not affiliated"]) {
+for (const token of ["https://cyphermonkeylabs.com", "https://github.com/cipher0x9", "https://github.com/CypherMonkeyLabs", "https://x.com/Cypher0x9", "https://huggingface.co/Cypher0x9", "not affiliated", "favicon.svg", "© 2026 CypherMonkeyLabs"]) {
   if (!sheetHtml.includes(token)) fail(`sheet footer ${token}`);
 }
+if (sheetHtml.includes("linktr.ee") || sheetHtml.includes("github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing")) fail("old sheet link");
+if (!sheetHtml.includes("https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing")) fail("sheet repo");
+const portsPdf = readFileSync(join(campus, "downloads", "ports.pdf"));
+const pdfText = portsPdf.toString("latin1");
+if (pdfText.includes("github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing") || pdfText.includes("linktr.ee")) fail("old pdf link");
+if (!pdfText.includes("github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing")) fail("pdf repo");
+if (!pdfText.includes("github.com/cipher0x9")) fail("pdf github");
 if (/linkedin/i.test(sheetHtml) || /mailto:/i.test(sheetHtml)) fail("sheet contact");
 const license = readFileSync(join(root, "LICENSE"), "utf8");
 if (!license.includes("MIT") || !license.includes("CC BY-NC-SA")) fail("LICENSE mismatch");
@@ -148,7 +164,41 @@ if (!effects.includes("anime.esm.min.js") || !effects.includes("rough.esm.js") |
 if (!effects.includes("d3.min.js") || !effects.includes("markmap-view.js")) fail("d3 markmap");
 if (!uni.includes("#/diagrams") || !uni.includes("#/flows") || !uni.includes("#/charts")) fail("university routes");
 if (!app.includes("trackFloor")) fail("track charts");
-if (!sw.includes("cxone-lab-v4")) fail("sw cache");
+if (!sw.includes("cxone-lab-v6")) fail("sw cache");
+if (!sw.includes("js/guide.mjs") || !sw.includes("data/guide-kb.json")) fail("sw guide");
+if (!html.includes('id="guide"') || !html.includes("Guide Bot") || !html.includes("js/guide.mjs")) fail("guide widget");
+if (!html.includes("quick-bar") || !html.includes('class="menu-search"') || !html.includes("menu-hint")) fail("menu chrome");
+if (!css.includes(".menu-item[hidden]")) fail("menu filter hidden");
+const guideJs = readFileSync(join(campus, "js", "guide.mjs"), "utf8");
+const guideKb = JSON.parse(readFileSync(join(campus, "data", "guide-kb.json"), "utf8"));
+if (!guideJs.includes("CXONE_GUIDE_ENDPOINT")) fail("guide cloud hook");
+if (!guideJs.includes("I only answer from the pages loaded in this lab.")) fail("guide fallback");
+if (guideKb.entries.length < 12 || guideKb.tours.length < 2 || guideKb.quizzes.length < 4) fail("guide book");
+if (guideKb.entries.some((entry) => entry.cite && !String(entry.cite.url || "").startsWith("https://"))) fail("guide cite");
+const { askGuide } = await import("../campus/js/guide.mjs");
+const guideHit = await askGuide("what is overall priority", guideKb);
+if (!guideHit.answer.includes("7")) fail("guide priority");
+const guideMiss = await askGuide("what does a license cost in dollars this quarter", guideKb);
+if (!String(guideMiss.answer).startsWith("I only answer from the pages loaded in this lab.")) fail("guide invent");
+const realFetch = globalThis.fetch;
+globalThis.fetch = async () => ({ ok: true, json: async () => ({ answer: "A license costs twelve dollars." }) });
+const guidePoison = await askGuide("what is overall priority", { ...guideKb, endpoint: "https://example.com/guide" });
+if (guidePoison.source !== "local" || !guidePoison.answer.includes("7")) fail("guide uncited cloud");
+globalThis.fetch = async () => ({
+  ok: true,
+  json: async () => ({
+    answer: "Cloud sentence from the ports page.",
+    cite: { title: "Ports and Protocols by Application", url: "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm" },
+  }),
+});
+const guideCloud = await askGuide("sip ports", { ...guideKb, endpoint: "https://example.com/guide" });
+globalThis.fetch = realFetch;
+if (guideCloud.source !== "cloud" || guideCloud.answer !== "Cloud sentence from the ports page.") fail("guide cloud hook answer");
+if (!css.includes("font-display: swap")) fail("font-display");
+if (!css.includes("prefers-reduced-motion")) fail("reduced motion css");
+const pixel = readFileSync(join(campus, "js", "pixel.mjs"), "utf8");
+if (!pixel.includes("devicePixelRatio") || !pixel.includes("1.5")) fail("mobile pixel cap");
+if (!app.includes("motionReduced") || !app.includes("prefers-reduced-motion")) fail("motion sync");
 
 console.log(JSON.stringify({
   tracks: tracks.length,

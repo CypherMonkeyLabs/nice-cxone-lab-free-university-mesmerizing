@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>Carrier, SIP, and PSTN · Signal Floor cheat sheet</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <style>
-    body { font: 13px/1.35 Georgia, serif; margin: 16px; color: #102028; }
+    @font-face { font-family: "Sheet Serif"; src: local("Georgia"), local("Palatino"); font-display: swap; size-adjust: 100%; }
+    body { font: 13px/1.35 "Sheet Serif", Georgia, serif; margin: 16px; color: #102028; }
     h1 { font-size: 20px; margin: 0 0 6px; }
     h2 { font-size: 14px; margin: 10px 0 4px; }
     table { width: 100%; border-collapse: collapse; font-size: 11px; }
     td, th { border-bottom: 1px solid #c5d6de; text-align: left; vertical-align: top; padding: 3px 4px; }
     a { color: #0b5f78; }
-    footer { margin-top: 12px; font: 10px/1.35 sans-serif; color: #3c5360; }
+    footer { margin-top: 12px; min-height: 2.6em; font: 10px/1.35 sans-serif; color: #3c5360; }
+    img, svg { width: 100%; height: auto; }
     .card { break-inside: avoid; border: 1px solid #c5d6de; padding: 8px; margin: 6px 0; }
     @media print { body { margin: 10mm; } a { color: inherit; text-decoration: none; } }
   </style>
@@ -18,6 +22,6 @@
 <body>
   <h1>Carrier, SIP, and PSTN</h1>
   <h2>Three ways the pages talk about voice entry</h2><p>PSTN, on the connectivity page, is phone traffic routed by DID or toll-free number.</p><p>A SIP trunk is a virtual connection between a PBX and a carrier, over a phone line, VoIP, or a dedicated path such as MPLS. SIP itself is RFC 3261. This lab does not invent CXone SIP headers.</p><p>The agent leg is separate: Integrated Softphone or the installed Softphone.</p><p><a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm">Connectivity in NiCE CXone</a> · <a href="https://www.rfc-editor.org/rfc/rfc3261">RFC 3261</a></p><h2>Toll-free ownership</h2><p>If CXone is the RespOrg, you order more toll-free numbers through CXone. The IP address page says you must allow the blocks associated with those numbers and points you at the wizard.</p><p>Voice PoP, in the glossary this campus uses, is the carrier’s physical gateway. The exact PoP for a tenant is a wizard output, not a memorized city.</p><p><a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm">Connectivity in NiCE CXone</a> · <a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/ipaddresses.htm">IP Addresses and Blocks</a></p><h2>Unverified</h2><p>A matrix of BYOC vendors, codec defaults, and OPTIONS timers is not in the cited passages. Leave those cells blank until the current telephony requirements page and the carrier build sheet are open.</p><p><a href="https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm">Connectivity in NiCE CXone</a></p>
-  <footer>CypherMonkey Labs https://cyphermonkeylabs.com · https://linktr.ee/cyphermonkey · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content. No email.</footer>
+  <footer>© 2026 CypherMonkeyLabs 🐒 · Visit my GitHub https://github.com/cipher0x9 · Visit the Labs org https://github.com/CypherMonkeyLabs · Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing · Visit Cypher Monkey Labs https://cyphermonkeylabs.com · X https://x.com/Cypher0x9 · Hugging Face https://huggingface.co/Cypher0x9 · Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content.</footer>
 </body>
 </html>

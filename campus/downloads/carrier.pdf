@@ -9,13 +9,20 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 946 >>
+<< /Length 1211 >>
 stream
 BT
 /F1 9 Tf
 36 770 Td
 14 TL
 (Carrier, SIP, and PSTN) Tj
+T* (\251 2026 CypherMonkeyLabs) Tj
+T* (Visit my GitHub https://github.com/cipher0x9) Tj
+T* (Visit the Labs org https://github.com/CypherMonkeyLabs) Tj
+T* (Repo https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing) Tj
+T* (Visit Cypher Monkey Labs https://cyphermonkeylabs.com) Tj
+T* (X https://x.com/Cypher0x9) Tj
+T* (Hugging Face https://huggingface.co/Cypher0x9) Tj
 T* () Tj
 T* (Three ways the pages talk about voice entry) Tj
 T* (PSTN, on the connectivity page, is phone traffic routed by DID or toll-free number.) Tj
@@ -26,8 +33,6 @@ T* (If CXone is the RespOrg, you order more toll-free numbers through CXone. The
 T* (Voice PoP, in the glossary this campus uses, is the carrier s physical gateway. The exact PoP for a tenant is ) Tj
 T* (Unverified) Tj
 T* (A matrix of BYOC vendors, codec defaults, and OPTIONS timers is not in the cited passages. Leave those cells b) Tj
-T* () Tj
-T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
 ET
 endstream
 endobj
@@ -41,8 +46,8 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000241 00000 n 
-0000001238 00000 n 
+0000001504 00000 n 
 trailer << /Size 6 /Root 1 0 R >>
 startxref
-1308
+1574
 %%EOF

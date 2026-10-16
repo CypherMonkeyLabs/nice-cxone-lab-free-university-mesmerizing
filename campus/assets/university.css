@@ -10,7 +10,25 @@
   top: 0;
   z-index: 9;
   overflow-x: auto;
+  min-height: 52px;
 }
+.brand-links { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; min-height: 40px; }
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 10px;
+  border: 1px solid var(--cc-line);
+  border-radius: 999px;
+  background: var(--cc-surface);
+  color: var(--cc-ink);
+  text-decoration: none;
+  flex: none;
+}
+.brand-icon { width: 20px; height: 20px; flex: none; display: block; }
+.identity { max-width: 68ch; }
+.copy { color: var(--cc-ink); font-weight: 700; }
 .study-menu {
   display: flex;
   flex-wrap: nowrap;
@@ -19,14 +37,15 @@
   padding: 8px 14px;
   overflow-x: auto;
   position: sticky;
-  top: 42px;
+  top: 52px;
   z-index: 8;
+  min-height: 52px;
   background: color-mix(in srgb, var(--cc-bg) 92%, transparent);
   border-bottom: 1px solid var(--cc-line);
 }
 .study-menu a, .study-menu button, .pose-strip button, .uni-nav button {
   flex: none;
-  min-height: 36px;
+  min-height: 44px;
   border: 1px solid var(--cc-line);
   border-radius: 999px;
   padding: 6px 12px;
@@ -53,7 +72,7 @@
   background: var(--cc-surface);
   border: 1px solid var(--cc-line);
 }
-.live-counters b { display: block; font-size: 1.35rem; font-family: var(--cc-mono, ui-monospace, monospace); color: var(--cc-accent-2); }
+.live-counters b { display: block; min-height: 1.35rem; font-size: 1.35rem; font-family: var(--cc-mono, ui-monospace, monospace); color: var(--cc-accent-2); }
 .live-counters small { color: var(--cc-muted); }
 .pose-strip { display: flex; gap: 6px; overflow-x: auto; margin: 8px 0; }
 .parade { display: flex; gap: 10px; overflow-x: auto; padding: 12px 4px 18px; perspective: 700px; }
@@ -86,6 +105,7 @@ html[data-motion="full"] .spin-ring { animation: spin 18s linear infinite; }
   min-width: 0;
 }
 .chart-svg, .live-diagram, .rough-frame, .markmap { width: 100%; height: auto; display: block; }
+.chart-svg, .diagram-card svg, .live-diagram { aspect-ratio: 760 / 280; min-height: 180px; }
 .rough-frame { max-height: 90px; }
 .hero-copy { position: relative; }
 .hero .rough-frame { position: absolute; left: 0; right: 0; top: 156px; height: 72px; pointer-events: none; }
@@ -109,6 +129,13 @@ html[data-motion="full"] .spin-ring { animation: spin 18s linear infinite; }
   cursor: pointer;
   padding: 6px 2px;
   flex: none;
+}
+.lab-bar .brand-link {
+  border: 1px solid var(--cc-line);
+  background: var(--cc-surface);
+  color: var(--cc-ink);
+  padding: 4px 10px;
+  min-height: 44px;
 }
 .lab-bar a:hover, .lab-bar button:hover { text-decoration: underline; }
 .stage { min-width: 0; }

@@ -42,6 +42,7 @@ body[data-view="home"] main { padding-top: 0; max-width: none; }
   width: 100%;
   height: 100%;
   display: block;
+  aspect-ratio: 16 / 9;
 }
 .hero-stage::after {
   content: "";
@@ -393,20 +394,23 @@ html[dir="rtl"] .lab-bar,
 html[dir="rtl"] .hero-glass { direction: rtl; }
 html[dir="rtl"] .hero-glass { left: auto; right: 12px; }
 html[dir="rtl"] .study-more-panel { right: auto; left: 12px; }
-html[dir="rtl"] .audio-dock { left: auto; right: 14px; }
+html[dir="rtl"] .dock-stack { left: auto; right: 14px; }
 html[dir="rtl"] .mascot-dock { right: auto; left: 16px; }
 html[dir="rtl"] body[data-view="home"] .top { right: auto; left: 16px; }
 
 .study-menu { flex-wrap: nowrap; }
 .study-menu a, .study-menu button, .study-more > summary {
-  min-height: 32px;
+  min-height: 44px;
   padding: 4px 10px;
   font-size: 0.84rem;
 }
+.study-menu .menu-item { max-width: 240px; align-items: center; }
+.study-menu .menu-hint { max-width: 108px; }
 .study-more { position: relative; flex: none; }
 .study-more > summary {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   margin: 0;
   list-style: none;
   cursor: pointer;

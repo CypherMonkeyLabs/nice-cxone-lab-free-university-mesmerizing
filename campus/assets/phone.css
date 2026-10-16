@@ -31,10 +31,18 @@ html[data-motion="full"] .reveal.is-in {
 
 @media (max-width: 720px) {
   html, body { overflow-x: clip; }
-  .lab-bar,
-  .study-menu,
   .top,
   .rail { display: none; }
+  .lab-bar {
+    display: flex;
+    top: calc(56px + env(safe-area-inset-top, 0px));
+    z-index: 28;
+  }
+  .study-menu {
+    display: flex;
+    top: calc(116px + env(safe-area-inset-top, 0px));
+    z-index: 27;
+  }
   .shell { grid-template-columns: minmax(0, 1fr); }
   .phone-bar {
     display: flex;
@@ -94,7 +102,7 @@ html[data-motion="full"] .reveal.is-in {
   }
   .quick-bar {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     position: fixed;
     left: 0;
     right: 0;
@@ -107,37 +115,55 @@ html[data-motion="full"] .reveal.is-in {
     background: var(--cc-surface);
     border-top: 1px solid var(--cc-line);
   }
-  .quick-bar a, .quick-bar button {
+  .quick-bar a, .quick-bar button, .bar-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4px;
+    gap: 2px;
+    min-height: 44px;
+    padding: 4px 2px;
     border: 0;
     background: transparent;
     color: inherit;
     font: inherit;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     text-decoration: none;
     text-align: center;
+  }
+  .quick-bar .menu-ico {
+    width: 22px;
+    height: 22px;
+    font-size: 0.85rem;
+    background: transparent;
   }
   .quick-bar [aria-current="page"], .quick-bar [aria-pressed="true"] {
     color: var(--cc-accent-1);
     font-weight: 700;
-    box-shadow: inset 0 2px 0 var(--cc-accent-1);
+    box-shadow: inset 0 3px 0 var(--cc-accent-1);
+    background: color-mix(in srgb, var(--cc-accent-1) 12%, transparent);
   }
+  .phone-links .menu-item { width: 100%; }
+  .phone-links .menu-hint { white-space: nowrap; }
   body { --bottom-h: calc(56px + env(safe-area-inset-bottom, 0px)); }
   main { padding-bottom: calc(var(--bottom-h) + 28px); }
   .lab-foot { margin-bottom: calc(var(--bottom-h) + 12px); }
   .mascot-dock { bottom: calc(var(--bottom-h) + 8px); }
+  .dock-stack {
+    left: 8px;
+    bottom: calc(var(--bottom-h) + 8px);
+    z-index: 32;
+    width: min(340px, calc(100vw - 96px));
+  }
+  .guide-panel { max-height: 46vh; }
   .audio-dock { display: none; }
   .audio-dock.is-open {
     display: block;
-    position: fixed;
-    left: 8px;
-    right: 72px;
-    bottom: calc(var(--bottom-h) + 8px);
-    z-index: 28;
-    max-height: 40vh;
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    max-height: 28vh;
     overflow: auto;
   }
   .phone-menu-bar, .menu-search, .phone-prefs {

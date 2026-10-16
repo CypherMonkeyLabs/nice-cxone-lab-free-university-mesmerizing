@@ -1,3 +1,5 @@
+import { cappedPixelRatio, motionReduced } from "./pixel.mjs";
+
 let raf = 0;
 let renderer = null;
 let running = false;
@@ -230,7 +232,7 @@ export async function mountHero(canvas) {
   const token = generation;
   if (!canvas) return { ok: false };
   const stage = canvas.closest(".hero-stage");
-  if (document.documentElement.dataset.motion === "reduce") {
+  if (motionReduced()) {
     showFallback(canvas, stage);
     return { ok: false, reason: "reduced" };
   }
@@ -383,7 +385,7 @@ export async function mountHero(canvas) {
     const rect = canvas.getBoundingClientRect();
     const width = Math.max(2, rect.width);
     const height = Math.max(2, rect.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(cappedPixelRatio());
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
@@ -459,6 +461,11 @@ export async function mountHero(canvas) {
   const loop = () => {
     raf = 0;
     if (!running || token !== generation || !canvas.isConnected) return;
+    if (motionReduced()) {
+      running = false;
+      showFallback(canvas, stage);
+      return;
+    }
     if (document.visibilityState === "hidden" || !frameOnScreen) return;
     raf = requestAnimationFrame(loop);
     const time = clock.getElapsedTime();

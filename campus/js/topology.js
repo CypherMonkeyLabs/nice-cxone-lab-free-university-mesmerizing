@@ -1,3 +1,5 @@
+import { cappedPixelRatio, motionReduced } from "./pixel.mjs";
+
 const NODES = [
   { id: "caller", label: "Caller", pos: [-7.2, 1.1, 0.2], color: 0x3ecbff },
   { id: "pstn", label: "Carrier", pos: [-5.1, 0.3, 1.3], color: 0xffb020 },
@@ -69,7 +71,7 @@ let handle = null;
 
 export function mountTopology(canvas, reduced) {
   unmountTopology();
-  if (!window.THREE || reduced) return { ok: false };
+  if (!window.THREE || reduced || motionReduced()) return { ok: false };
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -139,6 +141,7 @@ export function mountTopology(canvas, reduced) {
   function resize() {
     const width = canvas.clientWidth || canvas.parentElement.clientWidth || 640;
     const height = canvas.clientHeight || 520;
+    renderer.setPixelRatio(cappedPixelRatio());
     renderer.setSize(width, height, false);
     camera.aspect = width / Math.max(height, 1);
     camera.updateProjectionMatrix();

@@ -1,0 +1,182 @@
+{
+  "endpoint": "",
+  "honesty": "Every answer is a sentence already on this floor, or this floor’s own note about Lucky. If the question is not in the list, the bot says it does not know.",
+  "entries": [
+    {
+      "id": "priority",
+      "q": ["overall priority", "priority formula", "acceleration", "initial priority", "what is priority"],
+      "a": "Overall priority is (time in minutes × acceleration) + initial priority. The classroom example is initial 4, acceleration 1, and 3 minutes, which is 7.",
+      "href": "#/routing",
+      "cite": { "title": "Configure Priority for a Skill for Static Delivery", "url": "https://help.nicecxone.com/content/ACD/routing/staticdelivery/configureskillpriority.htm" }
+    },
+    {
+      "id": "proficiency",
+      "q": ["proficiency", "bullseye", "1 is best", "skill window"],
+      "a": "Proficiency 1 is best and 20 is worst. REQAGENT opens a window. UpdateContact can widen it.",
+      "href": "#/diagrams",
+      "cite": { "title": "Bullseye Routing", "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm" }
+    },
+    {
+      "id": "pc",
+      "q": ["personal connection", "outbound acceleration", "pc skill"],
+      "a": "On a Personal Connection skill, acceleration is forced to 0 so outbound dialing does not age like an inbound queue.",
+      "href": "#/routing",
+      "cite": { "title": "Customize Proactive Voice Dialing", "url": "https://help.nicecxone.com/Content/acd/channels/personalconnection/proactivevoice/customizeproactivevoicedialing.htm" }
+    },
+    {
+      "id": "hold",
+      "q": ["hold", "hold music", "recording gap", "is hold recorded"],
+      "a": "Hold audio, including hold music, is not recorded. A consultation during hold is recorded.",
+      "href": "#/flows",
+      "cite": { "title": "Recording Management (CXone)", "url": "https://help.nicecxone.com/Content/recording/managerecordings.htm" }
+    },
+    {
+      "id": "digital",
+      "q": ["digital queue", "new chat", "digital skill", "routing queue"],
+      "a": "Since Summer 2023, new inbound digital work uses skills and scripts. This floor does not teach a new routing queue for that path.",
+      "href": "#/tracks",
+      "cite": { "title": "Digital Routing", "url": "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm" }
+    },
+    {
+      "id": "poc",
+      "q": ["point of contact", "one script", "dnis", "inbound entry"],
+      "a": "A contact hits one point of contact, one script, and one starting skill. The script may retarget the skill before an agent is offered the contact.",
+      "href": "#/diagrams",
+      "cite": { "title": "Studio Fundamentals", "url": "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm" }
+    },
+    {
+      "id": "ports",
+      "q": ["sip port", "5060", "5061", "rtp", "hardphone"],
+      "a": "IP voice registration on the ports page is SIP to destination ports 5060 and 5061. Hardphones also need NTP UDP 123. RTP and SRTP use UDP 1024–65535.",
+      "href": "#/atlas",
+      "cite": { "title": "Ports and Protocols by Application", "url": "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm" }
+    },
+    {
+      "id": "screen",
+      "q": ["screen monitor", "31322", "3478", "webrtc screen"],
+      "a": "Screen monitoring uses outbound TCP 443 and UDP 443 or 3478 for WebRTC NAT traversal. Port 31322 is internal to the agent PC and is not required with OS Login.",
+      "href": "#/atlas",
+      "cite": { "title": "Ports and Protocols by Application", "url": "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm" }
+    },
+    {
+      "id": "e911",
+      "q": ["e911", "emergency", "933", "911"],
+      "a": "Emergency dialing uses an outbound voice skill, a verified address, and 911 or the local number. 933 is the no-charge test named on the page.",
+      "href": "#/downloads",
+      "cite": { "title": "Set Up Emergency Dialing", "url": "https://help.nicecxone.com/content/acd/channels/voice/setupemergencydialing.htm" }
+    },
+    {
+      "id": "summary",
+      "q": ["autosummary", "auto summary", "structured", "generative", "email summary"],
+      "a": "AutoSummary types named on the help page are Structured, Generative, and Hybrid. Email is not supported.",
+      "href": "#/downloads",
+      "cite": { "title": "Automated Summary (AutoSummary)", "url": "https://help.nicecxone.com/Content/enlightenautosummary/enlightenautosummary.htm" }
+    },
+    {
+      "id": "api",
+      "q": ["api endpoint", "tenantid", "access key", "password grant", "discovery"],
+      "a": "A back-end app on the auth page uses the password grant. tenantId comes from the ID token. The example host is not every tenant, so this floor says to discover api_endpoint.",
+      "href": "#/explorer",
+      "cite": { "title": "API Authentication and Authorization", "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization" }
+    },
+    {
+      "id": "grants",
+      "q": ["authorization code", "openid", "browser login", "user app"],
+      "a": "Back-end integrations on the auth page use the password grant. A person in a browser follows the authorization-code branch. This lab does not copy the password sample into a user app.",
+      "href": "#/diagrams",
+      "cite": { "title": "OpenID Connect Core 1.0", "url": "https://openid.net/specs/openid-connect-core-1_0.html" }
+    },
+    {
+      "id": "release",
+      "q": ["26.3", "26.4", "coming soon", "release overlap"],
+      "a": "The 26.3 page was revised to 2 September 2026 through 5 November 2026. Coming Soon for 26.4 begins 26 October 2026. The windows overlap, and this floor does not pick a winner.",
+      "href": "#/roadmap",
+      "cite": { "title": "Coming Soon in the 26.4 Release", "url": "https://help.nicecxone.com/content/releasenotes/comingsoon.htm" }
+    },
+    {
+      "id": "ucce",
+      "q": ["ucce", "migration", "multi-acd", "avaya", "cutover"],
+      "a": "A WFM connector, Multi-ACD recording, and Migrated Calls are three different moves. This floor does not fold them into one cutover.",
+      "href": "#/flows",
+      "cite": { "title": "Cisco UCCE Connector", "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm" }
+    },
+    {
+      "id": "wfm",
+      "q": ["forecast", "wfm", "iex", "average handle"],
+      "a": "Forecast volume and average handle time, then staff to a target. CXone WFM and IEX are different products on this floor.",
+      "href": "#/downloads",
+      "cite": { "title": "General Forecast", "url": "https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm" }
+    },
+    {
+      "id": "lucky",
+      "q": ["who is lucky", "lucky", "who keeps this floor", "about the author", "cypher"],
+      "a": "Lucky is a lifelong student and an AI enthusiast. The path runs through systems, networking, voice, and the contact center, and it grows into AI omni-channel agents. That sentence is this lab’s own note. It is not a NiCE biography.",
+      "href": "#/ecosystem",
+      "labNote": true
+    },
+    {
+      "id": "copyright",
+      "q": ["copyright", "who made this", "cyphermonkeylabs"],
+      "a": "The floor’s copyright line is © 2026 CypherMonkeyLabs. The lab is an independent study project and is not affiliated with NiCE.",
+      "href": "#/",
+      "labNote": true
+    }
+  ],
+  "tours": [
+    {
+      "id": "floor",
+      "title": "Tour the floor",
+      "steps": [
+        { "say": "Start on the floor. Sixteen tracks sit under the hero. Each lesson keeps its citation beside the English body.", "href": "#/" },
+        { "say": "Diagrams are SVG maps. The count on this floor is the atlas, and each card names its public page.", "href": "#/diagrams" },
+        { "say": "Flows are the animated subset: ladders, routing, architecture, deployment, migration, and troubleshooting trees.", "href": "#/flows" },
+        { "say": "Charts count lessons, minutes, and quiz items from the files in this repository. They are not a NiCE benchmark.", "href": "#/charts" },
+        { "say": "Cheat Codes are the one-page sheets. Each one links the page it paraphrases.", "href": "#/downloads" },
+        { "say": "Ecosystem is the neighbor map: WFM, quality, CRM, Enlighten, APIs, and the UCCE and Avaya bridges, each with its own citation.", "href": "#/ecosystem" }
+      ]
+    },
+    {
+      "id": "routing",
+      "title": "Tour routing",
+      "steps": [
+        { "say": "The routing simulator uses (time × acceleration) + initial priority. Personal Connection mode forces acceleration to 0.", "href": "#/routing" },
+        { "say": "The Studio builder exports classroom JSON with notOfficialStudioExport set. It is not an official Studio script.", "href": "#/studio" },
+        { "say": "The topology can orbit in 3D. Reduced motion, or a browser without WebGL, keeps the text map.", "href": "#/topology" }
+      ]
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "q-priority",
+      "ask": "Initial priority 4, acceleration 1, waiting 3 minutes. What is overall priority?",
+      "choices": ["7", "12", "4", "3"],
+      "answer": 0,
+      "why": "Overall priority is (time × acceleration) + initial priority, so (3 × 1) + 4 = 7.",
+      "cite": { "title": "Configure Priority for a Skill for Static Delivery", "url": "https://help.nicecxone.com/content/ACD/routing/staticdelivery/configureskillpriority.htm" }
+    },
+    {
+      "id": "q-prof",
+      "ask": "On the bullseye page this floor uses, which proficiency is best?",
+      "choices": ["1", "20", "0", "100"],
+      "answer": 0,
+      "why": "Proficiency 1 is best and 20 is worst.",
+      "cite": { "title": "Bullseye Routing", "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm" }
+    },
+    {
+      "id": "q-hold",
+      "ask": "What does the recording page say about hold music?",
+      "choices": ["It is not recorded", "It is always recorded in stereo", "It is stored for 90 days", "It becomes the AutoSummary"],
+      "answer": 0,
+      "why": "Hold audio, including hold music, is not recorded. A consultation during hold is recorded.",
+      "cite": { "title": "Recording Management (CXone)", "url": "https://help.nicecxone.com/Content/recording/managerecordings.htm" }
+    },
+    {
+      "id": "q-sip",
+      "ask": "Where does the ports page say an IP voice hardphone SIP-registers?",
+      "choices": ["Destination ports 5060 and 5061", "Only UDP 123", "TCP 2748", "Port 31322"],
+      "answer": 0,
+      "why": "The ports page requires permission to SIP-register to destination ports 5060 and 5061. NTP 123 is the hardphone clock, not the register.",
+      "cite": { "title": "Ports and Protocols by Application", "url": "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm" }
+    }
+  ]
+}

@@ -14,11 +14,11 @@
   --cc-ok: #7dface;
   --cc-focus: #ffe14a;
   --cc-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
-  --cc-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-  --cc-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  --cc-serif: "Signal Serif", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --cc-sans: "Signal Sans", "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
   --cc-mono: ui-monospace, "SFMono-Regular", "Cascadia Code", Consolas, monospace;
   --cc-radius: 18px;
-  --nav-w: 248px;
+  --nav-w: 280px;
   --bottom-h: 0px;
   color-scheme: dark;
 }
@@ -78,6 +78,25 @@ html[data-theme="dusk"] {
   --cc-focus: #ffffff;
   --cc-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
   color-scheme: dark;
+}
+
+@font-face {
+  font-family: "Signal Sans";
+  src: local("Avenir Next"), local("Segoe UI"), local("Helvetica Neue"), local("Arial");
+  font-display: swap;
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Signal Serif";
+  src: local("Iowan Old Style"), local("Palatino Linotype"), local("Palatino"), local("Georgia");
+  font-display: swap;
+  size-adjust: 100%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
 }
 
 html[data-font="sm"] { font-size: 15px; }
@@ -146,18 +165,49 @@ a:hover { text-decoration-thickness: 2px; }
 .brand b { font-family: var(--cc-serif); font-size: 1.15rem; display: block; letter-spacing: -0.03em; }
 .brand span { color: var(--cc-muted); font-size: 0.78rem; }
 .rail nav { display: flex; flex-direction: column; gap: 4px; }
-.rail a, .rail button.navlike {
+.menu-item, .bar-item, .menu-toggle, .brand-link {
+  min-height: 44px;
+}
+.menu-item {
   display: flex; align-items: center; gap: 8px;
   width: 100%; text-align: left;
   color: inherit; text-decoration: none;
   background: transparent; border: 1px solid transparent;
-  border-radius: 12px; padding: 8px 10px;
+  border-radius: 12px; padding: 6px 10px;
   font: inherit; cursor: pointer;
+  box-sizing: border-box;
 }
-.rail a[aria-current="page"], .rail a:hover, .rail button.navlike:hover {
+.menu-ico {
+  width: 28px; height: 28px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 8px;
+  background: var(--cc-surface-2);
+  color: var(--cc-accent-1);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.menu-copy { min-width: 0; display: grid; gap: 1px; }
+.menu-label { font-weight: 700; line-height: 1.15; }
+.menu-hint {
+  color: var(--cc-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.menu-item[aria-current="page"], .bar-item[aria-current="page"] {
+  background: color-mix(in srgb, var(--cc-accent-1) 18%, var(--cc-surface));
+  border-color: var(--cc-accent-1);
+  box-shadow: inset 3px 0 0 var(--cc-accent-1);
+  color: var(--cc-ink);
+}
+.menu-item:hover, .rail a:hover {
   background: var(--cc-surface-2);
   border-color: var(--cc-line);
 }
+.menu-filter-status { min-height: 1.2em; margin: 0 0 8px; color: var(--cc-muted); font-size: 0.85rem; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cc-accent-1); flex: none; }
 .dot.a2 { background: var(--cc-accent-2); }
 .dot.a3 { background: var(--cc-accent-3); }
@@ -186,7 +236,7 @@ html[data-theme="light"] button.solid { color: #fff; }
 html[data-theme="contrast"] button.solid { color: #000; }
 button:disabled { opacity: 0.55; cursor: not-allowed; }
 
-main { padding: 22px 22px 64px; max-width: 1180px; }
+main { padding: 22px 22px 64px; max-width: 1180px; min-height: calc(100svh - 180px); }
 h1 { font-family: var(--cc-serif); font-weight: 600; letter-spacing: -0.03em; font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1.1; margin: 0 0 8px; }
 h2 { font-family: var(--cc-serif); font-size: 1.45rem; margin: 1.4rem 0 0.4rem; }
 h3 { font-size: 1.05rem; margin: 1rem 0 0.3rem; }
@@ -242,7 +292,7 @@ html[data-motion="full"] .tape span { display: inline-block; animation: tape 28s
 }
 .ring strong { font-family: var(--cc-serif); }
 .figure { background: var(--cc-surface-2); border-radius: 16px; padding: 8px; overflow: auto; }
-.figure svg { width: 100%; height: auto; display: block; }
+.figure svg, .mind svg { width: 100%; height: auto; display: block; aspect-ratio: 780 / 380; min-height: 180px; }
 .figure figcaption { font-size: 0.85rem; color: var(--cc-muted); padding: 4px 6px 2px; }
 
 .player { padding: 12px; margin: 12px 0; }
@@ -302,7 +352,7 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.55); }
 .bottom {
   display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
   background: var(--cc-surface); border-top: 1px solid var(--cc-line);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 .bottom a, .bottom button {
   background: transparent; border: 0; color: inherit; font: inherit;
@@ -339,9 +389,13 @@ html[data-motion="reduce"] *, html[data-motion="reduce"] *::before, html[data-mo
   scroll-behavior: auto !important;
 }
 @media (prefers-reduced-motion: reduce) {
-  html:not([data-motion="full"]) *, html:not([data-motion="full"]) *::before {
+  html:not([data-motion="full"]),
+  html:not([data-motion="full"]) *,
+  html:not([data-motion="full"]) *::before,
+  html:not([data-motion="full"]) *::after {
     animation: none !important;
     transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
 html[data-theme="contrast"] .card,
@@ -353,3 +407,103 @@ html[data-theme="contrast"] select {
   border-width: 2px;
 }
 html[data-theme="contrast"] a { text-decoration: underline; }
+
+.menu-item[hidden] { display: none !important; }
+.rail-search { position: sticky; top: 0; z-index: 1; margin: 0 0 8px; background: var(--cc-surface); }
+.rail-search input { width: 100%; min-height: 44px; box-sizing: border-box; }
+.dock-stack {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 12;
+  width: min(340px, calc(100vw - 120px));
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.dock-stack .guide,
+.dock-stack .audio-dock {
+  position: static;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  width: auto;
+}
+.guide {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.guide-toggle, .guide-chip, #guide-close, .guide-form button, .guide-form input {
+  min-height: 44px;
+}
+.guide-toggle {
+  align-self: flex-start;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 0 16px;
+  border: 1px solid var(--cc-accent-1);
+  background: var(--cc-accent-1);
+  color: #061018;
+}
+html[data-theme="light"] .guide-toggle { color: #fff; }
+html[data-theme="contrast"] .guide-toggle { color: #000; }
+.guide-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: min(52vh, 420px);
+  padding: 12px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--cc-bg) 94%, transparent);
+  border: 1px solid var(--cc-line);
+  box-shadow: var(--cc-shadow);
+  backdrop-filter: blur(12px);
+}
+.guide-panel[hidden] { display: none !important; }
+.guide-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.guide-bar h2 { margin: 0; font-size: 1.15rem; }
+.guide-log {
+  overflow: auto;
+  min-height: 140px;
+  max-height: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.guide-bubble {
+  margin: 0;
+  max-width: 92%;
+  padding: 8px 12px;
+  border-radius: 14px;
+  overflow-wrap: anywhere;
+}
+.guide-bubble.user {
+  align-self: flex-end;
+  background: var(--cc-accent-1);
+  color: #061018;
+}
+html[data-theme="light"] .guide-bubble.user { color: #fff; }
+html[data-theme="contrast"] .guide-bubble.user { color: #000; }
+.guide-bubble.bot {
+  align-self: flex-start;
+  background: var(--cc-surface-2);
+  border: 1px solid var(--cc-line);
+}
+.guide-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.guide-chip {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 0 12px;
+  border: 1px solid var(--cc-line);
+  background: var(--cc-surface);
+  color: inherit;
+}
+.guide-form { display: flex; gap: 8px; }
+.guide-form input { flex: 1; min-width: 0; }
+.guide-note { margin: 0; color: var(--cc-muted); font-size: 0.75rem; }
