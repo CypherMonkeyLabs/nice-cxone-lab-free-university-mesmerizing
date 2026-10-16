@@ -1,10 +1,11 @@
 import { bindChartTips } from "./charts.mjs";
+import { motionReduced } from "./pixel.mjs";
 import { animate } from "../vendor/anime.esm.min.js";
 import rough from "../vendor/rough.esm.js";
 import confetti from "../vendor/confetti.module.mjs";
 
 function reduced() {
-  return document.documentElement.dataset.motion === "reduce";
+  return motionReduced();
 }
 
 function loadScript(src) {

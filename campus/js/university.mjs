@@ -386,7 +386,7 @@ async function viewDownloads() {
     <h2>Decks and the offline bundle</h2>
     <p><a href="downloads/flashcards.json">Flashcard JSON</a> · <a href="downloads/cxone-offline-pack.json">Offline pack JSON</a> · <a href="downloads/cxone-offline-bundle.zip">Offline zip</a></p>
     <p>The top-bar download builds a fresh pack from the tracks loaded in this browser, including anything you have not opened yet. The zip is the printable cheat-code set.</p>
-    <p class="muted">Each sheet carries cyphermonkeylabs.com, linktr.ee/cyphermonkey, the repo link, and the disclaimer. No LinkedIn. No email address.</p>`);
+    <p class="muted">Each sheet links GitHub, the Labs org, Cypher Monkey Labs, X, and Hugging Face, and it carries © 2026 CypherMonkeyLabs 🐒. No LinkedIn. No email address. No Linktree.</p>`);
 }
 
 async function viewSandbox() {
@@ -663,6 +663,6 @@ export async function buildPack(manifest, ensureTrack, ensureExtra) {
     tracks,
     extras,
     atlas,
-    footer: "https://cyphermonkeylabs.com · https://linktr.ee/cyphermonkey · https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing · Independent educational project. MIT code, CC BY-NC-SA content.",
+    footer: "© 2026 CypherMonkeyLabs 🐒 · https://github.com/cipher0x9 · https://github.com/CypherMonkeyLabs · https://cyphermonkeylabs.com · https://x.com/Cypher0x9 · https://huggingface.co/Cypher0x9 · Independent educational project. MIT code, CC BY-NC-SA content.",
   };
 }

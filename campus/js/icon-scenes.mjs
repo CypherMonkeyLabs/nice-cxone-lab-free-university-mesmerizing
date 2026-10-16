@@ -1,3 +1,5 @@
+import { cappedPixelRatio, motionReduced } from "./pixel.mjs";
+
 let raf = 0;
 let renderer = null;
 let running = false;
@@ -75,7 +77,7 @@ export async function mountIconScenes(root) {
   const scope = root || document;
   const canvases = [...scope.querySelectorAll("canvas.icon-live")];
   if (!canvases.length) return { ok: false };
-  if (document.documentElement.dataset.motion === "reduce") return { ok: false, reason: "reduced" };
+  if (motionReduced()) return { ok: false, reason: "reduced" };
   let THREE;
   try {
     THREE = await loadThree();
@@ -134,7 +136,7 @@ export async function mountIconScenes(root) {
   function resizeTargets() {
     targets.forEach((item) => {
       const rect = item.canvas.getBoundingClientRect();
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const ratio = cappedPixelRatio();
       const width = Math.max(2, Math.round(rect.width * ratio));
       const height = Math.max(2, Math.round(rect.height * ratio));
       if (item.canvas.width !== width || item.canvas.height !== height) {
@@ -158,6 +160,10 @@ export async function mountIconScenes(root) {
   const loop = () => {
     raf = 0;
     if (!running || token !== generation) return;
+    if (motionReduced()) {
+      running = false;
+      return;
+    }
     if (document.visibilityState === "hidden" || !iconsOnScreen) return;
     raf = requestAnimationFrame(loop);
     const time = clock.getElapsedTime();

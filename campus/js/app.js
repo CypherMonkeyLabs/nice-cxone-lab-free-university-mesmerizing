@@ -7,31 +7,32 @@ import { mountIconScenes, unmountIconScenes } from "./icon-scenes.mjs";
 import { bindTilt, isoIcon, progressRing } from "./icons.mjs";
 import { bindLightbox } from "./lightbox.mjs";
 import { bootLang, currentLang, ensureLessonMt, setLang, t, trLesson } from "./i18n.mjs";
+import { motionReduced } from "./pixel.mjs";
 
 const SETTINGS_KEY = "cxone-lab-settings";
 const PROGRESS_KEY = "cxone-lab-progress";
 const STUDIO_KEY = "cxone-lab-studio";
 
 const NAV = [
-  { href: "#/", id: "home", label: "Floor", dot: "a1" },
-  { href: "#/diagrams", id: "diagrams", label: "Diagrams", dot: "a2" },
-  { href: "#/flows", id: "flows", label: "Flows", dot: "a3" },
-  { href: "#/charts", id: "charts", label: "Charts", dot: "a4" },
-  { href: "#/downloads", id: "downloads", label: "Cheat Codes", dot: "a1" },
-  { href: "#/play", id: "play", label: "Play", dot: "a2" },
-  { href: "#/ecosystem", id: "ecosystem", label: "Ecosystem", dot: "a3" },
-  { href: "#/downloads", id: "downloads-hub", label: "Downloads", dot: "a4" },
-  { href: "#/careers", id: "careers", label: "Careers", dot: "a1" },
-  { href: "#/regions", id: "regions", label: "Regions", dot: "a2" },
-  { href: "#/tracks", id: "tracks", label: "Tracks", dot: "a2" },
-  { href: "#/studio", id: "studio", label: "Studio builder", dot: "a3" },
-  { href: "#/routing", id: "routing", label: "Routing simulator", dot: "a4" },
-  { href: "#/topology", id: "topology", label: "3D topology", dot: "a1" },
-  { href: "#/atlas", id: "atlas", label: "Ports atlas", dot: "a2" },
-  { href: "#/explorer", id: "explorer", label: "Flow explorer", dot: "a3" },
-  { href: "#/roadmap", id: "roadmap", label: "Roadmap", dot: "a4" },
-  { href: "#/incidents", id: "incidents", label: "Boss incidents", dot: "a1" },
-  { href: "#/interview", id: "interview", label: "Interview", dot: "a2" },
+  { href: "#/", id: "home", label: "Floor", hint: "Sixteen study tracks on one page", icon: "⌂", dot: "a1" },
+  { href: "#/diagrams", id: "diagrams", label: "Diagrams", hint: "SVG maps cited from public pages", icon: "◇", dot: "a2" },
+  { href: "#/flows", id: "flows", label: "Flows", hint: "Animated ladders and troubleshooting trees", icon: "↝", dot: "a3" },
+  { href: "#/charts", id: "charts", label: "Charts", hint: "Counts from the lesson files on this floor", icon: "▤", dot: "a4" },
+  { href: "#/downloads", id: "downloads", label: "Cheat Codes", hint: "One-page sheets, PDF and PNG", icon: "✎", dot: "a1" },
+  { href: "#/play", id: "play", label: "Play", hint: "Ports quiz and daily challenge", icon: "▶", dot: "a2" },
+  { href: "#/ecosystem", id: "ecosystem", label: "Ecosystem", hint: "Neighbor products, each with a citation", icon: "◎", dot: "a3" },
+  { href: "#/downloads", id: "downloads-hub", label: "Downloads", hint: "Same cheat-code sheets, ready to save", icon: "↓", dot: "a4" },
+  { href: "#/careers", id: "careers", label: "Careers", hint: "Study paths, not job postings", icon: "▣", dot: "a1" },
+  { href: "#/regions", id: "regions", label: "Regions", hint: "Published cluster hostnames", icon: "◉", dot: "a2" },
+  { href: "#/tracks", id: "tracks", label: "Tracks", hint: "Open one track and its lessons", icon: "≡", dot: "a2" },
+  { href: "#/studio", id: "studio", label: "Studio builder", hint: "Classroom JSON, not a Studio import", icon: "⬡", dot: "a3" },
+  { href: "#/routing", id: "routing", label: "Routing simulator", hint: "Priority is time times acceleration, plus initial", icon: "◎", dot: "a4" },
+  { href: "#/topology", id: "topology", label: "3D topology", hint: "Orbit the path, or read the flat map", icon: "◈", dot: "a1" },
+  { href: "#/atlas", id: "atlas", label: "Ports atlas", hint: "Ports the public page actually names", icon: "⌗", dot: "a2" },
+  { href: "#/explorer", id: "explorer", label: "Flow explorer", hint: "Sister systems and the troubleshooting tree", icon: "⤷", dot: "a3" },
+  { href: "#/roadmap", id: "roadmap", label: "Roadmap", hint: "Quoted 2026 release windows", icon: "◷", dot: "a4" },
+  { href: "#/incidents", id: "incidents", label: "Boss incidents", hint: "Synthetic sev-2 nights from cited failure modes", icon: "!", dot: "a1" },
+  { href: "#/interview", id: "interview", label: "Interview", hint: "Answers that stay inside the cited page", icon: "?", dot: "a2" },
 ];
 
 const state = {
@@ -57,6 +58,7 @@ function loadSettings() {
     voice: "",
     rate: "1",
     motion: document.documentElement.dataset.motion || "full",
+    motionLock: document.documentElement.dataset.motionLock === "1",
   };
   try {
     return Object.assign(base, JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}"));
@@ -69,8 +71,26 @@ function saveSettings() {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
   document.documentElement.dataset.theme = settings.theme;
   document.documentElement.dataset.font = settings.font;
-  document.documentElement.dataset.motion = settings.motion;
+  document.documentElement.dataset.motion = settings.motion === "reduce" ? "reduce" : "full";
+  document.documentElement.dataset.motionLock = settings.motionLock ? "1" : "0";
   window.dispatchEvent(new Event("cxone-theme"));
+}
+
+let motionWatchBound = false;
+
+function syncMotion() {
+  const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (!settings.motionLock) settings.motion = query.matches ? "reduce" : "full";
+  document.documentElement.dataset.motion = settings.motion === "reduce" ? "reduce" : "full";
+  document.documentElement.dataset.motionLock = settings.motionLock ? "1" : "0";
+  if (motionWatchBound) return;
+  motionWatchBound = true;
+  const apply = () => {
+    if (settings.motionLock) return;
+    settings.motion = query.matches ? "reduce" : "full";
+    document.documentElement.dataset.motion = settings.motion;
+  };
+  if (typeof query.addEventListener === "function") query.addEventListener("change", apply);
 }
 
 function progress() {
@@ -159,7 +179,7 @@ function tone(freq, dur, type) {
 }
 
 function reducedMotion() {
-  return settings.motion === "reduce" || document.documentElement.dataset.motion === "reduce";
+  return motionReduced();
 }
 
 async function loadJSON(path) {
@@ -247,17 +267,36 @@ function doneCount(manifest) {
   ), 0);
 }
 
+function menuMarkup(item, active) {
+  const current = active === item.id ? " aria-current=\"page\"" : "";
+  return `<a class="menu-item" href="${item.href}" data-nav="${item.id}"${current}><span class="menu-ico" aria-hidden="true">${esc(item.icon)}</span><span class="menu-copy"><span class="menu-label">${esc(item.label)}</span><span class="menu-hint">${esc(item.hint)}</span></span></a>`;
+}
+
+function filterMenuItems(input, selector, status) {
+  if (!input) return;
+  const q = input.value.trim().toLowerCase();
+  const parts = q.split(/\s+/).filter((part) => part.length > 1);
+  let shown = 0;
+  document.querySelectorAll(selector).forEach((item) => {
+    const text = item.textContent.toLowerCase();
+    const match = !q || text.includes(q) || (parts.length > 0 && parts.every((part) => text.includes(part)));
+    item.hidden = !match;
+    if (match) shown += 1;
+  });
+  if (status) status.textContent = q ? `${shown} menu item${shown === 1 ? "" : "s"} match.` : "";
+}
+
 function renderRail(active) {
   const nav = document.getElementById("rail-nav");
-  nav.innerHTML = NAV.map((item) => (
-    `<a href="${item.href}" data-nav="${item.id}" ${active === item.id ? 'aria-current="page"' : ""}><span class="dot ${item.dot}" aria-hidden="true"></span>${esc(item.label)}</a>`
-  )).join("");
+  nav.innerHTML = NAV.map((item) => menuMarkup(item, active)).join("");
   const current = NAV.find((item) => item.id === active);
   document.body.dataset.view = active || "";
   document.querySelectorAll(".bottom [data-nav], .phone-links a, .study-menu a").forEach((node) => {
-    if (current && node.getAttribute("href") === current.href) node.setAttribute("aria-current", "page");
+    const hit = current && node.dataset.nav === current.id;
+    if (hit) node.setAttribute("aria-current", "page");
     else node.removeAttribute("aria-current");
   });
+  filterMenuItems(document.getElementById("rail-q"), "#rail-nav .menu-item", document.getElementById("rail-filter-status"));
 }
 
 function figureMarkup(figure) {
@@ -1085,11 +1124,20 @@ async function viewTopology() {
 
 async function viewEcosystem() {
   const glossary = await ensureExtra("glossary");
+  const atlas = await loadJSON("data/atlas.json");
   const terms = glossary.map((item) => `<article class="card"><header><h2>${esc(item.term)}</h2></header><p>${esc(item.meaning)}</p><p class="sources">${citeLink(item.cite)}</p></article>`).join("");
+  const sisters = (atlas.sisters || []).map((item) => `<article class="card"><header><h2>${esc(item.name)}</h2></header><p>${esc(item.does)}</p><p class="sources">${citeLink(atlas.cites && atlas.cites[item.cite])}</p></article>`).join("");
   setMain(`
     <nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Floor</a> · Ecosystem</nav>
     <h1>Ecosystem</h1>
     <p class="lede">Sister systems around the ACD: WFM, quality and recording, CRM, Enlighten, APIs, and the UCCE and Avaya bridges. The map is a study aid. Each edge is only as strong as its citation. The <a href="#/explorer">flow explorer</a> adds E911, analytics, and the troubleshooting tree.</p>
+    <section class="identity">
+      <h2>Who keeps this floor</h2>
+      <p>Lucky is a lifelong student and an AI enthusiast. The path runs through systems, networking, voice, and the contact center, and it grows into AI omni-channel agents. This ecosystem is that wider study: workforce, quality, digital, CRM, and virtual agents sit beside the ACD, each one tied to a public page.</p>
+      <p class="copy">© 2026 CypherMonkeyLabs 🐒</p>
+    </section>
+    <h2>Neighboring products</h2>
+    <div class="grid cards">${sisters}</div>
     <svg id="ecosystem-markmap" class="markmap" viewBox="0 0 760 420" role="img" aria-label="Ecosystem mind map"></svg>
     <div class="mind">${mindMap()}</div>
     <h2>Glossary</h2>
@@ -1260,9 +1308,26 @@ function bindPhoneMenu() {
       route();
     });
   });
+  const menuQuery = document.getElementById("menu-q");
+  const menuStatus = document.getElementById("menu-filter-status");
+  const filterMenu = () => filterMenuItems(menuQuery, "#phone-menu .menu-item", menuStatus);
+  menuQuery.addEventListener("input", filterMenu);
+  const railQuery = document.getElementById("rail-q");
+  const railStatus = document.getElementById("rail-filter-status");
+  if (railQuery) railQuery.addEventListener("input", () => filterMenuItems(railQuery, "#rail-nav .menu-item", railStatus));
+  const railForm = document.getElementById("rail-search");
+  if (railForm && railQuery) {
+    railForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const q = railQuery.value.trim();
+      document.getElementById("q").value = q;
+      history.replaceState(null, "", `#/search?q=${encodeURIComponent(q)}`);
+      route();
+    });
+  }
   document.getElementById("menu-search").addEventListener("submit", (event) => {
     event.preventDefault();
-    const q = document.getElementById("menu-q").value.trim();
+    const q = menuQuery.value.trim();
     document.getElementById("q").value = q;
     shut(true);
     history.replaceState(null, "", `#/search?q=${encodeURIComponent(q)}`);
@@ -1341,6 +1406,7 @@ function bindChrome() {
     settings.voice = data.get("voice");
     settings.rate = data.get("rate");
     settings.motion = data.get("motion");
+    settings.motionLock = true;
     const nextLang = data.get("language");
     saveSettings();
     if (nextLang && nextLang !== currentLang()) setLang(nextLang);
@@ -1425,6 +1491,7 @@ async function downloadPack(button) {
   }, 2400);
 }
 
+syncMotion();
 bootUniversity({ downloadPack, reducedMotion, tone });
 bindChrome();
 route();

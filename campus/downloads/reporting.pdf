@@ -9,13 +9,19 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 1116 >>
+<< /Length 1289 >>
 stream
 BT
 /F1 9 Tf
 36 770 Td
 14 TL
 (Reporting and analytics) Tj
+T* (\251 2026 CypherMonkeyLabs) Tj
+T* (Visit my GitHub https://github.com/cipher0x9) Tj
+T* (Visit the Labs org https://github.com/CypherMonkeyLabs) Tj
+T* (Visit Cypher Monkey Labs https://cyphermonkeylabs.com) Tj
+T* (X https://x.com/Cypher0x9) Tj
+T* (Hugging Face https://huggingface.co/Cypher0x9) Tj
 T* () Tj
 T* (Prebuilt analytics reports) Tj
 T* (The data and reporting page names four prebuilt reports: Analytics Metric Statistics, Analytics Category Stati) Tj
@@ -27,8 +33,6 @@ T* (If the organization is not configured for Dashboard, or the apps do not incl
 T* (Export) Tj
 T* (Analytics data export writes JSON to a secure external access bucket. Files go out every 400 records or every ) Tj
 T* (The page warns that duplicates can exist and that order is processing order, not contact order. Do not build a) Tj
-T* () Tj
-T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
 ET
 endstream
 endobj
@@ -42,8 +46,8 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000241 00000 n 
-0000001409 00000 n 
+0000001582 00000 n 
 trailer << /Size 6 /Root 1 0 R >>
 startxref
-1479
+1652
 %%EOF

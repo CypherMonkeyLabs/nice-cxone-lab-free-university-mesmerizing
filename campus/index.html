@@ -1,16 +1,17 @@
 <!doctype html>
-<html lang="en" data-theme="dark" data-font="md" data-motion="full">
+<html lang="en" data-theme="dark" data-font="md">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>NICE CXone Lab</title>
   <meta name="description" content="Free study floor for NiCE CXone: ACD, Studio, skills and routing, IVR, digital channels, WEM, Enlighten, APIs, CRM, telephony, and migration from Cisco UCCE and Avaya.">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/app.css">
   <link rel="stylesheet" href="assets/university.css">
   <link rel="stylesheet" href="assets/wow.css">
   <link rel="stylesheet" href="assets/phone.css">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='none' stroke='%233ecbff' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23ffb020' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23b09cff'/%3E%3C/svg%3E">
   <script>
     try {
       var saved = JSON.parse(localStorage.getItem("cxone-lab-settings") || "{}");
@@ -18,8 +19,13 @@
       if (saved.theme) root.dataset.theme = saved.theme;
       else if (window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches) root.dataset.theme = "light";
       if (saved.font) root.dataset.font = saved.font;
-      if (saved.motion === "reduce") root.dataset.motion = "reduce";
-      else if (!saved.motion && window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) root.dataset.motion = "reduce";
+      var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (saved.motionLock && (saved.motion === "reduce" || saved.motion === "full")) {
+        root.dataset.motion = saved.motion;
+        root.dataset.motionLock = "1";
+      } else {
+        root.dataset.motion = reduce ? "reduce" : "full";
+      }
     } catch (error) {}
   </script>
 </head>
@@ -36,27 +42,28 @@
     </button>
   </header>
   <header class="lab-bar">
-    <a href="https://cyphermonkeylabs.com">CypherMonkey Labs</a>
-    <a href="https://linktr.ee/cyphermonkey">Linktree</a>
-    <a href="https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing">Repo · rate / comment / help</a>
-    <a href="https://dev.to/cyphermonkey">DEV</a>
-    <a href="https://huggingface.co/Cypher0x9">Hugging Face</a>
-    <a href="https://x.com/Cypher0x9">X</a>
+    <nav class="brand-links" aria-label="Lucky and CypherMonkey Labs">
+      <a class="brand-link" href="https://github.com/cipher0x9"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.7.8.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg><span>Visit my GitHub</span></a>
+      <a class="brand-link" href="https://github.com/CypherMonkeyLabs"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.7.8.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg><span>Visit the Labs org</span></a>
+      <a class="brand-link" href="https://cyphermonkeylabs.com"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="13" r="6" fill="#c47a3a"/><circle cx="7" cy="8" r="2.4" fill="#c47a3a"/><circle cx="17" cy="8" r="2.4" fill="#c47a3a"/><ellipse cx="10" cy="13" rx="1" ry="1.3" fill="#1b120c"/><ellipse cx="14" cy="13" rx="1" ry="1.3" fill="#1b120c"/><path d="M10.2 15.6c.8.8 2.8.8 3.6 0" fill="none" stroke="#1b120c" stroke-width="1" stroke-linecap="round"/></svg><span>Visit Cypher Monkey Labs</span></a>
+      <a class="brand-link" href="https://x.com/Cypher0x9"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>X</span></a>
+      <a class="brand-link" href="https://huggingface.co/Cypher0x9"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#FFD21E"/><circle cx="8.6" cy="10" r="1.15" fill="#1b120c"/><circle cx="15.4" cy="10" r="1.15" fill="#1b120c"/><path d="M8.2 14.2c1.1 1.7 6.5 1.7 7.6 0" fill="none" stroke="#1b120c" stroke-width="1.2" stroke-linecap="round"/></svg><span>Hugging Face</span></a>
+    </nav>
     <button type="button" id="download-pack">Download offline</button>
   </header>
   <nav class="study-menu" aria-label="Study">
-    <a href="#/diagrams" data-i18n="diagrams">Diagrams</a>
-    <a href="#/flows" data-i18n="flows">Flows</a>
-    <a href="#/charts" data-i18n="charts">Charts</a>
-    <a href="#/downloads" data-i18n="cheat">Cheat Codes</a>
-    <a href="#/play" data-i18n="play">Play</a>
+    <a class="menu-item" href="#/diagrams" data-nav="diagrams"><span class="menu-ico" aria-hidden="true">◇</span><span class="menu-copy"><span class="menu-label" data-i18n="diagrams">Diagrams</span><span class="menu-hint">SVG maps cited from public pages</span></span></a>
+    <a class="menu-item" href="#/flows" data-nav="flows"><span class="menu-ico" aria-hidden="true">↝</span><span class="menu-copy"><span class="menu-label" data-i18n="flows">Flows</span><span class="menu-hint">Animated ladders and trees</span></span></a>
+    <a class="menu-item" href="#/charts" data-nav="charts"><span class="menu-ico" aria-hidden="true">▤</span><span class="menu-copy"><span class="menu-label" data-i18n="charts">Charts</span><span class="menu-hint">Counts from this floor’s files</span></span></a>
+    <a class="menu-item" href="#/downloads" data-nav="downloads"><span class="menu-ico" aria-hidden="true">✎</span><span class="menu-copy"><span class="menu-label" data-i18n="cheat">Cheat Codes</span><span class="menu-hint">Printable one-page sheets</span></span></a>
+    <a class="menu-item" href="#/play" data-nav="play"><span class="menu-ico" aria-hidden="true">▶</span><span class="menu-copy"><span class="menu-label" data-i18n="play">Play</span><span class="menu-hint">Ports quiz and daily challenge</span></span></a>
     <details class="study-more">
-      <summary data-i18n="more">More</summary>
+      <summary><span class="menu-ico" aria-hidden="true">+</span><span class="menu-copy"><span class="menu-label" data-i18n="more">More</span><span class="menu-hint">Ecosystem, downloads, settings</span></span></summary>
       <div class="study-more-panel">
-        <a href="#/ecosystem" data-i18n="ecosystem">Ecosystem</a>
-        <a href="#/downloads" data-i18n="downloads">Downloads</a>
-        <a href="#/careers" data-i18n="careers">Careers</a>
-        <a href="#/regions" data-i18n="regions">Regions</a>
+        <a class="menu-item" href="#/ecosystem" data-nav="ecosystem"><span class="menu-ico" aria-hidden="true">◎</span><span class="menu-copy"><span class="menu-label" data-i18n="ecosystem">Ecosystem</span><span class="menu-hint">Neighbor products with citations</span></span></a>
+        <a class="menu-item" href="#/downloads" data-nav="downloads-hub"><span class="menu-ico" aria-hidden="true">↓</span><span class="menu-copy"><span class="menu-label" data-i18n="downloads">Downloads</span><span class="menu-hint">Same sheets, ready to save</span></span></a>
+        <a class="menu-item" href="#/careers" data-nav="careers"><span class="menu-ico" aria-hidden="true">▣</span><span class="menu-copy"><span class="menu-label" data-i18n="careers">Careers</span><span class="menu-hint">Study paths, not job postings</span></span></a>
+        <a class="menu-item" href="#/regions" data-nav="regions"><span class="menu-ico" aria-hidden="true">◉</span><span class="menu-copy"><span class="menu-label" data-i18n="regions">Regions</span><span class="menu-hint">Published cluster hostnames</span></span></a>
         <button type="button" data-open-settings>Settings</button>
         <span class="theme-switch" role="group" aria-label="Theme">
           <button type="button" data-theme-set="dark">Signal</button>
@@ -80,6 +87,11 @@
         <span class="mark" aria-hidden="true"></span>
         <span><b>Signal Floor</b><span>NICE CXone Lab</span></span>
       </a>
+      <form class="menu-search rail-search" id="rail-search">
+        <label class="sr" for="rail-q">Filter the menu</label>
+        <input id="rail-q" type="search" placeholder="Filter the menu…" autocomplete="off">
+      </form>
+      <p class="menu-filter-status" id="rail-filter-status" role="status"></p>
       <nav id="rail-nav"></nav>
       <p class="rail-foot" id="rail-count">Independent study lab. Not affiliated with NiCE.</p>
     </aside>
@@ -111,8 +123,10 @@
       </main>
       <footer class="lab-foot">
         <p class="sig">CypherMonkey · CYPHER0X9</p>
+        <p class="identity">Lucky is a lifelong student and an AI enthusiast. The path runs through systems, networking, voice, and the contact center, and it grows into AI omni-channel agents. The <a href="#/ecosystem">ecosystem</a> section maps the neighboring products with the pages that support each sentence.</p>
+        <p class="copy">© 2026 CypherMonkeyLabs 🐒</p>
         <p>Independent educational project, not affiliated with or endorsed by any vendor. Trademarks belong to their owners. MIT code, CC BY-NC-SA content.</p>
-        <p><a href="https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing">Repo · rate / comment / help</a> · <a href="https://cyphermonkeylabs.com/#contact">Report a concern / takedown</a> · <a href="https://cyphermonkeylabs.com/#contact">Work with us</a></p>
+        <p><a href="https://github.com/cipher0x9">Visit my GitHub</a> · <a href="https://github.com/CypherMonkeyLabs">Visit the Labs org</a> · <a href="https://cyphermonkeylabs.com">Visit Cypher Monkey Labs</a> · <a href="https://x.com/Cypher0x9">X</a> · <a href="https://huggingface.co/Cypher0x9">Hugging Face</a> · <a href="https://cyphermonkeylabs.com/#contact">Report a concern / takedown</a> · <a href="https://cyphermonkeylabs.com/#contact">Work with us</a></p>
         <nav class="next-labs" aria-label="Other labs">
           <a href="https://cipher0x9.github.io/webex-lab-free-university-mesmerizing/">Webex Lab</a>
           <a href="https://cipher0x9.github.io/uc-lab-free-university-mesmerizing/">UC Lab</a>
@@ -127,11 +141,12 @@
     </div>
   </div>
   <nav class="bottom quick-bar" aria-label="Quick">
-    <a href="#/tracks" data-nav="tracks">Learn</a>
-    <a href="#/diagrams" data-nav="diagrams">Diagrams</a>
-    <a href="#/play" data-nav="play">Play</a>
-    <button type="button" id="open-menu-bar" aria-haspopup="dialog" aria-controls="phone-menu">Menu</button>
-    <button type="button" id="listen-btn" aria-pressed="false">Listen</button>
+    <a class="bar-item" href="#/tracks" data-nav="tracks"><span class="menu-ico" aria-hidden="true">≡</span><span>Learn</span></a>
+    <a class="bar-item" href="#/diagrams" data-nav="diagrams"><span class="menu-ico" aria-hidden="true">◇</span><span>Diagrams</span></a>
+    <a class="bar-item" href="#/flows" data-nav="flows"><span class="menu-ico" aria-hidden="true">↝</span><span>Flows</span></a>
+    <a class="bar-item" href="#/charts" data-nav="charts"><span class="menu-ico" aria-hidden="true">▤</span><span>Charts</span></a>
+    <a class="bar-item" href="#/downloads" data-nav="downloads"><span class="menu-ico" aria-hidden="true">✎</span><span>Cheats</span></a>
+    <button class="bar-item" type="button" id="open-menu-bar" aria-haspopup="dialog" aria-controls="phone-menu"><span class="menu-ico" aria-hidden="true">☰</span><span>Menu</span></button>
   </nav>
   <div id="phone-menu" class="phone-menu" role="dialog" aria-modal="true" aria-labelledby="phone-menu-title" hidden>
     <div class="phone-menu-bar">
@@ -139,30 +154,31 @@
       <button type="button" class="solid" id="close-menu">Close</button>
     </div>
     <form class="menu-search" id="menu-search">
-      <label class="sr" for="menu-q">Search lessons</label>
-      <input id="menu-q" type="search" placeholder="Search skills, Studio, Autopilot, UCCE…" autocomplete="off">
+      <label class="sr" for="menu-q">Search the menu or lessons</label>
+      <input id="menu-q" type="search" placeholder="Filter the menu, or search lessons…" autocomplete="off">
       <button class="solid" type="submit">Search</button>
     </form>
+    <p class="menu-filter-status" id="menu-filter-status" role="status"></p>
     <nav class="phone-links" aria-label="Sections">
-      <a href="#/" data-nav="home">Floor</a>
-      <a href="#/tracks" data-nav="tracks">Learn</a>
-      <a href="#/diagrams" data-nav="diagrams" data-i18n="diagrams">Diagrams</a>
-      <a href="#/flows" data-nav="flows" data-i18n="flows">Flows</a>
-      <a href="#/charts" data-nav="charts" data-i18n="charts">Charts</a>
-      <a href="#/downloads" data-nav="downloads" data-i18n="cheat">Cheat Codes</a>
-      <a href="#/play" data-nav="play" data-i18n="play">Play</a>
-      <a href="#/ecosystem" data-nav="ecosystem" data-i18n="ecosystem">Ecosystem</a>
-      <a href="#/downloads" data-nav="downloads-hub" data-i18n="downloads">Downloads</a>
-      <a href="#/careers" data-nav="careers" data-i18n="careers">Careers</a>
-      <a href="#/regions" data-nav="regions" data-i18n="regions">Regions</a>
-      <a href="#/studio" data-nav="studio">Studio builder</a>
-      <a href="#/routing" data-nav="routing">Routing simulator</a>
-      <a href="#/topology" data-nav="topology">3D topology</a>
-      <a href="#/atlas" data-nav="atlas">Ports atlas</a>
-      <a href="#/explorer" data-nav="explorer">Flow explorer</a>
-      <a href="#/roadmap" data-nav="roadmap">Roadmap</a>
-      <a href="#/incidents" data-nav="incidents">Boss incidents</a>
-      <a href="#/interview" data-nav="interview">Interview</a>
+      <a class="menu-item" href="#/" data-nav="home"><span class="menu-ico" aria-hidden="true">⌂</span><span class="menu-copy"><span class="menu-label">Floor</span><span class="menu-hint">Sixteen study tracks on one page</span></span></a>
+      <a class="menu-item" href="#/tracks" data-nav="tracks"><span class="menu-ico" aria-hidden="true">≡</span><span class="menu-copy"><span class="menu-label">Learn</span><span class="menu-hint">Open one track and its lessons</span></span></a>
+      <a class="menu-item" href="#/diagrams" data-nav="diagrams"><span class="menu-ico" aria-hidden="true">◇</span><span class="menu-copy"><span class="menu-label" data-i18n="diagrams">Diagrams</span><span class="menu-hint">SVG maps cited from public pages</span></span></a>
+      <a class="menu-item" href="#/flows" data-nav="flows"><span class="menu-ico" aria-hidden="true">↝</span><span class="menu-copy"><span class="menu-label" data-i18n="flows">Flows</span><span class="menu-hint">Animated ladders and troubleshooting trees</span></span></a>
+      <a class="menu-item" href="#/charts" data-nav="charts"><span class="menu-ico" aria-hidden="true">▤</span><span class="menu-copy"><span class="menu-label" data-i18n="charts">Charts</span><span class="menu-hint">Counts from the lesson files on this floor</span></span></a>
+      <a class="menu-item" href="#/downloads" data-nav="downloads"><span class="menu-ico" aria-hidden="true">✎</span><span class="menu-copy"><span class="menu-label" data-i18n="cheat">Cheat Codes</span><span class="menu-hint">One-page sheets, PDF and PNG</span></span></a>
+      <a class="menu-item" href="#/play" data-nav="play"><span class="menu-ico" aria-hidden="true">▶</span><span class="menu-copy"><span class="menu-label" data-i18n="play">Play</span><span class="menu-hint">Ports quiz and daily challenge</span></span></a>
+      <a class="menu-item" href="#/ecosystem" data-nav="ecosystem"><span class="menu-ico" aria-hidden="true">◎</span><span class="menu-copy"><span class="menu-label" data-i18n="ecosystem">Ecosystem</span><span class="menu-hint">Neighbor products, each with a citation</span></span></a>
+      <a class="menu-item" href="#/downloads" data-nav="downloads-hub"><span class="menu-ico" aria-hidden="true">↓</span><span class="menu-copy"><span class="menu-label" data-i18n="downloads">Downloads</span><span class="menu-hint">Same cheat-code sheets, ready to save</span></span></a>
+      <a class="menu-item" href="#/careers" data-nav="careers"><span class="menu-ico" aria-hidden="true">▣</span><span class="menu-copy"><span class="menu-label" data-i18n="careers">Careers</span><span class="menu-hint">Study paths, not job postings</span></span></a>
+      <a class="menu-item" href="#/regions" data-nav="regions"><span class="menu-ico" aria-hidden="true">◉</span><span class="menu-copy"><span class="menu-label" data-i18n="regions">Regions</span><span class="menu-hint">Published cluster hostnames</span></span></a>
+      <a class="menu-item" href="#/studio" data-nav="studio"><span class="menu-ico" aria-hidden="true">⬡</span><span class="menu-copy"><span class="menu-label">Studio builder</span><span class="menu-hint">Classroom JSON, not a Studio import</span></span></a>
+      <a class="menu-item" href="#/routing" data-nav="routing"><span class="menu-ico" aria-hidden="true">◎</span><span class="menu-copy"><span class="menu-label">Routing simulator</span><span class="menu-hint">Priority is time times acceleration, plus initial</span></span></a>
+      <a class="menu-item" href="#/topology" data-nav="topology"><span class="menu-ico" aria-hidden="true">◈</span><span class="menu-copy"><span class="menu-label">3D topology</span><span class="menu-hint">Orbit the path, or read the flat map</span></span></a>
+      <a class="menu-item" href="#/atlas" data-nav="atlas"><span class="menu-ico" aria-hidden="true">⌗</span><span class="menu-copy"><span class="menu-label">Ports atlas</span><span class="menu-hint">Ports the public page actually names</span></span></a>
+      <a class="menu-item" href="#/explorer" data-nav="explorer"><span class="menu-ico" aria-hidden="true">⤷</span><span class="menu-copy"><span class="menu-label">Flow explorer</span><span class="menu-hint">Sister systems and the troubleshooting tree</span></span></a>
+      <a class="menu-item" href="#/roadmap" data-nav="roadmap"><span class="menu-ico" aria-hidden="true">◷</span><span class="menu-copy"><span class="menu-label">Roadmap</span><span class="menu-hint">Quoted 2026 release windows</span></span></a>
+      <a class="menu-item" href="#/incidents" data-nav="incidents"><span class="menu-ico" aria-hidden="true">!</span><span class="menu-copy"><span class="menu-label">Boss incidents</span><span class="menu-hint">Synthetic sev-2 nights from cited failure modes</span></span></a>
+      <a class="menu-item" href="#/interview" data-nav="interview"><span class="menu-ico" aria-hidden="true">?</span><span class="menu-copy"><span class="menu-label">Interview</span><span class="menu-hint">Answers that stay inside the cited page</span></span></a>
     </nav>
     <div class="phone-prefs">
       <label>Language
@@ -189,14 +205,14 @@
         <button type="button" data-theme-toggle>Day / Night</button>
       </span>
       <button type="button" data-open-settings>Settings</button>
+      <button type="button" id="listen-btn" aria-pressed="false">Listen</button>
     </div>
-    <nav class="phone-else" aria-label="Elsewhere">
-      <a href="https://cyphermonkeylabs.com">CypherMonkey Labs</a>
-      <a href="https://linktr.ee/cyphermonkey">Linktree</a>
-      <a href="https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing">Repo · rate / comment / help</a>
-      <a href="https://dev.to/cyphermonkey">DEV</a>
-      <a href="https://huggingface.co/Cypher0x9">Hugging Face</a>
-      <a href="https://x.com/Cypher0x9">X</a>
+    <nav class="phone-else brand-links" aria-label="Lucky and CypherMonkey Labs">
+      <a class="brand-link" href="https://github.com/cipher0x9"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.7.8.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg><span>Visit my GitHub</span></a>
+      <a class="brand-link" href="https://github.com/CypherMonkeyLabs"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.7.8.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg><span>Visit the Labs org</span></a>
+      <a class="brand-link" href="https://cyphermonkeylabs.com"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="13" r="6" fill="#c47a3a"/><circle cx="7" cy="8" r="2.4" fill="#c47a3a"/><circle cx="17" cy="8" r="2.4" fill="#c47a3a"/><ellipse cx="10" cy="13" rx="1" ry="1.3" fill="#1b120c"/><ellipse cx="14" cy="13" rx="1" ry="1.3" fill="#1b120c"/><path d="M10.2 15.6c.8.8 2.8.8 3.6 0" fill="none" stroke="#1b120c" stroke-width="1" stroke-linecap="round"/></svg><span>Visit Cypher Monkey Labs</span></a>
+      <a class="brand-link" href="https://x.com/Cypher0x9"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>X</span></a>
+      <a class="brand-link" href="https://huggingface.co/Cypher0x9"><svg class="brand-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#FFD21E"/><circle cx="8.6" cy="10" r="1.15" fill="#1b120c"/><circle cx="15.4" cy="10" r="1.15" fill="#1b120c"/><path d="M8.2 14.2c1.1 1.7 6.5 1.7 7.6 0" fill="none" stroke="#1b120c" stroke-width="1.2" stroke-linecap="round"/></svg><span>Hugging Face</span></a>
     </nav>
   </div>
   <button class="mascot-dock" id="mascot-dock" type="button" data-pose="still" aria-label="CypherMonkey mascot. Activate to change pose.">
@@ -290,14 +306,32 @@
       <p class="status" id="settings-status" role="status"></p>
     </form>
   </dialog>
+  <div class="dock-stack">
+  <div class="guide" id="guide">
+    <section id="guide-panel" class="guide-panel" hidden>
+      <header class="guide-bar">
+        <h2>Guide Bot</h2>
+        <button type="button" class="ghost" id="guide-close">Close</button>
+      </header>
+      <div id="guide-log" class="guide-log" aria-live="polite"></div>
+      <div id="guide-chips" class="guide-chips"></div>
+      <form class="guide-form" id="guide-form">
+        <label class="sr" for="guide-q">Ask the guide</label>
+        <input id="guide-q" type="text" autocomplete="off" placeholder="Ask about priority, ports, recording…">
+        <button class="solid" type="submit">Send</button>
+      </form>
+      <p class="guide-note">Answers stay inside this lab’s pages. Set window.CXONE_GUIDE_ENDPOINT later for a cloud hook. Uncited cloud replies are ignored.</p>
+    </section>
+    <button type="button" class="guide-toggle" id="guide-open" aria-expanded="false" aria-controls="guide-panel">Guide Bot</button>
+  </div>
   <aside class="audio-dock" aria-label="Architect briefing">
     <div class="audio-actions">
       <button type="button" class="solid" data-clip="audio/use-the-floor.mp3">Use the floor</button>
       <button type="button" class="ghost" data-clip="audio/share-the-floor.mp3">Share the floor</button>
     </div>
     <p class="audio-links">
-      <a href="https://github.com/cipher0x9/nice-cxone-lab-free-university-mesmerizing">Rate and comment</a>
-      <a href="https://cyphermonkeylabs.com">Share the studio</a>
+      <a href="https://github.com/cipher0x9">Visit my GitHub</a>
+      <a href="https://cyphermonkeylabs.com">Visit Cypher Monkey Labs</a>
     </p>
     <p class="audio-ready">Player ready for replacement mp3s at these same paths.</p>
     <details>
@@ -308,6 +342,7 @@
       </label>
     </details>
   </aside>
+  </div>
   <dialog id="diagram-light" aria-labelledby="light-title">
     <header class="light-bar">
       <h2 id="light-title">Why this matters</h2>
@@ -320,6 +355,7 @@
     <p class="legend">The hot wire is the step you are on. Pause freezes the packet motion.</p>
     <p class="sources" id="light-sources"></p>
   </dialog>
+  <script type="module" src="js/guide.mjs"></script>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

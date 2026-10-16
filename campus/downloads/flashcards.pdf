@@ -9,13 +9,19 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 1189 >>
+<< /Length 1362 >>
 stream
 BT
 /F1 9 Tf
 36 770 Td
 14 TL
 (Flashcards) Tj
+T* (\251 2026 CypherMonkeyLabs) Tj
+T* (Visit my GitHub https://github.com/cipher0x9) Tj
+T* (Visit the Labs org https://github.com/CypherMonkeyLabs) Tj
+T* (Visit Cypher Monkey Labs https://cyphermonkeylabs.com) Tj
+T* (X https://x.com/Cypher0x9) Tj
+T* (Hugging Face https://huggingface.co/Cypher0x9) Tj
 T* () Tj
 T* (Point of contact   The entry a contact uses, such as a phone number or email address. One skill and one script) Tj
 T* (ACD skill   The object that automates delivery to agents based on skills, abilities, and knowledge.) Tj
@@ -29,8 +35,6 @@ T* (Tenant   Top grouping for support, billing, and global settings.) Tj
 T* (Campaign   The container you pick when you create a skill.) Tj
 T* (tenantId   Claim you send to /.well-known/cxone-configuration.) Tj
 T* (api-{area}.{domain}   Pattern for the API base URL. Example area: na1.) Tj
-T* () Tj
-T* (CypherMonkey Labs https://cyphermonkeylabs.com   https://linktr.ee/cyphermonkey   Repo https://github.com/ciph) Tj
 ET
 endstream
 endobj
@@ -44,8 +48,8 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000241 00000 n 
-0000001482 00000 n 
+0000001655 00000 n 
 trailer << /Size 6 /Root 1 0 R >>
 startxref
-1552
+1725
 %%EOF
