@@ -23,7 +23,7 @@ Only these three belong in the chrome row:
 
 Contact is https://cyphermonkeylabs.com/#contact. There is no email address and no mailto link.
 
-View repo is a separate button to this repository. The sibling strip uses `https://cipher0x9.github.io/<repo>/`. A direct open of those hosts on 2026-10-16 returned 404. The footer says confirm. Do not describe them as live.
+View repo is a separate button to this repository. The sibling strip uses `https://cyphermonkeylabs.com/<repo>/`, which returned HTTP 200 on 2026-10-17. The old cipher0x9.github.io host returned 404 and is not linked.
 
 ## Files to copy
 
