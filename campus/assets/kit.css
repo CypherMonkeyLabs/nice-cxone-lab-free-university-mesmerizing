@@ -588,7 +588,7 @@ html[data-theme="vivid"] .callout {
     overflow: visible !important;
     padding: 16px 16px 14px;
     top: auto !important;
-    bottom: calc(var(--bottom-h, 64px) + 16px) !important;
+    bottom: var(--tour-bottom, calc(var(--bottom-h, 64px) + 16px)) !important;
   }
   body.onboard-open .hero-controls,
   body.onboard-open .hero-counters { display: none; }
