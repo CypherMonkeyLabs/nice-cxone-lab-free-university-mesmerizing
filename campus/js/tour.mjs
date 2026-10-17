@@ -67,6 +67,11 @@ function placeCard(card) {
     card.style.width = `${window.innerWidth - margin * 2}px`;
     card.style.top = "auto";
     card.style.bottom = `${Math.round(inset + margin)}px`;
+    // Keep the card above the mascot so it never covers the guide.
+    const mascotEl = document.getElementById("mascot-dock");
+    const mr = mascotEl ? mascotEl.getBoundingClientRect() : null;
+    if (mr && mr.width > 8 && mr.top > window.innerHeight * 0.4) card.style.setProperty("--tour-bottom", `${Math.round(window.innerHeight - mr.top + 12)}px`);
+    else card.style.removeProperty("--tour-bottom");
     return;
   }
   const width = Math.min(360, window.innerWidth - margin * 2);
@@ -98,6 +103,8 @@ function paintSpots(nodes) {
     layer.appendChild(spot);
   });
   placeCard(layer.querySelector(".tour-card"));
+  // The mascot settles into its dock a moment after load, so place the card again once it has.
+  setTimeout(() => { const c = layer && layer.querySelector(".tour-card"); if (c) placeCard(c); }, 1200);
 }
 
 function paint() {
