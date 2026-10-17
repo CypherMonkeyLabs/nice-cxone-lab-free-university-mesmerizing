@@ -233,6 +233,9 @@ for (const file of walkHtml(join(campus, "downloads"))) {
     if (text.includes(url)) fail(`download leaked ${url} in ${file}`);
   }
   if (/linkedin|huggingface|https:\/\/x\.com/i.test(text)) fail(`download social ${file}`);
+  for (const token of ["id=\"lab-menu\"", "class=\"menu-ico\"", "class=\"menu-label\"", "class=\"menu-hint\"", "id=\"mascot-dock\"", "data-listen", "id=\"sheet-speech\""]) {
+    if (!text.includes(token)) fail(`download chrome ${token} ${file}`);
+  }
 }
 if (!app.includes("roomSources") || !app.includes("lessonCites")) fail("lesson sources");
 if (!uni.includes("sourcesBlock")) fail("room sources");

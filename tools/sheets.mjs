@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { downloadDocument } from "./download-chrome.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const campus = join(root, "campus");
@@ -62,39 +63,34 @@ function sourceList(cites) {
 }
 
 function page(title, body, cites) {
-  return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>${esc(title)} · Contact Path cheat sheet</title>
-  <link rel="icon" href="../favicon.ico" sizes="32x32">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <style>
+  return downloadDocument({
+    title: `${title} · Contact Path cheat sheet`,
+    depth: 1,
+    current: "downloads",
+    extraCss: `
     @font-face { font-family: "Sheet Serif"; src: local("Georgia"), local("Palatino"); font-display: swap; size-adjust: 100%; }
-    body { font: 13px/1.35 "Sheet Serif", Georgia, serif; margin: 16px; color: #102028; }
+    body { font: 13px/1.35 "Sheet Serif", Georgia, serif; color: #102028; }
     h1 { font-size: 20px; margin: 0 0 6px; }
     h2 { font-size: 14px; margin: 10px 0 4px; }
     table { width: 100%; border-collapse: collapse; font-size: 11px; }
-    td, th { border-bottom: 1px solid #c5d6de; text-align: left; vertical-align: top; padding: 3px 4px; }
+    td, th { border-bottom: 1px solid #c5d6de; text-align: left; vertical-align: top; padding: 3px 4px; overflow-wrap: anywhere; }
     a { color: #0b5f78; }
     footer { margin-top: 12px; min-height: 2.6em; font: 10px/1.35 sans-serif; color: #3c5360; }
-    img, svg { width: 100%; height: auto; }
+    #sheet-main img, #sheet-main svg { width: 100%; height: auto; }
+    pre { white-space: pre-wrap; }
     .card { break-inside: avoid; border: 1px solid #c5d6de; padding: 8px; margin: 6px 0; }
     .source-list { padding-left: 1.2rem; }
     .source-list li { margin: 4px 0; }
     @media print { body { margin: 10mm; } a { color: inherit; text-decoration: none; } }
-  </style>
-</head>
-<body>
-  <h1>${esc(title)}</h1>
-  <aside>Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. This lab is not affiliated and there is no endorsement. Removal or correction: https://cyphermonkeylabs.com/#contact. Nothing here is sold. The author is happy to volunteer.</aside>
-  ${body}
+    `,
+    bodyHtml: `<h1>${esc(title)}</h1>
+  <aside class="sheet-lead">Independent, free, learning-only study material. It respects every vendor. Trademarks belong to their owners. This lab is not affiliated and there is no endorsement. Removal or correction: https://cyphermonkeylabs.com/#contact. Nothing here is sold. The author is happy to volunteer.</aside>
+  <div class="sheet-body">${body}</div>
   <h2>Sources and go deeper</h2>
   ${sourceList(cites)}
   <p>Last checked 2026-10. A row that says confirm has no URL.</p>
-  <footer>${esc(FOOT)}</footer>
-</body>
-</html>`;
+  <footer>${esc(FOOT)}</footer>`,
+  });
 }
 
 function pdfEscape(text) {
@@ -332,4 +328,28 @@ const links = [
   "ports", "flows", "config", "troubleshoot", "glossary", "wfm", "recording", "e911", "crm-api", "ai", "licensing", "carrier", "security", "migration", "reporting", "flashcards", "studio-snippet", "bridges",
 ].map((stem) => `<li><a href="${stem}.html">${stem}</a> · <a href="${stem}.pdf">pdf</a> · <a href="${stem}.png">png</a></li>`).join("");
 writeFileSync(join(out, "index.html"), page("Cheat codes", `<ul>${links}</ul><p><a href="flashcards.json">flashcards.json</a> · <a href="cxone-offline-pack.json">cxone-offline-pack.json</a> · <a href="cxone-offline-bundle.zip">offline zip</a></p>`, indexCites));
+
+const testTablePath = join(out, "test-table.html");
+const testRaw = readFileSync(testTablePath, "utf8");
+const testMain = testRaw.match(/<main id="sheet-main">([\s\S]*?)<\/main>/);
+let testInner = testMain ? testMain[1].trim() : "";
+if (!testInner) {
+  const testBody = testRaw.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  testInner = (testBody ? testBody[1] : "").trim();
+  if (!testInner.includes("sheet-lead")) testInner = testInner.replace("<aside>", "<aside class=\"sheet-lead\">");
+  if (!testInner.includes("sheet-body")) {
+    const cut = testInner.indexOf("</aside>");
+    if (cut >= 0) {
+      const end = cut + "</aside>".length;
+      testInner = `${testInner.slice(0, end)}<div class="sheet-body">${testInner.slice(end)}</div>`;
+    }
+  }
+}
+writeFileSync(testTablePath, downloadDocument({
+  title: "Download test table",
+  depth: 1,
+  current: "downloads",
+  extraCss: "table{border-collapse:collapse} td,th{border:1px solid #c5d6de;padding:4px;text-align:left;vertical-align:top;overflow-wrap:anywhere}",
+  bodyHtml: testInner,
+}));
 console.log("sheets", cards.length, "cards");
