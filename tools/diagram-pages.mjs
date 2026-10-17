@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { diagramSvg } from "../campus/js/diagrams.mjs";
+import { downloadDocument } from "./download-chrome.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const atlas = JSON.parse(readFileSync(join(root, "campus", "data", "atlas.json"), "utf8"));
@@ -34,25 +35,20 @@ const paint = `<style>:root,svg{--cc-accent-1:#22d3ee;--cc-accent-2:#f472b6;--cc
 for (const spec of atlas.diagrams) {
   const svg = diagramSvg(spec, true).replace(/<svg\b([^>]*)>/, `<svg$1>${paint}`);
   writeFileSync(join(out, `${spec.id}.svg`), svg);
-  const html = `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>${esc(spec.title)}</title>
-  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-  <style>body{font:15px/1.4 Georgia,serif;margin:16px;color:#102028}svg{max-width:100%;height:auto}footer{font:12px sans-serif}</style>
-</head>
-<body>
-  <h1>${esc(spec.title)}</h1>
-  <aside>${disclaimer}</aside>
-  <p>${esc(spec.caption)}</p>
-  ${svg}
+  const html = downloadDocument({
+    title: spec.title,
+    depth: 2,
+    current: "diagrams",
+    extraCss: "body{font:15px/1.4 Georgia,serif;color:#102028}#sheet-main svg{width:100%;height:auto;display:block}footer{font:12px sans-serif}",
+    bodyHtml: `<h1>${esc(spec.title)}</h1>
+  <aside class="sheet-lead">${disclaimer}</aside>
+  <div class="sheet-body"><p>${esc(spec.caption)}</p>
+  ${svg}</div>
   <h2>Sources and go deeper</h2>
   <p>${sourceLine(spec.cite)}</p>
   <p><a href="https://cyphermonkeylabs.com">cyphermonkeylabs.com</a> · <a href="https://github.com/CypherMonkeyLabs">GitHub</a> · <a href="https://linktr.ee/cyphermonkey">Linktree</a> · <a href="https://github.com/CypherMonkeyLabs/nice-cxone-lab-free-university-mesmerizing">Repo</a></p>
-  <footer>© 2026 CypherMonkeyLabs 🐒 · MIT code, CC BY-NC-SA content.</footer>
-</body>
-</html>`;
+  <footer>© 2026 CypherMonkeyLabs 🐒 · MIT code, CC BY-NC-SA content.</footer>`,
+  });
   writeFileSync(join(out, `${spec.id}.html`), html);
 }
 console.log("diagram pages", atlas.diagrams.length);
