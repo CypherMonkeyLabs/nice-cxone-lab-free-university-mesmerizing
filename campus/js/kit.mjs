@@ -1,9 +1,10 @@
 /* Bot dock, read-along, idle offer, and section export. Voice stays off until a button turns it on. */
 
+import { bindDragbot } from "./dragbot.mjs";
+
 const GREET_KEY = "cg-greet-done";
 const POKE_COUNT = "cg-poke-count";
 const POKE_OFF = "cg-poke-off";
-const DOCK_KEY = "cg-dock-top";
 
 function ls(key, value) {
   try {
@@ -147,33 +148,12 @@ function offerHelp() {
 function bindDock() {
   const dock = document.getElementById("mascot-dock");
   if (!dock) return;
-  const saved = Number(ls(DOCK_KEY));
-  if (saved) dock.style.top = `${saved}px`;
-  let drag = null;
-  dock.addEventListener("pointerdown", (event) => {
-    drag = { y: event.clientY, top: dock.getBoundingClientRect().top, moved: false };
-    dock.setPointerCapture(event.pointerId);
-  });
-  dock.addEventListener("pointermove", (event) => {
-    if (!drag) return;
-    const next = drag.top + (event.clientY - drag.y);
-    if (Math.abs(event.clientY - drag.y) > 6) drag.moved = true;
-    const max = window.innerHeight - dock.offsetHeight - 8;
-    const top = Math.max(64, Math.min(max, next));
-    dock.style.top = `${top}px`;
-    dock.style.bottom = "auto";
-  });
-  dock.addEventListener("pointerup", () => {
-    if (!drag) return;
-    const moved = drag.moved;
-    drag = null;
-    const top = parseInt(dock.style.top, 10);
-    if (top) ls(DOCK_KEY, String(top));
-    if (!moved) {
+  bindDragbot({
+    onTap: () => {
       const open = document.getElementById("guide-open");
       if (open) open.click();
       pose("wave");
-    }
+    },
   });
 }
 

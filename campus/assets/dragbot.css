@@ -1,0 +1,15 @@
+/* Draggable bot: smooth snap, lift shadow, reset button, hidden under the full-screen menu. */
+.mascot-dock.is-snapping { transition: left .28s cubic-bezier(.3,1.5,.5,1), top .28s cubic-bezier(.3,1.5,.5,1); }
+.mascot-dock svg { transition: transform .15s ease-out; }
+.bot-reset {
+  position: fixed; right: 8px; top: 8px; z-index: 17;
+  width: 32px; height: 32px; min-height: 32px; padding: 0; border-radius: 50%;
+  border: 2px solid var(--cc-accent-3); background: var(--cc-surface); color: var(--cc-ink); cursor: pointer;
+}
+.bot-reset[hidden] { display: none; }
+body.menu-open .mascot-dock, body.menu-open .bot-reset { visibility: hidden; }
+@media (max-width: 800px) {
+  .mascot-dock { width: 88px; height: 108px; }
+  .mascot-dock svg { width: 88px; height: 108px; }
+  .bot-reset { top: auto; bottom: calc(var(--bottom-h, 64px) + 8px); right: auto; left: 8px; width: 44px; height: 44px; }
+}
