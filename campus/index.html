@@ -2,6 +2,7 @@
 <html lang="en" data-theme="vivid" data-font="md" data-ink="ink">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: data:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Contact Path · NICE CXone Lab</title>
   <meta name="description" content="Contact Path is a free study lab for NiCE CXone: ACD, Studio, dynamic delivery and skills routing, the WFM day, quality management and Interaction Analytics, Salesforce CTI, and an ecosystem map. CPaaS stays confirm until a public page opens.">
@@ -13,22 +14,7 @@
   <link rel="stylesheet" href="assets/phone.css">
   <link rel="stylesheet" href="assets/kit.css">
   <link rel="manifest" href="manifest.webmanifest">
-  <script>
-    try {
-      var saved = JSON.parse(localStorage.getItem("cxone-lab-settings") || "{}");
-      var root = document.documentElement;
-      if (saved.theme) root.dataset.theme = saved.theme;
-      if (saved.font) root.dataset.font = saved.font;
-      if (saved.ink) root.dataset.ink = saved.ink;
-      var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (saved.motionLock && (saved.motion === "reduce" || saved.motion === "full")) {
-        root.dataset.motion = saved.motion;
-        root.dataset.motionLock = "1";
-      } else {
-        root.dataset.motion = reduce ? "reduce" : "full";
-      }
-    } catch (error) {}
-  </script>
+  <script src="js/theme-boot.js"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -380,11 +366,6 @@
   </dialog>
   <script type="module" src="js/guide.mjs"></script>
   <script type="module" src="js/app.js"></script>
-  <script type="module">
-    import { bootTour } from "./js/tour.mjs";
-    import { bootKit } from "./js/kit.mjs";
-    bootTour();
-    bootKit();
-  </script>
+  <script type="module" src="js/boot.mjs"></script>
 </body>
 </html>
