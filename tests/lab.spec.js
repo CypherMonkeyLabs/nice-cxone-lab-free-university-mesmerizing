@@ -24,6 +24,27 @@ async function openGuide(page) {
   await page.locator("#mascot-dock").click();
 }
 
+async function expectChatRow(page) {
+  const input = page.locator("#py-chat-input");
+  const send = page.locator(".py-chat-form button[type=submit]");
+  await expect(input).toBeVisible();
+  await expect(send).toBeVisible();
+  const box = await input.boundingBox();
+  expect(box.width).toBeGreaterThanOrEqual(180);
+  const inside = await send.evaluate((el) => {
+    const rect = el.getBoundingClientRect();
+    const fully = rect.left >= -0.5
+      && rect.top >= -0.5
+      && rect.right <= window.innerWidth + 0.5
+      && rect.bottom <= window.innerHeight + 0.5
+      && rect.width >= 8
+      && rect.height >= 8;
+    const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    return fully && (hit === el || el.contains(hit));
+  });
+  expect(inside).toBe(true);
+}
+
 test("home, guide, and a lesson at desktop", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/campus/");
@@ -47,7 +68,7 @@ test("home, guide, and a lesson at 390", async ({ page }) => {
   await dismissTour(page);
   await shot(page, "wave-phone-home");
   await openGuide(page);
-  await expect(page.locator("#py-chat-input")).toBeVisible();
+  await expectChatRow(page);
   await shot(page, "wave-phone-bot");
   await page.goto("/campus/#/lesson/routing/priority-math");
   await expect(page.locator("h1")).toBeVisible();
@@ -59,17 +80,7 @@ test("guide input and send are on screen at 390x430", async ({ page }) => {
   await page.goto("/campus/");
   await dismissTour(page);
   await openGuide(page);
-  const input = page.locator("#py-chat-input");
-  const send = page.locator(".py-chat-form button[type=submit]");
-  await expect(input).toBeVisible();
-  await expect(send).toBeVisible();
-  const uncovered = await send.evaluate((el) => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < 0 || rect.bottom > window.innerHeight || rect.width < 8) return false;
-    const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
-    return hit === el || el.contains(hit);
-  });
-  expect(uncovered).toBe(true);
+  await expectChatRow(page);
 });
 
 test("call-flow sandbox is labeled a simulation", async ({ page }) => {

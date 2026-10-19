@@ -19,7 +19,7 @@ export function chatMarkup(examples) {
     <div class="py-chat-examples">${chips}</div>
     <div class="py-chat-chips" role="group" aria-label="Suggestion"></div>
     <form class="py-chat-form">
-      <label class="visually-hidden" for="py-chat-input">Ask the Guide about this lab</label>
+      <label class="sr" for="py-chat-input">Ask the Guide about this lab</label>
       <button type="button" class="py-mic" data-py-mic aria-label="Voice input">Mic</button>
       <input id="py-chat-input" type="text" name="q" autocomplete="off" enterkeyhint="send" maxlength="400" placeholder="Ask about a lesson" spellcheck="true">
       <button type="submit">Send</button>

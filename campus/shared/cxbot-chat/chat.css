@@ -54,10 +54,11 @@
 .py-msg-code { margin: 6px 0 0; padding: 6px; overflow: auto; border-radius: 8px; background: var(--code-bg, var(--bg)); font-size: 0.75rem; }
 .py-chat-try { margin: 0; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 .py-chat-examples, .py-chat-chips { display: flex; gap: 6px; overflow-x: auto; }
-.py-chat-form { display: flex; gap: 6px; align-items: center; }
+.py-chat-form { display: flex; gap: 6px; align-items: center; width: 100%; min-width: 0; max-width: 100%; }
 .py-chat-form input {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
+  width: 100%;
   min-height: 44px;
   padding: 6px 10px;
   border-radius: 10px;
@@ -78,6 +79,7 @@
   font-weight: 700;
   cursor: pointer;
 }
+.py-chat-form button[type="submit"], .py-mic { flex: 0 0 auto; }
 .py-chat-form button[type="submit"] { background: var(--accent); color: var(--btn-ink); border-color: var(--accent); }
 .py-chat-form button:focus-visible, .py-mic:focus-visible, #py-chat-input:focus-visible, .py-read:focus-visible {
   outline: 2px solid var(--accent);
@@ -85,6 +87,16 @@
 }
 @media (min-width: 900px) {
   .py-chat-log { max-height: 168px; }
+}
+@media (max-width: 720px) {
+  .guide-chat-host,
+  .py-chat,
+  .py-chat-form { width: 100%; min-width: 0; max-width: 100%; }
+  .py-chat-form input {
+    flex: 1 1 0;
+    min-width: 200px;
+    width: auto;
+  }
 }
 @media (max-width: 420px) {
   .py-chat-log { max-height: 88px; }
