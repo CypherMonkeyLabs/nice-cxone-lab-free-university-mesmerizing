@@ -460,7 +460,7 @@ async function viewDownloads() {
     <p><a href="downloads/studio-snippet.html">Snippet HTML</a> · <a href="downloads/studio-snippet.pdf">PDF</a> · <a href="downloads/studio-snippet.docx">DOCX</a> · <a href="downloads/bridge-notes.pptx">PPTX deck</a></p>
     <h2>Test table</h2>
     <p><a href="downloads/test-table.html">Download test table</a></p>
-    <p class="muted">Each sheet carries cyphermonkeylabs.com, linktr.ee/cyphermonkey, and the GitHub organization, plus the disclaimer. No LinkedIn. No email address.</p>`, sourcesBlock(cites));
+    <p class="muted">Each sheet carries cyphermonkeylabs.com, linktr.ee/cyphermonkey, and the GitHub organization, plus the disclaimer. No email address.</p>`, sourcesBlock(cites));
 }
 
 async function viewSandbox() {

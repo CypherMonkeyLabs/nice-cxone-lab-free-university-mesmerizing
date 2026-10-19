@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Path lesson map",
+  "type": "object",
+  "required": [
+    "lab",
+    "lessons"
+  ],
+  "properties": {
+    "lessons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "title",
+          "level",
+          "outcomes",
+          "sources",
+          "last_verified"
+        ]
+      }
+    }
+  }
+}

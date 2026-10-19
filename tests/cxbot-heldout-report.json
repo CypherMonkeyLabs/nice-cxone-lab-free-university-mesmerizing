@@ -1,0 +1,720 @@
+{
+  "questions": 102,
+  "beginner": {
+    "total": 40,
+    "relevant": 18,
+    "relevantPct": 45,
+    "confidentWrong": 18,
+    "fallback": 3,
+    "fallbackPct": 7.5
+  },
+  "typo": {
+    "total": 15,
+    "relevant": 7,
+    "relevantPct": 46.7,
+    "confidentWrong": 8,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "offtopic": {
+    "total": 15,
+    "relevant": 12,
+    "relevantPct": 80,
+    "confidentWrong": 3,
+    "fallback": 12,
+    "fallbackPct": 80
+  },
+  "nav": {
+    "total": 10,
+    "relevant": 10,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "inject": {
+    "total": 10,
+    "relevant": 10,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 10,
+    "fallbackPct": 100
+  },
+  "followTurns": {
+    "total": 12,
+    "relevant": 7,
+    "relevantPct": 58.3,
+    "confidentWrong": 5,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "confidentWrong": [
+    {
+      "id": "b06",
+      "q": "which priority fields does an inbound skill use",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b08",
+      "q": "does this lab claim a universal inbound tie break",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b11",
+      "q": "how do API actions fit in a Studio script",
+      "href": "#/lesson/apis/studio-api-actions",
+      "text": "Studio API actions are not the whole catalog. Some APIs have Studio actions. Verb colors are documented. If no action exists, the traditional path is Snippet or a REST call. GET NE"
+    },
+    {
+      "id": "b12",
+      "q": "what is a point of contact on an inbound voice path",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b13",
+      "q": "what does a skill field mean in ACD setup",
+      "href": "#/track/acd",
+      "text": "ACD setup. The inbound voice path: skill, script, DNIS, and the point of contact that binds them. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b16",
+      "q": "which agent applications do the help pages still name",
+      "href": "#/lesson/platform/admin-app",
+      "text": "The Admin application. Admin is where employees, roles, login authenticators, and access keys are managed. The app selector is how you get there. The users and security page says t"
+    },
+    {
+      "id": "b18",
+      "q": "what wait treatments can an IVR play",
+      "href": "#/play",
+      "text": "Play is the in-browser practice page for ports and the daily challenge. Nothing leaves the browser."
+    },
+    {
+      "id": "b22",
+      "q": "how is IEX different from CXone WFM",
+      "href": "#/lesson/migration/avaya-two-pages",
+      "text": "Avaya CMS and Avaya CMS Legacy are different connectors. The current Avaya CMS page is an SDK over REST, inbound voice only, with intraday. The legacy ASC is version 19, on premise"
+    },
+    {
+      "id": "b23",
+      "q": "what is real-time adherence on the WFM day",
+      "href": "#/lesson/wfm/schedule-life",
+      "text": "Schedules, bids, and time off. After the forecast you edit and generate the schedule. Agents can bid on shifts. Time off is requested and reviewed. The welcome page names those job"
+    },
+    {
+      "id": "b24",
+      "q": "is hold music recorded in CXone",
+      "href": "#/lesson/ivr/wait-treatments",
+      "text": "Music, virtual hold, and estimated wait. Three different waits: music until answer, a 90-second bullseye beat, and virtual hold as a callback. Estimated wait is named, not specifie"
+    },
+    {
+      "id": "b26",
+      "q": "what is Enlighten Autopilot",
+      "href": "#/track/enlighten",
+      "text": "Enlighten, Autopilot, and summaries. Autopilot (Omilia), voice versus chat, AutoSummary types, and Copilot on a foreign ACD. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b28",
+      "q": "how do I start with the CXone APIs",
+      "href": "#/lesson/foundations/what-routes",
+      "text": "Start with “What the platform actually routes”. What the platform actually routes. An inbound contact enters through a point of contact. That point of contact names one ACD skill a"
+    },
+    {
+      "id": "b29",
+      "q": "what grant should a user application prefer",
+      "href": "#/lesson/platform/admin-app",
+      "text": "The Admin application. Admin is where employees, roles, login authenticators, and access keys are managed. The app selector is how you get there. The users and security page says t"
+    },
+    {
+      "id": "b31",
+      "q": "what does the Salesforce agent workspace require",
+      "href": "#/lesson/people/agent-apps",
+      "text": "MAX and Agent Workspace. Current help still names MAX and a family of Agent Workspace applications. Digital support is not identical across them. AutoSummary lists the ones it work"
+    },
+    {
+      "id": "b33",
+      "q": "what is a softphone in this telephony track",
+      "href": "#/track/voice",
+      "text": "Telephony and carriers. A leg and B leg, PSTN versus VoIP, softphones, allowlists, and TLS without invented SIP headers. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b34",
+      "q": "how is a UCCE move different from a WFM connector",
+      "href": "#/lesson/migration/avaya-two-pages",
+      "text": "Avaya CMS and Avaya CMS Legacy are different connectors. The current Avaya CMS page is an SDK over REST, inbound voice only, with intraday. The legacy ASC is version 19, on premise"
+    },
+    {
+      "id": "b35",
+      "q": "what should I not invent about certification exams",
+      "href": "#/track/ecosystem",
+      "text": "Ecosystem, certifications, and the calendar. Credly badges without invented exam codes, the release cadence, and how to read a date that disagrees with the next page. These are the"
+    },
+    {
+      "id": "b39",
+      "q": "where do sentiment windows live in interaction analytics",
+      "href": "#/lesson/foundations/contact-words",
+      "text": "Contact, interaction, and channel. Help pages use contact for the person and interaction for the full conversation on a channel. Digital is a specific family of channels, not a syn"
+    },
+    {
+      "id": "t04",
+      "q": "studo script typs",
+      "href": "#/lesson/digital/channel-setup",
+      "text": "Skill, script, and the digital POC. A new digital channel needs a digital skill and a digital script as defaults. The script may change the skill later. Digital Channels says that "
+    },
+    {
+      "id": "t06",
+      "q": "ivr meny digit",
+      "href": "#/lesson/ivr/press-path-lab",
+      "text": "Press-path lab. Combine the menu, the POC flag, and one test call per branch. Reporting without the flag, or a flag without distinct skills, wastes the test. Write the digit, the v"
+    },
+    {
+      "id": "t07",
+      "q": "digitl skil not a new queue",
+      "href": "#/lesson/digital/outbound-digital",
+      "text": "Outbound digital still uses queues. Do not delete every queue. Outbound digital routing still uses them. WFA assigns the skill used when the contact replies. Digital Routing says t"
+    },
+    {
+      "id": "t08",
+      "q": "workfroce managment forcast",
+      "href": "#/track/wfm",
+      "text": "Workforce management. Forecast volume and AHT, staff to a target, and keep IEX as a different product. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "t10",
+      "q": "enlighen autopilot omilia",
+      "href": "#/track/enlighten",
+      "text": "Enlighten, Autopilot, and summaries. Autopilot (Omilia), voice versus chat, AutoSummary types, and Copilot on a foreign ACD. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "t13",
+      "q": "softphne webrtc agent leg",
+      "href": "#/lesson/voice/pstn-or-voip",
+      "text": "PSTN is DID or TFN. VoIP stays on the agent leg.. CXone classifies DID or toll-free traffic as PSTN. It supports PSTN on the A leg and restricts VoIP to the agent leg, unless a UCa"
+    },
+    {
+      "id": "t14",
+      "q": "realtme adherance",
+      "href": "#/lesson/wfm-day/activity-or-category",
+      "text": "Activity adherence or category adherence. A tenant uses one approach. If the category columns are on the table, adherence compares categories. Otherwise it compares activities. The"
+    },
+    {
+      "id": "t15",
+      "q": "sentment windos interaction analytics",
+      "href": "#/lesson/foundations/contact-words",
+      "text": "Contact, interaction, and channel. Help pages use contact for the person and interaction for the full conversation on a channel. Digital is a specific family of channels, not a syn"
+    },
+    {
+      "id": "o04",
+      "q": "what is the speed of light",
+      "href": "#/lesson/crm/lightning-console",
+      "text": "Salesforce wants Lightning and the console. Agent Workspace for Salesforce is Lightning only. Console navigation keeps records on one screen. Standard navigation opens a new browse"
+    },
+    {
+      "id": "o06",
+      "q": "which team won the 2019 cricket world cup",
+      "href": "#/lesson/people/teams-views",
+      "text": "Teams, views, and what we will not invent. Supervisors are described as having broader visibility. The Admin page also names views as a security tool. This lesson does not invent a"
+    },
+    {
+      "id": "o07",
+      "q": "how do I change a car tire",
+      "href": "#/lesson/wfm/schedule-life",
+      "text": "Schedules, bids, and time off. After the forecast you edit and generate the schedule. Agents can bid on shifts. Time off is requested and reviewed. The welcome page names those job"
+    },
+    {
+      "id": "f04.1",
+      "q": "is hold music recorded in CXone",
+      "href": "#/lesson/ivr/wait-treatments",
+      "text": "Music, virtual hold, and estimated wait. Three different waits: music until answer, a 90-second bullseye beat, and virtual hold as a callback. Estimated wait is named, not specifie"
+    },
+    {
+      "id": "f04.2",
+      "q": "show an example",
+      "href": "#/lesson/ivr/wait-treatments",
+      "text": "An example from “Music, virtual hold, and estimated wait”."
+    },
+    {
+      "id": "f05.1",
+      "q": "what is Enlighten Autopilot",
+      "href": "#/track/enlighten",
+      "text": "Enlighten, Autopilot, and summaries. Autopilot (Omilia), voice versus chat, AutoSummary types, and Copilot on a foreign ACD. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "f06.1",
+      "q": "what is a point of contact on an inbound voice path",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "f06.2",
+      "q": "open it",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "Opening “The inbound voice order”."
+    }
+  ],
+  "misses": [
+    {
+      "id": "b06",
+      "group": "beginner",
+      "q": "which priority fields does an inbound skill use",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b08",
+      "group": "beginner",
+      "q": "does this lab claim a universal inbound tie break",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b10",
+      "group": "beginner",
+      "q": "which Studio actions show up as core actions",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Studio API actions are not the whole catalog; Hours, closed paths, and what this lab will not invent. I only answer from this lab's lessons. Y"
+    },
+    {
+      "id": "b11",
+      "group": "beginner",
+      "q": "how do API actions fit in a Studio script",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/apis/studio-api-actions",
+      "mode": "answer",
+      "intent": "",
+      "text": "Studio API actions are not the whole catalog. Some APIs have Studio actions. Verb colors are documented. If no action exists, the traditional path is Snippet or a REST call. GET NE"
+    },
+    {
+      "id": "b12",
+      "group": "beginner",
+      "q": "what is a point of contact on an inbound voice path",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b13",
+      "group": "beginner",
+      "q": "what does a skill field mean in ACD setup",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/acd",
+      "mode": "answer",
+      "intent": "",
+      "text": "ACD setup. The inbound voice path: skill, script, DNIS, and the point of contact that binds them. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b16",
+      "group": "beginner",
+      "q": "which agent applications do the help pages still name",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/platform/admin-app",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The Admin application. Admin is where employees, roles, login authenticators, and access keys are managed. The app selector is how you get there. The users and security page says t"
+    },
+    {
+      "id": "b18",
+      "group": "beginner",
+      "q": "what wait treatments can an IVR play",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/play",
+      "mode": "intent",
+      "intent": "game",
+      "text": "Play is the in-browser practice page for ports and the daily challenge. Nothing leaves the browser."
+    },
+    {
+      "id": "b20",
+      "group": "beginner",
+      "q": "what does a digital agent need before they can take work",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: MAX and Agent Workspace; Skill, script, and the digital POC. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b22",
+      "group": "beginner",
+      "q": "how is IEX different from CXone WFM",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/migration/avaya-two-pages",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Avaya CMS and Avaya CMS Legacy are different connectors. The current Avaya CMS page is an SDK over REST, inbound voice only, with intraday. The legacy ASC is version 19, on premise"
+    },
+    {
+      "id": "b23",
+      "group": "beginner",
+      "q": "what is real-time adherence on the WFM day",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/wfm/schedule-life",
+      "mode": "answer",
+      "intent": "",
+      "text": "Schedules, bids, and time off. After the forecast you edit and generate the schedule. Agents can bid on shifts. Time off is requested and reviewed. The welcome page names those job"
+    },
+    {
+      "id": "b24",
+      "group": "beginner",
+      "q": "is hold music recorded in CXone",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/ivr/wait-treatments",
+      "mode": "answer",
+      "intent": "",
+      "text": "Music, virtual hold, and estimated wait. Three different waits: music until answer, a 90-second bullseye beat, and virtual hold as a callback. Estimated wait is named, not specifie"
+    },
+    {
+      "id": "b26",
+      "group": "beginner",
+      "q": "what is Enlighten Autopilot",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/enlighten",
+      "mode": "answer",
+      "intent": "",
+      "text": "Enlighten, Autopilot, and summaries. Autopilot (Omilia), voice versus chat, AutoSummary types, and Copilot on a foreign ACD. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b28",
+      "group": "beginner",
+      "q": "how do I start with the CXone APIs",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/foundations/what-routes",
+      "mode": "intent",
+      "intent": "start",
+      "text": "Start with “What the platform actually routes”. What the platform actually routes. An inbound contact enters through a point of contact. That point of contact names one ACD skill a"
+    },
+    {
+      "id": "b29",
+      "group": "beginner",
+      "q": "what grant should a user application prefer",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/platform/admin-app",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The Admin application. Admin is where employees, roles, login authenticators, and access keys are managed. The app selector is how you get there. The users and security page says t"
+    },
+    {
+      "id": "b31",
+      "group": "beginner",
+      "q": "what does the Salesforce agent workspace require",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/people/agent-apps",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "MAX and Agent Workspace. Current help still names MAX and a family of Agent Workspace applications. Digital support is not identical across them. AutoSummary lists the ones it work"
+    },
+    {
+      "id": "b33",
+      "group": "beginner",
+      "q": "what is a softphone in this telephony track",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/voice",
+      "mode": "answer",
+      "intent": "",
+      "text": "Telephony and carriers. A leg and B leg, PSTN versus VoIP, softphones, allowlists, and TLS without invented SIP headers. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b34",
+      "group": "beginner",
+      "q": "how is a UCCE move different from a WFM connector",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/migration/avaya-two-pages",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Avaya CMS and Avaya CMS Legacy are different connectors. The current Avaya CMS page is an SDK over REST, inbound voice only, with intraday. The legacy ASC is version 19, on premise"
+    },
+    {
+      "id": "b35",
+      "group": "beginner",
+      "q": "what should I not invent about certification exams",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/ecosystem",
+      "mode": "answer",
+      "intent": "",
+      "text": "Ecosystem, certifications, and the calendar. Credly badges without invented exam codes, the release cadence, and how to read a date that disagrees with the next page. These are the"
+    },
+    {
+      "id": "b36",
+      "group": "beginner",
+      "q": "what is dynamic delivery",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Two ways dynamic delivery hands work out; Turn dynamic delivery on, and do not casually turn it off. I only answer from this lab's lessons. Yo"
+    },
+    {
+      "id": "b38",
+      "group": "beginner",
+      "q": "what do the two average score formulas in QM mean",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "#/lesson/qm-ia/two-averages",
+      "mode": "answer",
+      "intent": "",
+      "text": "70 percent is not 73.3333. The welcome page walks Sanity QA through both formulas. Averaging the percentages gives 70. Averaging the points gives 73.3333. The page's Vijay figures "
+    },
+    {
+      "id": "b39",
+      "group": "beginner",
+      "q": "where do sentiment windows live in interaction analytics",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/foundations/contact-words",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Contact, interaction, and channel. Help pages use contact for the person and interaction for the full conversation on a channel. Digital is a specific family of channels, not a syn"
+    },
+    {
+      "id": "t04",
+      "group": "typo",
+      "q": "studo script typs",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/digital/channel-setup",
+      "mode": "answer",
+      "intent": "",
+      "text": "Skill, script, and the digital POC. A new digital channel needs a digital skill and a digital script as defaults. The script may change the skill later. Digital Channels says that "
+    },
+    {
+      "id": "t06",
+      "group": "typo",
+      "q": "ivr meny digit",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/ivr/press-path-lab",
+      "mode": "answer",
+      "intent": "",
+      "text": "Press-path lab. Combine the menu, the POC flag, and one test call per branch. Reporting without the flag, or a flag without distinct skills, wastes the test. Write the digit, the v"
+    },
+    {
+      "id": "t07",
+      "group": "typo",
+      "q": "digitl skil not a new queue",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/digital/outbound-digital",
+      "mode": "answer",
+      "intent": "",
+      "text": "Outbound digital still uses queues. Do not delete every queue. Outbound digital routing still uses them. WFA assigns the skill used when the contact replies. Digital Routing says t"
+    },
+    {
+      "id": "t08",
+      "group": "typo",
+      "q": "workfroce managment forcast",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/wfm",
+      "mode": "answer",
+      "intent": "",
+      "text": "Workforce management. Forecast volume and AHT, staff to a target, and keep IEX as a different product. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "t10",
+      "group": "typo",
+      "q": "enlighen autopilot omilia",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/enlighten",
+      "mode": "answer",
+      "intent": "",
+      "text": "Enlighten, Autopilot, and summaries. Autopilot (Omilia), voice versus chat, AutoSummary types, and Copilot on a foreign ACD. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "t13",
+      "group": "typo",
+      "q": "softphne webrtc agent leg",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/voice/pstn-or-voip",
+      "mode": "answer",
+      "intent": "",
+      "text": "PSTN is DID or TFN. VoIP stays on the agent leg.. CXone classifies DID or toll-free traffic as PSTN. It supports PSTN on the A leg and restricts VoIP to the agent leg, unless a UCa"
+    },
+    {
+      "id": "t14",
+      "group": "typo",
+      "q": "realtme adherance",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/wfm-day/activity-or-category",
+      "mode": "answer",
+      "intent": "",
+      "text": "Activity adherence or category adherence. A tenant uses one approach. If the category columns are on the table, adherence compares categories. Otherwise it compares activities. The"
+    },
+    {
+      "id": "t15",
+      "group": "typo",
+      "q": "sentment windos interaction analytics",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/foundations/contact-words",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Contact, interaction, and channel. Help pages use contact for the person and interaction for the full conversation on a channel. Digital is a specific family of channels, not a syn"
+    },
+    {
+      "id": "o04",
+      "group": "offtopic",
+      "q": "what is the speed of light",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/crm/lightning-console",
+      "mode": "answer",
+      "intent": "",
+      "text": "Salesforce wants Lightning and the console. Agent Workspace for Salesforce is Lightning only. Console navigation keeps records on one screen. Standard navigation opens a new browse"
+    },
+    {
+      "id": "o06",
+      "group": "offtopic",
+      "q": "which team won the 2019 cricket world cup",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/people/teams-views",
+      "mode": "answer",
+      "intent": "",
+      "text": "Teams, views, and what we will not invent. Supervisors are described as having broader visibility. The Admin page also names views as a security tool. This lesson does not invent a"
+    },
+    {
+      "id": "o07",
+      "group": "offtopic",
+      "q": "how do I change a car tire",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/wfm/schedule-life",
+      "mode": "answer",
+      "intent": "",
+      "text": "Schedules, bids, and time off. After the forecast you edit and generate the schedule. Agents can bid on shifts. Time off is requested and reviewed. The welcome page names those job"
+    },
+    {
+      "id": "f04.1",
+      "group": "follow",
+      "pair": "f04",
+      "q": "is hold music recorded in CXone",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/ivr/wait-treatments",
+      "mode": "answer",
+      "intent": "",
+      "text": "Music, virtual hold, and estimated wait. Three different waits: music until answer, a 90-second bullseye beat, and virtual hold as a callback. Estimated wait is named, not specifie"
+    },
+    {
+      "id": "f04.2",
+      "group": "follow",
+      "pair": "f04",
+      "q": "show an example",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/ivr/wait-treatments",
+      "mode": "answer",
+      "intent": "example",
+      "text": "An example from “Music, virtual hold, and estimated wait”."
+    },
+    {
+      "id": "f05.1",
+      "group": "follow",
+      "pair": "f05",
+      "q": "what is Enlighten Autopilot",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/enlighten",
+      "mode": "answer",
+      "intent": "",
+      "text": "Enlighten, Autopilot, and summaries. Autopilot (Omilia), voice versus chat, AutoSummary types, and Copilot on a foreign ACD. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "f06.1",
+      "group": "follow",
+      "pair": "f06",
+      "q": "what is a point of contact on an inbound voice path",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "f06.2",
+      "group": "follow",
+      "pair": "f06",
+      "q": "open it",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "intent",
+      "intent": "open",
+      "text": "Opening “The inbound voice order”."
+    }
+  ]
+}

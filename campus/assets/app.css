@@ -430,6 +430,9 @@ html[data-theme="contrast"] a { text-decoration: underline; }
   bottom: auto;
   width: auto;
 }
+.dock-stack:has(#guide-panel:not([hidden])) .audio-dock {
+  display: none;
+}
 .guide {
   display: flex;
   flex-direction: column;
@@ -465,6 +468,48 @@ html[data-theme="contrast"] .guide-toggle { color: #000; }
   backdrop-filter: blur(12px);
 }
 .guide-panel[hidden] { display: none !important; }
+#guide-log[hidden],
+#guide-chips[hidden],
+#guide-form[hidden],
+#guide-mic[hidden] { display: none !important; }
+.guide-panel { overflow: auto; }
+.callflow-banner {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 2px solid var(--cc-accent-2, var(--cc-accent-1));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--cc-accent-1) 16%, var(--cc-bg));
+}
+.callflow-stage {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+  perspective: 800px;
+}
+.callflow-hop {
+  min-height: 88px;
+  font: inherit;
+  color: var(--cc-ink);
+  background: var(--cc-surface, var(--cc-bg));
+  border: 2px solid var(--cc-line);
+  border-radius: 16px;
+  cursor: pointer;
+  transform: translateZ(12px);
+}
+.callflow-hop:focus-visible { outline: 3px solid var(--cc-accent-1); outline-offset: 3px; }
+.callflow-hop.is-down { transform: translateZ(0) rotateX(8deg); border-color: var(--cc-accent-2, #f472b6); }
+.callflow-hop-label, .callflow-hop-state { display: block; }
+.callflow-math { display: flex; flex-wrap: wrap; gap: 12px; }
+.callflow-math label { display: flex; flex-direction: column; gap: 4px; font-weight: 700; }
+.callflow-math input { min-height: 44px; font: inherit; color: inherit; background: var(--cc-bg); border: 1px solid var(--cc-line); border-radius: 8px; padding: 0 8px; }
+.callflow-result { font-size: 1.05rem; }
+@media (max-width: 800px) {
+  .callflow-stage { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .callflow-hop, .callflow-hop.is-down { transform: none; }
+}
 .guide-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .guide-bar h2 { margin: 0; font-size: 1.15rem; }
 .guide-log {
