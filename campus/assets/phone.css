@@ -201,6 +201,47 @@ html[data-motion="full"] .reveal.is-in {
   body.menu-open { overflow: hidden; }
 }
 
+@media (max-width: 720px) and (max-height: 520px) {
+  .dock-stack {
+    max-height: calc(100dvh - var(--bottom-h) - 12px);
+  }
+  .guide-panel {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100dvh - var(--bottom-h) - 16px);
+    overflow: hidden;
+    padding: 8px;
+    gap: 4px;
+  }
+  .guide-panel .guide-note,
+  .guide-panel .py-chat-beta,
+  .guide-panel .py-chat-try,
+  .guide-panel .py-chat-examples,
+  .guide-panel .py-chat-chips,
+  .guide-panel [data-py-clear] { display: none; }
+  .guide-chat-host {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 auto;
+  }
+  .guide-panel .py-chat {
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .guide-panel .py-chat-log {
+    flex: 1 1 auto;
+    min-height: 36px;
+    max-height: 64px;
+    overflow: auto;
+  }
+  .guide-panel .py-chat-form { flex: 0 0 auto; }
+}
+
 @media (max-width: 1100px) and (min-width: 721px) {
   .study-menu a, .study-menu summary, .study-menu button { min-height: 44px; }
 }

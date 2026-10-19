@@ -78,7 +78,7 @@ for (const rel of extra.sort()) consider(rel);
 const body = chosen.map((rel) => `  "./${rel}",`).join("\n");
 const swPath = join(root, "sw.js");
 let sw = readFileSync(swPath, "utf8");
-sw = sw.replace(/const CACHE = "[^"]+";/, 'const CACHE = "cxone-lab-v12";');
+sw = sw.replace(/const CACHE = "[^"]+";/, 'const CACHE = "cxone-lab-v13";');
 sw = sw.replace(/const SHELL = \[[\s\S]*?\];/, `const SHELL = [\n  "./",\n${body}\n];`);
 if (!sw.includes("./offline.html")) throw new Error("offline fallback missing from shell");
 writeFileSync(swPath, sw);

@@ -192,7 +192,7 @@ if (!effects.includes("anime.esm.min.js") || !effects.includes("rough.esm.js") |
 if (!effects.includes("d3.min.js") || !effects.includes("markmap-view.js")) fail("d3 markmap");
 if (!uni.includes("#/diagrams") || !uni.includes("#/flows") || !uni.includes("#/charts")) fail("university routes");
 if (!app.includes("trackFloor")) fail("track charts");
-if (!sw.includes("cxone-lab-v12")) fail("sw cache");
+if (!sw.includes("cxone-lab-v13")) fail("sw cache");
 if (!sw.includes("js/sources.mjs")) fail("sw sources");
 if (!sw.includes("js/guide.mjs") || !sw.includes("data/guide-kb.json")) fail("sw guide");
 const rootIndex = readFileSync(join(root, "index.html"), "utf8");

@@ -33,7 +33,7 @@ The service worker precaches `engine.js`, `ui.js`, `chat.css`, and the index. `s
 
 Injection is checked on the raw string, before retrieval and before memory. The reply is a fallback with intent `injection` and no link.
 
-Pay and hiring questions (`salary`, `paycheck`, `wage`, `get hired`, `land a job`, `job guarantee`) are a fixed refusal with no link. This lab does not discuss pay.
+Questions about pay (paycheck, wage, compensation) are a fixed refusal with no link. This lab does not discuss pay.
 
 A question needs a CXone term before search. The term list is this lab's vocabulary plus index terms that are not ordinary English. Python words are not in that list. One ordinary word such as `team` or `change` does not carry a question that is otherwise outside the lab. With no in-domain term, the fallback does not attach closest-page links.
 

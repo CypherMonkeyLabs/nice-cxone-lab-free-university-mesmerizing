@@ -344,6 +344,7 @@ function mountOfflineChat(panel) {
     .then((response) => (response.ok ? response.json() : Promise.reject(new Error("index"))))
     .then((index) => {
       const host = document.createElement("div");
+      host.className = "guide-chat-host";
       host.innerHTML = chatMarkup(CHIPS);
       panel.appendChild(host);
       ["guide-log", "guide-chips", "guide-form", "guide-mic"].forEach((id) => {

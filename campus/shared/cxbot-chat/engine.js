@@ -704,6 +704,13 @@ export function createRetriever(index) {
     for (const seed of seeds) {
       if (seed.block && seed.block.some((term) => prepared.forms.has(term))) continue;
       if (seed.all && seed.all.length && !seed.all.every((term) => prepared.forms.has(term))) continue;
+      if (seed.loose && (seed.rank || 0) < 20) {
+        const focus = new Set([...(seed.any || []), ...(seed.allow || []), ...(seed.all || [])]);
+        for (const term of [...focus]) focus.add(stem(term));
+        const long = prepared.content.filter((term) => term.length >= 5 && !FILLER.has(term) && !STOP.has(term));
+        const hits = long.filter((term) => focus.has(term) || focus.has(stem(term)));
+        if (long.length >= 3 && hits.length < 2) continue;
+      }
       const anyHit = seed.any && seed.any.some((term) => prepared.forms.has(term));
       const allowHits = (seed.allow || []).filter((term) => prepared.forms.has(term)).length;
       if (seed.any && seed.any.length && !anyHit && !(prepared.how && allowHits >= 3)) continue;
@@ -768,12 +775,10 @@ export function createRetriever(index) {
     const known = unique.filter((term) => df.has(term));
     const matched = known.filter((term) => doc.tf.has(term) || doc.ttf.has(term));
     const coverage = known.length ? matched.length / known.length : 0;
-    const titleTerms = doc.title.filter((term) => known.includes(term));
     const titlePhrase = doc.titleNorm.length >= 4 && ` ${nq} `.includes(` ${doc.titleNorm} `);
     const margin = !second || second.href === top.href ? top.score : top.score - second.score;
     const ratio = !second || second.href === top.href || second.score <= 0 ? 99 : top.score / second.score;
-    if (titlePhrase && coverage >= 0.34) return true;
-    if (titleTerms.some((term) => term.length >= 3) && coverage >= 0.5 && top.score >= 3 && ratio >= 1.08) return true;
+    if (titlePhrase && coverage >= 0.67) return true;
     if (coverage < 0.67) return false;
     if (second && second.href !== top.href && margin < MIN_MARGIN && ratio < 1.22) return false;
     return true;
@@ -832,7 +837,7 @@ export function createRetriever(index) {
         act: "search",
       });
     }
-    if (/\b(salary|salaries|paycheck|wage|wages|get hired|land a job|job guarantee)\b/.test(q)) {
+    if (/\b(paycheck|wage|wages|compensation)\b/.test(q)) {
       memory = null;
       return emptyAnswer({
         mode: "fallback",
@@ -1061,7 +1066,7 @@ export function createRetriever(index) {
     const second = hits[1];
     const topDoc = top ? docs.find((doc) => doc.i === top.id) : null;
     const nq = normalize(routed.searchText);
-    if (!isConfident(top, second, qTerms, topDoc, nq)) return fallbackAnswer(hits, routed.followMode);
+    if (!isConfident(top, second, qTerms, topDoc, nq)) return fallbackAnswer([], routed.followMode, true);
     const follow = topDoc.eg
       ? "Show an example"
       : (second && second.href !== top.href ? `What about ${second.title}?` : (topDoc.fu || "Where do I start?"));

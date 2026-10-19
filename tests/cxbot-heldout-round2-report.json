@@ -1,0 +1,465 @@
+{
+  "questions": 102,
+  "beginner": {
+    "total": 40,
+    "relevant": 18,
+    "relevantPct": 45,
+    "confidentWrong": 8,
+    "fallback": 12,
+    "fallbackPct": 30
+  },
+  "typo": {
+    "total": 15,
+    "relevant": 11,
+    "relevantPct": 73.3,
+    "confidentWrong": 2,
+    "fallback": 2,
+    "fallbackPct": 13.3
+  },
+  "offtopic": {
+    "total": 15,
+    "relevant": 15,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 15,
+    "fallbackPct": 100
+  },
+  "nav": {
+    "total": 10,
+    "relevant": 10,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "inject": {
+    "total": 10,
+    "relevant": 10,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 10,
+    "fallbackPct": 100
+  },
+  "followTurns": {
+    "total": 12,
+    "relevant": 10,
+    "relevantPct": 83.3,
+    "confidentWrong": 2,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "confidentWrong": [
+    {
+      "id": "b11",
+      "q": "how do API actions fit in a Studio script",
+      "href": "#/lesson/apis/studio-api-actions",
+      "text": "Studio API actions are not the whole catalog. Some APIs have Studio actions. Verb colors are documented. If no action exists, the traditional path is Snippet or a REST call. GET NE"
+    },
+    {
+      "id": "b12",
+      "q": "what is a point of contact on an inbound voice path",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b13",
+      "q": "what does a skill field mean in ACD setup",
+      "href": "#/track/acd",
+      "text": "ACD setup. The inbound voice path: skill, script, DNIS, and the point of contact that binds them. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b18",
+      "q": "what wait treatments can an IVR play",
+      "href": "#/track/ivr",
+      "text": "IVR. Menus, prompts, reporting, and the wait treatments the pages actually describe. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b22",
+      "q": "how is IEX different from CXone WFM",
+      "href": "#/lesson/migration/avaya-two-pages",
+      "text": "Avaya CMS and Avaya CMS Legacy are different connectors. The current Avaya CMS page is an SDK over REST, inbound voice only, with intraday. The legacy ASC is version 19, on premise"
+    },
+    {
+      "id": "b23",
+      "q": "what is real-time adherence on the WFM day",
+      "href": "#/lesson/wfm/schedule-life",
+      "text": "Schedules, bids, and time off. After the forecast you edit and generate the schedule. Agents can bid on shifts. Time off is requested and reviewed. The welcome page names those job"
+    },
+    {
+      "id": "b34",
+      "q": "how is a UCCE move different from a WFM connector",
+      "href": "#/lesson/migration/avaya-two-pages",
+      "text": "Avaya CMS and Avaya CMS Legacy are different connectors. The current Avaya CMS page is an SDK over REST, inbound voice only, with intraday. The legacy ASC is version 19, on premise"
+    },
+    {
+      "id": "b35",
+      "q": "what should I not invent about certification exams",
+      "href": "#/track/ecosystem",
+      "text": "Ecosystem, certifications, and the calendar. Credly badges without invented exam codes, the release cadence, and how to read a date that disagrees with the next page. These are the"
+    },
+    {
+      "id": "t06",
+      "q": "ivr meny digit",
+      "href": "#/lesson/ivr/press-path-lab",
+      "text": "Press-path lab. Combine the menu, the POC flag, and one test call per branch. Reporting without the flag, or a flag without distinct skills, wastes the test. Write the digit, the v"
+    },
+    {
+      "id": "t08",
+      "q": "workfroce managment forcast",
+      "href": "#/track/wfm",
+      "text": "Workforce management. Forecast volume and AHT, staff to a target, and keep IEX as a different product. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "f06.1",
+      "q": "what is a point of contact on an inbound voice path",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "f06.2",
+      "q": "open it",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "Opening “The inbound voice order”."
+    }
+  ],
+  "misses": [
+    {
+      "id": "b02",
+      "group": "beginner",
+      "q": "what numbers give priority 7 in the worked priority example",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b06",
+      "group": "beginner",
+      "q": "which priority fields does an inbound skill use",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "#/lesson/routing/static-delivery",
+      "mode": "answer",
+      "intent": "",
+      "text": "Static delivery priorities. The priority page is filed under static delivery. Inbound and digital skills can use the three settings. Personal Connection with priority blending uses"
+    },
+    {
+      "id": "b07",
+      "group": "beginner",
+      "q": "how should I think about blending and the forecast",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b10",
+      "group": "beginner",
+      "q": "which Studio actions show up as core actions",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b11",
+      "group": "beginner",
+      "q": "how do API actions fit in a Studio script",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/apis/studio-api-actions",
+      "mode": "answer",
+      "intent": "",
+      "text": "Studio API actions are not the whole catalog. Some APIs have Studio actions. Verb colors are documented. If no action exists, the traditional path is Snippet or a REST call. GET NE"
+    },
+    {
+      "id": "b12",
+      "group": "beginner",
+      "q": "what is a point of contact on an inbound voice path",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b13",
+      "group": "beginner",
+      "q": "what does a skill field mean in ACD setup",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/acd",
+      "mode": "answer",
+      "intent": "",
+      "text": "ACD setup. The inbound voice path: skill, script, DNIS, and the point of contact that binds them. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b16",
+      "group": "beginner",
+      "q": "which agent applications do the help pages still name",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b17",
+      "group": "beginner",
+      "q": "how does an IVR menu store the digit the caller presses",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b18",
+      "group": "beginner",
+      "q": "what wait treatments can an IVR play",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/ivr",
+      "mode": "answer",
+      "intent": "",
+      "text": "IVR. Menus, prompts, reporting, and the wait treatments the pages actually describe. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "b20",
+      "group": "beginner",
+      "q": "what does a digital agent need before they can take work",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b21",
+      "group": "beginner",
+      "q": "what does CXone WFM forecast before it staffs",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b22",
+      "group": "beginner",
+      "q": "how is IEX different from CXone WFM",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/migration/avaya-two-pages",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Avaya CMS and Avaya CMS Legacy are different connectors. The current Avaya CMS page is an SDK over REST, inbound voice only, with intraday. The legacy ASC is version 19, on premise"
+    },
+    {
+      "id": "b23",
+      "group": "beginner",
+      "q": "what is real-time adherence on the WFM day",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/wfm/schedule-life",
+      "mode": "answer",
+      "intent": "",
+      "text": "Schedules, bids, and time off. After the forecast you edit and generate the schedule. Agents can bid on shifts. Time off is requested and reviewed. The welcome page names those job"
+    },
+    {
+      "id": "b25",
+      "group": "beginner",
+      "q": "what is the default recording channel layout",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b27",
+      "group": "beginner",
+      "q": "what AutoSummary types does the lab describe",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b28",
+      "group": "beginner",
+      "q": "how do I start with the CXone APIs",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b29",
+      "group": "beginner",
+      "q": "what grant should a user application prefer",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b34",
+      "group": "beginner",
+      "q": "how is a UCCE move different from a WFM connector",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/migration/avaya-two-pages",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Avaya CMS and Avaya CMS Legacy are different connectors. The current Avaya CMS page is an SDK over REST, inbound voice only, with intraday. The legacy ASC is version 19, on premise"
+    },
+    {
+      "id": "b35",
+      "group": "beginner",
+      "q": "what should I not invent about certification exams",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/ecosystem",
+      "mode": "answer",
+      "intent": "",
+      "text": "Ecosystem, certifications, and the calendar. Credly badges without invented exam codes, the release cadence, and how to read a date that disagrees with the next page. These are the"
+    },
+    {
+      "id": "b36",
+      "group": "beginner",
+      "q": "what is dynamic delivery",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b38",
+      "group": "beginner",
+      "q": "what do the two average score formulas in QM mean",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "#/lesson/qm-ia/two-averages",
+      "mode": "answer",
+      "intent": "",
+      "text": "70 percent is not 73.3333. The welcome page walks Sanity QA through both formulas. Averaging the percentages gives 70. Averaging the points gives 73.3333. The page's Vijay figures "
+    },
+    {
+      "id": "t01",
+      "group": "typo",
+      "q": "waht is ovverall priorty on a cxone skil",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "t06",
+      "group": "typo",
+      "q": "ivr meny digit",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/ivr/press-path-lab",
+      "mode": "answer",
+      "intent": "",
+      "text": "Press-path lab. Combine the menu, the POC flag, and one test call per branch. Reporting without the flag, or a flag without distinct skills, wastes the test. Write the digit, the v"
+    },
+    {
+      "id": "t08",
+      "group": "typo",
+      "q": "workfroce managment forcast",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/wfm",
+      "mode": "answer",
+      "intent": "",
+      "text": "Workforce management. Forecast volume and AHT, staff to a target, and keep IEX as a different product. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "t14",
+      "group": "typo",
+      "q": "realtme adherance",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "f06.1",
+      "group": "follow",
+      "pair": "f06",
+      "q": "what is a point of contact on an inbound voice path",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "f06.2",
+      "group": "follow",
+      "pair": "f06",
+      "q": "open it",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "intent",
+      "intent": "open",
+      "text": "Opening “The inbound voice order”."
+    }
+  ]
+}

@@ -54,6 +54,24 @@ test("home, guide, and a lesson at 390", async ({ page }) => {
   await shot(page, "wave-phone-lesson");
 });
 
+test("guide input and send are on screen at 390x430", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 430 });
+  await page.goto("/campus/");
+  await dismissTour(page);
+  await openGuide(page);
+  const input = page.locator("#py-chat-input");
+  const send = page.locator(".py-chat-form button[type=submit]");
+  await expect(input).toBeVisible();
+  await expect(send).toBeVisible();
+  const uncovered = await send.evaluate((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < 0 || rect.bottom > window.innerHeight || rect.width < 8) return false;
+    const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    return hit === el || el.contains(hit);
+  });
+  expect(uncovered).toBe(true);
+});
+
 test("call-flow sandbox is labeled a simulation", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/campus/#/callflow");

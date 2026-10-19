@@ -203,11 +203,66 @@ for (const lesson of lessonTitles) {
     topic: token,
     all: [],
     any: [token],
-    allow: [],
+    allow: terms,
     block: [],
     loose: true,
     how: false,
     rank: 8,
+  });
+}
+
+const byId = new Map(lessonTitles.map((lesson) => [lesson.id, lesson]));
+const curated = [
+  ["lesson:routing/priority-math", ["priority", "formula"]],
+  ["lesson:routing/priority-math", ["priority", "acceleration"]],
+  ["lesson:routing/static-delivery", ["priority", "setting"]],
+  ["lesson:routing/static-delivery", ["initial", "acceleration"]],
+  ["lesson:routing/pc-zero", ["personal", "connection"]],
+  ["lesson:routing/pc-zero", ["connection", "acceleration"]],
+  ["lesson:routing/bullseye-prof", ["bullseye", "proficiency"]],
+  ["lesson:routing/bullseye-prof", ["bullseye"]],
+  ["lesson:routing/delivery-tie", ["idle"]],
+  ["lesson:routing/blend-and-forecast", ["wfm", "bullseye"]],
+  ["lesson:acd/poc-bind", ["point", "contact", "bind"]],
+  ["lesson:acd/hours-and-closed", ["hour", "contact"]],
+  ["lesson:quality/hold-gap", ["hold", "music"]],
+  ["lesson:quality/hold-gap", ["hold", "record"]],
+  ["lesson:enlighten/autopilot-is", ["autopilot"]],
+  ["lesson:enlighten/autopilot-is", ["omilia"]],
+  ["lesson:studio/script-types", ["script", "type"]],
+  ["lesson:voice/softphone-names", ["softphone"]],
+  ["lesson:voice/two-legs", ["leg", "agent"]],
+  ["lesson:qm-ia/sentiment-windows", ["sentiment"]],
+  ["lesson:crm/lightning-console", ["lightning"]],
+  ["lesson:crm/lightning-console", ["salesforce"]],
+  ["lesson:people/agent-apps", ["desktop", "agent"]],
+  ["lesson:apis/oidc-users", ["authorization"]],
+  ["lesson:cti-cpaas/cpaas-confirm", ["cpaas"]],
+  ["lesson:digital/summer-2023", ["digital", "queue"]],
+  ["lesson:digital/summer-2023", ["queue", "chat"]],
+  ["lesson:digital/dx-versus-legacy", ["digital", "chat"]],
+];
+for (const [id, all] of curated) {
+  const lesson = byId.get(id);
+  if (!lesson) {
+    console.log(`curated seed missing ${id}`);
+    continue;
+  }
+  seeds.push({
+    i: lesson.id,
+    h: lesson.h,
+    ti: lesson.ti,
+    k: "lesson",
+    ex: lesson.ex,
+    eg: lesson.eg,
+    topic: all[0],
+    all,
+    any: [],
+    allow: [],
+    block: [],
+    loose: true,
+    how: false,
+    rank: 20 + all.length * 4,
   });
 }
 

@@ -1,0 +1,246 @@
+{
+  "questions": 102,
+  "beginner": {
+    "total": 40,
+    "relevant": 25,
+    "relevantPct": 62.5,
+    "confidentWrong": 0,
+    "fallback": 14,
+    "fallbackPct": 35
+  },
+  "typo": {
+    "total": 15,
+    "relevant": 14,
+    "relevantPct": 93.3,
+    "confidentWrong": 0,
+    "fallback": 1,
+    "fallbackPct": 6.7
+  },
+  "offtopic": {
+    "total": 15,
+    "relevant": 15,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 15,
+    "fallbackPct": 100
+  },
+  "nav": {
+    "total": 10,
+    "relevant": 10,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "inject": {
+    "total": 10,
+    "relevant": 10,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 10,
+    "fallbackPct": 100
+  },
+  "followTurns": {
+    "total": 12,
+    "relevant": 12,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "confidentWrong": [],
+  "misses": [
+    {
+      "id": "b06",
+      "group": "beginner",
+      "q": "name the three priority settings on an inbound skill record",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "#/lesson/routing/static-delivery",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Static delivery priorities. The priority page is filed under static delivery. Inbound and digital skills can use the three settings. Personal Connection with priority blending uses"
+    },
+    {
+      "id": "b11",
+      "group": "beginner",
+      "q": "do all CXone APIs have a Studio action",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b15",
+      "group": "beginner",
+      "q": "which proficiency number means the strongest agent",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b17",
+      "group": "beginner",
+      "q": "where does a Studio menu keep the digit a caller presses",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b18",
+      "group": "beginner",
+      "q": "what can a caller hear while they wait in queue",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b20",
+      "group": "beginner",
+      "q": "what has to be true before a digital agent can receive work",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b21",
+      "group": "beginner",
+      "q": "what two inputs does a WFM forecast start from",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b22",
+      "group": "beginner",
+      "q": "why does this lab refuse to treat IEX as CXone WFM",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b23",
+      "group": "beginner",
+      "q": "how often does real-time adherence look at the agent",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b27",
+      "group": "beginner",
+      "q": "which AutoSummary varieties are named",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b28",
+      "group": "beginner",
+      "q": "what are the first tasks on the CXone API getting started page",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b35",
+      "group": "beginner",
+      "q": "does this lab publish exam codes for the Credly badges",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b36",
+      "group": "beginner",
+      "q": "what is the difference between the two dynamic delivery paces",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b37",
+      "group": "beginner",
+      "q": "what does channel lock stop an agent from doing",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b38",
+      "group": "beginner",
+      "q": "why are there two ways to average a QM score",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "t14",
+      "group": "typo",
+      "q": "realtime adherense on the wfm day",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. I only answer from this lab's lessons. You can also use Search."
+    }
+  ]
+}
