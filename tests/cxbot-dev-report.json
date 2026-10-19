@@ -1,0 +1,73 @@
+{
+  "questions": 9,
+  "beginner": {
+    "total": 2,
+    "relevant": 1,
+    "relevantPct": 50,
+    "confidentWrong": 1,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "typo": {
+    "total": 1,
+    "relevant": 1,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "offtopic": {
+    "total": 1,
+    "relevant": 1,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 1,
+    "fallbackPct": 100
+  },
+  "nav": {
+    "total": 2,
+    "relevant": 2,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "inject": {
+    "total": 1,
+    "relevant": 1,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 1,
+    "fallbackPct": 100
+  },
+  "followTurns": {
+    "total": 2,
+    "relevant": 2,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "confidentWrong": [
+    {
+      "id": "d02",
+      "q": "what does ScreenAgent do",
+      "href": "#/lesson/people/screen-and-voice",
+      "text": "ScreenAgent beside the voice recording. ScreenAgent records the screen. From version 2.1.40 it can mask the screen when voice is masked, so a paused voice recording does not leave "
+    }
+  ],
+  "misses": [
+    {
+      "id": "d02",
+      "group": "beginner",
+      "q": "what does ScreenAgent do",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/people/screen-and-voice",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "ScreenAgent beside the voice recording. ScreenAgent records the screen. From version 2.1.40 it can mask the screen when voice is masked, so a paused voice recording does not leave "
+    }
+  ]
+}

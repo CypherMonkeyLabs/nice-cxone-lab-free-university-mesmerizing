@@ -1,4 +1,17 @@
 import { motionReduced } from "./pixel.mjs";
+import { createRetriever } from "../shared/cxbot-chat/engine.js";
+import { chatMarkup, paintChat } from "../shared/cxbot-chat/ui.js";
+
+const CHIPS = [
+  "Where do I start?",
+  "What is overall priority?",
+  "What is bullseye routing?",
+  "Why is Personal Connection acceleration zero?",
+  "What is a point of contact?",
+  "What is Autopilot?",
+  "Is hold recorded?",
+  "What can you help with?",
+];
 
 const KB_URL = "data/guide-kb.json";
 const FALLBACK = "I only answer from the pages loaded in this lab. I do not have a cited sentence for that. Try priority, bullseye, ports, recording, digital skills, or the ecosystem.";
@@ -312,6 +325,7 @@ export async function bootGuide() {
   };
   open.addEventListener("click", () => toggle(panel.hidden));
   close.addEventListener("click", () => toggle(false));
+  mountOfflineChat(panel);
   document.getElementById("guide-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const input = document.getElementById("guide-q");
@@ -319,6 +333,82 @@ export async function bootGuide() {
     input.value = "";
     handle(value);
   });
+}
+
+function mountOfflineChat(panel) {
+  const sheet = document.createElement("link");
+  sheet.rel = "stylesheet";
+  sheet.href = new URL("../shared/cxbot-chat/chat.css", import.meta.url).href;
+  document.head.appendChild(sheet);
+  fetch(new URL("../data/cxbot-index.json", import.meta.url).href)
+    .then((response) => (response.ok ? response.json() : Promise.reject(new Error("index"))))
+    .then((index) => {
+      const host = document.createElement("div");
+      host.innerHTML = chatMarkup(CHIPS);
+      panel.appendChild(host);
+      ["guide-log", "guide-chips", "guide-form", "guide-mic"].forEach((id) => {
+        const node = document.getElementById(id);
+        if (node) node.hidden = true;
+      });
+      const root = host.querySelector("[data-py-chat]");
+      const retriever = createRetriever(index);
+      const messages = [{
+        role: "bot",
+        text: "Ask a Contact Path topic. I quote this lab and I do not guess.",
+      }];
+      const draw = () => paintChat(root, messages, false);
+      const ask = (raw) => {
+        const text = String(raw || "").trim();
+        if (!text) return;
+        messages.push({ role: "user", text });
+        const answer = retriever.ask(text, {});
+        messages.push({
+          role: "bot",
+          text: answer.text,
+          href: answer.href || "",
+          link: answer.href ? (answer.link || "Open this page") : "",
+          example: answer.example || "",
+          follow: answer.follow || "",
+          followQ: answer.followQ || "",
+          closest: answer.mode === "fallback" && answer.intent !== "injection" ? (answer.closest || []) : [],
+        });
+        draw();
+      };
+      root.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const input = root.querySelector("#py-chat-input");
+        const value = input.value;
+        input.value = "";
+        ask(value);
+      });
+      root.addEventListener("click", (event) => {
+        const chip = event.target.closest("[data-py-ask]");
+        if (chip) {
+          event.preventDefault();
+          ask(chip.getAttribute("data-py-ask"));
+          return;
+        }
+        if (event.target.closest("[data-py-clear]")) {
+          messages.length = 0;
+          messages.push({ role: "bot", text: "Ask a Contact Path topic. I quote this lab and I do not guess." });
+          retriever.reset();
+          draw();
+          return;
+        }
+        const read = event.target.closest("[data-py-read]");
+        if (read && window.speechSynthesis) {
+          const index = Number(read.getAttribute("data-py-read"));
+          const line = messages[index] && messages[index].text;
+          if (!line) return;
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(new SpeechSynthesisUtterance(line));
+        }
+      });
+      draw();
+    })
+    .catch(() => {
+      /* The older guide form stays available if the index is missing. */
+    });
 }
 
 if (typeof document !== "undefined") bootGuide();

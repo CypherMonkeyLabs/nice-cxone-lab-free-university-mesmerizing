@@ -9,6 +9,7 @@ import { bindLightbox } from "./lightbox.mjs";
 import { bootLang, currentLang, ensureLessonMt, setLang, t, trLesson } from "./i18n.mjs";
 import { motionReduced } from "./pixel.mjs";
 import { lessonCites, sourcesBlock } from "./sources.mjs";
+import { bindCallflow, callflowHtml } from "./callflow.mjs";
 
 const SETTINGS_KEY = "cxone-lab-settings";
 const PROGRESS_KEY = "cxone-lab-progress";
@@ -33,6 +34,7 @@ const NAV = [
   { href: "#/tracks", id: "tracks", label: "Tracks", hint: "Open one track and its lessons", icon: "≡", dot: "a2" },
   { href: "#/studio", id: "studio", label: "Studio builder", hint: "Classroom JSON, not a Studio import", icon: "⬡", dot: "a3" },
   { href: "#/routing", id: "routing", label: "Routing simulator", hint: "Priority is time times acceleration, plus initial", icon: "◎", dot: "a4" },
+  { href: "#/callflow", id: "callflow", label: "Call-flow sandbox", hint: "A classroom trace. It does not place a call", icon: "⤷", dot: "a2" },
   { href: "#/topology", id: "topology", label: "3D topology", hint: "Orbit the path, or read the flat map", icon: "◈", dot: "a1" },
   { href: "#/atlas", id: "atlas", label: "Ports atlas", hint: "Ports the public page actually names", icon: "⌗", dot: "a2" },
   { href: "#/explorer", id: "explorer", label: "Flow explorer", hint: "Sister systems and the troubleshooting tree", icon: "⤷", dot: "a3" },
@@ -1208,7 +1210,7 @@ async function viewEcosystem() {
     <p class="lede">Sister systems around the ACD: WFM, quality and recording, CRM, Enlighten, APIs, and the UCCE and Avaya bridges. The map is a study aid. Each edge is only as strong as its citation. The <a href="#/explorer">flow explorer</a> adds E911, analytics, and the troubleshooting tree.</p>
     <section class="identity">
       <h2>Who keeps Contact Path</h2>
-      <p>Lucky is a lifelong student and an AI enthusiast. The path runs through systems, networking, voice, and the contact center, and it grows into AI omni-channel agents. This ecosystem is that wider study: workforce, quality, digital, CRM, and virtual agents sit beside the ACD, each one tied to a public page.</p>
+      <p>Cypher Monkey, a lifelong student and AI builder, wrote this lab. Lucky is a lifelong student and an AI enthusiast. The path runs through systems, networking, voice, and the contact center, and it grows into AI omni-channel agents. This ecosystem is that wider study: workforce, quality, digital, CRM, and virtual agents sit beside the ACD, each one tied to a public page.</p>
       <p class="copy">© 2026 CypherMonkeyLabs 🐒</p>
     </section>
     <h2 id="sisters">Sister technologies</h2>
@@ -1322,6 +1324,12 @@ function playSectionFly() {
   });
 }
 
+function viewCallflow() {
+  setMain(callflowHtml());
+  renderRail("callflow");
+  bindCallflow(document.getElementById("main"));
+}
+
 let routedOnce = false;
 
 async function route() {
@@ -1334,6 +1342,7 @@ async function route() {
     if (path === "#/tracks" || path === "#/track" || path === "#/track/") return viewTracks();
     if (path === "#/studio") return viewStudio();
     if (path === "#/routing") return viewRouting();
+    if (path === "#/callflow") return viewCallflow();
     if (path === "#/topology") return viewTopology();
     if (path === "#/ecosystem") return viewEcosystem();
     if (path === "#/incidents") return viewIncidents();

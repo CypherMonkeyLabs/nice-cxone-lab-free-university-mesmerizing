@@ -1,0 +1,469 @@
+{
+  "sources": [
+    {
+      "id": "src-f07ba5109708",
+      "title": "Set Up Inbound Voice",
+      "url": "https://help.nicecxone.com/content/ACD/channels/voice/setupibvoice.htm"
+    },
+    {
+      "id": "src-2131fde2b3f8",
+      "title": "Points of Contact Overview",
+      "url": "https://help.nicecxone.com/content/ACD/channels/additionalchannelfeatures/pointsofcontact/pointsofcontact.htm"
+    },
+    {
+      "id": "src-03f8c48ca50d",
+      "title": "Configure Priority for a Skill for Static Delivery",
+      "url": "https://help.nicecxone.com/content/ACD/routing/staticdelivery/configureskillpriority.htm"
+    },
+    {
+      "id": "src-79254b699b94",
+      "title": "Bullseye Routing",
+      "url": "https://help.nicecxone.com/content/acd/routing/bullseyerouting.htm"
+    },
+    {
+      "id": "src-e1b96935bd68",
+      "title": "Develop a Basic Script",
+      "url": "https://help.nicecxone.com/Content/Studio/gettingstarted/developbasicscriptcx.htm"
+    },
+    {
+      "id": "src-8f8e6267d931",
+      "title": "MENU (Desktop Studio)",
+      "url": "https://help.nicecxone.com/content/Studio/actions/menu/menu.htm"
+    },
+    {
+      "id": "src-da13bb939141",
+      "title": "NiCE CXone Studio",
+      "url": "https://help.nicecxone.com/content/integrations/studio.htm"
+    },
+    {
+      "id": "src-315911bd345e",
+      "title": "Studio Fundamentals",
+      "url": "https://help.nicecxone.com/content/Studio/fundamentals/fundamentalscx.htm"
+    },
+    {
+      "id": "src-fd6921e0d12d",
+      "title": "Cisco UCCE Connector",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/ciscoucce.htm"
+    },
+    {
+      "id": "src-136c19f4b9b1",
+      "title": "General Forecast",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/generalforecast.htm"
+    },
+    {
+      "id": "src-b737c7748420",
+      "title": "Users, Data Access, and Security",
+      "url": "https://help.nicecxone.com/content/admin/welcometoadmin.htm"
+    },
+    {
+      "id": "src-303866ff399d",
+      "title": "Getting Started",
+      "url": "https://developer.niceincontact.com/Documentation/GettingStarted"
+    },
+    {
+      "id": "src-526d1925f678",
+      "title": "NICE CXone REST APIs",
+      "url": "https://developer.niceincontact.com/API"
+    },
+    {
+      "id": "src-1616c5c6e3a0",
+      "title": "Your App's Lifecycle",
+      "url": "https://developer.niceincontact.com/Documentation/YourAppLifeCycle"
+    },
+    {
+      "id": "src-49bbc1a95b30",
+      "title": "API Authentication and Authorization",
+      "url": "https://developer.niceincontact.com/Documentation/APIAuthenticationAndAuthorization"
+    },
+    {
+      "id": "src-9c8f86060b94",
+      "title": "RFC 6749",
+      "url": "https://www.rfc-editor.org/rfc/rfc6749"
+    },
+    {
+      "id": "src-6a6ce77a20b2",
+      "title": "Manage Access Keys",
+      "url": "https://help.nicecxone.com/content/admin/security/manageaccesskeys.htm"
+    },
+    {
+      "id": "src-cfd2790a544c",
+      "title": "OpenID Connect Core 1.0",
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html"
+    },
+    {
+      "id": "src-552632c3aaff",
+      "title": "Avaya CMS",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/avayacms.htm"
+    },
+    {
+      "id": "src-766cc346d6b6",
+      "title": "API Actions",
+      "url": "https://help.nicecxone.com/Content/studio/advanced/frameworkactions/apiactions.htm"
+    },
+    {
+      "id": "src-0e887292329e",
+      "title": "Action Basics",
+      "url": "https://help.nice-incontact.com/content/studio/fundamentals/actionbasicscx.htm"
+    },
+    {
+      "id": "src-f0772da243b5",
+      "title": "GET NEXT EVENT",
+      "url": "https://help.nicecxone.com/content/studio/actionscx/getagentevents/getagentevents.htm"
+    },
+    {
+      "id": "src-eb970fe2f33b",
+      "title": "Ports and Protocols by Application",
+      "url": "https://help.nicecxone.com/content/platformrequirements/wizard/portsandprotocolsbyapp.htm"
+    },
+    {
+      "id": "src-4c677137faf0",
+      "title": "Connectivity Requirements",
+      "url": "https://help.nicecxone.com/Content/platformrequirements/ports.htm"
+    },
+    {
+      "id": "src-54b151f56927",
+      "title": "Connectivity Requirements Wizard",
+      "url": "https://help.nicecxone.com/Content/platformrequirements/wizard/discoverconnectivityrequirements.htm"
+    },
+    {
+      "id": "src-eca03b39b214",
+      "title": "Connectivity in NiCE CXone",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/connectivityincxone.htm"
+    },
+    {
+      "id": "src-43a2a0b0fa4e",
+      "title": "IP Addresses and Blocks",
+      "url": "https://help.nicecxone.com/Content/globalfeatures/connectivity/ipaddresses.htm"
+    },
+    {
+      "id": "src-03ecb7195a38",
+      "title": "Set Up Emergency Dialing",
+      "url": "https://help.nicecxone.com/content/acd/channels/voice/setupemergencydialing.htm"
+    },
+    {
+      "id": "src-17fb333787e3",
+      "title": "Manage Business Unit",
+      "url": "https://help.nicecxone.com/content/acd/businessunits/managebusinessunit.htm"
+    },
+    {
+      "id": "src-05ad5d442b65",
+      "title": "Handle Calls in MAX",
+      "url": "https://help.nicecxone.com/content/agent/max/voice/handlecalls.htm"
+    },
+    {
+      "id": "src-c69f82346897",
+      "title": "Customize Proactive Voice Dialing",
+      "url": "https://help.nicecxone.com/Content/acd/channels/personalconnection/proactivevoice/customizeproactivevoicedialing.htm"
+    },
+    {
+      "id": "src-eaf931b522be",
+      "title": "Digital Routing",
+      "url": "https://help.nicecxone.com/content/ACD/digital/digitalrouting.htm"
+    },
+    {
+      "id": "src-722a8126e247",
+      "title": "Workforce Management (CXone)",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/welcometoworkforcemanagement.htm"
+    },
+    {
+      "id": "src-00f559629e55",
+      "title": "Recording Management (CXone)",
+      "url": "https://help.nicecxone.com/Content/recording/managerecordings.htm"
+    },
+    {
+      "id": "src-4e1f7f0142a7",
+      "title": "NiCE CXone Autopilot (Omilia)",
+      "url": "https://help.nicecxone.com/content/autopilot/autopilot.htm"
+    },
+    {
+      "id": "src-e7223d8a33a5",
+      "title": "Automated Summary (AutoSummary)",
+      "url": "https://help.nicecxone.com/Content/enlightenautosummary/enlightenautosummary.htm"
+    },
+    {
+      "id": "src-425a87e75c09",
+      "title": "Automated Summary (AutoSummary) Setup",
+      "url": "https://help.nicecxone.com/content/aiassistantsandbots/agentassisthub/autosummary/autosummary.htm"
+    },
+    {
+      "id": "src-ea49e230cc4a",
+      "title": "Integrate Salesforce with Agent Workspace (Agent)",
+      "url": "https://help.nicecxone.com/content/Agent/agentapplicationadministration/cxoneagent/crmintegration/integratesalesforcewithcxa.htm"
+    },
+    {
+      "id": "src-04981eca8f8b",
+      "title": "CRM Ticketing",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/crm%20ticketing/crm%20ticketing.htm"
+    },
+    {
+      "id": "src-e18db1ece6ed",
+      "title": "Supported Real-Time Third Party Telephony Recording (Multi-ACD)",
+      "url": "https://help.nicecxone.com/Content/cxoneopenthirdparty/configurethirdpartyconnectivity.htm"
+    },
+    {
+      "id": "src-2fa62e54d0a8",
+      "title": "Migrated Calls",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/migratedinteractions/migratedinteractions.htm"
+    },
+    {
+      "id": "src-c8cf3e8e9826",
+      "title": "Integration Hub",
+      "url": "https://help.nicecxone.com/content/integrationhub/integrationhub.htm"
+    },
+    {
+      "id": "src-66eef0a7df05",
+      "title": "26.3 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/release.htm"
+    },
+    {
+      "id": "src-09309837bd8f",
+      "title": "Coming Soon in the 26.4 Release",
+      "url": "https://help.nicecxone.com/content/releasenotes/comingsoon.htm"
+    },
+    {
+      "id": "src-acf690e12023",
+      "title": "NiCE CXone Release Process",
+      "url": "https://help.nicecxone.com/content/releasenotes/releaseprocess.htm"
+    },
+    {
+      "id": "src-c733846ce3e1",
+      "title": "Service Notification Timeline",
+      "url": "https://help.nicecxone.com/content/releasenotes/releasenotificationtimeline.htm"
+    },
+    {
+      "id": "src-deadc1cdd0e9",
+      "title": "Data and Reporting",
+      "url": "https://help.nicecxone.com/content/interactionanalyticspro/configurationandadministration/reportinganddata/reportinganddata.htm"
+    },
+    {
+      "id": "src-982a15fa3260",
+      "title": "Interaction Analytics (CXone) Widget",
+      "url": "https://help.nicecxone.com/content/dashboardwem/iawidgets.htm"
+    },
+    {
+      "id": "src-64fce2864bf8",
+      "title": "NiCE CXone Dashboard Permissions",
+      "url": "https://help.nicecxone.com/content/admin/security/permissions/cxonedashboardpermissions.htm"
+    },
+    {
+      "id": "src-4fe9615f16ff",
+      "title": "External Identity Provider Authentication",
+      "url": "https://help.nicecxone.com/content/globalfeatures/authenticationandauthorization/setupaaexternalidp.htm"
+    },
+    {
+      "id": "src-b212a3a9e95b",
+      "title": "RFC 3261",
+      "url": "https://www.rfc-editor.org/rfc/rfc3261"
+    },
+    {
+      "id": "src-fc5d26154edf",
+      "title": "NCIE CXone ACD/IVR",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncie-nice-certified-implementation-engineer-cxone-m.2"
+    },
+    {
+      "id": "src-1b78885f2359",
+      "title": "NCIE CXone Mpower Digital Experience",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncie-nice-certified-implementation-engineer-cxone-m.3"
+    },
+    {
+      "id": "src-dd3eca9ada51",
+      "title": "CXone Supervisor Certification",
+      "url": "https://www.credly.com/org/nice-ltd/badge/cxone-supervisor-certification"
+    },
+    {
+      "id": "src-9c50bea742d6",
+      "title": "Club One",
+      "url": "https://www.nice.com/clubs/club-one"
+    },
+    {
+      "id": "src-1780fd5610fb",
+      "title": "SNIPPET (Desktop Studio)",
+      "url": "https://help.nicecxone.com/content/Studio/actions/snippet/snippet.htm"
+    },
+    {
+      "id": "src-435469fbed86",
+      "title": "Amazon Connect",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/amazonconnect/amazon%20connect.htm"
+    },
+    {
+      "id": "src-7c692d669c64",
+      "title": "Customer Integration Guide - Amazon Connect",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/customerintegrationguideamazonconnect.htm"
+    },
+    {
+      "id": "src-53d6f4308c50",
+      "title": "Prepare Amazon Connect Environment for Multi-ACD",
+      "url": "https://help.nicecxone.com/content/cxoneopenthirdparty/prepareamcenvironmentforcxoneacd.htm"
+    },
+    {
+      "id": "src-a25d197f17df",
+      "title": "Prepare Genesys T-Lib with SIPREC",
+      "url": "https://help.nicecxone.com/content/cxoneopenthirdparty/genesyssipserverandsiprec.htm"
+    },
+    {
+      "id": "src-57dfac4477bb",
+      "title": "Third-Party ACDs",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/third-party%20acds.htm"
+    },
+    {
+      "id": "src-b33102ebe9f6",
+      "title": "Third-Party ACD SDK Developer Guide",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/thirdpartysdkdeveloperguide.htm"
+    },
+    {
+      "id": "src-70f996d224ee",
+      "title": "CC BY-NC-SA 4.0",
+      "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    },
+    {
+      "id": "src-2707506c6e47",
+      "title": "Salesforce Einstein",
+      "url": "https://help.nicecxone.com/content/AIAssistantsAndBots/virtualagenthub/salesforceeinstein.htm"
+    },
+    {
+      "id": "src-36ddf4a3c70f",
+      "title": "Refresh Indexed DB After Upgrading to Package 26.3",
+      "url": "https://help.nicecxone.com/content/agent/agentapplicationadministration/agentforscv/refreshindexeddbafterupgradingtopackage%20263.htm"
+    },
+    {
+      "id": "src-64247b079cd0",
+      "title": "Salesforce Agent Release History",
+      "url": "https://help.nicecxone.com/content/releasenotes/salesforceversionlog.htm"
+    },
+    {
+      "id": "src-588183f09939",
+      "title": "Install Agent Workspace (Embedded) (Agent Embedded) in Salesforce",
+      "url": "https://help.nicecxone.com/content/agent/agentapplicationadministration/cxoneagentembedded/installcxae/installcxaeinsalesforce.htm"
+    },
+    {
+      "id": "src-60dbb3ffe319",
+      "title": "Manage Fully Integrated Lightning Agent",
+      "url": "https://help.nicecxone.com/content/agent/agentapplicationadministration/agentforsalesforce/managefullyintegratedlightningagent.htm"
+    },
+    {
+      "id": "src-41691d3dda26",
+      "title": "UCaaS (Basic) (1CX)",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/1cx/1cx.htm"
+    },
+    {
+      "id": "src-f5281ffb6359",
+      "title": "Agentic Engagement Plane",
+      "url": "https://help.nicecxone.com/content/aep/agenticengagementplane.htm"
+    },
+    {
+      "id": "src-f19b0c8526ec",
+      "title": "Digital Channels",
+      "url": "https://help.nicecxone.com/content/ACD/digital/channels/digitalchannels.htm"
+    },
+    {
+      "id": "src-eb7ef9f83b6c",
+      "title": "Manage Digital Skills",
+      "url": "https://help.nicecxone.com/content/acd/digital/managedigitalskills.htm"
+    },
+    {
+      "id": "src-167b795526fc",
+      "title": "UPDATE CONTACT DIGITAL",
+      "url": "https://help.nicecxone.com/content/studio/actions/update_contact_digital/update_contact_digital.htm"
+    },
+    {
+      "id": "src-527309cdb137",
+      "title": "Monitor",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/monitoradherence.htm"
+    },
+    {
+      "id": "src-4983da7b7c52",
+      "title": "Quality Management (CXone)",
+      "url": "https://help.nicecxone.com/Content/qmanalytics/welcometoqualitymanagement.htm"
+    },
+    {
+      "id": "src-1ae9de55db4e",
+      "title": "Categories",
+      "url": "https://help.nicecxone.com/Content/interactionanalyticspro/configurationandadministration/categories/categories.htm"
+    },
+    {
+      "id": "src-4491166d2bea",
+      "title": "Notes de version 25.4",
+      "url": "https://help.nicecxone.com/fr/content/releasenotes/release.htm"
+    },
+    {
+      "id": "src-cd4f197ceaf4",
+      "title": "Engagement Hub",
+      "url": "https://help.nicecxone.com/content/integratedsolutions/engagementhub.htm"
+    },
+    {
+      "id": "src-b4df7e998f5f",
+      "title": "CXone Studio",
+      "url": "https://www.nice.com/resources/cxone-studio"
+    },
+    {
+      "id": "src-3b6991fda66d",
+      "title": "Avaya CMS Legacy",
+      "url": "https://help.nicecxone.com/Content/workforcemanagement/avayacmslegacy.htm"
+    },
+    {
+      "id": "src-048ea0c6ef95",
+      "title": "Form Manager",
+      "url": "https://help.nicecxone.com/content/qmanalytics/formmanager/formmanager.htm"
+    },
+    {
+      "id": "src-c703a71f53ef",
+      "title": "Improve Sentiment",
+      "url": "https://help.nicecxone.com/content/interactionanalyticspro/achieveyourbusinessgoals/improvesentiment.htm"
+    },
+    {
+      "id": "src-0d13af18e122",
+      "title": "Recording Activity Report",
+      "url": "https://help.nicecxone.com/content/dashboardwem/recordactivity.htm"
+    },
+    {
+      "id": "src-f6c9f40c3622",
+      "title": "Dynamic Delivery",
+      "url": "https://help.nicecxone.com/content/ACD/routing/dynamicdelivery/dynamicdelivery.htm"
+    },
+    {
+      "id": "src-553cab9db721",
+      "title": "Enable Dynamic Delivery for Your Organization",
+      "url": "https://help.nicecxone.com/Content/acd/routing/dynamicdelivery/enabledynamicdelivery.htm"
+    },
+    {
+      "id": "src-9b1f8faa39b1",
+      "title": "Routing Attributes",
+      "url": "https://help.nicecxone.com/content/ACD/routing/routingattributes/routingattributes.htm"
+    },
+    {
+      "id": "src-3311632dfbe4",
+      "title": "Configure User Skill Proficiency for Dynamic Delivery",
+      "url": "https://help.nicecxone.com/content/ACD/routing/dynamicdelivery/configureuserskillproficiency.htm"
+    },
+    {
+      "id": "src-0a74b03f9207",
+      "title": "Manage Tenants",
+      "url": "https://help.nicecxone.com/content/partners/tenantmanagement/managetenants.htm"
+    },
+    {
+      "id": "src-41f3d3e7120f",
+      "title": "Real Time Adherence",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/monitoringrealtimeadherence.htm"
+    },
+    {
+      "id": "src-8de5a7f91b4f",
+      "title": "Schedule Manager",
+      "url": "https://help.nicecxone.com/content/workforcemanagement/schedulemanager.htm"
+    },
+    {
+      "id": "src-0ea3687a5532",
+      "title": "26.2 Release Notes",
+      "url": "https://help.nicecxone.com/content/releasenotes/20262release.htm"
+    },
+    {
+      "id": "src-e5dee4ef6a3b",
+      "title": "NCAP CXone Mpower Workforce Management",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncap-nice-certified-application-professional-cxone-.3"
+    },
+    {
+      "id": "src-b1c7f3906176",
+      "title": "NCAP CXone Mpower Personal Connection",
+      "url": "https://www.credly.com/org/nice-ltd/badge/ncap-nice-certified-application-professional-cxone-.5"
+    }
+  ]
+}

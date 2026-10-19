@@ -1,0 +1,2337 @@
+{
+  "lab": "nice-cxone",
+  "note": "last_verified is null because the source files record a month (2026-10), not a full day. Levels: foundation 2, intermediate 5, advanced 8.",
+  "lessons": [
+    {
+      "key": "foundations/what-routes",
+      "title": "What the platform actually routes",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name POC, skill, and script",
+        "Separate channel from media type",
+        "See where an IVR changes the skill"
+      ],
+      "sources": [
+        "src-315911bd345e",
+        "src-2131fde2b3f8"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "foundations/contact-words",
+      "title": "Contact, interaction, and channel",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use contact and interaction the way the help does",
+        "Keep digital skills separate from legacy ACD skills",
+        "Notice when a page says voice and digital together"
+      ],
+      "sources": [
+        "src-eaf931b522be",
+        "src-4e1f7f0142a7",
+        "src-f19b0c8526ec",
+        "src-eb7ef9f83b6c"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "foundations/tenant-shape",
+      "title": "Tenant, business unit, and campaign",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Place tenant above campaign and skill",
+        "See why an API user is an employee",
+        "Know that base URLs are per tenant"
+      ],
+      "sources": [
+        "src-b737c7748420",
+        "src-f07ba5109708",
+        "src-303866ff399d"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "foundations/prereq-network",
+      "title": "Browser, WebRTC, and allowlists",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Separate Integrated Softphone from WebRTC",
+        "Name the installable Softphone",
+        "Know an allowlist exists"
+      ],
+      "sources": [
+        "src-eca03b39b214"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "foundations/sip-pstn",
+      "title": "SIP, in the language CXone and the RFC share",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Cite RFC 3261 for SIP itself",
+        "Use NiCE's SIP trunk definition",
+        "Refuse to invent header behavior"
+      ],
+      "sources": [
+        "src-b212a3a9e95b",
+        "src-eca03b39b214"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "foundations/numbers-that-matter",
+      "title": "AHT, service level, and the numbers routing serves",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Define AHT the way the forecast page does",
+        "Connect a service target to staffing",
+        "Remember bullseye can disturb a forecast"
+      ],
+      "sources": [
+        "src-136c19f4b9b1",
+        "src-79254b699b94",
+        "src-722a8126e247"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "foundations/read-the-page",
+      "title": "How to read a help page and a release note",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Describe the release process",
+        "Treat Coming Soon as a plan, not a promise",
+        "Keep conflicting dates visible"
+      ],
+      "sources": [
+        "src-acf690e12023",
+        "src-c733846ce3e1",
+        "src-0ea3687a5532",
+        "src-66eef0a7df05",
+        "src-09309837bd8f"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "platform/admin-app",
+      "title": "The Admin application",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Open Admin on purpose",
+        "List what Admin owns",
+        "Leave ACD skills for the ACD application"
+      ],
+      "sources": [
+        "src-b737c7748420",
+        "src-f07ba5109708",
+        "src-303866ff399d"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "platform/licenses",
+      "title": "Licenses the help pages actually name",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Treat a license sentence as a gate",
+        "Name three licenses the pages state",
+        "Refuse a price that is not published here"
+      ],
+      "sources": [
+        "src-04981eca8f8b",
+        "src-2fa62e54d0a8",
+        "src-425a87e75c09",
+        "src-ea49e230cc4a",
+        "src-66eef0a7df05"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "platform/least-privilege",
+      "title": "Roles and least privilege",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Put permissions on roles",
+        "Build a narrow role for a connector",
+        "Remember a key is as powerful as its user"
+      ],
+      "sources": [
+        "src-b737c7748420",
+        "src-303866ff399d",
+        "src-552632c3aaff",
+        "src-3b6991fda66d",
+        "src-6a6ce77a20b2"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "platform/external-idp",
+      "title": "External identity providers",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Separate user login from app login",
+        "Name the endpoints the page lists",
+        "Keep SAML support inside what a release note said"
+      ],
+      "sources": [
+        "src-4fe9615f16ff",
+        "src-4491166d2bea"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "platform/public-preview",
+      "title": "Public Preview, formerly Controlled Release",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use the new name",
+        "Not assume a listed feature is generally available",
+        "Re-read dates before a freeze"
+      ],
+      "sources": [
+        "src-66eef0a7df05",
+        "src-0ea3687a5532",
+        "src-e7223d8a33a5",
+        "src-acf690e12023"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "platform/key-versus-password",
+      "title": "Access keys are not passwords",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Call discovery before the token URL",
+        "Map key id and secret onto the password grant",
+        "Plan refresh before expiry"
+      ],
+      "sources": [
+        "src-303866ff399d",
+        "src-cfd2790a544c"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "platform/attributes",
+      "title": "Employee attributes that turn features on",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Find attributes on the employee",
+        "Name Digital Engagement",
+        "Name the two Salesforce attributes"
+      ],
+      "sources": [
+        "src-f19b0c8526ec",
+        "src-ea49e230cc4a"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "acd/inbound-order",
+      "title": "The inbound voice order",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Follow the published order",
+        "Name the permissions",
+        "Leave the DNIS to Professional Services"
+      ],
+      "sources": [
+        "src-f07ba5109708",
+        "src-2131fde2b3f8"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "acd/skill-fields",
+      "title": "Skill name, campaign, and direction",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Fill the required skill fields",
+        "Keep priority separate from proficiency",
+        "Use the documented priority formula later, not here"
+      ],
+      "sources": [
+        "src-f07ba5109708",
+        "src-03f8c48ca50d",
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "acd/poc-bind",
+      "title": "Bind the point of contact",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Create a single POC",
+        "Select an existing DNIS",
+        "Decide on IVR reporting"
+      ],
+      "sources": [
+        "src-f07ba5109708",
+        "src-2131fde2b3f8"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "acd/hours-and-closed",
+      "title": "Hours, closed paths, and what this lab will not invent",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Keep undocumented actions out of a design",
+        "Plan a closed path as a product question",
+        "Use Menu only for what Menu's page says"
+      ],
+      "sources": [
+        "src-e1b96935bd68",
+        "src-8f8e6267d931",
+        "src-da13bb939141"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "acd/script-on-poc",
+      "title": "The script the POC actually runs",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Select the script on the POC",
+        "Retarget skills inside the script",
+        "Notice a script that is merely saved"
+      ],
+      "sources": [
+        "src-f07ba5109708",
+        "src-315911bd345e",
+        "src-e1b96935bd68",
+        "src-2131fde2b3f8"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "acd/campaign-home",
+      "title": "Campaigns hold skills",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Select a campaign when creating a skill",
+        "Not confuse campaign with tenant",
+        "Not confuse campaign with POC"
+      ],
+      "sources": [
+        "src-f07ba5109708",
+        "src-fd6921e0d12d",
+        "src-136c19f4b9b1",
+        "src-b737c7748420"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "acd/permissions-path",
+      "title": "Permissions along the setup path",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Quote the three permissions the page names",
+        "Expect a missing button to be a role",
+        "Keep API keys out of this path"
+      ],
+      "sources": [
+        "src-f07ba5109708",
+        "src-b737c7748420",
+        "src-303866ff399d"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "people/employee-profile",
+      "title": "Employee profiles",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Create an employee with the required fields",
+        "Avoid the banned characters",
+        "Choose Create versus Create & Invite"
+      ],
+      "sources": [
+        "src-303866ff399d",
+        "src-552632c3aaff"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "people/proficiency-assign",
+      "title": "Assign a skill and a proficiency",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Set proficiency with 1 as best",
+        "Read the Classics window",
+        "Use the routing simulator to watch it"
+      ],
+      "sources": [
+        "src-79254b699b94",
+        "src-167b795526fc"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "people/agent-apps",
+      "title": "MAX and Agent Workspace",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use the current application names",
+        "Check digital support per app",
+        "Include MAX when the page includes MAX"
+      ],
+      "sources": [
+        "src-f19b0c8526ec",
+        "src-e7223d8a33a5",
+        "src-425a87e75c09"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "people/data-access",
+      "title": "Who can see a recording",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Treat visibility as a permission",
+        "Not confuse record with view",
+        "Know hold audio is absent even for people who can play the file"
+      ],
+      "sources": [
+        "src-b737c7748420",
+        "src-00f559629e55"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "people/teams-views",
+      "title": "Teams, views, and what we will not invent",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use the word view as the page does",
+        "Separate team visibility from a guessed org chart",
+        "Ask for the current view help before a design"
+      ],
+      "sources": [
+        "src-b737c7748420",
+        "src-79254b699b94",
+        "src-722a8126e247"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "people/digital-agent-ready",
+      "title": "Make one agent digitally ready",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Run the four checks",
+        "Prefer skills over new queues",
+        "Test with one contact"
+      ],
+      "sources": [
+        "src-f19b0c8526ec",
+        "src-eb7ef9f83b6c",
+        "src-eaf931b522be"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "people/screen-and-voice",
+      "title": "ScreenAgent beside the voice recording",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Separate screen and voice",
+        "Cite the 2.1.40 masking behavior",
+        "Not invent install steps"
+      ],
+      "sources": [
+        "src-00f559629e55",
+        "src-cd4f197ceaf4"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "routing/priority-math",
+      "title": "Priority and acceleration",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Compute the formula",
+        "Explain the 30-second half step",
+        "Cap at maximum"
+      ],
+      "sources": [
+        "src-03f8c48ca50d"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "routing/bullseye-prof",
+      "title": "Bullseye with proficiency",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Configure the opening window",
+        "Widen it on purpose",
+        "Name the four actions"
+      ],
+      "sources": [
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "routing/pc-zero",
+      "title": "Personal Connection acceleration is zero",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Set PC acceleration to 0",
+        "Keep initial priority for blending",
+        "Find the proficiency dialing checkboxes"
+      ],
+      "sources": [
+        "src-03f8c48ca50d",
+        "src-c69f82346897"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "routing/attributes",
+      "title": "Routing attributes",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Define an attribute with the page's words",
+        "Combine it with proficiency",
+        "Not invent the attribute admin URL"
+      ],
+      "sources": [
+        "src-79254b699b94",
+        "src-167b795526fc"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "routing/static-delivery",
+      "title": "Static delivery priorities",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Use the right fields per skill type",
+        "Not paste inbound fields onto SmartReach",
+        "Keep the formula for inbound"
+      ],
+      "sources": [
+        "src-03f8c48ca50d",
+        "src-167b795526fc"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "routing/blend-and-forecast",
+      "title": "Blending, bullseye, and the forecast",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Rank blended work with initial priority",
+        "Tell WFM when the pool changes",
+        "Use What-If rather than a silent edit"
+      ],
+      "sources": [
+        "src-136c19f4b9b1",
+        "src-79254b699b94",
+        "src-722a8126e247",
+        "src-03f8c48ca50d"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "routing/delivery-tie",
+      "title": "What this lab will not claim about delivery",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Say the classroom tie-break out loud",
+        "Quote the PC factors",
+        "Refuse a fake 'always longest idle' policy"
+      ],
+      "sources": [
+        "src-c69f82346897",
+        "src-03f8c48ca50d",
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "studio/script-types",
+      "title": "Script types and the POC contract",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Match script type to channel",
+        "Keep the POC contract",
+        "Start from BEGIN"
+      ],
+      "sources": [
+        "src-315911bd345e",
+        "src-f19b0c8526ec",
+        "src-e1b96935bd68",
+        "src-f07ba5109708"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "studio/core-actions",
+      "title": "BEGIN, MENU, REQAGENT, MUSIC, WAIT",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Place the five tutorial ideas",
+        "Store the menu digit",
+        "Insert the bullseye wait"
+      ],
+      "sources": [
+        "src-8f8e6267d931",
+        "src-e1b96935bd68",
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "studio/api-actions",
+      "title": "API actions are not help pages",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Find them on the API palette",
+        "Use verb colors",
+        "Open the portal, not a missing help page"
+      ],
+      "sources": [
+        "src-0e887292329e",
+        "src-766cc346d6b6",
+        "src-f0772da243b5"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "studio/trace-habits",
+      "title": "Trace the contact, not the picture",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Check the POC assignment",
+        "Check each skill property",
+        "Check the window against real proficiencies"
+      ],
+      "sources": [
+        "src-f07ba5109708",
+        "src-79254b699b94",
+        "src-303866ff399d",
+        "src-315911bd345e",
+        "src-e1b96935bd68"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "studio/digital-script",
+      "title": "Digital scripts",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Prefer the skill and the script",
+        "Keep WFA as a partner, not a substitute you forget",
+        "Use the digital update action's rules"
+      ],
+      "sources": [
+        "src-eaf931b522be",
+        "src-eb7ef9f83b6c",
+        "src-167b795526fc",
+        "src-4e1f7f0142a7"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "studio/promote",
+      "title": "Promote without surprising production",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Name the POC as the promote step",
+        "Keep the lab file out of production instructions",
+        "Retest the window after a paste"
+      ],
+      "sources": [
+        "src-e1b96935bd68",
+        "src-f07ba5109708",
+        "src-79254b699b94",
+        "src-2131fde2b3f8",
+        "src-0e887292329e"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "studio/virtual-hold",
+      "title": "Virtual hold, as the product page states it",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Quote the behavior",
+        "Not invent properties",
+        "Keep it separate from Music"
+      ],
+      "sources": [
+        "src-da13bb939141",
+        "src-e1b96935bd68",
+        "src-315911bd345e"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ivr/menu-variable",
+      "title": "What Menu stores",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name the variable",
+        "Allow audio or TTS",
+        "Map digits to skills"
+      ],
+      "sources": [
+        "src-8f8e6267d931",
+        "src-e1b96935bd68"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ivr/ivr-reporting",
+      "title": "IVR reporting on the POC",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Find the checkbox",
+        "Keep it per number",
+        "Not confuse it with recording"
+      ],
+      "sources": [
+        "src-f07ba5109708",
+        "src-00f559629e55",
+        "src-2131fde2b3f8"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ivr/basic-tutorial",
+      "title": "The official basic script",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "List the four outcomes",
+        "Keep skills real",
+        "Add bullseye only when you mean it"
+      ],
+      "sources": [
+        "src-e1b96935bd68",
+        "src-79254b699b94",
+        "src-f07ba5109708"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ivr/asr-careful",
+      "title": "ASR, named and not over-specified",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Use the page's definition",
+        "Keep DTMF and speech as the page joins them",
+        "Look up tuning elsewhere"
+      ],
+      "sources": [
+        "src-315911bd345e",
+        "src-8f8e6267d931"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ivr/wait-treatments",
+      "title": "Music, virtual hold, and estimated wait",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Pick one treatment per arm",
+        "Cite each",
+        "Leave EWT fields blank"
+      ],
+      "sources": [
+        "src-e1b96935bd68",
+        "src-79254b699b94",
+        "src-da13bb939141",
+        "src-03f8c48ca50d"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ivr/after-hours-honest",
+      "title": "Closed paths stay honest",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Write the experience",
+        "Leave the action unnamed until cited",
+        "Know who the setup page points at"
+      ],
+      "sources": [
+        "src-da13bb939141",
+        "src-f07ba5109708",
+        "src-e1b96935bd68"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ivr/press-path-lab",
+      "title": "Press-path lab",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Enable the flag on the number you will call",
+        "Give each digit a skill",
+        "Place one test call each"
+      ],
+      "sources": [
+        "src-e1b96935bd68",
+        "src-f07ba5109708",
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "digital/dx-versus-legacy",
+      "title": "Digital Experience versus legacy channels",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use the page's definition",
+        "Pick the right POC form",
+        "Keep script types apart"
+      ],
+      "sources": [
+        "src-f19b0c8526ec",
+        "src-315911bd345e",
+        "src-2131fde2b3f8"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "digital/summer-2023",
+      "title": "The Summer 2023 routing change",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Date the change",
+        "Stop creating inbound queues",
+        "Keep outbound queues"
+      ],
+      "sources": [
+        "src-eaf931b522be",
+        "src-eb7ef9f83b6c"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "digital/wfa",
+      "title": "Workflow automation beside Studio",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Say independent",
+        "Not let WFA be a surprise",
+        "Keep Studio as the recommended skill assignment"
+      ],
+      "sources": [
+        "src-eaf931b522be",
+        "src-eb7ef9f83b6c",
+        "src-f19b0c8526ec"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "digital/channel-setup",
+      "title": "Skill, script, and the digital POC",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Create the pair first",
+        "Set them as defaults",
+        "Expect retarget"
+      ],
+      "sources": [
+        "src-f19b0c8526ec",
+        "src-eaf931b522be"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "digital/outbound-digital",
+      "title": "Outbound digital still uses queues",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Keep outbound queues",
+        "Use WFA for the reply skill",
+        "Not apply the inbound ban to outbound"
+      ],
+      "sources": [
+        "src-eaf931b522be",
+        "src-eb7ef9f83b6c",
+        "src-f19b0c8526ec"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "digital/agent-ready",
+      "title": "The agent's four digital checks",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Run the four checks",
+        "Treat a green agent who is skipped as a failed check",
+        "Confirm the Workspace app"
+      ],
+      "sources": [
+        "src-f19b0c8526ec",
+        "src-e7223d8a33a5",
+        "src-b737c7748420"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "digital/digital-bullseye",
+      "title": "Widen a digital pool without acceleration",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Set a 1–20 window",
+        "Leave acceleration out",
+        "Point priority changes at WFA"
+      ],
+      "sources": [
+        "src-167b795526fc",
+        "src-03f8c48ca50d"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm/what-wfm",
+      "title": "What CXone WFM is for",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name the modules",
+        "Quote the scale",
+        "Not merge IEX into CXone WFM"
+      ],
+      "sources": [
+        "src-722a8126e247",
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm/forecast-steps",
+      "title": "Forecast volume and AHT",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "State both history lines",
+        "Name AHT as the page does",
+        "Know data can change after staffing"
+      ],
+      "sources": [
+        "src-136c19f4b9b1"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm/staffing-target",
+      "title": "The service target is a staffing choice",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Connect target to headcount",
+        "Not invent an Erlang formula as NiCE's",
+        "Tell WFM when the pool changes"
+      ],
+      "sources": [
+        "src-136c19f4b9b1",
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm/schedule-life",
+      "title": "Schedules, bids, and time off",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Put bids and time off after the forecast",
+        "Not invent click paths",
+        "Keep intraday as the day-of module"
+      ],
+      "sources": [
+        "src-722a8126e247",
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm/adherence",
+      "title": "Real-time adherence",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Separate RTA from forecasting",
+        "Name the UCCE interval",
+        "Not expect RTA to fix routing"
+      ],
+      "sources": [
+        "src-722a8126e247",
+        "src-fd6921e0d12d",
+        "src-552632c3aaff",
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm/iex-split",
+      "title": "IEX is not a skin on CXone WFM",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Ask which WFM",
+        "Use the matching guide",
+        "Keep the 10,000 sentence on CXone WFM"
+      ],
+      "sources": [
+        "src-722a8126e247",
+        "src-79254b699b94"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm/wfm-routing-hand",
+      "title": "Hand a routing change to WFM",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Write the note",
+        "Include the PC exception",
+        "Name the product"
+      ],
+      "sources": [
+        "src-03f8c48ca50d",
+        "src-79254b699b94",
+        "src-136c19f4b9b1",
+        "src-722a8126e247"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "quality/stereo-default",
+      "title": "Stereo is the default",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name the default",
+        "Say what stereo is for",
+        "Leave codec lists to the media page you opened"
+      ],
+      "sources": [
+        "src-00f559629e55"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "quality/hold-gap",
+      "title": "Hold is a gap, not a failure",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Explain the silent gap",
+        "Include hold music in the gap",
+        "Keep consultation audio"
+      ],
+      "sources": [
+        "src-00f559629e55"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "quality/screen-mask",
+      "title": "Screen masks when voice masks",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Name the version",
+        "Describe playback",
+        "Not copy installers into this lesson"
+      ],
+      "sources": [
+        "src-00f559629e55"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "quality/where-files-live",
+      "title": "Where a recording is found",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name the four surfaces",
+        "Use Recording Activity for what is being recorded",
+        "Not invent report columns"
+      ],
+      "sources": [
+        "src-00f559629e55",
+        "src-0d13af18e122",
+        "src-cd4f197ceaf4"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "quality/qm-boundary",
+      "title": "QM is real, and this lab stays inside the page",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Connect recording to QM",
+        "Name QM on the supervisor badge",
+        "Refuse invented form fields"
+      ],
+      "sources": [
+        "src-00f559629e55",
+        "src-dd3eca9ada51",
+        "src-9c50bea742d6",
+        "src-66eef0a7df05"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "quality/hub-for-qm",
+      "title": "Engagement Hub feeds QM from other systems",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Name the applications the hub feeds",
+        "Separate real-time telephony from offline imports",
+        "Not treat the hub as the ACD"
+      ],
+      "sources": [
+        "src-cd4f197ceaf4",
+        "src-e18db1ece6ed"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "quality/playback-honesty",
+      "title": "Playback rules you can defend",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Separate three playback stories",
+        "Point storage at Cloud Storage Services",
+        "Refuse a retention number this page does not give"
+      ],
+      "sources": [
+        "src-00f559629e55",
+        "src-cd4f197ceaf4",
+        "src-2fa62e54d0a8",
+        "src-04981eca8f8b"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "enlighten/autopilot-is",
+      "title": "Autopilot is Autopilot (Omilia)",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use the product's name",
+        "Separate voice from text at the start",
+        "Treat Edward Ferrars as the doc example"
+      ],
+      "sources": [
+        "src-4e1f7f0142a7"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "enlighten/voice-versus-text",
+      "title": "Voice and text do not connect the same way",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Contrast the two connections",
+        "Name the SIP backchannel",
+        "Send voice setup to the account representative"
+      ],
+      "sources": [
+        "src-4e1f7f0142a7",
+        "src-00f559629e55",
+        "src-f19b0c8526ec"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "enlighten/autopilot-pieces",
+      "title": "The four pieces of an Autopilot integration",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "List the four components",
+        "Put the action on the POC script",
+        "Keep Knowledge and Voice Biometrics as named relatives"
+      ],
+      "sources": [
+        "src-4e1f7f0142a7"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "enlighten/tts-and-kb",
+      "title": "TTS voices and a knowledge base",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Separate standard from premium TTS",
+        "Name Knowledge Hub",
+        "Refuse a price"
+      ],
+      "sources": [
+        "src-4e1f7f0142a7"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "enlighten/summary-types",
+      "title": "Three AutoSummary types",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name the three types",
+        "Exclude email",
+        "Quote the timing the page gives"
+      ],
+      "sources": [
+        "src-e7223d8a33a5"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "enlighten/summary-setup",
+      "title": "What setup actually requires",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "List the setup gates",
+        "Include disposition on the skill",
+        "Remember MAX's extra license"
+      ],
+      "sources": [
+        "src-425a87e75c09",
+        "src-e7223d8a33a5"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "enlighten/summary-leaves",
+      "title": "Where the summary goes after the agent",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Map Contact to Disposition Notes",
+        "State the two-day API window",
+        "Keep Engagement Hub Copilot as a separate gate"
+      ],
+      "sources": [
+        "src-425a87e75c09",
+        "src-e7223d8a33a5",
+        "src-cd4f197ceaf4"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "apis/start-tasks",
+      "title": "Getting Started is a sequence",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Keep the tasks in order",
+        "Expect a wait after register",
+        "Use a test user before a production employee"
+      ],
+      "sources": [
+        "src-303866ff399d",
+        "src-526d1925f678",
+        "src-1616c5c6e3a0"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "apis/password-grant",
+      "title": "Back-end apps use the password grant",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Name the grant",
+        "Separate the two client methods",
+        "Keep the API user off the login page"
+      ],
+      "sources": [
+        "src-49bbc1a95b30",
+        "src-9c8f86060b94",
+        "src-6a6ce77a20b2"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "apis/oidc-users",
+      "title": "User-facing apps use OpenID Connect",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Use authorization code for users",
+        "Remember the only scope and response type",
+        "Mark the conflicting sample"
+      ],
+      "sources": [
+        "src-49bbc1a95b30",
+        "src-cfd2790a544c"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "apis/discovery",
+      "title": "Discover the issuer, then the tenant",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Build the discovery URL",
+        "Name both issuers",
+        "Read api_endpoint from tenant configuration"
+      ],
+      "sources": [
+        "src-49bbc1a95b30"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "apis/refresh-jwt",
+      "title": "Refresh early and pin the key id",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Use the 5-minute renewal tip",
+        "Treat 3600 as a sample",
+        "Match kid to JWKS"
+      ],
+      "sources": [
+        "src-49bbc1a95b30"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "apis/keys-die",
+      "title": "An access key secret is shown once",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Store the secret at creation",
+        "Expect immediate revocation",
+        "Never mint as admin"
+      ],
+      "sources": [
+        "src-6a6ce77a20b2",
+        "src-fd6921e0d12d",
+        "src-552632c3aaff"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "apis/studio-api-actions",
+      "title": "Studio API actions are not the whole catalog",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Use the verb colors",
+        "Fall back without inventing an action",
+        "Point agent events at GET NEXT EVENT"
+      ],
+      "sources": [
+        "src-766cc346d6b6",
+        "src-0e887292329e",
+        "src-526d1925f678",
+        "src-f0772da243b5"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "crm/lightning-console",
+      "title": "Salesforce wants Lightning and the console",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Require Lightning",
+        "Choose console navigation",
+        "Name the system user"
+      ],
+      "sources": [
+        "src-ea49e230cc4a"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "crm/who-is-billed",
+      "title": "Agent Integrations is a per-employee switch",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name both attributes",
+        "Connect billing to the attribute",
+        "Not invent a price"
+      ],
+      "sources": [
+        "src-ea49e230cc4a"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "crm/script-and-workflow",
+      "title": "The script still has to change",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Keep the process order",
+        "Include the permission",
+        "Leave workflow field lists to the page"
+      ],
+      "sources": [
+        "src-ea49e230cc4a",
+        "src-425a87e75c09"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "crm/einstein-chat",
+      "title": "Einstein is a virtual agent, not the CRM screen",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Place Einstein on digital chat",
+        "Keep it off the console project",
+        "Use the hub"
+      ],
+      "sources": [
+        "src-2707506c6e47",
+        "src-4e1f7f0142a7",
+        "src-ea49e230cc4a"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "crm/ticketing-pair",
+      "title": "Ticketing currently names Salesforce and Zendesk",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Quote the FAQ's CRM list",
+        "Keep identity edits in the CRM",
+        "Remember solved-or-resolved and 90 days"
+      ],
+      "sources": [
+        "src-04981eca8f8b"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "crm/ticket-channels",
+      "title": "The channel list, including a repeated Slack",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use the page's list",
+        "Notice Slack twice",
+        "Keep QM as a yes"
+      ],
+      "sources": [
+        "src-04981eca8f8b"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "crm/indexed-reset",
+      "title": "Salesforce Voice 26.3 needs one IndexedDB delete",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Name the database",
+        "Limit the reset to that upgrade",
+        "Separate package history from the platform"
+      ],
+      "sources": [
+        "src-36ddf4a3c70f",
+        "src-64247b079cd0",
+        "src-66eef0a7df05"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "voice/two-legs",
+      "title": "A leg and B leg meet on a media server",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name both legs",
+        "Classify ingress and egress",
+        "Add the second B leg for a transfer"
+      ],
+      "sources": [
+        "src-eca03b39b214"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "voice/pstn-or-voip",
+      "title": "PSTN is DID or TFN. VoIP stays on the agent leg.",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Define PSTN as the page does",
+        "Keep VoIP on the B leg",
+        "Send A-leg VoIP to the account representative"
+      ],
+      "sources": [
+        "src-eca03b39b214"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "voice/softphone-names",
+      "title": "Integrated Softphone is not the word WebRTC",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Separate the two products",
+        "Use WebRTC only as the technology",
+        "Say an allowlist is required"
+      ],
+      "sources": [
+        "src-eca03b39b214"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "voice/numbers-and-pops",
+      "title": "Numbers, RespOrg, and the voice PoP",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Prefer RespOrg for toll-free",
+        "List the other three arrivals",
+        "Define PoP and SIP trunk as the page does"
+      ],
+      "sources": [
+        "src-eca03b39b214",
+        "src-2131fde2b3f8",
+        "src-b212a3a9e95b",
+        "src-f07ba5109708"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "voice/firewall-and-tls",
+      "title": "Allowlists, proxies, and TLS 1.2",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Refuse a stale IP list",
+        "Decline inspection proxies",
+        "Quote TLS 1.2 and the cipher direction"
+      ],
+      "sources": [
+        "src-eca03b39b214"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "voice/cluster-and-cloud",
+      "title": "Your tenant sits on a named cluster",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Separate AWS ownership from NiCE software",
+        "Know you have a cluster name",
+        "Not treat the examples as your cluster"
+      ],
+      "sources": [
+        "src-eca03b39b214",
+        "src-e18db1ece6ed"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "voice/carrier-boundary",
+      "title": "The carrier, the PoP, and CXone are three owners",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Give the carrier the PoP",
+        "Give CXone the point of contact",
+        "Stop before invented SIP details"
+      ],
+      "sources": [
+        "src-eca03b39b214",
+        "src-2131fde2b3f8",
+        "src-b212a3a9e95b"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "migration/two-moves",
+      "title": "Two migrations get confused on purpose",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Separate the three projects",
+        "Refuse a single cutover checklist",
+        "Cite the page that matches the work"
+      ],
+      "sources": [
+        "src-fd6921e0d12d",
+        "src-e18db1ece6ed",
+        "src-2fa62e54d0a8",
+        "src-cd4f197ceaf4"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "migration/ucce-wfm",
+      "title": "The UCCE connector is on premises and speaks SQL",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Quote 11.6 for this connector",
+        "Separate RTA from SQL history",
+        "List what is not supported"
+      ],
+      "sources": [
+        "src-fd6921e0d12d",
+        "src-e18db1ece6ed"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "migration/aw-hds-dds",
+      "title": "Web Setup must say AW-HDS-DDS",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Name the role",
+        "Verify PG Explorer too",
+        "Use a dedicated access key"
+      ],
+      "sources": [
+        "src-fd6921e0d12d",
+        "src-6a6ce77a20b2"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "migration/multi-acd-versions",
+      "title": "Multi-ACD has its own Cisco and Avaya table",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Read the table you mean",
+        "Include the 12.5 support note",
+        "Keep the Teams bot on Azure"
+      ],
+      "sources": [
+        "src-e18db1ece6ed",
+        "src-00f559629e55"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "migration/avaya-two-pages",
+      "title": "Avaya CMS and Avaya CMS Legacy are different connectors",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Match the page to the installer",
+        "Contrast intraday",
+        "Mint a dedicated key on both"
+      ],
+      "sources": [
+        "src-552632c3aaff",
+        "src-3b6991fda66d",
+        "src-6a6ce77a20b2"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "migration/upload-history",
+      "title": "Migrated Calls is a license, a format, and a list of vendors",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Name the license and permission",
+        "List vendors without adding any",
+        "Remember what is not supported"
+      ],
+      "sources": [
+        "src-2fa62e54d0a8"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "migration/do-not-cookbook",
+      "title": "What a bridge design is allowed to say",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Write only cited sentences",
+        "Keep Professional Services on DNIS",
+        "Leave the cutover weekend blank"
+      ],
+      "sources": [
+        "src-f07ba5109708",
+        "src-eca03b39b214",
+        "src-cd4f197ceaf4",
+        "src-fd6921e0d12d",
+        "src-e18db1ece6ed",
+        "src-722a8126e247"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ecosystem/badge-names",
+      "title": "Only the badges this lab opened",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use the badge titles",
+        "Refuse an exam code",
+        "Say NiCE issues them"
+      ],
+      "sources": [
+        "src-fc5d26154edf",
+        "src-1b78885f2359",
+        "src-e5dee4ef6a3b",
+        "src-b1c7f3906176",
+        "src-dd3eca9ada51"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ecosystem/supervisor-club",
+      "title": "The supervisor badge comes through Club One",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Call it foundational and free",
+        "List the five topics",
+        "Keep Club One in its lane"
+      ],
+      "sources": [
+        "src-dd3eca9ada51",
+        "src-9c50bea742d6",
+        "src-00f559629e55",
+        "src-fc5d26154edf"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ecosystem/release-cadence",
+      "title": "How a release reaches a cluster",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Repeat the cadence",
+        "Keep hotfixes separate",
+        "Distrust a notification date that the page will not guarantee"
+      ],
+      "sources": [
+        "src-acf690e12023",
+        "src-c733846ce3e1"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ecosystem/cycle-262",
+      "title": "26.2 is a cycle with a rename table",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Quote the 26.2 dates",
+        "Treat names as a table you re-read",
+        "Not freeze a feature list"
+      ],
+      "sources": [
+        "src-0ea3687a5532",
+        "src-64247b079cd0",
+        "src-e7223d8a33a5"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ecosystem/cycles-overlap",
+      "title": "26.3 and 26.4 disagree if you force one calendar",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Quote both windows",
+        "Leave the overlap marked",
+        "Use the new preview name"
+      ],
+      "sources": [
+        "src-66eef0a7df05",
+        "src-09309837bd8f",
+        "src-4491166d2bea"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ecosystem/bridge-map",
+      "title": "The cross-platform map is a set of pages",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Point each product at a row",
+        "Leave Webex versions blank",
+        "Use the in-app mind map as a picture only"
+      ],
+      "sources": [
+        "src-e18db1ece6ed",
+        "src-fd6921e0d12d",
+        "src-552632c3aaff",
+        "src-cd4f197ceaf4",
+        "src-b4df7e998f5f"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "ecosystem/how-to-read",
+      "title": "How to keep reading after this campus",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Re-read before you enforce",
+        "Mark conflicts",
+        "Remember the independence line"
+      ],
+      "sources": [
+        "src-66eef0a7df05",
+        "src-c733846ce3e1",
+        "src-49bbc1a95b30",
+        "src-b4df7e998f5f",
+        "src-03f8c48ca50d",
+        "src-09309837bd8f"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "skills-acd/dd-two-paces",
+      "title": "Two ways dynamic delivery hands work out",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name the two delivery types",
+        "Say which agent apps require dynamic delivery",
+        "Leave AI Routing as an optional extra"
+      ],
+      "sources": [
+        "src-f6c9f40c3622"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "skills-acd/dd-enable",
+      "title": "Turn dynamic delivery on, and do not casually turn it off",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Follow the six clicks",
+        "Train agents before the switch",
+        "Protect long-running digital contacts"
+      ],
+      "sources": [
+        "src-553cab9db721"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "skills-acd/attributes-five",
+      "title": "Routing attributes, five at a time",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Name the Studio actions",
+        "Keep the five-attribute caution",
+        "Ask before multiple attributes"
+      ],
+      "sources": [
+        "src-9b1f8faa39b1"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "skills-acd/proficiency-one-user",
+      "title": "Proficiency for one user, or for one skill",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Use the user Skills tab",
+        "Save proficiencies",
+        "Not confuse the two bulk edits"
+      ],
+      "sources": [
+        "src-3311632dfbe4"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "skills-acd/channel-lock",
+      "title": "Channel lock, elevation, and integrated matching",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Apply the total-contact example",
+        "Read the elevation table",
+        "Name the digital threshold buckets"
+      ],
+      "sources": [
+        "src-f6c9f40c3622"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "skills-acd/occupied-and-safe",
+      "title": "Least occupied, most occupied, and safe mode",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Separate the two occupied modes",
+        "List what safe mode keeps",
+        "Not export safe mode outside North America"
+      ],
+      "sources": [
+        "src-0a74b03f9207",
+        "src-f6c9f40c3622"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm-day/two-clocks",
+      "title": "Two clocks after the schedule exists",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Separate the two clocks",
+        "Name the two setup steps",
+        "Keep history off the live board"
+      ],
+      "sources": [
+        "src-527309cdb137"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm-day/rta-now",
+      "title": "The live table is only the current state",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Ask for the Real Time Adherence permission",
+        "Keep past intervals off this table",
+        "Map a non-CXone login id"
+      ],
+      "sources": [
+        "src-41f3d3e7120f"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm-day/activity-or-category",
+      "title": "Activity adherence or category adherence",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Tell which approach is on",
+        "Use the On call example",
+        "Use the WorkHours example"
+      ],
+      "sources": [
+        "src-41f3d3e7120f"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm-day/severe-ooa",
+      "title": "Out of adherence, open, and severe",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Read the three-row table",
+        "Name when adherence is not calculated",
+        "Keep severe for the non-open actual"
+      ],
+      "sources": [
+        "src-41f3d3e7120f"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm-day/publish-dots",
+      "title": "Green dots, yellow dots, and 36 months",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Read the two dot colors",
+        "Filter by a scheduling unit first",
+        "Save and publish"
+      ],
+      "sources": [
+        "src-8de5a7f91b4f"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "wfm-day/fix-from-schedule",
+      "title": "Fix the live row from Schedule Manager",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Publish the activity change",
+        "Export at most 30 days",
+        "Leave unmapped rows uncalculated"
+      ],
+      "sources": [
+        "src-41f3d3e7120f",
+        "src-8de5a7f91b4f"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "qm-ia/qm-start",
+      "title": "Forms, plans, and no retention rule",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Name the workflow",
+        "Require Teams and Groups view",
+        "Separate Advanced from Premium"
+      ],
+      "sources": [
+        "src-4983da7b7c52"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "qm-ia/two-averages",
+      "title": "70 percent is not 73.3333",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Compute both Sanity QA results",
+        "Leave Vijay unmarked",
+        "Know which formula the widgets use"
+      ],
+      "sources": [
+        "src-4983da7b7c52"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "qm-ia/form-life",
+      "title": "A form is questions, then an activation",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Activate before use",
+        "Name a critical question",
+        "Keep IA Category as a header field"
+      ],
+      "sources": [
+        "src-048ea0c6ef95"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "qm-ia/categories-two-thousand",
+      "title": "Categories, up to 2,000",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Separate the workspace from the Categories page",
+        "Click Update Data",
+        "Treat delete as final"
+      ],
+      "sources": [
+        "src-1ae9de55db4e"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "qm-ia/sentiment-windows",
+      "title": "Beginning, end, and three seconds of silence",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Name the four sentiment labels",
+        "Apply the two windows",
+        "Keep frustration separate from negative sentiment"
+      ],
+      "sources": [
+        "src-c703a71f53ef"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "qm-ia/export-and-tickets",
+      "title": "JSON every 400 records, and closed tickets",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Repeat the export cadence",
+        "Name the four reports",
+        "Keep ticket evaluation on resolved or closed"
+      ],
+      "sources": [
+        "src-deadc1cdd0e9",
+        "src-4983da7b7c52"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "cti-cpaas/open-cti-url",
+      "title": "The Salesforce CTI adapter URL",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use the matching call center",
+        "Paste the URL for the right boundary",
+        "Treat 25 seats as a 30-day trial"
+      ],
+      "sources": [
+        "src-588183f09939"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "cti-cpaas/trusted-urls",
+      "title": "Trusted URLs and Click2Jack",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Add both trusted URLs",
+        "Select every CSP directive",
+        "Warn non-agents before Click2Jack"
+      ],
+      "sources": [
+        "src-588183f09939"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "cti-cpaas/fully-integrated",
+      "title": "A second CTI URL, 340 pixels wide",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Keep the two URLs apart",
+        "Set Lightning compatibility",
+        "Enable one login permission"
+      ],
+      "sources": [
+        "src-60dbb3ffe319",
+        "src-588183f09939"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "cti-cpaas/hub-limits",
+      "title": "Integration Hub: 50 connections, 32 KB",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Name the five templates",
+        "Stay under the three limits",
+        "Mark the one-template sentence"
+      ],
+      "sources": [
+        "src-c8cf3e8e9826"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "cti-cpaas/ucaas-not-cpaas",
+      "title": "UCaaS (1CX) is not a CPaaS page",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Describe 1CX with the page's words",
+        "Sync presence with the agent app",
+        "Not rename UCaaS to CPaaS"
+      ],
+      "sources": [
+        "src-41691d3dda26",
+        "src-eca03b39b214"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "cti-cpaas/cpaas-confirm",
+      "title": "CPaaS stays confirm",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Leave CPaaS without a URL",
+        "Describe AEP only from its page",
+        "Not invent a Five9 or Webex connector"
+      ],
+      "sources": [
+        "src-f5281ffb6359",
+        "src-57dfac4477bb",
+        "src-c8cf3e8e9826"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "eco-map/glossary-legs",
+      "title": "Glossary words from the connectivity page",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Define A leg and B leg",
+        "Count legs on a transfer",
+        "Treat cluster names as examples"
+      ],
+      "sources": [
+        "src-eca03b39b214"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "eco-map/picture-not-network",
+      "title": "The mind map is a picture",
+      "level": 2,
+      "level_name": "foundation",
+      "outcomes": [
+        "Use the picture as memory",
+        "Cite the edge",
+        "Refuse an uncited arrow"
+      ],
+      "sources": [
+        "src-eca03b39b214",
+        "src-57dfac4477bb"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "eco-map/sisters-opened",
+      "title": "Sister technologies this chapter opened",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Match each sister to one page",
+        "Not merge their jobs",
+        "Leave unopened products off the list"
+      ],
+      "sources": [
+        "src-527309cdb137",
+        "src-4983da7b7c52",
+        "src-1ae9de55db4e",
+        "src-c8cf3e8e9826",
+        "src-41691d3dda26",
+        "src-588183f09939",
+        "src-f5281ffb6359"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "eco-map/integration-maps",
+      "title": "Two integration maps",
+      "level": 5,
+      "level_name": "intermediate",
+      "outcomes": [
+        "Name the three WFM methods",
+        "Keep one ACD",
+        "Not treat Hub as a cutover"
+      ],
+      "sources": [
+        "src-57dfac4477bb",
+        "src-c8cf3e8e9826"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "eco-map/bridges-named",
+      "title": "Bridges are the named rows",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Copy a row only when it exists",
+        "Keep Advanced Services on point-to-point",
+        "Leave unnamed products as confirm"
+      ],
+      "sources": [
+        "src-57dfac4477bb",
+        "src-eca03b39b214"
+      ],
+      "last_verified": null
+    },
+    {
+      "key": "eco-map/future-hooks",
+      "title": "Future hooks are labeled",
+      "level": 8,
+      "level_name": "advanced",
+      "outcomes": [
+        "Quote AEP's pillars",
+        "Leave setup steps out",
+        "Keep confirm lines URL-free"
+      ],
+      "sources": [
+        "src-f5281ffb6359",
+        "src-57dfac4477bb"
+      ],
+      "last_verified": null
+    }
+  ]
+}

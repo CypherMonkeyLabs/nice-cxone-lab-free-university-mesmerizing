@@ -1,0 +1,589 @@
+{
+  "questions": 102,
+  "beginner": {
+    "total": 40,
+    "relevant": 17,
+    "relevantPct": 42.5,
+    "confidentWrong": 14,
+    "fallback": 9,
+    "fallbackPct": 22.5
+  },
+  "typo": {
+    "total": 15,
+    "relevant": 11,
+    "relevantPct": 73.3,
+    "confidentWrong": 3,
+    "fallback": 1,
+    "fallbackPct": 6.7
+  },
+  "offtopic": {
+    "total": 15,
+    "relevant": 15,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 15,
+    "fallbackPct": 100
+  },
+  "nav": {
+    "total": 10,
+    "relevant": 10,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 0,
+    "fallbackPct": 0
+  },
+  "inject": {
+    "total": 10,
+    "relevant": 10,
+    "relevantPct": 100,
+    "confidentWrong": 0,
+    "fallback": 10,
+    "fallbackPct": 100
+  },
+  "followTurns": {
+    "total": 12,
+    "relevant": 6,
+    "relevantPct": 50,
+    "confidentWrong": 5,
+    "fallback": 1,
+    "fallbackPct": 8.3
+  },
+  "confidentWrong": [
+    {
+      "id": "b01",
+      "q": "write the static delivery priority formula in words",
+      "href": "#/lesson/routing/static-delivery",
+      "text": "Static delivery priorities. The priority page is filed under static delivery. Inbound and digital skills can use the three settings. Personal Connection with priority blending uses"
+    },
+    {
+      "id": "b04",
+      "q": "why must a Personal Connection skill not age like inbound",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b06",
+      "q": "name the three priority settings on an inbound skill record",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b07",
+      "q": "what should WFM hear before a bullseye window changes",
+      "href": "#/lesson/wfm/wfm-routing-hand",
+      "text": "Hand a routing change to WFM. A one-page note is enough: priorities, windows, PC at acceleration 0, and which product. What-If is optional. Silence is how the Monday schedule goes "
+    },
+    {
+      "id": "b08",
+      "q": "is longest idle a cited inbound delivery rule in this lab",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b16",
+      "q": "which agent desktop names do the help pages still use",
+      "href": "#/lesson/platform/licenses",
+      "text": "Licenses the help pages actually name. Some features say they need a license. This lab lists only licenses a cited page names, and it does not invent SKUs or prices. CRM Ticketing "
+    },
+    {
+      "id": "b19",
+      "q": "why are new routing queues the wrong tool for new inbound chat",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b24",
+      "q": "does the recorder keep hold music",
+      "href": "#/lesson/people/data-access",
+      "text": "Who can see a recording. Seeing a recording is a permission question. The Admin page says agents may see only their own interactions while supervisors see more. Recording Managemen"
+    },
+    {
+      "id": "b29",
+      "q": "when should a browser user use authorization code instead of the password grant",
+      "href": "#/lesson/foundations/prereq-network",
+      "text": "Browser, WebRTC, and allowlists. Integrated Softphone is the NiCE application. WebRTC is the Chrome technology it uses. Those names are not interchangeable, and Integrated Softphon"
+    },
+    {
+      "id": "b31",
+      "q": "which Salesforce navigation does Agent Workspace expect",
+      "href": "#/lesson/people/agent-apps",
+      "text": "MAX and Agent Workspace. Current help still names MAX and a family of Agent Workspace applications. Digital support is not identical across them. AutoSummary lists the ones it work"
+    },
+    {
+      "id": "b32",
+      "q": "which call leg is between CXone and the agent",
+      "href": "#/lesson/voice/pstn-or-voip",
+      "text": "PSTN is DID or TFN. VoIP stays on the agent leg.. CXone classifies DID or toll-free traffic as PSTN. It supports PSTN on the A leg and restricts VoIP to the agent leg, unless a UCa"
+    },
+    {
+      "id": "b33",
+      "q": "what browser technology does the integrated softphone use",
+      "href": "#/lesson/foundations/prereq-network",
+      "text": "Browser, WebRTC, and allowlists. Integrated Softphone is the NiCE application. WebRTC is the Chrome technology it uses. Those names are not interchangeable, and Integrated Softphon"
+    },
+    {
+      "id": "b39",
+      "q": "what does a sentiment window measure in interaction analytics",
+      "href": "#/lesson/foundations/contact-words",
+      "text": "Contact, interaction, and channel. Help pages use contact for the person and interaction for the full conversation on a channel. Digital is a specific family of channels, not a syn"
+    },
+    {
+      "id": "b40",
+      "q": "what does this lab say when a CPaaS page was not opened",
+      "href": "#/lesson/eco-map/future-hooks",
+      "text": "Future hooks are labeled. A future hook with an opened page is quoted and stopped where the page stops. A future hook with no page is confirm. AEP is the first kind. CPaaS is the s"
+    },
+    {
+      "id": "t04",
+      "q": "studio scirpt types",
+      "href": "#/lesson/digital/channel-setup",
+      "text": "Skill, script, and the digital POC. A new digital channel needs a digital skill and a digital script as defaults. The script may change the skill later. Digital Channels says that "
+    },
+    {
+      "id": "t07",
+      "q": "digital skil instead of a new queuee",
+      "href": "#/lesson/digital/outbound-digital",
+      "text": "Outbound digital still uses queues. Do not delete every queue. Outbound digital routing still uses them. WFA assigns the skill used when the contact replies. Digital Routing says t"
+    },
+    {
+      "id": "t15",
+      "q": "sentimnt window in analytics",
+      "href": "#/track/qm-ia",
+      "text": "Quality and Interaction Analytics. Evaluation forms, two average-score formulas, categories, and sentiment windows. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "f01.1",
+      "q": "write the static delivery priority formula in words",
+      "href": "#/lesson/routing/static-delivery",
+      "text": "Static delivery priorities. The priority page is filed under static delivery. Inbound and digital skills can use the three settings. Personal Connection with priority blending uses"
+    },
+    {
+      "id": "f01.2",
+      "q": "show an example",
+      "href": "#/lesson/routing/static-delivery",
+      "text": "An example from “Static delivery priorities”."
+    },
+    {
+      "id": "f03.1",
+      "q": "why must a Personal Connection skill not age like inbound",
+      "href": "#/lesson/acd/inbound-order",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "f04.1",
+      "q": "does the recorder keep hold music",
+      "href": "#/lesson/people/data-access",
+      "text": "Who can see a recording. Seeing a recording is a permission question. The Admin page says agents may see only their own interactions while supervisors see more. Recording Managemen"
+    },
+    {
+      "id": "f04.2",
+      "q": "show an example",
+      "href": "#/lesson/people/data-access",
+      "text": "An example from “Who can see a recording”."
+    }
+  ],
+  "misses": [
+    {
+      "id": "b01",
+      "group": "beginner",
+      "q": "write the static delivery priority formula in words",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/routing/static-delivery",
+      "mode": "answer",
+      "intent": "",
+      "text": "Static delivery priorities. The priority page is filed under static delivery. Inbound and digital skills can use the three settings. Personal Connection with priority blending uses"
+    },
+    {
+      "id": "b04",
+      "group": "beginner",
+      "q": "why must a Personal Connection skill not age like inbound",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b06",
+      "group": "beginner",
+      "q": "name the three priority settings on an inbound skill record",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b07",
+      "group": "beginner",
+      "q": "what should WFM hear before a bullseye window changes",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/wfm/wfm-routing-hand",
+      "mode": "answer",
+      "intent": "",
+      "text": "Hand a routing change to WFM. A one-page note is enough: priorities, windows, PC at acceleration 0, and which product. What-If is optional. Silence is how the Monday schedule goes "
+    },
+    {
+      "id": "b08",
+      "group": "beginner",
+      "q": "is longest idle a cited inbound delivery rule in this lab",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b09",
+      "group": "beginner",
+      "q": "which script types does the Studio track introduce",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Three AutoSummary types; Skill, script, and the digital POC. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b14",
+      "group": "beginner",
+      "q": "what happens to a point of contact outside open hours",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Bind the point of contact; Closed paths stay honest. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b16",
+      "group": "beginner",
+      "q": "which agent desktop names do the help pages still use",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/platform/licenses",
+      "mode": "answer",
+      "intent": "",
+      "text": "Licenses the help pages actually name. Some features say they need a license. This lab lists only licenses a cited page names, and it does not invent SKUs or prices. CRM Ticketing "
+    },
+    {
+      "id": "b17",
+      "group": "beginner",
+      "q": "where does a Studio menu keep the digit a caller presses",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Press-path lab; What Menu stores. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b18",
+      "group": "beginner",
+      "q": "what can a caller hear while they wait in queue",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Closed paths stay honest; Categories, up to 2,000. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b19",
+      "group": "beginner",
+      "q": "why are new routing queues the wrong tool for new inbound chat",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "b20",
+      "group": "beginner",
+      "q": "what has to be true before a digital agent can receive work",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Outbound digital still uses queues; Einstein is a virtual agent, not the CRM screen. I only answer from this lab's lessons. You can also use S"
+    },
+    {
+      "id": "b21",
+      "group": "beginner",
+      "q": "what two inputs does a WFM forecast start from",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Forecast volume and AHT; Two integration maps. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b22",
+      "group": "beginner",
+      "q": "why does this lab refuse to treat IEX as CXone WFM",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: IEX is not a skin on CXone WFM; What CXone WFM is for. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b24",
+      "group": "beginner",
+      "q": "does the recorder keep hold music",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/people/data-access",
+      "mode": "answer",
+      "intent": "",
+      "text": "Who can see a recording. Seeing a recording is a permission question. The Admin page says agents may see only their own interactions while supervisors see more. Recording Managemen"
+    },
+    {
+      "id": "b26",
+      "group": "beginner",
+      "q": "what company name sits beside Autopilot in this lab",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Autopilot is Autopilot (Omilia); Your tenant sits on a named cluster. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b29",
+      "group": "beginner",
+      "q": "when should a browser user use authorization code instead of the password grant",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/foundations/prereq-network",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Browser, WebRTC, and allowlists. Integrated Softphone is the NiCE application. WebRTC is the Chrome technology it uses. Those names are not interchangeable, and Integrated Softphon"
+    },
+    {
+      "id": "b31",
+      "group": "beginner",
+      "q": "which Salesforce navigation does Agent Workspace expect",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/people/agent-apps",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "MAX and Agent Workspace. Current help still names MAX and a family of Agent Workspace applications. Digital support is not identical across them. AutoSummary lists the ones it work"
+    },
+    {
+      "id": "b32",
+      "group": "beginner",
+      "q": "which call leg is between CXone and the agent",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/voice/pstn-or-voip",
+      "mode": "answer",
+      "intent": "",
+      "text": "PSTN is DID or TFN. VoIP stays on the agent leg.. CXone classifies DID or toll-free traffic as PSTN. It supports PSTN on the A leg and restricts VoIP to the agent leg, unless a UCa"
+    },
+    {
+      "id": "b33",
+      "group": "beginner",
+      "q": "what browser technology does the integrated softphone use",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/foundations/prereq-network",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Browser, WebRTC, and allowlists. Integrated Softphone is the NiCE application. WebRTC is the Chrome technology it uses. Those names are not interchangeable, and Integrated Softphon"
+    },
+    {
+      "id": "b38",
+      "group": "beginner",
+      "q": "why are there two ways to average a QM score",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Forms, plans, and no retention rule; 70 percent is not 73.3333. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "b39",
+      "group": "beginner",
+      "q": "what does a sentiment window measure in interaction analytics",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/foundations/contact-words",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "Contact, interaction, and channel. Help pages use contact for the person and interaction for the full conversation on a channel. Digital is a specific family of channels, not a syn"
+    },
+    {
+      "id": "b40",
+      "group": "beginner",
+      "q": "what does this lab say when a CPaaS page was not opened",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/eco-map/future-hooks",
+      "mode": "answer",
+      "intent": "",
+      "text": "Future hooks are labeled. A future hook with an opened page is quoted and stopped where the page stops. A future hook with no page is confirm. AEP is the first kind. CPaaS is the s"
+    },
+    {
+      "id": "t04",
+      "group": "typo",
+      "q": "studio scirpt types",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/digital/channel-setup",
+      "mode": "answer",
+      "intent": "",
+      "text": "Skill, script, and the digital POC. A new digital channel needs a digital skill and a digital script as defaults. The script may change the skill later. Digital Channels says that "
+    },
+    {
+      "id": "t07",
+      "group": "typo",
+      "q": "digital skil instead of a new queuee",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/digital/outbound-digital",
+      "mode": "answer",
+      "intent": "",
+      "text": "Outbound digital still uses queues. Do not delete every queue. Outbound digital routing still uses them. WFA assigns the skill used when the contact replies. Digital Routing says t"
+    },
+    {
+      "id": "t14",
+      "group": "typo",
+      "q": "realtime adherense on the wfm day",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Activity adherence or category adherence; What CXone WFM is for. I only answer from this lab's lessons. You can also use Search."
+    },
+    {
+      "id": "t15",
+      "group": "typo",
+      "q": "sentimnt window in analytics",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/track/qm-ia",
+      "mode": "answer",
+      "intent": "",
+      "text": "Quality and Interaction Analytics. Evaluation forms, two average-score formulas, categories, and sentiment windows. These are themed worlds inside Contact Path."
+    },
+    {
+      "id": "f01.1",
+      "group": "follow",
+      "pair": "f01",
+      "q": "write the static delivery priority formula in words",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/routing/static-delivery",
+      "mode": "answer",
+      "intent": "",
+      "text": "Static delivery priorities. The priority page is filed under static delivery. Inbound and digital skills can use the three settings. Personal Connection with priority blending uses"
+    },
+    {
+      "id": "f01.2",
+      "group": "follow",
+      "pair": "f01",
+      "q": "show an example",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/routing/static-delivery",
+      "mode": "answer",
+      "intent": "example",
+      "text": "An example from “Static delivery priorities”."
+    },
+    {
+      "id": "f03.1",
+      "group": "follow",
+      "pair": "f03",
+      "q": "why must a Personal Connection skill not age like inbound",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/acd/inbound-order",
+      "mode": "answer",
+      "intent": "seed",
+      "text": "The inbound voice order. Set Up Inbound Voice builds a phone skill, a phone script, and a point of contact, in that order. The DNIS already has to exist."
+    },
+    {
+      "id": "f04.1",
+      "group": "follow",
+      "pair": "f04",
+      "q": "does the recorder keep hold music",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/people/data-access",
+      "mode": "answer",
+      "intent": "",
+      "text": "Who can see a recording. Seeing a recording is a permission question. The Admin page says agents may see only their own interactions while supervisors see more. Recording Managemen"
+    },
+    {
+      "id": "f04.2",
+      "group": "follow",
+      "pair": "f04",
+      "q": "show an example",
+      "relevant": false,
+      "confidentWrong": true,
+      "clean": false,
+      "href": "#/lesson/people/data-access",
+      "mode": "answer",
+      "intent": "example",
+      "text": "An example from “Who can see a recording”."
+    },
+    {
+      "id": "f05.1",
+      "group": "follow",
+      "pair": "f05",
+      "q": "what company name sits beside Autopilot in this lab",
+      "relevant": false,
+      "confidentWrong": false,
+      "clean": false,
+      "href": "",
+      "mode": "fallback",
+      "intent": "fallback",
+      "text": "I don't have that yet. Closest pages: Autopilot is Autopilot (Omilia); Your tenant sits on a named cluster. I only answer from this lab's lessons. You can also use Search."
+    }
+  ]
+}
